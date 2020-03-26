@@ -1,0 +1,79 @@
+﻿@model finalproject.Models.Tbl_for_books
+@{
+    ViewBag.Title = "Details";
+}
+<style>
+    tr{
+        padding:200px;
+        font-size:10px;
+    }
+
+</style>
+
+
+
+<h2>Details</h2>
+
+<div>
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <img style="width:250px ; height:350px ;" src="@Url.Content(Model.Book_img)" />
+
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8">
+                <table>
+                    <tr>
+                        <td>Name</td>
+                        <td>@Html.DisplayFor(x => x.Book_name)</td>
+
+
+                    </tr>
+                    <tr>
+                        <td>Author</td>
+                        <td>@Html.DisplayFor(x => x.auth_name)</td>
+
+
+                    </tr>
+                    <tr>
+                        <td>Edition</td>
+                        <td>@Html.DisplayFor(x => x.Book_Edition)</td>
+
+
+                    </tr>
+                    <tr>
+                        <td>Price</td>
+                        <td>@Html.DisplayFor(x => x.Book_price)</td>
+
+
+                    </tr>
+                    <tr>
+                        <td>Vendor Name</td>
+                        <td>@Html.DisplayFor(x => x.Vendor_name)</td>
+
+
+                    </tr>
+                </table>
+
+
+
+            </div>
+
+
+
+        </div>
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+</div>

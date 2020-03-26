@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> BookSelf</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("BookSelf", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    @if (Session["Admin_id"] != null && Session["Admin_email"] != null)
+                    {
+                        <li><a href="/Tbladmin/Logout">Logout</a></li>
+
+                        <li><a href="/tbl_Vendorr/Index">Create Vendor</a></li>
+                        <li><a href="/Bookcategoryy/Index">Category List</a></li>
+                        <li><a href="/Bookauthor/Index">Author List</a></li>
+                        <li><a href="/Tbl_Book/Create">Create Book</a></li>
+                    }
+                    else
+                    {
+                        <li><a href="/Tbladmin/Login">Admin Login</a></li>
+                    }
+
+                    @if (Session["Vendor_id"] != null && Session["Vendor_email"] != null)
+                    {
+
+
+                        <li><a href="/Tbladmin/Logout">Logout</a></li>
+                        <li><a href="/Tbl_Book/Create">Create Book</a></li>
+
+                    }
+                    else
+                    {
+                        <li><a href="/tbl_Vendorr/Login">Vendor Login</a></li>
+                    }
+
+                    @if (Session["mem_id"] != null && Session["mem_email"] != null)
+                    {
+
+
+                        <li><a href="/Tblmember/Logout">Logout</a></li>
+                        <li><a href="/AddtoCart/Index">Buy Book</a></li>
+
+                    }
+                    else
+                    {
+                        <
+                        <li><a href="/tbl_member/Login">Member Login</a></li>
+                    }
+                    <li><a href="/tbl_member/Create">Member Sign up</a></li>
+
+
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - BookSelf</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

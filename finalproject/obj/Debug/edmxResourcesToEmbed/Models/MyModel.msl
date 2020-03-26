@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="lastDbModelStoreContainer" CdmEntityContainer="lastDbEntities">
+    <EntitySetMapping Name="Book_author">
+      <EntityTypeMapping TypeName="lastDbModel.Book_author">
+        <MappingFragment StoreEntitySet="Book_author">
+          <ScalarProperty Name="auth_id" ColumnName="auth_id" />
+          <ScalarProperty Name="auth_name" ColumnName="auth_name" />
+          <ScalarProperty Name="auth_email" ColumnName="auth_email" />
+          <ScalarProperty Name="auth_contact" ColumnName="auth_contact" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Book_publisher">
+      <EntityTypeMapping TypeName="lastDbModel.Book_publisher">
+        <MappingFragment StoreEntitySet="Book_publisher">
+          <ScalarProperty Name="pub_id" ColumnName="pub_id" />
+          <ScalarProperty Name="pub_name" ColumnName="pub_name" />
+          <ScalarProperty Name="pub_email" ColumnName="pub_email" />
+          <ScalarProperty Name="pub_contact" ColumnName="pub_contact" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Book_categoryy">
+      <EntityTypeMapping TypeName="lastDbModel.Book_categoryy">
+        <MappingFragment StoreEntitySet="Book_categoryy">
+          <ScalarProperty Name="cat_status" ColumnName="cat_status" />
+          <ScalarProperty Name="cat_name" ColumnName="cat_name" />
+          <ScalarProperty Name="cat_id" ColumnName="cat_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_member">
+      <EntityTypeMapping TypeName="lastDbModel.tbl_member">
+        <MappingFragment StoreEntitySet="tbl_member">
+          <ScalarProperty Name="mem_password" ColumnName="mem_password" />
+          <ScalarProperty Name="mem_contact" ColumnName="mem_contact" />
+          <ScalarProperty Name="mem_email" ColumnName="mem_email" />
+          <ScalarProperty Name="mem_name" ColumnName="mem_name" />
+          <ScalarProperty Name="mem_id" ColumnName="mem_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_admin">
+      <EntityTypeMapping TypeName="lastDbModel.Tbl_admin">
+        <MappingFragment StoreEntitySet="Tbl_admin">
+          <ScalarProperty Name="Admin_status" ColumnName="Admin_status" />
+          <ScalarProperty Name="Admin_contact" ColumnName="Admin_contact" />
+          <ScalarProperty Name="Admin_password" ColumnName="Admin_password" />
+          <ScalarProperty Name="Admin_email" ColumnName="Admin_email" />
+          <ScalarProperty Name="Admin_name" ColumnName="Admin_name" />
+          <ScalarProperty Name="Admin_id" ColumnName="Admin_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_Vendorr">
+      <EntityTypeMapping TypeName="lastDbModel.Tbl_Vendorr">
+        <MappingFragment StoreEntitySet="Tbl_Vendorr">
+          <ScalarProperty Name="Admin_id" ColumnName="Admin_id" />
+          <ScalarProperty Name="Vendor_ShopAdr" ColumnName="Vendor_ShopAdr" />
+          <ScalarProperty Name="Vendor_status" ColumnName="Vendor_status" />
+          <ScalarProperty Name="Vendor_contactno" ColumnName="Vendor_contactno" />
+          <ScalarProperty Name="Vendor_password" ColumnName="Vendor_password" />
+          <ScalarProperty Name="Vendor_email" ColumnName="Vendor_email" />
+          <ScalarProperty Name="Vendor_name" ColumnName="Vendor_name" />
+          <ScalarProperty Name="Vendor_id" ColumnName="Vendor_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_Books">
+      <EntityTypeMapping TypeName="lastDbModel.Tbl_Books">
+        <MappingFragment StoreEntitySet="Tbl_Books">
+          <ScalarProperty Name="Vendor_id" ColumnName="Vendor_id" />
+          <ScalarProperty Name="cat_id" ColumnName="cat_id" />
+          <ScalarProperty Name="pub_id" ColumnName="pub_id" />
+          <ScalarProperty Name="auth_id" ColumnName="auth_id" />
+          <ScalarProperty Name="Book_img" ColumnName="Book_img" />
+          <ScalarProperty Name="Book_price" ColumnName="Book_price" />
+          <ScalarProperty Name="Book_Edition" ColumnName="Book_Edition" />
+          <ScalarProperty Name="Book_name" ColumnName="Book_name" />
+          <ScalarProperty Name="Book_id" ColumnName="Book_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BTransactions">
+      <EntityTypeMapping TypeName="lastDbModel.BTransaction">
+        <MappingFragment StoreEntitySet="BTransaction">
+          <ScalarProperty Name="in_id" ColumnName="in_id" />
+          <ScalarProperty Name="Book_id" ColumnName="Book_id" />
+          <ScalarProperty Name="Transaction_price" ColumnName="Transaction_price" />
+          <ScalarProperty Name="Transaction_date" ColumnName="Transaction_date" />
+          <ScalarProperty Name="Transaction_qty" ColumnName="Transaction_qty" />
+          <ScalarProperty Name="Transaction_bill" ColumnName="Transaction_bill" />
+          <ScalarProperty Name="Transaction_id" ColumnName="Transaction_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Invoices">
+      <EntityTypeMapping TypeName="lastDbModel.Invoice">
+        <MappingFragment StoreEntitySet="Invoice">
+          <ScalarProperty Name="mem_id" ColumnName="mem_id" />
+          <ScalarProperty Name="in_totalbill" ColumnName="in_totalbill" />
+          <ScalarProperty Name="in_date" ColumnName="in_date" />
+          <ScalarProperty Name="in_id" ColumnName="in_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

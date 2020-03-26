@@ -1,0 +1,69 @@
+﻿@model IEnumerable<finalproject.Models.Tbl_Vendorr>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Vendor_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Vendor_email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Vendor_password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Vendor_contactno)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Vendor_status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Vendor_ShopAdr)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tbl_admin.Admin_name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vendor_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vendor_email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vendor_password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vendor_contactno)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vendor_status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vendor_ShopAdr)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tbl_admin.Admin_name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Vendor_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Vendor_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Vendor_id })
+        </td>
+    </tr>
+}
+
+</table>

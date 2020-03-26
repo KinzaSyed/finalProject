@@ -1,0 +1,58 @@
+﻿@model finalproject.Models.Tbl_admin
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Tbl_admin</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Admin_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Admin_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Admin_email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Admin_email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Admin_password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Admin_password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Admin_contact)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Admin_contact)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Admin_status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Admin_status)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Admin_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

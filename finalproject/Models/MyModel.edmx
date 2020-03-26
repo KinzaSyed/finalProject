@@ -1,0 +1,629 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="lastDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Book_author">
+          <Key>
+            <PropertyRef Name="auth_id" />
+          </Key>
+          <Property Name="auth_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="auth_name" Type="varchar" MaxLength="50" />
+          <Property Name="auth_email" Type="varchar" MaxLength="50" />
+          <Property Name="auth_contact" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Book_categoryy">
+          <Key>
+            <PropertyRef Name="cat_id" />
+          </Key>
+          <Property Name="cat_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cat_name" Type="varchar" MaxLength="50" />
+          <Property Name="cat_status" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Book_publisher">
+          <Key>
+            <PropertyRef Name="pub_id" />
+          </Key>
+          <Property Name="pub_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pub_name" Type="varchar" MaxLength="50" />
+          <Property Name="pub_email" Type="varchar" MaxLength="50" />
+          <Property Name="pub_contact" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="BTransaction">
+          <Key>
+            <PropertyRef Name="Transaction_id" />
+          </Key>
+          <Property Name="Transaction_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Transaction_bill" Type="int" />
+          <Property Name="Transaction_qty" Type="int" />
+          <Property Name="Transaction_date" Type="datetime" />
+          <Property Name="Transaction_price" Type="int" />
+          <Property Name="Book_id" Type="int" />
+          <Property Name="in_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="in_id" />
+          </Key>
+          <Property Name="in_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="in_date" Type="datetime" />
+          <Property Name="in_totalbill" Type="float" />
+          <Property Name="mem_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Tbl_admin">
+          <Key>
+            <PropertyRef Name="Admin_id" />
+          </Key>
+          <Property Name="Admin_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Admin_name" Type="varchar" MaxLength="50" />
+          <Property Name="Admin_email" Type="varchar" MaxLength="50" />
+          <Property Name="Admin_password" Type="varchar" MaxLength="50" />
+          <Property Name="Admin_contact" Type="varchar" MaxLength="50" />
+          <Property Name="Admin_status" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tbl_Books">
+          <Key>
+            <PropertyRef Name="Book_id" />
+          </Key>
+          <Property Name="Book_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Book_name" Type="varchar" MaxLength="50" />
+          <Property Name="Book_Edition" Type="varchar" MaxLength="50" />
+          <Property Name="Book_price" Type="int" />
+          <Property Name="Book_img" Type="varchar(max)" />
+          <Property Name="auth_id" Type="int" />
+          <Property Name="pub_id" Type="int" />
+          <Property Name="cat_id" Type="int" />
+          <Property Name="Vendor_id" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_member">
+          <Key>
+            <PropertyRef Name="mem_id" />
+          </Key>
+          <Property Name="mem_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="mem_name" Type="varchar" MaxLength="50" />
+          <Property Name="mem_email" Type="varchar" MaxLength="50" />
+          <Property Name="mem_contact" Type="varchar" MaxLength="50" />
+          <Property Name="mem_password" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tbl_Vendorr">
+          <Key>
+            <PropertyRef Name="Vendor_id" />
+          </Key>
+          <Property Name="Vendor_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Vendor_name" Type="varchar" MaxLength="100" />
+          <Property Name="Vendor_email" Type="varchar" MaxLength="50" />
+          <Property Name="Vendor_password" Type="varchar" MaxLength="50" />
+          <Property Name="Vendor_contactno" Type="int" />
+          <Property Name="Vendor_status" Type="varchar" MaxLength="50" />
+          <Property Name="Vendor_ShopAdr" Type="varchar" MaxLength="100" />
+          <Property Name="Admin_id" Type="int" />
+        </EntityType>
+        <Association Name="FK__BTransact__Book___4CA06362">
+          <End Role="Tbl_Books" Type="Self.Tbl_Books" Multiplicity="0..1" />
+          <End Role="BTransaction" Type="Self.BTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Books">
+              <PropertyRef Name="Book_id" />
+            </Principal>
+            <Dependent Role="BTransaction">
+              <PropertyRef Name="Book_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BTransact__in_id__4D94879B">
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="0..1" />
+          <End Role="BTransaction" Type="Self.BTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoice">
+              <PropertyRef Name="in_id" />
+            </Principal>
+            <Dependent Role="BTransaction">
+              <PropertyRef Name="in_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Invoice__mem_id__49C3F6B7">
+          <End Role="tbl_member" Type="Self.tbl_member" Multiplicity="0..1" />
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_member">
+              <PropertyRef Name="mem_id" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="mem_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Books__auth___267ABA7A">
+          <End Role="Book_author" Type="Self.Book_author" Multiplicity="0..1" />
+          <End Role="Tbl_Books" Type="Self.Tbl_Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book_author">
+              <PropertyRef Name="auth_id" />
+            </Principal>
+            <Dependent Role="Tbl_Books">
+              <PropertyRef Name="auth_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Books__cat_i__286302EC">
+          <End Role="Book_categoryy" Type="Self.Book_categoryy" Multiplicity="0..1" />
+          <End Role="Tbl_Books" Type="Self.Tbl_Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book_categoryy">
+              <PropertyRef Name="cat_id" />
+            </Principal>
+            <Dependent Role="Tbl_Books">
+              <PropertyRef Name="cat_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Books__pub_i__276EDEB3">
+          <End Role="Book_publisher" Type="Self.Book_publisher" Multiplicity="0..1" />
+          <End Role="Tbl_Books" Type="Self.Tbl_Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book_publisher">
+              <PropertyRef Name="pub_id" />
+            </Principal>
+            <Dependent Role="Tbl_Books">
+              <PropertyRef Name="pub_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Books__Vendo__29572725">
+          <End Role="Tbl_Vendorr" Type="Self.Tbl_Vendorr" Multiplicity="0..1" />
+          <End Role="Tbl_Books" Type="Self.Tbl_Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Vendorr">
+              <PropertyRef Name="Vendor_id" />
+            </Principal>
+            <Dependent Role="Tbl_Books">
+              <PropertyRef Name="Vendor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Vendo__Admin__1ED998B2">
+          <End Role="Tbl_admin" Type="Self.Tbl_admin" Multiplicity="0..1" />
+          <End Role="Tbl_Vendorr" Type="Self.Tbl_Vendorr" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_admin">
+              <PropertyRef Name="Admin_id" />
+            </Principal>
+            <Dependent Role="Tbl_Vendorr">
+              <PropertyRef Name="Admin_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="lastDbModelStoreContainer">
+          <EntitySet Name="Book_author" EntityType="Self.Book_author" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Book_categoryy" EntityType="Self.Book_categoryy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Book_publisher" EntityType="Self.Book_publisher" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BTransaction" EntityType="Self.BTransaction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_admin" EntityType="Self.Tbl_admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Books" EntityType="Self.Tbl_Books" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_member" EntityType="Self.tbl_member" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Vendorr" EntityType="Self.Tbl_Vendorr" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__BTransact__Book___4CA06362" Association="Self.FK__BTransact__Book___4CA06362">
+            <End Role="Tbl_Books" EntitySet="Tbl_Books" />
+            <End Role="BTransaction" EntitySet="BTransaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BTransact__in_id__4D94879B" Association="Self.FK__BTransact__in_id__4D94879B">
+            <End Role="Invoice" EntitySet="Invoice" />
+            <End Role="BTransaction" EntitySet="BTransaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Invoice__mem_id__49C3F6B7" Association="Self.FK__Invoice__mem_id__49C3F6B7">
+            <End Role="tbl_member" EntitySet="tbl_member" />
+            <End Role="Invoice" EntitySet="Invoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Books__auth___267ABA7A" Association="Self.FK__Tbl_Books__auth___267ABA7A">
+            <End Role="Book_author" EntitySet="Book_author" />
+            <End Role="Tbl_Books" EntitySet="Tbl_Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Books__cat_i__286302EC" Association="Self.FK__Tbl_Books__cat_i__286302EC">
+            <End Role="Book_categoryy" EntitySet="Book_categoryy" />
+            <End Role="Tbl_Books" EntitySet="Tbl_Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Books__pub_i__276EDEB3" Association="Self.FK__Tbl_Books__pub_i__276EDEB3">
+            <End Role="Book_publisher" EntitySet="Book_publisher" />
+            <End Role="Tbl_Books" EntitySet="Tbl_Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Books__Vendo__29572725" Association="Self.FK__Tbl_Books__Vendo__29572725">
+            <End Role="Tbl_Vendorr" EntitySet="Tbl_Vendorr" />
+            <End Role="Tbl_Books" EntitySet="Tbl_Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Vendo__Admin__1ED998B2" Association="Self.FK__Tbl_Vendo__Admin__1ED998B2">
+            <End Role="Tbl_admin" EntitySet="Tbl_admin" />
+            <End Role="Tbl_Vendorr" EntitySet="Tbl_Vendorr" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="lastDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Book_author">
+          <Key>
+            <PropertyRef Name="auth_id" />
+          </Key>
+          <Property Name="auth_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="auth_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="auth_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="auth_contact" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_Books" Relationship="lastDbModel.FK__Tbl_Books__auth___267ABA7A" FromRole="Book_author" ToRole="Tbl_Books" />
+        </EntityType>
+        <EntityType Name="Book_publisher">
+          <Key>
+            <PropertyRef Name="pub_id" />
+          </Key>
+          <Property Name="pub_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pub_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="pub_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="pub_contact" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_Books" Relationship="lastDbModel.FK__Tbl_Books__pub_i__276EDEB3" FromRole="Book_publisher" ToRole="Tbl_Books" />
+        </EntityType>
+        <EntityContainer Name="lastDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Book_author" EntityType="Self.Book_author" />
+          <EntitySet Name="Book_publisher" EntityType="Self.Book_publisher" />
+          <EntitySet Name="Book_categoryy" EntityType="lastDbModel.Book_categoryy" />
+          <EntitySet Name="tbl_member" EntityType="lastDbModel.tbl_member" />
+          <EntitySet Name="Tbl_admin" EntityType="lastDbModel.Tbl_admin" />
+          <EntitySet Name="Tbl_Vendorr" EntityType="lastDbModel.Tbl_Vendorr" />
+          <AssociationSet Name="FK__Tbl_Vendo__Admin__1ED998B2" Association="lastDbModel.FK__Tbl_Vendo__Admin__1ED998B2">
+            <End Role="Tbl_admin" EntitySet="Tbl_admin" />
+            <End Role="Tbl_Vendorr" EntitySet="Tbl_Vendorr" />
+          </AssociationSet>
+          <EntitySet Name="Tbl_Books" EntityType="lastDbModel.Tbl_Books" />
+          <AssociationSet Name="FK__Tbl_Books__auth___267ABA7A" Association="lastDbModel.FK__Tbl_Books__auth___267ABA7A">
+            <End Role="Book_author" EntitySet="Book_author" />
+            <End Role="Tbl_Books" EntitySet="Tbl_Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Books__cat_i__286302EC" Association="lastDbModel.FK__Tbl_Books__cat_i__286302EC">
+            <End Role="Book_categoryy" EntitySet="Book_categoryy" />
+            <End Role="Tbl_Books" EntitySet="Tbl_Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Books__pub_i__276EDEB3" Association="lastDbModel.FK__Tbl_Books__pub_i__276EDEB3">
+            <End Role="Book_publisher" EntitySet="Book_publisher" />
+            <End Role="Tbl_Books" EntitySet="Tbl_Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Books__Vendo__29572725" Association="lastDbModel.FK__Tbl_Books__Vendo__29572725">
+            <End Role="Tbl_Vendorr" EntitySet="Tbl_Vendorr" />
+            <End Role="Tbl_Books" EntitySet="Tbl_Books" />
+          </AssociationSet>
+          <EntitySet Name="BTransactions" EntityType="lastDbModel.BTransaction" />
+          <EntitySet Name="Invoices" EntityType="lastDbModel.Invoice" />
+          <AssociationSet Name="FK__BTransact__Book___4CA06362" Association="lastDbModel.FK__BTransact__Book___4CA06362">
+            <End Role="Tbl_Books" EntitySet="Tbl_Books" />
+            <End Role="BTransaction" EntitySet="BTransactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BTransact__in_id__4D94879B" Association="lastDbModel.FK__BTransact__in_id__4D94879B">
+            <End Role="Invoice" EntitySet="Invoices" />
+            <End Role="BTransaction" EntitySet="BTransactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Invoice__mem_id__49C3F6B7" Association="lastDbModel.FK__Invoice__mem_id__49C3F6B7">
+            <End Role="tbl_member" EntitySet="tbl_member" />
+            <End Role="Invoice" EntitySet="Invoices" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Book_categoryy">
+          <Key>
+            <PropertyRef Name="cat_id" />
+          </Key>
+          <Property Name="cat_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cat_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cat_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_Books" Relationship="lastDbModel.FK__Tbl_Books__cat_i__286302EC" FromRole="Book_categoryy" ToRole="Tbl_Books" />
+        </EntityType>
+        <EntityType Name="tbl_member">
+          <Key>
+            <PropertyRef Name="mem_id" />
+          </Key>
+          <Property Name="mem_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="mem_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="mem_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="mem_contact" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="mem_password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Invoices" Relationship="lastDbModel.FK__Invoice__mem_id__49C3F6B7" FromRole="tbl_member" ToRole="Invoice" />
+        </EntityType>
+        <EntityType Name="Tbl_admin">
+          <Key>
+            <PropertyRef Name="Admin_id" />
+          </Key>
+          <Property Name="Admin_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Admin_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Admin_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Admin_password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Admin_contact" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Admin_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_Vendorr" Relationship="lastDbModel.FK__Tbl_Vendo__Admin__1ED998B2" FromRole="Tbl_admin" ToRole="Tbl_Vendorr" />
+        </EntityType>
+        <EntityType Name="Tbl_Vendorr">
+          <Key>
+            <PropertyRef Name="Vendor_id" />
+          </Key>
+          <Property Name="Vendor_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Vendor_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Vendor_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Vendor_password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Vendor_contactno" Type="Int32" />
+          <Property Name="Vendor_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Vendor_ShopAdr" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Admin_id" Type="Int32" />
+          <NavigationProperty Name="Tbl_admin" Relationship="lastDbModel.FK__Tbl_Vendo__Admin__1ED998B2" FromRole="Tbl_Vendorr" ToRole="Tbl_admin" />
+          <NavigationProperty Name="Tbl_Books" Relationship="lastDbModel.FK__Tbl_Books__Vendo__29572725" FromRole="Tbl_Vendorr" ToRole="Tbl_Books" />
+        </EntityType>
+        <Association Name="FK__Tbl_Vendo__Admin__1ED998B2">
+          <End Type="lastDbModel.Tbl_admin" Role="Tbl_admin" Multiplicity="0..1" />
+          <End Type="lastDbModel.Tbl_Vendorr" Role="Tbl_Vendorr" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_admin">
+              <PropertyRef Name="Admin_id" />
+            </Principal>
+            <Dependent Role="Tbl_Vendorr">
+              <PropertyRef Name="Admin_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Tbl_Books">
+          <Key>
+            <PropertyRef Name="Book_id" />
+          </Key>
+          <Property Name="Book_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Book_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Book_Edition" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Book_price" Type="Int32" />
+          <Property Name="Book_img" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="auth_id" Type="Int32" />
+          <Property Name="pub_id" Type="Int32" />
+          <Property Name="cat_id" Type="Int32" />
+          <Property Name="Vendor_id" Type="Int32" />
+          <NavigationProperty Name="Book_author" Relationship="lastDbModel.FK__Tbl_Books__auth___267ABA7A" FromRole="Tbl_Books" ToRole="Book_author" />
+          <NavigationProperty Name="Book_categoryy" Relationship="lastDbModel.FK__Tbl_Books__cat_i__286302EC" FromRole="Tbl_Books" ToRole="Book_categoryy" />
+          <NavigationProperty Name="Book_publisher" Relationship="lastDbModel.FK__Tbl_Books__pub_i__276EDEB3" FromRole="Tbl_Books" ToRole="Book_publisher" />
+          <NavigationProperty Name="Tbl_Vendorr" Relationship="lastDbModel.FK__Tbl_Books__Vendo__29572725" FromRole="Tbl_Books" ToRole="Tbl_Vendorr" />
+          <NavigationProperty Name="BTransactions" Relationship="lastDbModel.FK__BTransact__Book___4CA06362" FromRole="Tbl_Books" ToRole="BTransaction" />
+        </EntityType>
+        <Association Name="FK__Tbl_Books__auth___267ABA7A">
+          <End Type="lastDbModel.Book_author" Role="Book_author" Multiplicity="0..1" />
+          <End Type="lastDbModel.Tbl_Books" Role="Tbl_Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book_author">
+              <PropertyRef Name="auth_id" />
+            </Principal>
+            <Dependent Role="Tbl_Books">
+              <PropertyRef Name="auth_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Books__cat_i__286302EC">
+          <End Type="lastDbModel.Book_categoryy" Role="Book_categoryy" Multiplicity="0..1" />
+          <End Type="lastDbModel.Tbl_Books" Role="Tbl_Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book_categoryy">
+              <PropertyRef Name="cat_id" />
+            </Principal>
+            <Dependent Role="Tbl_Books">
+              <PropertyRef Name="cat_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Books__pub_i__276EDEB3">
+          <End Type="lastDbModel.Book_publisher" Role="Book_publisher" Multiplicity="0..1" />
+          <End Type="lastDbModel.Tbl_Books" Role="Tbl_Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book_publisher">
+              <PropertyRef Name="pub_id" />
+            </Principal>
+            <Dependent Role="Tbl_Books">
+              <PropertyRef Name="pub_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Books__Vendo__29572725">
+          <End Type="lastDbModel.Tbl_Vendorr" Role="Tbl_Vendorr" Multiplicity="0..1" />
+          <End Type="lastDbModel.Tbl_Books" Role="Tbl_Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Vendorr">
+              <PropertyRef Name="Vendor_id" />
+            </Principal>
+            <Dependent Role="Tbl_Books">
+              <PropertyRef Name="Vendor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="BTransaction">
+          <Key>
+            <PropertyRef Name="Transaction_id" />
+          </Key>
+          <Property Name="Transaction_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Transaction_bill" Type="Int32" />
+          <Property Name="Transaction_qty" Type="Int32" />
+          <Property Name="Transaction_date" Type="DateTime" Precision="3" />
+          <Property Name="Transaction_price" Type="Int32" />
+          <Property Name="Book_id" Type="Int32" />
+          <Property Name="in_id" Type="Int32" />
+          <NavigationProperty Name="Tbl_Books" Relationship="lastDbModel.FK__BTransact__Book___4CA06362" FromRole="BTransaction" ToRole="Tbl_Books" />
+          <NavigationProperty Name="Invoice" Relationship="lastDbModel.FK__BTransact__in_id__4D94879B" FromRole="BTransaction" ToRole="Invoice" />
+        </EntityType>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="in_id" />
+          </Key>
+          <Property Name="in_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="in_date" Type="DateTime" Precision="3" />
+          <Property Name="in_totalbill" Type="Double" />
+          <Property Name="mem_id" Type="Int32" />
+          <NavigationProperty Name="BTransactions" Relationship="lastDbModel.FK__BTransact__in_id__4D94879B" FromRole="Invoice" ToRole="BTransaction" />
+          <NavigationProperty Name="tbl_member" Relationship="lastDbModel.FK__Invoice__mem_id__49C3F6B7" FromRole="Invoice" ToRole="tbl_member" />
+        </EntityType>
+        <Association Name="FK__BTransact__Book___4CA06362">
+          <End Type="lastDbModel.Tbl_Books" Role="Tbl_Books" Multiplicity="0..1" />
+          <End Type="lastDbModel.BTransaction" Role="BTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Books">
+              <PropertyRef Name="Book_id" />
+            </Principal>
+            <Dependent Role="BTransaction">
+              <PropertyRef Name="Book_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BTransact__in_id__4D94879B">
+          <End Type="lastDbModel.Invoice" Role="Invoice" Multiplicity="0..1" />
+          <End Type="lastDbModel.BTransaction" Role="BTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoice">
+              <PropertyRef Name="in_id" />
+            </Principal>
+            <Dependent Role="BTransaction">
+              <PropertyRef Name="in_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Invoice__mem_id__49C3F6B7">
+          <End Type="lastDbModel.tbl_member" Role="tbl_member" Multiplicity="0..1" />
+          <End Type="lastDbModel.Invoice" Role="Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_member">
+              <PropertyRef Name="mem_id" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="mem_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="lastDbModelStoreContainer" CdmEntityContainer="lastDbEntities">
+          <EntitySetMapping Name="Book_author">
+            <EntityTypeMapping TypeName="lastDbModel.Book_author">
+              <MappingFragment StoreEntitySet="Book_author">
+                <ScalarProperty Name="auth_id" ColumnName="auth_id" />
+                <ScalarProperty Name="auth_name" ColumnName="auth_name" />
+                <ScalarProperty Name="auth_email" ColumnName="auth_email" />
+                <ScalarProperty Name="auth_contact" ColumnName="auth_contact" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Book_publisher">
+            <EntityTypeMapping TypeName="lastDbModel.Book_publisher">
+              <MappingFragment StoreEntitySet="Book_publisher">
+                <ScalarProperty Name="pub_id" ColumnName="pub_id" />
+                <ScalarProperty Name="pub_name" ColumnName="pub_name" />
+                <ScalarProperty Name="pub_email" ColumnName="pub_email" />
+                <ScalarProperty Name="pub_contact" ColumnName="pub_contact" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Book_categoryy">
+            <EntityTypeMapping TypeName="lastDbModel.Book_categoryy">
+              <MappingFragment StoreEntitySet="Book_categoryy">
+                <ScalarProperty Name="cat_status" ColumnName="cat_status" />
+                <ScalarProperty Name="cat_name" ColumnName="cat_name" />
+                <ScalarProperty Name="cat_id" ColumnName="cat_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_member">
+            <EntityTypeMapping TypeName="lastDbModel.tbl_member">
+              <MappingFragment StoreEntitySet="tbl_member">
+                <ScalarProperty Name="mem_password" ColumnName="mem_password" />
+                <ScalarProperty Name="mem_contact" ColumnName="mem_contact" />
+                <ScalarProperty Name="mem_email" ColumnName="mem_email" />
+                <ScalarProperty Name="mem_name" ColumnName="mem_name" />
+                <ScalarProperty Name="mem_id" ColumnName="mem_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_admin">
+            <EntityTypeMapping TypeName="lastDbModel.Tbl_admin">
+              <MappingFragment StoreEntitySet="Tbl_admin">
+                <ScalarProperty Name="Admin_status" ColumnName="Admin_status" />
+                <ScalarProperty Name="Admin_contact" ColumnName="Admin_contact" />
+                <ScalarProperty Name="Admin_password" ColumnName="Admin_password" />
+                <ScalarProperty Name="Admin_email" ColumnName="Admin_email" />
+                <ScalarProperty Name="Admin_name" ColumnName="Admin_name" />
+                <ScalarProperty Name="Admin_id" ColumnName="Admin_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Vendorr">
+            <EntityTypeMapping TypeName="lastDbModel.Tbl_Vendorr">
+              <MappingFragment StoreEntitySet="Tbl_Vendorr">
+                <ScalarProperty Name="Admin_id" ColumnName="Admin_id" />
+                <ScalarProperty Name="Vendor_ShopAdr" ColumnName="Vendor_ShopAdr" />
+                <ScalarProperty Name="Vendor_status" ColumnName="Vendor_status" />
+                <ScalarProperty Name="Vendor_contactno" ColumnName="Vendor_contactno" />
+                <ScalarProperty Name="Vendor_password" ColumnName="Vendor_password" />
+                <ScalarProperty Name="Vendor_email" ColumnName="Vendor_email" />
+                <ScalarProperty Name="Vendor_name" ColumnName="Vendor_name" />
+                <ScalarProperty Name="Vendor_id" ColumnName="Vendor_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Books">
+            <EntityTypeMapping TypeName="lastDbModel.Tbl_Books">
+              <MappingFragment StoreEntitySet="Tbl_Books">
+                <ScalarProperty Name="Vendor_id" ColumnName="Vendor_id" />
+                <ScalarProperty Name="cat_id" ColumnName="cat_id" />
+                <ScalarProperty Name="pub_id" ColumnName="pub_id" />
+                <ScalarProperty Name="auth_id" ColumnName="auth_id" />
+                <ScalarProperty Name="Book_img" ColumnName="Book_img" />
+                <ScalarProperty Name="Book_price" ColumnName="Book_price" />
+                <ScalarProperty Name="Book_Edition" ColumnName="Book_Edition" />
+                <ScalarProperty Name="Book_name" ColumnName="Book_name" />
+                <ScalarProperty Name="Book_id" ColumnName="Book_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BTransactions">
+            <EntityTypeMapping TypeName="lastDbModel.BTransaction">
+              <MappingFragment StoreEntitySet="BTransaction">
+                <ScalarProperty Name="in_id" ColumnName="in_id" />
+                <ScalarProperty Name="Book_id" ColumnName="Book_id" />
+                <ScalarProperty Name="Transaction_price" ColumnName="Transaction_price" />
+                <ScalarProperty Name="Transaction_date" ColumnName="Transaction_date" />
+                <ScalarProperty Name="Transaction_qty" ColumnName="Transaction_qty" />
+                <ScalarProperty Name="Transaction_bill" ColumnName="Transaction_bill" />
+                <ScalarProperty Name="Transaction_id" ColumnName="Transaction_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Invoices">
+            <EntityTypeMapping TypeName="lastDbModel.Invoice">
+              <MappingFragment StoreEntitySet="Invoice">
+                <ScalarProperty Name="mem_id" ColumnName="mem_id" />
+                <ScalarProperty Name="in_totalbill" ColumnName="in_totalbill" />
+                <ScalarProperty Name="in_date" ColumnName="in_date" />
+                <ScalarProperty Name="in_id" ColumnName="in_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

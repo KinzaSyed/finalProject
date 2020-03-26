@@ -1,0 +1,56 @@
+﻿@model finalproject.Models.tbl_member
+
+@{
+    ViewBag.Title = "UserPanel";
+}
+
+
+
+@if (Session["mem_id"] != null && Session["mem_email"] != null)
+{
+    <h3> Welcome @Session["mem_email"].ToString() To Member Panel</h3>
+
+}
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.mem_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mem_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mem_email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mem_email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mem_contact)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mem_contact)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mem_password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mem_password)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.mem_id })
+   
+</p>

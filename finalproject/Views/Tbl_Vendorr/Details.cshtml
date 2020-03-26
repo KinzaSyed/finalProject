@@ -1,0 +1,74 @@
+﻿@model finalproject.Models.Tbl_Vendorr
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Tbl_Vendorr</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Vendor_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vendor_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vendor_email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vendor_email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vendor_password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vendor_password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vendor_contactno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vendor_contactno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vendor_status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vendor_status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vendor_ShopAdr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vendor_ShopAdr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tbl_admin.Admin_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tbl_admin.Admin_name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Vendor_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

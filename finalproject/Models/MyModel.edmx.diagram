@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4da1027ae1ac45ef89bdf20a1a890946" Name="Diagram1">
+        <EntityTypeShape EntityType="lastDbModel.Book_author" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="lastDbModel.Book_publisher" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="lastDbModel.Book_categoryy" Width="1.5" PointX="3.375" PointY="3.75" />
+        <EntityTypeShape EntityType="lastDbModel.tbl_member" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="lastDbModel.Tbl_admin" Width="1.5" PointX="5.375" PointY="1.125" />
+        <EntityTypeShape EntityType="lastDbModel.Tbl_Vendorr" Width="1.5" PointX="7.625" PointY="1" />
+        <AssociationConnector Association="lastDbModel.FK__Tbl_Vendo__Admin__1ED998B2" />
+        <EntityTypeShape EntityType="lastDbModel.Tbl_Books" Width="1.5" PointX="9.875" PointY="1.5" />
+        <AssociationConnector Association="lastDbModel.FK__Tbl_Books__auth___267ABA7A" />
+        <AssociationConnector Association="lastDbModel.FK__Tbl_Books__cat_i__286302EC" />
+        <AssociationConnector Association="lastDbModel.FK__Tbl_Books__pub_i__276EDEB3" />
+        <AssociationConnector Association="lastDbModel.FK__Tbl_Books__Vendo__29572725" />
+        <EntityTypeShape EntityType="lastDbModel.BTransaction" Width="1.5" PointX="12.125" PointY="3.125" />
+        <EntityTypeShape EntityType="lastDbModel.Invoice" Width="1.5" PointX="5.625" PointY="5" />
+        <AssociationConnector Association="lastDbModel.FK__BTransact__Book___4CA06362" />
+        <AssociationConnector Association="lastDbModel.FK__BTransact__in_id__4D94879B" />
+        <AssociationConnector Association="lastDbModel.FK__Invoice__mem_id__49C3F6B7" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

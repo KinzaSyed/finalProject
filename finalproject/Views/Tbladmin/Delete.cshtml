@@ -1,0 +1,64 @@
+﻿@model finalproject.Models.Tbl_admin
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Tbl_admin</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Admin_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Admin_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Admin_email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Admin_email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Admin_password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Admin_password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Admin_contact)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Admin_contact)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Admin_status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Admin_status)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
