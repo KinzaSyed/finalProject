@@ -128,9 +128,10 @@ namespace finalproject.Controllers
             evn.Book_Edition = bq.Book_Edition;
             evn.Book_price = bq.Book_price;
             evn.Vendor_id = Convert.ToInt32(bq.Vendor_id);
-            Tbl_Vendorr ven = db.Tbl_Vendorr.Where(x => x.Vendor_id == id).SingleOrDefault();
+            int VendorId = evn.Vendor_id;
+            Tbl_Vendorr ven = db.Tbl_Vendorr.Where(x => x.Vendor_id == VendorId).SingleOrDefault();
             evn.Vendor_name = ven.Vendor_name;
-            return View(bq);
+            return View(evn);
         }
 
         public string uploadingfile (HttpPostedFileBase file)

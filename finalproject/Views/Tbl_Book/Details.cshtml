@@ -1,13 +1,13 @@
 ﻿@model finalproject.Models.Tbl_for_books
+
 @{
     ViewBag.Title = "Details";
 }
 <style>
-    tr{
-        padding:200px;
-        font-size:10px;
+    tr {
+        padding: 200px;
+        font-size: 20px;
     }
-
 </style>
 
 
@@ -18,13 +18,16 @@
 
     <div class="container">
         <div class="row">
-
+            @if (Model.Book_img != null)
+            {
             <div class="col-lg-4 col-md-4 col-sm-4">
                 <img style="width:250px ; height:350px ;" src="@Url.Content(Model.Book_img)" />
 
             </div>
-            <div class="col-lg-8 col-md-8 col-sm-8">
-                <table>
+            }
+            
+            <div class="col-lg-12 ">
+                <table class="table-bordered">
                     <tr>
                         <td>Name</td>
                         <td>@Html.DisplayFor(x => x.Book_name)</td>
@@ -50,7 +53,7 @@
 
                     </tr>
                     <tr>
-                        <td>Vendor Name</td>
+                        <td>Vendor Name&nbsp;</td>
                         <td>@Html.DisplayFor(x => x.Vendor_name)</td>
 
 

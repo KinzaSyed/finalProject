@@ -32,8 +32,8 @@ namespace finalproject.Controllers
         [HttpPost]
         public ActionResult Login(String email, String pass)
         {
-            int id = db.Tbl_admin.Count();
-            id += 1;
+            //int id = db.Tbl_admin.Count();
+            //id += 1;
 
             Tbl_admin model = db.Tbl_admin.Where(x => x.Admin_email == email && x.Admin_password == pass).SingleOrDefault();
 
@@ -44,11 +44,8 @@ namespace finalproject.Controllers
                 return RedirectToAction("AdminPanel", "Tbladmin");
 
             }
-            else
-            {
-
-            }
-            return View();
+           
+            return View("Invalid Password");
 
 
         }
