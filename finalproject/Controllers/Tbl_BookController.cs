@@ -179,6 +179,21 @@ namespace finalproject.Controllers
             {
                 return HttpNotFound();
             }
+            List<Book_author> li = db.Book_author.ToList();
+            ViewBag.authlist = new SelectList(li, "auth_id", "auth_name");
+
+            List<Book_publisher> li2 = db.Book_publisher.ToList();
+            ViewBag.publist = new SelectList(li2, "pub_id", "pub_name");
+
+
+
+            List<Book_categoryy> li3 = db.Book_categoryy.ToList();
+            ViewBag.catlist = new SelectList(li3, "cat_id", "cat_name");
+
+
+
+            List<Tbl_Vendorr> li4 = db.Tbl_Vendorr.ToList();
+            ViewBag.venlist = new SelectList(li4, "Vendor_id", "Vendor_name");
             return View(Tbl_Books);
         }
 
@@ -187,7 +202,7 @@ namespace finalproject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Book_name,Book_Edition,Book_price,Book_img,auth_id,pub_id,cat_id,Vendor_id")]Tbl_Books Tbl_Books)
+        public ActionResult Edit([Bind(Include = "Book_id,Book_name,Book_Edition,Book_price,Book_img,auth_id,pub_id,cat_id,Vendor_id")]Tbl_Books Tbl_Books)
         {
             if (ModelState.IsValid)
             {
