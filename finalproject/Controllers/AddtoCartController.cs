@@ -114,7 +114,7 @@ namespace finalproject.Controllers
             iv.in_totalbill = (float)TempData["totalprice"];
             db.Invoices.Add(iv);
             db.SaveChanges();
-            foreach (var item in li)
+            foreach (var item in li2)
             {
                 BTransaction od = new BTransaction();
                 od.Book_id = item.Book_id;

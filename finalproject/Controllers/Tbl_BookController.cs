@@ -33,7 +33,8 @@ namespace finalproject.Controllers
                 cat_id = Convert.ToInt32(x.cat_id),
                 cat_name = x.Book_categoryy.cat_name,
                 Vendor_id = Convert.ToInt32(x.Vendor_id),
-                Vendor_name = x.Tbl_Vendorr.Vendor_name
+                Vendor_name = x.Tbl_Vendorr.Vendor_name,
+             //   Book_ebook = x.Book_ebook
 
 
 
@@ -69,9 +70,9 @@ namespace finalproject.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Create(Tbl_for_books evm, HttpPostedFileBase imagefile)
+        public ActionResult Create(Tbl_for_books evm, HttpPostedFileBase imagefile, HttpPostedFileBase pdffile)
         {
-
+        //    string path1 = uploadingpdffile(pdffile);
             string path = uploadingfile(imagefile);
             if (path.Equals("-1"))
             {
@@ -109,6 +110,7 @@ namespace finalproject.Controllers
                 bk.Book_Edition = evm.Book_Edition;
                 bk.Book_price = evm.Book_price;
                 bk.Vendor_id = evm.Vendor_id;
+              //  bk.Book_ebook = path1;
                 db.Tbl_Books.Add(bk);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -122,16 +124,32 @@ namespace finalproject.Controllers
         
         public ActionResult Details(int? id)
         {
-            Tbl_for_books evn = new Tbl_for_books();
-            Tbl_Books bq = db.Tbl_Books.Where(x => x.Book_id == id).SingleOrDefault();
-            evn.Book_name = bq.Book_name;
-            evn.Book_Edition = bq.Book_Edition;
-            evn.Book_price = bq.Book_price;
-            evn.Vendor_id = Convert.ToInt32(bq.Vendor_id);
-            int VendorId = evn.Vendor_id;
-            Tbl_Vendorr ven = db.Tbl_Vendorr.Where(x => x.Vendor_id == VendorId).SingleOrDefault();
-            evn.Vendor_name = ven.Vendor_name;
-            return View(evn);
+            /**  Tbl_for_books evn = new Tbl_for_books();
+              Tbl_Books bq = db.Tbl_Books.Where(x => x.Book_id == id).SingleOrDefault();
+              evn.Book_name = bq.Book_name;
+              evn.Book_Edition = bq.Book_Edition;
+              evn.Book_img = bq.Book_img;
+              evn.Book_price = bq.Book_price;
+
+              evn.auth_id = Convert.ToInt32(bq.auth_id);
+              int AuthorId = evn.auth_id;
+              Book_author ben = db.Book_author.Where(x => x.auth_id == AuthorId).SingleOrDefault();
+              evn.auth_name = ben.auth_name;
+
+
+              evn.Vendor_id = Convert.ToInt32(bq.Vendor_id);
+              int VendorId = evn.Vendor_id;
+              Tbl_Vendorr ven = db.Tbl_Vendorr.Where(x => x.Vendor_id == VendorId).SingleOrDefault();
+              evn.Vendor_name = ven.Vendor_name;
+              return View(evn); **/
+            var book = db.Tbl_Books.Find(id);
+            ViewBag.book = book;
+            var review = new Book_Review()
+            {
+                BookId = book.Book_id
+            };
+            return View("Details", review);
+
         }
 
         public string uploadingfile (HttpPostedFileBase file)
@@ -168,6 +186,45 @@ namespace finalproject.Controllers
             }
             return path;
         }
+
+
+     /*   public string uploadingpdffile(HttpPostedFileBase file)
+        {
+            Random r = new Random();
+            string path = "-1";
+            int random = r.Next();
+            if (file != null && file.ContentLength > 0)
+            {
+                string extension = Path.GetExtension(file.FileName);
+                if (extension.ToLower().Equals(".pdf"))
+                {
+                    try
+                    {
+                        path = Path.Combine(Server.MapPath("~/Content/pdfbooks/"), random + Path.GetFileName(file.FileName));
+                        file.SaveAs(path);
+                        path = "~/Content/pdfbooks/" + random + Path.GetFileName(file.FileName);
+
+                    }
+                    catch (Exception ex)
+                    {
+                        path = "-1";
+                    }
+                }
+                else
+                {
+                    Response.Write("<script>alert('only jgp,jpeg or png formats are acceptable .... ';</script>");
+                }
+            }
+            else
+            {
+                Response.Write("<script>alert('Please select a file'); </script>");
+                path = "-1";
+            }
+            return path;
+        }
+
+    */
+
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -212,6 +269,18 @@ namespace finalproject.Controllers
             }
             return View(Tbl_Books);
         }
+        [HttpPost]
+        public ActionResult SendReview(Book_Review review, double rating)
+        {
+            string mem_email = Session["mem_email"].ToString();
+            review.DatePost = DateTime.Now;
+            review.memberId = db.tbl_member.Single(a => a.mem_email.Equals(mem_email)).mem_id;
+            review.Rating = rating;
+            db.Book_Review.Add(review);
+            db.SaveChanges();
+            return RedirectToAction("Details", "Tbl_Book", new { id = review.BookId });
+
+        }
 
         // GET: Bookcategoryy/Delete/5
         public ActionResult Delete(int? id)
@@ -227,6 +296,7 @@ namespace finalproject.Controllers
             }
             return View(Tbl_Books);
         }
+
 
         // POST: Bookcategoryy/Delete/5
         [HttpPost, ActionName("Delete")]

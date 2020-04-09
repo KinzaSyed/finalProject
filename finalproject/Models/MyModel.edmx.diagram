@@ -12,16 +12,28 @@
         <EntityTypeShape EntityType="lastDbModel.Tbl_admin" Width="1.5" PointX="5.375" PointY="1.125" />
         <EntityTypeShape EntityType="lastDbModel.Tbl_Vendorr" Width="1.5" PointX="7.625" PointY="1" />
         <AssociationConnector Association="lastDbModel.FK__Tbl_Vendo__Admin__1ED998B2" />
-        <EntityTypeShape EntityType="lastDbModel.Tbl_Books" Width="1.5" PointX="9.875" PointY="1.5" />
+        <EntityTypeShape EntityType="lastDbModel.BTransaction" Width="1.5" PointX="12.5" PointY="4" />
+        <EntityTypeShape EntityType="lastDbModel.Invoice" Width="1.5" PointX="5.625" PointY="5" />
+        <AssociationConnector Association="lastDbModel.FK__BTransact__in_id__4D94879B" />
+        <AssociationConnector Association="lastDbModel.FK__Invoice__mem_id__49C3F6B7" />
+        <EntityTypeShape EntityType="lastDbModel.Book_Review" Width="1.5" PointX="12.125" PointY="0.75" />
+        <AssociationConnector Association="lastDbModel.FK_Book_Review_tbl_member" />
+        <EntityTypeShape EntityType="lastDbModel.Tbl_Books" Width="1.5" PointX="9.875" PointY="0.875" />
         <AssociationConnector Association="lastDbModel.FK__Tbl_Books__auth___267ABA7A" />
         <AssociationConnector Association="lastDbModel.FK__Tbl_Books__cat_i__286302EC" />
         <AssociationConnector Association="lastDbModel.FK__Tbl_Books__pub_i__276EDEB3" />
-        <AssociationConnector Association="lastDbModel.FK__Tbl_Books__Vendo__29572725" />
-        <EntityTypeShape EntityType="lastDbModel.BTransaction" Width="1.5" PointX="12.125" PointY="3.125" />
-        <EntityTypeShape EntityType="lastDbModel.Invoice" Width="1.5" PointX="5.625" PointY="5" />
+        <AssociationConnector Association="lastDbModel.FK_Book_Review_Tbl_Books" />
         <AssociationConnector Association="lastDbModel.FK__BTransact__Book___4CA06362" />
-        <AssociationConnector Association="lastDbModel.FK__BTransact__in_id__4D94879B" />
-        <AssociationConnector Association="lastDbModel.FK__Invoice__mem_id__49C3F6B7" />
+        <AssociationConnector Association="lastDbModel.FK__Tbl_Books__Vendo__29572725" />
+        <EntityTypeShape EntityType="lastDbModel.Ebooks_db" Width="1.5" PointX="8.625" PointY="5.625" />
+        <AssociationConnector Association="lastDbModel.FK_Ebooks_db_Book_categoryy" />
+        <AssociationConnector Association="lastDbModel.FK_Ebooks_db_tbl_member" />
+        <EntityTypeShape EntityType="lastDbModel.EBook_Review_db" Width="1.5" PointX="10.875" PointY="7.625" />
+        <AssociationConnector Association="lastDbModel.FK_EBook_Review_db_Ebooks_db" />
+        <AssociationConnector Association="lastDbModel.FK_EBook_Review_db_tbl_member" />
+        <EntityTypeShape EntityType="lastDbModel.Reading_History" Width="1.5" PointX="14.875" PointY="4.25" />
+        <AssociationConnector Association="lastDbModel.FK_Reading_History_Ebooks_db" />
+        <AssociationConnector Association="lastDbModel.FK_Reading_History_tbl_member" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

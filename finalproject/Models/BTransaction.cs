@@ -22,7 +22,7 @@ namespace finalproject.Models
         public Nullable<int> Book_id { get; set; }
         public Nullable<int> in_id { get; set; }
     
-        public virtual Tbl_Books Tbl_Books { get; set; }
         public virtual Invoice Invoice { get; set; }
+        public virtual Tbl_Books Tbl_Books { get; set; }
     }
 }

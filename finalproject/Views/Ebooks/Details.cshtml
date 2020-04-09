@@ -1,0 +1,202 @@
+﻿
+@model finalproject.Models.EBook_Review_db
+
+@{
+    ViewBag.Title = "Details";
+}
+<style>
+    tr {
+        padding: 200px;
+        font-size: 20px;
+    }
+</style>
+
+<script>
+        $(function () {
+
+            $("#rateYo").rateYo({
+                rating: 0,
+                numStars: 5,
+                maxValue: 5,
+                halfStar: true,
+                onChange: function (rating, rateYoInstance) {
+                    $('#rating').val(rating);
+                }
+            });
+        });
+</script>
+
+<h2>Details</h2>
+
+<div>
+
+    <div class="container">
+        <div class="row">
+
+            @if (ViewBag.Ebook.Ebook_img != null)
+            {
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <img style="width:250px ; height:350px ;" src="@Url.Content(ViewBag.Ebook.Ebook_img)" />
+
+                </div>
+            }
+
+
+
+
+            <div class="col-lg-12 ">
+                <table class="table-bordered">
+
+                    <tr>
+
+                        <td>Name</td>
+                        <td>@ViewBag.Ebook.Ebook_name</td>
+
+
+                    </tr>
+                    <tr>
+                        <td>Publisher</td>
+                        <td>@ViewBag.Ebook.Ebook_publisher</td>
+
+
+
+                    </tr>
+                    <tr>
+                        <td>Author</td>
+                        <td>@ViewBag.Ebook.Ebook_author</td>
+
+
+
+                    </tr>
+                    <tr>
+                        <td>Category</td>
+                        <td>@ViewBag.Ebook.Book_categoryy.cat_name</td>
+
+
+                    </tr>
+                    <tr>
+                        <td>Edition</td>
+                        <td>@ViewBag.Ebook.Ebook_edition</td>
+
+
+                    </tr>
+
+                    <tr>
+                        <td>Uploader Name&nbsp;</td>
+                        <td>@ViewBag.Ebook.tbl_member.mem_name</td>
+
+
+                    </tr>
+                </table>
+
+
+
+            </div>
+
+
+
+        </div>
+        <h3>Rating and Comments</h3>
+        <table border="1" cellpadding="2" cellspacing="2">
+            @{ int i = 1;}
+            @foreach (var review in ViewBag.Ebook.EBook_Review_db)
+            {
+                <tr>
+                    <td>
+                        @review.tbl_member.mem_email
+                        <br />
+                        <script>
+                        $(function () {
+
+                            $('#@("rating" + i)').rateYo({
+                                rating:  @review.ERating,
+                                readOnly: true
+
+                            });
+                        });
+                        </script>
+                        <div id="@("rating" + i)"></div>
+
+                        <br /> @review.ContentC
+                    </td>
+                </tr>
+                i++;
+            }
+
+
+
+
+
+        </table>
+
+        @if (Session["mem_email"] == null)
+        {
+            <a href="@Url.Action("Login","Tbl_member")">
+                Login to post comments and rating
+            </a>
+
+        }
+        else
+        {
+
+
+            if (ViewBag.Ebook.Ebook_pdffile != null)
+            {
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <a href="@Url.Content(ViewBag.Ebook.Ebook_pdffile)" target="_blank">EBook</a>
+
+                </div>
+            }
+
+
+            using (Html.BeginForm("SendReview", "Ebooks", FormMethod.Post))
+            {
+                <table cellpadding="2" cellspacing="2">
+
+                    <tr>
+                        <td valign="top">Rating</td>
+                        <td>
+                            <div id="rateYo"></div>
+
+                            <input type="hidden" id="rating" name="rating" />
+                        </td>
+                    </tr>
+
+
+
+                    <tr>
+                        <td valign="top">Content</td>
+                     
+                        <td>@Html.TextAreaFor(model => model.ContentC, new { cols = 20, rows = 5 })</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>
+                            <input type="submit" value="Send" />
+                            @Html.HiddenFor(model => model.EBookId)
+
+
+
+                        </td>
+                    </tr>
+
+
+
+                </table>
+
+            }
+        }
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+</div>

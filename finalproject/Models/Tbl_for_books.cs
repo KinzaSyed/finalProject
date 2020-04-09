@@ -43,7 +43,7 @@ namespace finalproject.Models
         public int Vendor_id { get; set; }
         [DisplayName("Vendor Name")]
         public string Vendor_name { get; set; }
-
+      
 
     }
 }

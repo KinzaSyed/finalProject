@@ -31,6 +31,17 @@
           <Property Name="pub_email" Type="varchar" MaxLength="50" />
           <Property Name="pub_contact" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="Book_Review">
+          <Key>
+            <PropertyRef Name="Review_id" />
+          </Key>
+          <Property Name="Review_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContentC" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Rating" Type="float" Nullable="false" />
+          <Property Name="DatePost" Type="datetime" Nullable="false" />
+          <Property Name="BookId" Type="int" Nullable="false" />
+          <Property Name="memberId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="BTransaction">
           <Key>
             <PropertyRef Name="Transaction_id" />
@@ -43,6 +54,31 @@
           <Property Name="Book_id" Type="int" />
           <Property Name="in_id" Type="int" />
         </EntityType>
+        <EntityType Name="EBook_Review_db">
+          <Key>
+            <PropertyRef Name="EReview_id" />
+          </Key>
+          <Property Name="EReview_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContentC" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ERating" Type="float" Nullable="false" />
+          <Property Name="DatePost" Type="datetime" Nullable="false" />
+          <Property Name="EBookId" Type="int" Nullable="false" />
+          <Property Name="memberId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ebooks_db">
+          <Key>
+            <PropertyRef Name="Ebook_id" />
+          </Key>
+          <Property Name="Ebook_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ebook_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Ebook_publisher" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Ebook_author" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="cat_id" Type="int" Nullable="false" />
+          <Property Name="Ebook_img" Type="varchar(max)" Nullable="false" />
+          <Property Name="Ebook_pdffile" Type="varchar(max)" Nullable="false" />
+          <Property Name="Ebook_edition" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="mem_id" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Invoice">
           <Key>
             <PropertyRef Name="in_id" />
@@ -51,6 +87,15 @@
           <Property Name="in_date" Type="datetime" />
           <Property Name="in_totalbill" Type="float" />
           <Property Name="mem_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Reading_History">
+          <Key>
+            <PropertyRef Name="Read_Hist_Id" />
+          </Key>
+          <Property Name="Read_Hist_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Read_Date" Type="datetime" Nullable="false" />
+          <Property Name="memID" Type="int" Nullable="false" />
+          <Property Name="ebook_id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Tbl_admin">
           <Key>
@@ -196,12 +241,112 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Book_Review_Tbl_Books">
+          <End Role="Tbl_Books" Type="Self.Tbl_Books" Multiplicity="1" />
+          <End Role="Book_Review" Type="Self.Book_Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Books">
+              <PropertyRef Name="Book_id" />
+            </Principal>
+            <Dependent Role="Book_Review">
+              <PropertyRef Name="BookId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Book_Review_tbl_member">
+          <End Role="tbl_member" Type="Self.tbl_member" Multiplicity="1" />
+          <End Role="Book_Review" Type="Self.Book_Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_member">
+              <PropertyRef Name="mem_id" />
+            </Principal>
+            <Dependent Role="Book_Review">
+              <PropertyRef Name="memberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EBook_Review_db_Ebooks_db">
+          <End Role="Ebooks_db" Type="Self.Ebooks_db" Multiplicity="1" />
+          <End Role="EBook_Review_db" Type="Self.EBook_Review_db" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ebooks_db">
+              <PropertyRef Name="Ebook_id" />
+            </Principal>
+            <Dependent Role="EBook_Review_db">
+              <PropertyRef Name="EBookId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EBook_Review_db_tbl_member">
+          <End Role="tbl_member" Type="Self.tbl_member" Multiplicity="1" />
+          <End Role="EBook_Review_db" Type="Self.EBook_Review_db" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_member">
+              <PropertyRef Name="mem_id" />
+            </Principal>
+            <Dependent Role="EBook_Review_db">
+              <PropertyRef Name="memberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ebooks_db_Book_categoryy">
+          <End Role="Book_categoryy" Type="Self.Book_categoryy" Multiplicity="1" />
+          <End Role="Ebooks_db" Type="Self.Ebooks_db" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book_categoryy">
+              <PropertyRef Name="cat_id" />
+            </Principal>
+            <Dependent Role="Ebooks_db">
+              <PropertyRef Name="cat_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ebooks_db_tbl_member">
+          <End Role="tbl_member" Type="Self.tbl_member" Multiplicity="1" />
+          <End Role="Ebooks_db" Type="Self.Ebooks_db" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_member">
+              <PropertyRef Name="mem_id" />
+            </Principal>
+            <Dependent Role="Ebooks_db">
+              <PropertyRef Name="mem_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reading_History_Ebooks_db">
+          <End Role="Ebooks_db" Type="Self.Ebooks_db" Multiplicity="1" />
+          <End Role="Reading_History" Type="Self.Reading_History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ebooks_db">
+              <PropertyRef Name="Ebook_id" />
+            </Principal>
+            <Dependent Role="Reading_History">
+              <PropertyRef Name="ebook_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reading_History_tbl_member">
+          <End Role="tbl_member" Type="Self.tbl_member" Multiplicity="1" />
+          <End Role="Reading_History" Type="Self.Reading_History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_member">
+              <PropertyRef Name="mem_id" />
+            </Principal>
+            <Dependent Role="Reading_History">
+              <PropertyRef Name="memID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="lastDbModelStoreContainer">
           <EntitySet Name="Book_author" EntityType="Self.Book_author" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Book_categoryy" EntityType="Self.Book_categoryy" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Book_publisher" EntityType="Self.Book_publisher" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Book_Review" EntityType="Self.Book_Review" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BTransaction" EntityType="Self.BTransaction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EBook_Review_db" EntityType="Self.EBook_Review_db" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ebooks_db" EntityType="Self.Ebooks_db" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reading_History" EntityType="Self.Reading_History" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_admin" EntityType="Self.Tbl_admin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_Books" EntityType="Self.Tbl_Books" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_member" EntityType="Self.tbl_member" Schema="dbo" store:Type="Tables" />
@@ -237,6 +382,38 @@
           <AssociationSet Name="FK__Tbl_Vendo__Admin__1ED998B2" Association="Self.FK__Tbl_Vendo__Admin__1ED998B2">
             <End Role="Tbl_admin" EntitySet="Tbl_admin" />
             <End Role="Tbl_Vendorr" EntitySet="Tbl_Vendorr" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Book_Review_Tbl_Books" Association="Self.FK_Book_Review_Tbl_Books">
+            <End Role="Tbl_Books" EntitySet="Tbl_Books" />
+            <End Role="Book_Review" EntitySet="Book_Review" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Book_Review_tbl_member" Association="Self.FK_Book_Review_tbl_member">
+            <End Role="tbl_member" EntitySet="tbl_member" />
+            <End Role="Book_Review" EntitySet="Book_Review" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EBook_Review_db_Ebooks_db" Association="Self.FK_EBook_Review_db_Ebooks_db">
+            <End Role="Ebooks_db" EntitySet="Ebooks_db" />
+            <End Role="EBook_Review_db" EntitySet="EBook_Review_db" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EBook_Review_db_tbl_member" Association="Self.FK_EBook_Review_db_tbl_member">
+            <End Role="tbl_member" EntitySet="tbl_member" />
+            <End Role="EBook_Review_db" EntitySet="EBook_Review_db" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ebooks_db_Book_categoryy" Association="Self.FK_Ebooks_db_Book_categoryy">
+            <End Role="Book_categoryy" EntitySet="Book_categoryy" />
+            <End Role="Ebooks_db" EntitySet="Ebooks_db" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ebooks_db_tbl_member" Association="Self.FK_Ebooks_db_tbl_member">
+            <End Role="tbl_member" EntitySet="tbl_member" />
+            <End Role="Ebooks_db" EntitySet="Ebooks_db" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reading_History_Ebooks_db" Association="Self.FK_Reading_History_Ebooks_db">
+            <End Role="Ebooks_db" EntitySet="Ebooks_db" />
+            <End Role="Reading_History" EntitySet="Reading_History" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reading_History_tbl_member" Association="Self.FK_Reading_History_tbl_member">
+            <End Role="tbl_member" EntitySet="tbl_member" />
+            <End Role="Reading_History" EntitySet="Reading_History" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -274,6 +451,21 @@
             <End Role="Tbl_admin" EntitySet="Tbl_admin" />
             <End Role="Tbl_Vendorr" EntitySet="Tbl_Vendorr" />
           </AssociationSet>
+          <EntitySet Name="BTransactions" EntityType="lastDbModel.BTransaction" />
+          <EntitySet Name="Invoices" EntityType="lastDbModel.Invoice" />
+          <AssociationSet Name="FK__BTransact__in_id__4D94879B" Association="lastDbModel.FK__BTransact__in_id__4D94879B">
+            <End Role="Invoice" EntitySet="Invoices" />
+            <End Role="BTransaction" EntitySet="BTransactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Invoice__mem_id__49C3F6B7" Association="lastDbModel.FK__Invoice__mem_id__49C3F6B7">
+            <End Role="tbl_member" EntitySet="tbl_member" />
+            <End Role="Invoice" EntitySet="Invoices" />
+          </AssociationSet>
+          <EntitySet Name="Book_Review" EntityType="lastDbModel.Book_Review" />
+          <AssociationSet Name="FK_Book_Review_tbl_member" Association="lastDbModel.FK_Book_Review_tbl_member">
+            <End Role="tbl_member" EntitySet="tbl_member" />
+            <End Role="Book_Review" EntitySet="Book_Review" />
+          </AssociationSet>
           <EntitySet Name="Tbl_Books" EntityType="lastDbModel.Tbl_Books" />
           <AssociationSet Name="FK__Tbl_Books__auth___267ABA7A" Association="lastDbModel.FK__Tbl_Books__auth___267ABA7A">
             <End Role="Book_author" EntitySet="Book_author" />
@@ -287,23 +479,44 @@
             <End Role="Book_publisher" EntitySet="Book_publisher" />
             <End Role="Tbl_Books" EntitySet="Tbl_Books" />
           </AssociationSet>
-          <AssociationSet Name="FK__Tbl_Books__Vendo__29572725" Association="lastDbModel.FK__Tbl_Books__Vendo__29572725">
-            <End Role="Tbl_Vendorr" EntitySet="Tbl_Vendorr" />
+          <AssociationSet Name="FK_Book_Review_Tbl_Books" Association="lastDbModel.FK_Book_Review_Tbl_Books">
             <End Role="Tbl_Books" EntitySet="Tbl_Books" />
+            <End Role="Book_Review" EntitySet="Book_Review" />
           </AssociationSet>
-          <EntitySet Name="BTransactions" EntityType="lastDbModel.BTransaction" />
-          <EntitySet Name="Invoices" EntityType="lastDbModel.Invoice" />
           <AssociationSet Name="FK__BTransact__Book___4CA06362" Association="lastDbModel.FK__BTransact__Book___4CA06362">
             <End Role="Tbl_Books" EntitySet="Tbl_Books" />
             <End Role="BTransaction" EntitySet="BTransactions" />
           </AssociationSet>
-          <AssociationSet Name="FK__BTransact__in_id__4D94879B" Association="lastDbModel.FK__BTransact__in_id__4D94879B">
-            <End Role="Invoice" EntitySet="Invoices" />
-            <End Role="BTransaction" EntitySet="BTransactions" />
+          <AssociationSet Name="FK__Tbl_Books__Vendo__29572725" Association="lastDbModel.FK__Tbl_Books__Vendo__29572725">
+            <End Role="Tbl_Vendorr" EntitySet="Tbl_Vendorr" />
+            <End Role="Tbl_Books" EntitySet="Tbl_Books" />
           </AssociationSet>
-          <AssociationSet Name="FK__Invoice__mem_id__49C3F6B7" Association="lastDbModel.FK__Invoice__mem_id__49C3F6B7">
+          <EntitySet Name="Ebooks_db" EntityType="lastDbModel.Ebooks_db" />
+          <AssociationSet Name="FK_Ebooks_db_Book_categoryy" Association="lastDbModel.FK_Ebooks_db_Book_categoryy">
+            <End Role="Book_categoryy" EntitySet="Book_categoryy" />
+            <End Role="Ebooks_db" EntitySet="Ebooks_db" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ebooks_db_tbl_member" Association="lastDbModel.FK_Ebooks_db_tbl_member">
             <End Role="tbl_member" EntitySet="tbl_member" />
-            <End Role="Invoice" EntitySet="Invoices" />
+            <End Role="Ebooks_db" EntitySet="Ebooks_db" />
+          </AssociationSet>
+          <EntitySet Name="EBook_Review_db" EntityType="lastDbModel.EBook_Review_db" />
+          <AssociationSet Name="FK_EBook_Review_db_Ebooks_db" Association="lastDbModel.FK_EBook_Review_db_Ebooks_db">
+            <End Role="Ebooks_db" EntitySet="Ebooks_db" />
+            <End Role="EBook_Review_db" EntitySet="EBook_Review_db" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EBook_Review_db_tbl_member" Association="lastDbModel.FK_EBook_Review_db_tbl_member">
+            <End Role="tbl_member" EntitySet="tbl_member" />
+            <End Role="EBook_Review_db" EntitySet="EBook_Review_db" />
+          </AssociationSet>
+          <EntitySet Name="Reading_History" EntityType="lastDbModel.Reading_History" />
+          <AssociationSet Name="FK_Reading_History_Ebooks_db" Association="lastDbModel.FK_Reading_History_Ebooks_db">
+            <End Role="Ebooks_db" EntitySet="Ebooks_db" />
+            <End Role="Reading_History" EntitySet="Reading_History" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reading_History_tbl_member" Association="lastDbModel.FK_Reading_History_tbl_member">
+            <End Role="tbl_member" EntitySet="tbl_member" />
+            <End Role="Reading_History" EntitySet="Reading_History" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Book_categoryy">
@@ -314,6 +527,7 @@
           <Property Name="cat_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="cat_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Tbl_Books" Relationship="lastDbModel.FK__Tbl_Books__cat_i__286302EC" FromRole="Book_categoryy" ToRole="Tbl_Books" />
+          <NavigationProperty Name="Ebooks_db" Relationship="lastDbModel.FK_Ebooks_db_Book_categoryy" FromRole="Book_categoryy" ToRole="Ebooks_db" />
         </EntityType>
         <EntityType Name="tbl_member">
           <Key>
@@ -325,6 +539,10 @@
           <Property Name="mem_contact" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="mem_password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Invoices" Relationship="lastDbModel.FK__Invoice__mem_id__49C3F6B7" FromRole="tbl_member" ToRole="Invoice" />
+          <NavigationProperty Name="Book_Review" Relationship="lastDbModel.FK_Book_Review_tbl_member" FromRole="tbl_member" ToRole="Book_Review" />
+          <NavigationProperty Name="Ebooks_db" Relationship="lastDbModel.FK_Ebooks_db_tbl_member" FromRole="tbl_member" ToRole="Ebooks_db" />
+          <NavigationProperty Name="EBook_Review_db" Relationship="lastDbModel.FK_EBook_Review_db_tbl_member" FromRole="tbl_member" ToRole="EBook_Review_db" />
+          <NavigationProperty Name="Reading_History" Relationship="lastDbModel.FK_Reading_History_tbl_member" FromRole="tbl_member" ToRole="Reading_History" />
         </EntityType>
         <EntityType Name="Tbl_admin">
           <Key>
@@ -365,6 +583,80 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="BTransaction">
+          <Key>
+            <PropertyRef Name="Transaction_id" />
+          </Key>
+          <Property Name="Transaction_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Transaction_bill" Type="Int32" />
+          <Property Name="Transaction_qty" Type="Int32" />
+          <Property Name="Transaction_date" Type="DateTime" Precision="3" />
+          <Property Name="Transaction_price" Type="Int32" />
+          <Property Name="Book_id" Type="Int32" />
+          <Property Name="in_id" Type="Int32" />
+          <NavigationProperty Name="Invoice" Relationship="lastDbModel.FK__BTransact__in_id__4D94879B" FromRole="BTransaction" ToRole="Invoice" />
+          <NavigationProperty Name="Tbl_Books" Relationship="lastDbModel.FK__BTransact__Book___4CA06362" FromRole="BTransaction" ToRole="Tbl_Books" />
+        </EntityType>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="in_id" />
+          </Key>
+          <Property Name="in_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="in_date" Type="DateTime" Precision="3" />
+          <Property Name="in_totalbill" Type="Double" />
+          <Property Name="mem_id" Type="Int32" />
+          <NavigationProperty Name="BTransactions" Relationship="lastDbModel.FK__BTransact__in_id__4D94879B" FromRole="Invoice" ToRole="BTransaction" />
+          <NavigationProperty Name="tbl_member" Relationship="lastDbModel.FK__Invoice__mem_id__49C3F6B7" FromRole="Invoice" ToRole="tbl_member" />
+        </EntityType>
+        <Association Name="FK__BTransact__in_id__4D94879B">
+          <End Type="lastDbModel.Invoice" Role="Invoice" Multiplicity="0..1" />
+          <End Type="lastDbModel.BTransaction" Role="BTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoice">
+              <PropertyRef Name="in_id" />
+            </Principal>
+            <Dependent Role="BTransaction">
+              <PropertyRef Name="in_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Invoice__mem_id__49C3F6B7">
+          <End Type="lastDbModel.tbl_member" Role="tbl_member" Multiplicity="0..1" />
+          <End Type="lastDbModel.Invoice" Role="Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_member">
+              <PropertyRef Name="mem_id" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="mem_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Book_Review">
+          <Key>
+            <PropertyRef Name="Review_id" />
+          </Key>
+          <Property Name="Review_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContentC" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Rating" Type="Double" Nullable="false" />
+          <Property Name="DatePost" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="BookId" Type="Int32" Nullable="false" />
+          <Property Name="memberId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tbl_member" Relationship="lastDbModel.FK_Book_Review_tbl_member" FromRole="Book_Review" ToRole="tbl_member" />
+          <NavigationProperty Name="Tbl_Books" Relationship="lastDbModel.FK_Book_Review_Tbl_Books" FromRole="Book_Review" ToRole="Tbl_Books" />
+        </EntityType>
+        <Association Name="FK_Book_Review_tbl_member">
+          <End Type="lastDbModel.tbl_member" Role="tbl_member" Multiplicity="1" />
+          <End Type="lastDbModel.Book_Review" Role="Book_Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_member">
+              <PropertyRef Name="mem_id" />
+            </Principal>
+            <Dependent Role="Book_Review">
+              <PropertyRef Name="memberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityType Name="Tbl_Books">
           <Key>
             <PropertyRef Name="Book_id" />
@@ -381,8 +673,9 @@
           <NavigationProperty Name="Book_author" Relationship="lastDbModel.FK__Tbl_Books__auth___267ABA7A" FromRole="Tbl_Books" ToRole="Book_author" />
           <NavigationProperty Name="Book_categoryy" Relationship="lastDbModel.FK__Tbl_Books__cat_i__286302EC" FromRole="Tbl_Books" ToRole="Book_categoryy" />
           <NavigationProperty Name="Book_publisher" Relationship="lastDbModel.FK__Tbl_Books__pub_i__276EDEB3" FromRole="Tbl_Books" ToRole="Book_publisher" />
-          <NavigationProperty Name="Tbl_Vendorr" Relationship="lastDbModel.FK__Tbl_Books__Vendo__29572725" FromRole="Tbl_Books" ToRole="Tbl_Vendorr" />
+          <NavigationProperty Name="Book_Review" Relationship="lastDbModel.FK_Book_Review_Tbl_Books" FromRole="Tbl_Books" ToRole="Book_Review" />
           <NavigationProperty Name="BTransactions" Relationship="lastDbModel.FK__BTransact__Book___4CA06362" FromRole="Tbl_Books" ToRole="BTransaction" />
+          <NavigationProperty Name="Tbl_Vendorr" Relationship="lastDbModel.FK__Tbl_Books__Vendo__29572725" FromRole="Tbl_Books" ToRole="Tbl_Vendorr" />
         </EntityType>
         <Association Name="FK__Tbl_Books__auth___267ABA7A">
           <End Type="lastDbModel.Book_author" Role="Book_author" Multiplicity="0..1" />
@@ -420,43 +713,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Tbl_Books__Vendo__29572725">
-          <End Type="lastDbModel.Tbl_Vendorr" Role="Tbl_Vendorr" Multiplicity="0..1" />
-          <End Type="lastDbModel.Tbl_Books" Role="Tbl_Books" Multiplicity="*" />
+        <Association Name="FK_Book_Review_Tbl_Books">
+          <End Type="lastDbModel.Tbl_Books" Role="Tbl_Books" Multiplicity="1" />
+          <End Type="lastDbModel.Book_Review" Role="Book_Review" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Tbl_Vendorr">
-              <PropertyRef Name="Vendor_id" />
+            <Principal Role="Tbl_Books">
+              <PropertyRef Name="Book_id" />
             </Principal>
-            <Dependent Role="Tbl_Books">
-              <PropertyRef Name="Vendor_id" />
+            <Dependent Role="Book_Review">
+              <PropertyRef Name="BookId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="BTransaction">
-          <Key>
-            <PropertyRef Name="Transaction_id" />
-          </Key>
-          <Property Name="Transaction_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Transaction_bill" Type="Int32" />
-          <Property Name="Transaction_qty" Type="Int32" />
-          <Property Name="Transaction_date" Type="DateTime" Precision="3" />
-          <Property Name="Transaction_price" Type="Int32" />
-          <Property Name="Book_id" Type="Int32" />
-          <Property Name="in_id" Type="Int32" />
-          <NavigationProperty Name="Tbl_Books" Relationship="lastDbModel.FK__BTransact__Book___4CA06362" FromRole="BTransaction" ToRole="Tbl_Books" />
-          <NavigationProperty Name="Invoice" Relationship="lastDbModel.FK__BTransact__in_id__4D94879B" FromRole="BTransaction" ToRole="Invoice" />
-        </EntityType>
-        <EntityType Name="Invoice">
-          <Key>
-            <PropertyRef Name="in_id" />
-          </Key>
-          <Property Name="in_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="in_date" Type="DateTime" Precision="3" />
-          <Property Name="in_totalbill" Type="Double" />
-          <Property Name="mem_id" Type="Int32" />
-          <NavigationProperty Name="BTransactions" Relationship="lastDbModel.FK__BTransact__in_id__4D94879B" FromRole="Invoice" ToRole="BTransaction" />
-          <NavigationProperty Name="tbl_member" Relationship="lastDbModel.FK__Invoice__mem_id__49C3F6B7" FromRole="Invoice" ToRole="tbl_member" />
-        </EntityType>
         <Association Name="FK__BTransact__Book___4CA06362">
           <End Type="lastDbModel.Tbl_Books" Role="Tbl_Books" Multiplicity="0..1" />
           <End Type="lastDbModel.BTransaction" Role="BTransaction" Multiplicity="*" />
@@ -469,27 +737,129 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BTransact__in_id__4D94879B">
-          <End Type="lastDbModel.Invoice" Role="Invoice" Multiplicity="0..1" />
-          <End Type="lastDbModel.BTransaction" Role="BTransaction" Multiplicity="*" />
+        <Association Name="FK__Tbl_Books__Vendo__29572725">
+          <End Type="lastDbModel.Tbl_Vendorr" Role="Tbl_Vendorr" Multiplicity="0..1" />
+          <End Type="lastDbModel.Tbl_Books" Role="Tbl_Books" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Invoice">
-              <PropertyRef Name="in_id" />
+            <Principal Role="Tbl_Vendorr">
+              <PropertyRef Name="Vendor_id" />
             </Principal>
-            <Dependent Role="BTransaction">
-              <PropertyRef Name="in_id" />
+            <Dependent Role="Tbl_Books">
+              <PropertyRef Name="Vendor_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Invoice__mem_id__49C3F6B7">
-          <End Type="lastDbModel.tbl_member" Role="tbl_member" Multiplicity="0..1" />
-          <End Type="lastDbModel.Invoice" Role="Invoice" Multiplicity="*" />
+        <EntityType Name="Ebooks_db">
+          <Key>
+            <PropertyRef Name="Ebook_id" />
+          </Key>
+          <Property Name="Ebook_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ebook_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Ebook_publisher" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Ebook_author" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cat_id" Type="Int32" Nullable="false" />
+          <Property Name="Ebook_img" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Ebook_pdffile" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Ebook_edition" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="mem_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Book_categoryy" Relationship="lastDbModel.FK_Ebooks_db_Book_categoryy" FromRole="Ebooks_db" ToRole="Book_categoryy" />
+          <NavigationProperty Name="tbl_member" Relationship="lastDbModel.FK_Ebooks_db_tbl_member" FromRole="Ebooks_db" ToRole="tbl_member" />
+          <NavigationProperty Name="EBook_Review_db" Relationship="lastDbModel.FK_EBook_Review_db_Ebooks_db" FromRole="Ebooks_db" ToRole="EBook_Review_db" />
+          <NavigationProperty Name="Reading_History" Relationship="lastDbModel.FK_Reading_History_Ebooks_db" FromRole="Ebooks_db" ToRole="Reading_History" />
+        </EntityType>
+        <Association Name="FK_Ebooks_db_Book_categoryy">
+          <End Type="lastDbModel.Book_categoryy" Role="Book_categoryy" Multiplicity="1" />
+          <End Type="lastDbModel.Ebooks_db" Role="Ebooks_db" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book_categoryy">
+              <PropertyRef Name="cat_id" />
+            </Principal>
+            <Dependent Role="Ebooks_db">
+              <PropertyRef Name="cat_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ebooks_db_tbl_member">
+          <End Type="lastDbModel.tbl_member" Role="tbl_member" Multiplicity="1" />
+          <End Type="lastDbModel.Ebooks_db" Role="Ebooks_db" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbl_member">
               <PropertyRef Name="mem_id" />
             </Principal>
-            <Dependent Role="Invoice">
+            <Dependent Role="Ebooks_db">
               <PropertyRef Name="mem_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="EBook_Review_db">
+          <Key>
+            <PropertyRef Name="EReview_id" />
+          </Key>
+          <Property Name="EReview_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContentC" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ERating" Type="Double" Nullable="false" />
+          <Property Name="DatePost" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EBookId" Type="Int32" Nullable="false" />
+          <Property Name="memberId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Ebooks_db" Relationship="lastDbModel.FK_EBook_Review_db_Ebooks_db" FromRole="EBook_Review_db" ToRole="Ebooks_db" />
+          <NavigationProperty Name="tbl_member" Relationship="lastDbModel.FK_EBook_Review_db_tbl_member" FromRole="EBook_Review_db" ToRole="tbl_member" />
+        </EntityType>
+        <Association Name="FK_EBook_Review_db_Ebooks_db">
+          <End Type="lastDbModel.Ebooks_db" Role="Ebooks_db" Multiplicity="1" />
+          <End Type="lastDbModel.EBook_Review_db" Role="EBook_Review_db" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ebooks_db">
+              <PropertyRef Name="Ebook_id" />
+            </Principal>
+            <Dependent Role="EBook_Review_db">
+              <PropertyRef Name="EBookId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EBook_Review_db_tbl_member">
+          <End Type="lastDbModel.tbl_member" Role="tbl_member" Multiplicity="1" />
+          <End Type="lastDbModel.EBook_Review_db" Role="EBook_Review_db" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_member">
+              <PropertyRef Name="mem_id" />
+            </Principal>
+            <Dependent Role="EBook_Review_db">
+              <PropertyRef Name="memberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Reading_History">
+          <Key>
+            <PropertyRef Name="Read_Hist_Id" />
+          </Key>
+          <Property Name="Read_Hist_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Read_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="memID" Type="Int32" Nullable="false" />
+          <Property Name="ebook_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Ebooks_db" Relationship="lastDbModel.FK_Reading_History_Ebooks_db" FromRole="Reading_History" ToRole="Ebooks_db" />
+          <NavigationProperty Name="tbl_member" Relationship="lastDbModel.FK_Reading_History_tbl_member" FromRole="Reading_History" ToRole="tbl_member" />
+        </EntityType>
+        <Association Name="FK_Reading_History_Ebooks_db">
+          <End Type="lastDbModel.Ebooks_db" Role="Ebooks_db" Multiplicity="1" />
+          <End Type="lastDbModel.Reading_History" Role="Reading_History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ebooks_db">
+              <PropertyRef Name="Ebook_id" />
+            </Principal>
+            <Dependent Role="Reading_History">
+              <PropertyRef Name="ebook_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reading_History_tbl_member">
+          <End Type="lastDbModel.tbl_member" Role="tbl_member" Multiplicity="1" />
+          <End Type="lastDbModel.Reading_History" Role="Reading_History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_member">
+              <PropertyRef Name="mem_id" />
+            </Principal>
+            <Dependent Role="Reading_History">
+              <PropertyRef Name="memID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -565,21 +935,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Tbl_Books">
-            <EntityTypeMapping TypeName="lastDbModel.Tbl_Books">
-              <MappingFragment StoreEntitySet="Tbl_Books">
-                <ScalarProperty Name="Vendor_id" ColumnName="Vendor_id" />
-                <ScalarProperty Name="cat_id" ColumnName="cat_id" />
-                <ScalarProperty Name="pub_id" ColumnName="pub_id" />
-                <ScalarProperty Name="auth_id" ColumnName="auth_id" />
-                <ScalarProperty Name="Book_img" ColumnName="Book_img" />
-                <ScalarProperty Name="Book_price" ColumnName="Book_price" />
-                <ScalarProperty Name="Book_Edition" ColumnName="Book_Edition" />
-                <ScalarProperty Name="Book_name" ColumnName="Book_name" />
-                <ScalarProperty Name="Book_id" ColumnName="Book_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="BTransactions">
             <EntityTypeMapping TypeName="lastDbModel.BTransaction">
               <MappingFragment StoreEntitySet="BTransaction">
@@ -600,6 +955,70 @@
                 <ScalarProperty Name="in_totalbill" ColumnName="in_totalbill" />
                 <ScalarProperty Name="in_date" ColumnName="in_date" />
                 <ScalarProperty Name="in_id" ColumnName="in_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Book_Review">
+            <EntityTypeMapping TypeName="lastDbModel.Book_Review">
+              <MappingFragment StoreEntitySet="Book_Review">
+                <ScalarProperty Name="memberId" ColumnName="memberId" />
+                <ScalarProperty Name="BookId" ColumnName="BookId" />
+                <ScalarProperty Name="DatePost" ColumnName="DatePost" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="ContentC" ColumnName="ContentC" />
+                <ScalarProperty Name="Review_id" ColumnName="Review_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Books">
+            <EntityTypeMapping TypeName="lastDbModel.Tbl_Books">
+              <MappingFragment StoreEntitySet="Tbl_Books">
+                <ScalarProperty Name="Vendor_id" ColumnName="Vendor_id" />
+                <ScalarProperty Name="cat_id" ColumnName="cat_id" />
+                <ScalarProperty Name="pub_id" ColumnName="pub_id" />
+                <ScalarProperty Name="auth_id" ColumnName="auth_id" />
+                <ScalarProperty Name="Book_img" ColumnName="Book_img" />
+                <ScalarProperty Name="Book_price" ColumnName="Book_price" />
+                <ScalarProperty Name="Book_Edition" ColumnName="Book_Edition" />
+                <ScalarProperty Name="Book_name" ColumnName="Book_name" />
+                <ScalarProperty Name="Book_id" ColumnName="Book_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ebooks_db">
+            <EntityTypeMapping TypeName="lastDbModel.Ebooks_db">
+              <MappingFragment StoreEntitySet="Ebooks_db">
+                <ScalarProperty Name="mem_id" ColumnName="mem_id" />
+                <ScalarProperty Name="Ebook_edition" ColumnName="Ebook_edition" />
+                <ScalarProperty Name="Ebook_pdffile" ColumnName="Ebook_pdffile" />
+                <ScalarProperty Name="Ebook_img" ColumnName="Ebook_img" />
+                <ScalarProperty Name="cat_id" ColumnName="cat_id" />
+                <ScalarProperty Name="Ebook_author" ColumnName="Ebook_author" />
+                <ScalarProperty Name="Ebook_publisher" ColumnName="Ebook_publisher" />
+                <ScalarProperty Name="Ebook_name" ColumnName="Ebook_name" />
+                <ScalarProperty Name="Ebook_id" ColumnName="Ebook_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EBook_Review_db">
+            <EntityTypeMapping TypeName="lastDbModel.EBook_Review_db">
+              <MappingFragment StoreEntitySet="EBook_Review_db">
+                <ScalarProperty Name="memberId" ColumnName="memberId" />
+                <ScalarProperty Name="EBookId" ColumnName="EBookId" />
+                <ScalarProperty Name="DatePost" ColumnName="DatePost" />
+                <ScalarProperty Name="ERating" ColumnName="ERating" />
+                <ScalarProperty Name="ContentC" ColumnName="ContentC" />
+                <ScalarProperty Name="EReview_id" ColumnName="EReview_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reading_History">
+            <EntityTypeMapping TypeName="lastDbModel.Reading_History">
+              <MappingFragment StoreEntitySet="Reading_History">
+                <ScalarProperty Name="ebook_id" ColumnName="ebook_id" />
+                <ScalarProperty Name="memID" ColumnName="memID" />
+                <ScalarProperty Name="Read_Date" ColumnName="Read_Date" />
+                <ScalarProperty Name="Read_Hist_Id" ColumnName="Read_Hist_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

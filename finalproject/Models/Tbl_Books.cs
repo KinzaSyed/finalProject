@@ -17,6 +17,7 @@ namespace finalproject.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Tbl_Books()
         {
+            this.Book_Review = new HashSet<Book_Review>();
             this.BTransactions = new HashSet<BTransaction>();
         }
     
@@ -33,8 +34,10 @@ namespace finalproject.Models
         public virtual Book_author Book_author { get; set; }
         public virtual Book_categoryy Book_categoryy { get; set; }
         public virtual Book_publisher Book_publisher { get; set; }
-        public virtual Tbl_Vendorr Tbl_Vendorr { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Book_Review> Book_Review { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BTransaction> BTransactions { get; set; }
+        public virtual Tbl_Vendorr Tbl_Vendorr { get; set; }
     }
 }

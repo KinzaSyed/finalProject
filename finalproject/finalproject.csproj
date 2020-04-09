@@ -132,7 +132,9 @@
     <Compile Include="Controllers\BookauthorController.cs" />
     <Compile Include="Controllers\BookcategoryyController.cs" />
     <Compile Include="Controllers\BookpublisherController.cs" />
+    <Compile Include="Controllers\EbooksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ReadingHistoryController.cs" />
     <Compile Include="Controllers\TbladminController.cs" />
     <Compile Include="Controllers\Tbl_BookController.cs" />
     <Compile Include="Controllers\Tbl_memberController.cs" />
@@ -150,10 +152,19 @@
     <Compile Include="Models\Book_publisher.cs">
       <DependentUpon>MyModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Book_Review.cs">
+      <DependentUpon>MyModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\BTransaction.cs">
       <DependentUpon>MyModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\cart.cs" />
+    <Compile Include="Models\Ebooks_db.cs">
+      <DependentUpon>MyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EBook_Review_db.cs">
+      <DependentUpon>MyModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Invoice.cs">
       <DependentUpon>MyModel.tt</DependentUpon>
     </Compile>
@@ -174,12 +185,16 @@
       <DependentUpon>MyModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Publisher_Validation.cs" />
+    <Compile Include="Models\Reading_History.cs">
+      <DependentUpon>MyModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Tbl_admin.cs">
       <DependentUpon>MyModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Tbl_Books.cs">
       <DependentUpon>MyModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Tbl_for_Ebooks.cs" />
     <Compile Include="Models\Tbl_for_books.cs" />
     <Compile Include="Models\tbl_member.cs">
       <DependentUpon>MyModel.tt</DependentUpon>
@@ -199,6 +214,11 @@
     <Content Include="Content\img\3.jpg" />
     <Content Include="Content\img\4.jpg" />
     <Content Include="Content\img\5.jpg" />
+    <Content Include="Content\rateyo\jquery.min.js" />
+    <Content Include="Content\rateyo\jquery.rateyo.css" />
+    <Content Include="Content\rateyo\jquery.rateyo.js" />
+    <Content Include="Content\rateyo\jquery.rateyo.min.css" />
+    <Content Include="Content\rateyo\jquery.rateyo.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -222,6 +242,9 @@
     <Content Include="Models\MyModel.edmx.diagram">
       <DependentUpon>MyModel.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\rateyo\jquery.rateyo.less" />
+    <Content Include="Content\rateyo\jquery.rateyo.min.css.map" />
+    <Content Include="Content\rateyo\jquery.rateyo.min.js.map" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -291,9 +314,16 @@
     <Content Include="Views\AddtoCart\Index.cshtml" />
     <Content Include="Views\AddtoCart\CheckOut.cshtml" />
     <Content Include="Views\AddtoCart\addtocart.cshtml" />
+    <Content Include="Views\Ebooks\Index.cshtml" />
+    <Content Include="Views\Ebooks\Create.cshtml" />
+    <Content Include="Views\Ebooks\Details.cshtml" />
+    <Content Include="Views\Ebooks\Edit.cshtml" />
+    <Content Include="Views\Ebooks\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\pdfbooks\" />
+    <Folder Include="Views\ReadingHistory\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

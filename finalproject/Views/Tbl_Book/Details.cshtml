@@ -1,4 +1,5 @@
-﻿@model finalproject.Models.Tbl_for_books
+﻿
+@model finalproject.Models.Book_Review
 
 @{
     ViewBag.Title = "Details";
@@ -10,7 +11,20 @@
     }
 </style>
 
+<script>
+        $(function () {
 
+            $("#rateYo").rateYo({
+                rating: 0,
+                numStars: 5,
+                maxValue: 5,
+                halfStar: true,
+                onChange: function (rating, rateYoInstance) {
+                    $('#rating').val(rating);
+                }
+            });
+        });
+</script>
 
 <h2>Details</h2>
 
@@ -18,43 +32,50 @@
 
     <div class="container">
         <div class="row">
-            @if (Model.Book_img != null)
-            {
-            <div class="col-lg-4 col-md-4 col-sm-4">
-                <img style="width:250px ; height:350px ;" src="@Url.Content(Model.Book_img)" />
 
-            </div>
+            @if (ViewBag.book.Book_img != null)
+            {
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <img style="width:250px ; height:350px ;" src="@Url.Content(ViewBag.book.Book_img)" />
+
+                </div>
             }
-            
+
+
+
+
             <div class="col-lg-12 ">
                 <table class="table-bordered">
+
                     <tr>
+
                         <td>Name</td>
-                        <td>@Html.DisplayFor(x => x.Book_name)</td>
+                        <td>@ViewBag.book.Book_name</td>
 
 
                     </tr>
                     <tr>
                         <td>Author</td>
-                        <td>@Html.DisplayFor(x => x.auth_name)</td>
+                        <td>@ViewBag.book.Book_author.auth_name</td>
+
 
 
                     </tr>
                     <tr>
                         <td>Edition</td>
-                        <td>@Html.DisplayFor(x => x.Book_Edition)</td>
+                        <td>@ViewBag.book.Book_Edition</td>
 
 
                     </tr>
                     <tr>
                         <td>Price</td>
-                        <td>@Html.DisplayFor(x => x.Book_price)</td>
+                        <td>@ViewBag.book.Book_price</td>
 
 
                     </tr>
                     <tr>
                         <td>Vendor Name&nbsp;</td>
-                        <td>@Html.DisplayFor(x => x.Vendor_name)</td>
+                        <td>@ViewBag.book.Tbl_Vendorr.Vendor_name</td>
 
 
                     </tr>
@@ -67,6 +88,86 @@
 
 
         </div>
+        <h3>Rating and Comments</h3>
+        <table border="1" cellpadding="2" cellspacing="2">
+            @{ int i = 1;}
+            @foreach (var review in ViewBag.book.Book_Review)
+            {
+                <tr>
+                    <td>
+                        @review.tbl_member.mem_email
+                        <br />
+                        <script>
+                        $(function () {
+
+                            $('#@("rating" + i)').rateYo({
+                                rating:  @review.Rating,
+                                readOnly: true
+
+                            });
+                        });
+                        </script>
+                        <div id="@("rating" + i)"></div>
+
+                        <br /> @review.ContentC
+                    </td>
+                </tr>
+                i++;
+            }
+
+
+
+
+
+        </table>
+        @if (Session["mem_email"] == null)
+        {
+            <a href="@Url.Action("Login","Tbl_member")">
+                Login to post comments and rating
+            </a>
+
+        }
+        else
+        {
+           
+
+            using (Html.BeginForm("SendReview", "Tbl_Book", FormMethod.Post))
+            {
+                <table cellpadding="2" cellspacing="2">
+
+                    <tr>
+                        <td valign="top">Rating</td>
+                        <td>
+                            <div id="rateYo"></div>
+
+                            <input type="hidden" id="rating" name="rating" />
+                        </td>
+                    </tr>
+
+
+
+                    <tr>
+                        <td valign="top">Content</td>
+                        <td>@Html.TextAreaFor(model => model.ContentC, new { cols = 20, rows = 5 })</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>
+                            <input type="submit" value="Send" />
+                            @Html.HiddenFor(model => model.BookId)
+
+
+
+                        </td>
+                    </tr>
+
+
+
+                </table>
+
+            }
+        }
+
 
 
 

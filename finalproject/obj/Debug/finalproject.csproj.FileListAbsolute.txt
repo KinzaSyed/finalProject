@@ -53,7 +53,6 @@ C:\Users\Kinza Syed\source\repos\finalproject\finalproject\bin\System.Web.WebPag
 C:\Users\Kinza Syed\source\repos\finalproject\finalproject\bin\Newtonsoft.Json.xml
 C:\Users\Kinza Syed\source\repos\finalproject\finalproject\bin\Antlr3.Runtime.pdb
 C:\Users\Kinza Syed\source\repos\finalproject\finalproject\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\Kinza Syed\source\repos\finalproject\finalproject\obj\Debug\finalproject.csprojAssemblyReference.cache
 C:\Users\Kinza Syed\source\repos\finalproject\finalproject\obj\Debug\finalproject.csproj.CoreCompileInputs.cache
 C:\Users\Kinza Syed\source\repos\finalproject\finalproject\obj\Debug\finalproject.csproj.CopyComplete
 C:\Users\Kinza Syed\source\repos\finalproject\finalproject\obj\Debug\finalproject.dll

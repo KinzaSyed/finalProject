@@ -6,6 +6,9 @@
     <title> BookSelf</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/rateyo/jquery.rateyo.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Content/rateyo/jquery.min.js"></script>
+    <script src="~/Content/rateyo/jquery.rateyo.min.js"></script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -31,6 +34,7 @@
 
                             <li><a href="/tbl_Vendorr/Index">Create Vendor</a></li>
                             <li><a href="/Bookcategoryy/Index">Category List</a></li>
+                            <li><a href="/Bookoublisher/Index">Publisher List</a></li>
                             <li><a href="/Bookauthor/Index">Author List</a></li>
                             <li><a href="/Tbl_Book/Create">Create Book</a></li>
                         }
@@ -46,17 +50,18 @@
                             <li><a href="/Tbl_Book/Create">Create Book</a></li>
 
                         }
-                        
+
 
                         if (Session["mem_id"] != null && Session["mem_email"] != null)
                         {
 
 
-                            <li><a href="/Tblmember/Logout">Logout</a></li>
+                            <li><a href="/tbl_member/Logout">Logout</a></li>
                             <li><a href="/AddtoCart/Index">Buy Book</a></li>
+                            <li><a href="/Ebooks/Index">Create E Book</a></li>
 
                         }
-                       
+
 
                     }
                     else
@@ -84,7 +89,7 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
+    @*@Scripts.Render("~/bundles/jquery")*@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>

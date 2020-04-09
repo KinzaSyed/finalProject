@@ -67,21 +67,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Tbl_Books">
-      <EntityTypeMapping TypeName="lastDbModel.Tbl_Books">
-        <MappingFragment StoreEntitySet="Tbl_Books">
-          <ScalarProperty Name="Vendor_id" ColumnName="Vendor_id" />
-          <ScalarProperty Name="cat_id" ColumnName="cat_id" />
-          <ScalarProperty Name="pub_id" ColumnName="pub_id" />
-          <ScalarProperty Name="auth_id" ColumnName="auth_id" />
-          <ScalarProperty Name="Book_img" ColumnName="Book_img" />
-          <ScalarProperty Name="Book_price" ColumnName="Book_price" />
-          <ScalarProperty Name="Book_Edition" ColumnName="Book_Edition" />
-          <ScalarProperty Name="Book_name" ColumnName="Book_name" />
-          <ScalarProperty Name="Book_id" ColumnName="Book_id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="BTransactions">
       <EntityTypeMapping TypeName="lastDbModel.BTransaction">
         <MappingFragment StoreEntitySet="BTransaction">
@@ -102,6 +87,70 @@
           <ScalarProperty Name="in_totalbill" ColumnName="in_totalbill" />
           <ScalarProperty Name="in_date" ColumnName="in_date" />
           <ScalarProperty Name="in_id" ColumnName="in_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Book_Review">
+      <EntityTypeMapping TypeName="lastDbModel.Book_Review">
+        <MappingFragment StoreEntitySet="Book_Review">
+          <ScalarProperty Name="memberId" ColumnName="memberId" />
+          <ScalarProperty Name="BookId" ColumnName="BookId" />
+          <ScalarProperty Name="DatePost" ColumnName="DatePost" />
+          <ScalarProperty Name="Rating" ColumnName="Rating" />
+          <ScalarProperty Name="ContentC" ColumnName="ContentC" />
+          <ScalarProperty Name="Review_id" ColumnName="Review_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_Books">
+      <EntityTypeMapping TypeName="lastDbModel.Tbl_Books">
+        <MappingFragment StoreEntitySet="Tbl_Books">
+          <ScalarProperty Name="Vendor_id" ColumnName="Vendor_id" />
+          <ScalarProperty Name="cat_id" ColumnName="cat_id" />
+          <ScalarProperty Name="pub_id" ColumnName="pub_id" />
+          <ScalarProperty Name="auth_id" ColumnName="auth_id" />
+          <ScalarProperty Name="Book_img" ColumnName="Book_img" />
+          <ScalarProperty Name="Book_price" ColumnName="Book_price" />
+          <ScalarProperty Name="Book_Edition" ColumnName="Book_Edition" />
+          <ScalarProperty Name="Book_name" ColumnName="Book_name" />
+          <ScalarProperty Name="Book_id" ColumnName="Book_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ebooks_db">
+      <EntityTypeMapping TypeName="lastDbModel.Ebooks_db">
+        <MappingFragment StoreEntitySet="Ebooks_db">
+          <ScalarProperty Name="mem_id" ColumnName="mem_id" />
+          <ScalarProperty Name="Ebook_edition" ColumnName="Ebook_edition" />
+          <ScalarProperty Name="Ebook_pdffile" ColumnName="Ebook_pdffile" />
+          <ScalarProperty Name="Ebook_img" ColumnName="Ebook_img" />
+          <ScalarProperty Name="cat_id" ColumnName="cat_id" />
+          <ScalarProperty Name="Ebook_author" ColumnName="Ebook_author" />
+          <ScalarProperty Name="Ebook_publisher" ColumnName="Ebook_publisher" />
+          <ScalarProperty Name="Ebook_name" ColumnName="Ebook_name" />
+          <ScalarProperty Name="Ebook_id" ColumnName="Ebook_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EBook_Review_db">
+      <EntityTypeMapping TypeName="lastDbModel.EBook_Review_db">
+        <MappingFragment StoreEntitySet="EBook_Review_db">
+          <ScalarProperty Name="memberId" ColumnName="memberId" />
+          <ScalarProperty Name="EBookId" ColumnName="EBookId" />
+          <ScalarProperty Name="DatePost" ColumnName="DatePost" />
+          <ScalarProperty Name="ERating" ColumnName="ERating" />
+          <ScalarProperty Name="ContentC" ColumnName="ContentC" />
+          <ScalarProperty Name="EReview_id" ColumnName="EReview_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reading_History">
+      <EntityTypeMapping TypeName="lastDbModel.Reading_History">
+        <MappingFragment StoreEntitySet="Reading_History">
+          <ScalarProperty Name="ebook_id" ColumnName="ebook_id" />
+          <ScalarProperty Name="memID" ColumnName="memID" />
+          <ScalarProperty Name="Read_Date" ColumnName="Read_Date" />
+          <ScalarProperty Name="Read_Hist_Id" ColumnName="Read_Hist_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
