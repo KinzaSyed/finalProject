@@ -4,15 +4,14 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Tbl_Vendorr</h4>
+  
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Vendor_name)
+            Name
         </dt>
 
         <dd>
@@ -20,39 +19,39 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Vendor_email)
+            Email
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Vendor_email)
         </dd>
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.Vendor_password)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Vendor_password)
-        </dd>
+        </dd>*@
 
         <dt>
-            @Html.DisplayNameFor(model => model.Vendor_contactno)
+          Contact No
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Vendor_contactno)
         </dd>
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.Vendor_status)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Vendor_status)
-        </dd>
+        </dd>*@
 
         <dt>
-            @Html.DisplayNameFor(model => model.Vendor_ShopAdr)
+          Shop Address
         </dt>
 
         <dd>
@@ -60,7 +59,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Tbl_admin.Admin_name)
+           Created By
         </dt>
 
         <dd>
@@ -72,9 +71,11 @@
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
+    <div class="form-actions no-color">
+        <a class="btn btn-info" href="@Url.Action("Index")">Back to List</a>
+
+        <input type="submit" value="Delete" class="btn btn-danger" />
+
+    </div>
     }
 </div>

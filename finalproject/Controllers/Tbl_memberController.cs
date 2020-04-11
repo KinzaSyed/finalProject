@@ -52,7 +52,38 @@ namespace finalproject.Controllers
 
 
         }
+
+        public ActionResult BestSeller()
+        {
+            var BestsellingBooks =(from item in db.BTransactions
+             group item.Transaction_qty by item.Book_id into g
+            orderby g.Sum() descending
+            select g.Key).Take(5);
+            List<Tbl_Books> books = new List<Tbl_Books>();
+            foreach(var bookid in BestsellingBooks)
+            {
+                var book = db.Tbl_Books.Single(x => x.Book_id == bookid);
+                books.Add(book);
+
+            }
+            return PartialView(books);
+        }
+
+
         public ActionResult UserPanel()
+        {
+            List<Reading_History> m = null;
+            if (Session["mem_id"] != null)
+            {
+                int mem_id = Convert.ToInt32(Session["mem_id"].ToString());
+                m = db.Reading_History.Where(x => x.memID == mem_id).ToList();
+
+
+            }
+
+            return View(m);
+        }
+        public ActionResult PersonalInfo()
         {
             tbl_member m = null;
             if (Session["mem_id"] != null)
@@ -65,6 +96,7 @@ namespace finalproject.Controllers
 
             return View(m);
         }
+
 
         public ActionResult Logout()
         {

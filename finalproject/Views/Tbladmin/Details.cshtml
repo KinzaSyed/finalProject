@@ -7,11 +7,11 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Tbl_admin</h4>
+    <a class="btn btn-info btn-sm" href="@Url.Action("Index")">Back to List</a>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Admin_name)
+            Name
         </dt>
 
         <dd>
@@ -19,40 +19,41 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Admin_email)
+            Email
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Admin_email)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Admin_password)
-        </dt>
+        @*<dt>
+                @Html.DisplayNameFor(model => model.Admin_password)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Admin_password)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Admin_password)
+            </dd>*@
 
         <dt>
-            @Html.DisplayNameFor(model => model.Admin_contact)
+            Contact
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Admin_contact)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Admin_status)
-        </dt>
+        @*<dt>
+                @Html.DisplayNameFor(model => model.Admin_status)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Admin_status)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Admin_status)
+            </dd>*@
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Admin_id }) |
-    @Html.ActionLink("Back to List", "Index")
+    <a class="btn btn-success btn-sm" href="@Url.Action("Edit", new { id = Model.Admin_id})">Update Profile</a>
+  
+
 </p>

@@ -7,11 +7,11 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Book_author</h4>
+    <a class="btn btn-info btn-sm" href="@Url.Action("Index")">Back to List</a>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.auth_name)
+            Author Name
         </dt>
 
         <dd>
@@ -19,7 +19,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.auth_email)
+            Author Email
         </dt>
 
         <dd>
@@ -27,7 +27,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.auth_contact)
+            Author Contact
         </dt>
 
         <dd>
@@ -37,6 +37,8 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.auth_id }) |
-    @Html.ActionLink("Back to List", "Index")
+
+    <a class="btn btn-success btn-sm" href="@Url.Action("Edit", new { id = Model.auth_id})">Update Profile</a>
+
+
 </p>

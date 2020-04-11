@@ -4,42 +4,48 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>All Authors</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+<a class="btn btn-info btn-lg" href="@Url.Action("Create")">Add Author</a>
+<br />
+<br />
+<table class="table table-striped table-responsive">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.auth_name)
+           Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.auth_email)
+           Email
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.auth_contact)
+          Contact
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.auth_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.auth_email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.auth_contact)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.auth_id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.auth_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.auth_id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.auth_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.auth_email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.auth_contact)
+            </td>
+            <td>
+   
+
+                <a class="btn btn-success btn-sm" href="@Url.Action("Edit", new { id = item.auth_id })">Edit</a>
+                <a class="btn btn-danger btn-sm" href="@Url.Action("Delete", new { id = item.auth_id })">Delete</a>
+
+
+                <a class="btn btn-info btn-sm" href="@Url.Action("Details", new { id = item.auth_id })">Details</a>
+
+            </td>
+        </tr>
+    }
 
 </table>

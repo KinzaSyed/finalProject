@@ -140,6 +140,15 @@
     <Property Name="Vendor_ShopAdr" Type="varchar" MaxLength="100" />
     <Property Name="Admin_id" Type="int" />
   </EntityType>
+  <EntityType Name="tbl_wishlist">
+    <Key>
+      <PropertyRef Name="Wish_Id" />
+    </Key>
+    <Property Name="Wish_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Book_ID" Type="int" Nullable="false" />
+    <Property Name="mem_Id" Type="int" Nullable="false" />
+    <Property Name="Wish_date" Type="datetime" Nullable="false" />
+  </EntityType>
   <Association Name="FK__BTransact__Book___4CA06362">
     <End Role="Tbl_Books" Type="Self.Tbl_Books" Multiplicity="0..1" />
     <End Role="BTransaction" Type="Self.BTransaction" Multiplicity="*" />
@@ -332,6 +341,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_tbl_wishlist_Tbl_Books">
+    <End Role="Tbl_Books" Type="Self.Tbl_Books" Multiplicity="1" />
+    <End Role="tbl_wishlist" Type="Self.tbl_wishlist" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Books">
+        <PropertyRef Name="Book_id" />
+      </Principal>
+      <Dependent Role="tbl_wishlist">
+        <PropertyRef Name="Book_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_wishlist_tbl_member">
+    <End Role="tbl_member" Type="Self.tbl_member" Multiplicity="1" />
+    <End Role="tbl_wishlist" Type="Self.tbl_wishlist" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_member">
+        <PropertyRef Name="mem_id" />
+      </Principal>
+      <Dependent Role="tbl_wishlist">
+        <PropertyRef Name="mem_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="lastDbModelStoreContainer">
     <EntitySet Name="Book_author" EntityType="Self.Book_author" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Book_categoryy" EntityType="Self.Book_categoryy" Schema="dbo" store:Type="Tables" />
@@ -346,6 +379,7 @@
     <EntitySet Name="Tbl_Books" EntityType="Self.Tbl_Books" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_member" EntityType="Self.tbl_member" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tbl_Vendorr" EntityType="Self.Tbl_Vendorr" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_wishlist" EntityType="Self.tbl_wishlist" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK__BTransact__Book___4CA06362" Association="Self.FK__BTransact__Book___4CA06362">
       <End Role="Tbl_Books" EntitySet="Tbl_Books" />
       <End Role="BTransaction" EntitySet="BTransaction" />
@@ -409,6 +443,14 @@
     <AssociationSet Name="FK_Reading_History_tbl_member" Association="Self.FK_Reading_History_tbl_member">
       <End Role="tbl_member" EntitySet="tbl_member" />
       <End Role="Reading_History" EntitySet="Reading_History" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_wishlist_Tbl_Books" Association="Self.FK_tbl_wishlist_Tbl_Books">
+      <End Role="Tbl_Books" EntitySet="Tbl_Books" />
+      <End Role="tbl_wishlist" EntitySet="tbl_wishlist" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_wishlist_tbl_member" Association="Self.FK_tbl_wishlist_tbl_member">
+      <End Role="tbl_member" EntitySet="tbl_member" />
+      <End Role="tbl_wishlist" EntitySet="tbl_wishlist" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

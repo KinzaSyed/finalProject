@@ -7,11 +7,12 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Book_publisher</h4>
+    <a class="btn btn-info btn-sm" href="@Url.Action("Index")">Back to List</a>
     <hr />
+   
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.pub_name)
+            Publisher Name
         </dt>
 
         <dd>
@@ -19,7 +20,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.pub_email)
+            Publisher Email
         </dt>
 
         <dd>
@@ -27,7 +28,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.pub_contact)
+            Publisher Contact
         </dt>
 
         <dd>
@@ -37,6 +38,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.pub_id }) |
-    @Html.ActionLink("Back to List", "Index")
+    <a class="btn btn-success btn-sm" href="@Url.Action("Edit", new { id = Model.pub_id})">Update Profile</a>
+
 </p>

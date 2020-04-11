@@ -4,36 +4,41 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>All Categories </h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+<a class="btn btn-info btn-lg" href="@Url.Action("Create")">Add Category</a>
+<br />
+<br />
+<table class="table table-striped table-responsive">
+
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.cat_name)
+            Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.cat_status)
+            Catefory Status
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.cat_name)
+            </td>
         <td>
-            @Html.DisplayFor(modelItem => item.cat_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.cat_status)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.cat_id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.cat_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.cat_id })
-        </td>
-    </tr>
-}
+                    @Html.DisplayFor(modelItem => item.cat_status)
+                </td>
+            <td>
+                <a class="btn btn-success btn-sm" href="@Url.Action("Edit", new { id = item.cat_id })">Edit</a>
+                <a class="btn btn-danger btn-sm" href="@Url.Action("Delete", new { id = item.cat_id })">Delete</a>
+
+
+                <a class="btn btn-info btn-sm" href="@Url.Action("Details", new { id = item.cat_id })">Details</a>
+
+            </td>
+        </tr>
+    }
 
 </table>

@@ -32,11 +32,11 @@
                         {
                             <li><a href="/Tbladmin/Logout">Logout</a></li>
 
-                            <li><a href="/tbl_Vendorr/Index">Create Vendor</a></li>
-                            <li><a href="/Bookcategoryy/Index">Category List</a></li>
-                            <li><a href="/Bookoublisher/Index">Publisher List</a></li>
-                            <li><a href="/Bookauthor/Index">Author List</a></li>
-                            <li><a href="/Tbl_Book/Create">Create Book</a></li>
+                            <li><a href="/tbl_Vendorr/Index">Vendor</a></li>
+                            <li><a href="/Bookcategoryy/Index">Category</a></li>
+                            <li><a href="/Bookpublisher/Index">Publisher</a></li>
+                            <li><a href="/Bookauthor/Index">Author</a></li>
+                            <li><a href="/Tbl_Book/Index">Book</a></li>
                         }
                         else
                         {
@@ -55,10 +55,12 @@
                         if (Session["mem_id"] != null && Session["mem_email"] != null)
                         {
 
-
+                            <li><a href="/tbl_member/UserPanel">DashBoard</a></li>
                             <li><a href="/tbl_member/Logout">Logout</a></li>
                             <li><a href="/AddtoCart/Index">Buy Book</a></li>
                             <li><a href="/Ebooks/Index">Create E Book</a></li>
+                            <li><a href="/Ebooks/ReadABook">Read A Book</a></li>
+                            <li><a href="/tbl_member/PersonalInfo">Personal Info</a></li>
 
                         }
 

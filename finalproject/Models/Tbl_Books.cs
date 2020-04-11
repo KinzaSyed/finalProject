@@ -19,6 +19,7 @@ namespace finalproject.Models
         {
             this.Book_Review = new HashSet<Book_Review>();
             this.BTransactions = new HashSet<BTransaction>();
+            this.tbl_wishlist = new HashSet<tbl_wishlist>();
         }
     
         public int Book_id { get; set; }
@@ -39,5 +40,7 @@ namespace finalproject.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BTransaction> BTransactions { get; set; }
         public virtual Tbl_Vendorr Tbl_Vendorr { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbl_wishlist> tbl_wishlist { get; set; }
     }
 }

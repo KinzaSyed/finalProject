@@ -9,10 +9,11 @@
     @using (Html.BeginForm("Login", "Tbladmin", FormMethod.Post))
     {
     <div class="form-group" >
-        <label>Enter you Email</label><input type="text" name="email" class="form-control" />
-        <label>Enter you Password</label><input type="password" name="pass" class="form-control"/>
-        
-    <input type="submit" value="Login" class="btn btn-primary"/>
+        <label>Enter Email</label><input type="text" name="email" class="form-control" placeholder="abcd@abc.com"/>
+        <br />
+        <label>Enter Password</label><input type="password" name="pass" class="form-control" placeholder="********"/>
+        <br  />
+        <input type="submit" value="Login" class="btn btn-primary"/>
 
     </div>    }
 </div>

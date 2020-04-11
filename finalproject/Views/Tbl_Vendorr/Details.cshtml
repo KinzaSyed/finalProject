@@ -7,11 +7,12 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Tbl_Vendorr</h4>
+    <a class="btn btn-info btn-sm" href="@Url.Action("Index")">Back to List</a>
+
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Vendor_name)
+        <dt >
+            Name
         </dt>
 
         <dd>
@@ -19,39 +20,39 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Vendor_email)
+            Email
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Vendor_email)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Vendor_password)
-        </dt>
+        @*<dt>
+                @Html.DisplayNameFor(model => model.Vendor_password)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Vendor_password)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Vendor_password)
+            </dd>*@
 
         <dt>
-            @Html.DisplayNameFor(model => model.Vendor_contactno)
+            Contact No
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Vendor_contactno)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Vendor_status)
-        </dt>
+        @*<dt>
+                @Html.DisplayNameFor(model => model.Vendor_status)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Vendor_status)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Vendor_status)
+            </dd>*@
 
         <dt>
-            @Html.DisplayNameFor(model => model.Vendor_ShopAdr)
+            Shop Address
         </dt>
 
         <dd>
@@ -59,7 +60,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Tbl_admin.Admin_name)
+            Created By
         </dt>
 
         <dd>
@@ -69,6 +70,10 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Vendor_id }) |
-    @Html.ActionLink("Back to List", "Index")
+
+
+    <a class="btn btn-success btn-sm" href="@Url.Action("Edit", new { id = Model.Vendor_id})">Update Profile</a>
+
+
+
 </p>

@@ -12,34 +12,35 @@ namespace finalproject.Controllers
 {
     public class EbooksController : Controller
     {
+        public string ses;
 
         lastDbEntities db = new lastDbEntities();
 
         // GET: Ebooks
         public ActionResult Index()
-        {int memid = Convert.ToInt32(Session["mem_id"]);
-            
+        { int memid = Convert.ToInt32(Session["mem_id"]);
 
 
-            List<Ebooks_db> Booklist = db.Ebooks_db.Where(x=>x.mem_id== memid).ToList();
-             List<Tbl_for_Ebooks> booklistdis = Booklist.Select(x => new Tbl_for_Ebooks
-               {
-                   Ebook_id= x.Ebook_id,
-                   Ebook_name= x.Ebook_name,
-                   Ebook_publisher = x.Ebook_publisher,
-                   Ebook_author = x.Ebook_author,
-                   cat_id = Convert.ToInt32(x.cat_id),
-                   cat_name = x.Book_categoryy.cat_name,
-                   Ebook_img = x.Ebook_img,
-                   Ebook_pdffile = x.Ebook_pdffile,
-                   Ebook_edition = x.Ebook_edition,
-                   mem_id  = Convert.ToInt32(x.mem_id),
-                   mem_name= x.tbl_member.mem_name,
-               }).ToList();
-    
 
-          
-               return View(booklistdis); 
+            List<Ebooks_db> Booklist = db.Ebooks_db.Where(x => x.mem_id == memid).ToList();
+            List<Tbl_for_Ebooks> booklistdis = Booklist.Select(x => new Tbl_for_Ebooks
+            {
+                Ebook_id = x.Ebook_id,
+                Ebook_name = x.Ebook_name,
+                Ebook_publisher = x.Ebook_publisher,
+                Ebook_author = x.Ebook_author,
+                cat_id = Convert.ToInt32(x.cat_id),
+                cat_name = x.Book_categoryy.cat_name,
+                Ebook_img = x.Ebook_img,
+                Ebook_pdffile = x.Ebook_pdffile,
+                Ebook_edition = x.Ebook_edition,
+                mem_id = Convert.ToInt32(x.mem_id),
+                mem_name = x.tbl_member.mem_name,
+            }).ToList();
+
+
+
+            return View(booklistdis);
         }
         [HttpGet]
         public ActionResult Create()
@@ -63,16 +64,16 @@ namespace finalproject.Controllers
 
             else
             {
-                
+
                 List<Book_categoryy> li3 = db.Book_categoryy.ToList();
                 ViewBag.catlist = new SelectList(li3, "cat_id", "cat_name");
 
                 if (Session["mem_id"] != null)
                 {
-                    evm.mem_id= Convert.ToInt32(Session["mem_id"]);
-                
+                    evm.mem_id = Convert.ToInt32(Session["mem_id"]);
+
                 }
-         
+
                 List<tbl_member> li4 = db.tbl_member.ToList();
                 ViewBag.memlist = new SelectList(li4, "mem_id", "mem_name");
 
@@ -133,43 +134,43 @@ namespace finalproject.Controllers
         }
 
 
-          public string uploadingpdffile(HttpPostedFileBase file)
-           {
-               Random r = new Random();
-               string path = "-1";
-               int random = r.Next();
-               if (file != null && file.ContentLength > 0)
-               {
-                   string extension = Path.GetExtension(file.FileName);
-                   if (extension.ToLower().Equals(".pdf"))
-                   {
-                       try
-                       {
-                           path = Path.Combine(Server.MapPath("~/Content/pdfbooks/"), random + Path.GetFileName(file.FileName));
-                           file.SaveAs(path);
-                           path = "~/Content/pdfbooks/" + random + Path.GetFileName(file.FileName);
+        public string uploadingpdffile(HttpPostedFileBase file)
+        {
+            Random r = new Random();
+            string path = "-1";
+            int random = r.Next();
+            if (file != null && file.ContentLength > 0)
+            {
+                string extension = Path.GetExtension(file.FileName);
+                if (extension.ToLower().Equals(".pdf"))
+                {
+                    try
+                    {
+                        path = Path.Combine(Server.MapPath("~/Content/pdfbooks/"), random + Path.GetFileName(file.FileName));
+                        file.SaveAs(path);
+                        path = "~/Content/pdfbooks/" + random + Path.GetFileName(file.FileName);
 
-                       }
-                       catch (Exception ex)
-                       {
-                           path = "-1";
-                       }
-                   }
-                   else
-                   {
-                       Response.Write("<script>alert('only jgp,jpeg or png formats are acceptable .... ';</script>");
-                   }
-               }
-               else
-               {
-                   Response.Write("<script>alert('Please select a file'); </script>");
-                   path = "-1";
-               }
-               return path;
-           }
+                    }
+                    catch (Exception ex)
+                    {
+                        path = "-1";
+                    }
+                }
+                else
+                {
+                    Response.Write("<script>alert('only jgp,jpeg or png formats are acceptable .... ';</script>");
+                }
+            }
+            else
+            {
+                Response.Write("<script>alert('Please select a file'); </script>");
+                path = "-1";
+            }
+            return path;
+        }
         public ActionResult Details(int? id)
         {
-           
+
             var Ebook = db.Ebooks_db.Find(id);
             ViewBag.Ebook = Ebook;
             var review = new EBook_Review_db()
@@ -246,7 +247,7 @@ namespace finalproject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Ebooks_db ebooks_Db= db.Ebooks_db.Find(id);
+            Ebooks_db ebooks_Db = db.Ebooks_db.Find(id);
             if (ebooks_Db == null)
             {
                 return HttpNotFound();
@@ -274,10 +275,62 @@ namespace finalproject.Controllers
             }
             base.Dispose(disposing);
         }
+    
+        public ActionResult addtoReadings(Reading_History RD,int id)
+        {
+            
+            var kinza = db.Reading_History.Where(b => b.ebook_id == id).Any();
+             if (kinza ==false)
+            {
+                int memid = Convert.ToInt32(Session["mem_id"]);
+
+                RD.ebook_id = id;
 
 
+                RD.Read_Date = DateTime.Now;
+                RD.memID = memid;
+
+
+                db.Reading_History.Add(RD);
+                db.SaveChanges();
+            }
+
+           
+            return RedirectToAction("Details", "EBooks", new { id = id });
+        }
+       
+     
+
+        
+
+        public ActionResult ReadABook()
+        {
+            int memid = Convert.ToInt32(Session["mem_id"]);
+
+
+
+            List<Ebooks_db> Booklist = db.Ebooks_db.Where(x => x.mem_id == memid).ToList();
+            List<Tbl_for_Ebooks> booklistdis = Booklist.Select(x => new Tbl_for_Ebooks
+            {
+                Ebook_id = x.Ebook_id,
+                Ebook_name = x.Ebook_name,
+                Ebook_publisher = x.Ebook_publisher,
+                Ebook_author = x.Ebook_author,
+                cat_id = Convert.ToInt32(x.cat_id),
+                cat_name = x.Book_categoryy.cat_name,
+                Ebook_img = x.Ebook_img,
+                Ebook_pdffile = x.Ebook_pdffile,
+                Ebook_edition = x.Ebook_edition,
+                mem_id = Convert.ToInt32(x.mem_id),
+                mem_name = x.tbl_member.mem_name,
+            }).ToList();
+
+
+
+            return View(booklistdis);
+
+        }
 
     }
-
 
 }

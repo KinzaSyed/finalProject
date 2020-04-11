@@ -7,7 +7,7 @@
 
 @if (Session["Vendor_id"] != null && Session["Vendor_email"] != null)
 {
-    <h3> Welcome @Session["Vendor_email"].ToString() To Vendor Panel</h3>
+<h3> Welcome   @Html.DisplayFor(model => model.Vendor_name) To Vendor Panel</h3>
 
 }
 
@@ -17,7 +17,7 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Vendor_name)
+            Name
         </dt>
 
         <dd>
@@ -25,23 +25,23 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Vendor_email)
+          Email
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Vendor_email)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Vendor_password)
+        @*<dt>
+           Password
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Vendor_password)
-        </dd>
+        </dd>*@
 
         <dt>
-            @Html.DisplayNameFor(model => model.Vendor_contactno)
+           Contact No
         </dt>
 
         <dd>
@@ -49,7 +49,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Vendor_status)
+            Vendor Status
         </dt>
 
         <dd>
@@ -57,7 +57,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Vendor_ShopAdr)
+        Shop Address
         </dt>
 
         <dd>
@@ -65,7 +65,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Tbl_admin.Admin_name)
+           Created By
         </dt>
 
         <dd>
@@ -75,6 +75,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Vendor_id }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Vendor_id }) 
  
 </p>

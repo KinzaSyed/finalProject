@@ -34,6 +34,9 @@
         <EntityTypeShape EntityType="lastDbModel.Reading_History" Width="1.5" PointX="14.875" PointY="4.25" />
         <AssociationConnector Association="lastDbModel.FK_Reading_History_Ebooks_db" />
         <AssociationConnector Association="lastDbModel.FK_Reading_History_tbl_member" />
+        <EntityTypeShape EntityType="lastDbModel.tbl_wishlist" Width="1.5" PointX="15.125" PointY="0.75" />
+        <AssociationConnector Association="lastDbModel.FK_tbl_wishlist_Tbl_Books" />
+        <AssociationConnector Association="lastDbModel.FK_tbl_wishlist_tbl_member" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

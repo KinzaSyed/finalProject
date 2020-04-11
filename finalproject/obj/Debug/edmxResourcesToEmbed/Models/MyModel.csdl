@@ -98,6 +98,15 @@
       <End Role="tbl_member" EntitySet="tbl_member" />
       <End Role="Reading_History" EntitySet="Reading_History" />
     </AssociationSet>
+    <EntitySet Name="tbl_wishlist" EntityType="lastDbModel.tbl_wishlist" />
+    <AssociationSet Name="FK_tbl_wishlist_Tbl_Books" Association="lastDbModel.FK_tbl_wishlist_Tbl_Books">
+      <End Role="Tbl_Books" EntitySet="Tbl_Books" />
+      <End Role="tbl_wishlist" EntitySet="tbl_wishlist" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_wishlist_tbl_member" Association="lastDbModel.FK_tbl_wishlist_tbl_member">
+      <End Role="tbl_member" EntitySet="tbl_member" />
+      <End Role="tbl_wishlist" EntitySet="tbl_wishlist" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Book_categoryy">
     <Key>
@@ -123,6 +132,7 @@
     <NavigationProperty Name="Ebooks_db" Relationship="lastDbModel.FK_Ebooks_db_tbl_member" FromRole="tbl_member" ToRole="Ebooks_db" />
     <NavigationProperty Name="EBook_Review_db" Relationship="lastDbModel.FK_EBook_Review_db_tbl_member" FromRole="tbl_member" ToRole="EBook_Review_db" />
     <NavigationProperty Name="Reading_History" Relationship="lastDbModel.FK_Reading_History_tbl_member" FromRole="tbl_member" ToRole="Reading_History" />
+    <NavigationProperty Name="tbl_wishlist" Relationship="lastDbModel.FK_tbl_wishlist_tbl_member" FromRole="tbl_member" ToRole="tbl_wishlist" />
   </EntityType>
   <EntityType Name="Tbl_admin">
     <Key>
@@ -256,6 +266,7 @@
     <NavigationProperty Name="Book_Review" Relationship="lastDbModel.FK_Book_Review_Tbl_Books" FromRole="Tbl_Books" ToRole="Book_Review" />
     <NavigationProperty Name="BTransactions" Relationship="lastDbModel.FK__BTransact__Book___4CA06362" FromRole="Tbl_Books" ToRole="BTransaction" />
     <NavigationProperty Name="Tbl_Vendorr" Relationship="lastDbModel.FK__Tbl_Books__Vendo__29572725" FromRole="Tbl_Books" ToRole="Tbl_Vendorr" />
+    <NavigationProperty Name="tbl_wishlist" Relationship="lastDbModel.FK_tbl_wishlist_Tbl_Books" FromRole="Tbl_Books" ToRole="tbl_wishlist" />
   </EntityType>
   <Association Name="FK__Tbl_Books__auth___267ABA7A">
     <End Type="lastDbModel.Book_author" Role="Book_author" Multiplicity="0..1" />
@@ -440,6 +451,41 @@
       </Principal>
       <Dependent Role="Reading_History">
         <PropertyRef Name="memID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="tbl_wishlist">
+    <Key>
+      <PropertyRef Name="Wish_Id" />
+    </Key>
+    <Property Name="Wish_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Book_ID" Type="Int32" Nullable="false" />
+    <Property Name="mem_Id" Type="Int32" Nullable="false" />
+    <Property Name="Wish_date" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Tbl_Books" Relationship="lastDbModel.FK_tbl_wishlist_Tbl_Books" FromRole="tbl_wishlist" ToRole="Tbl_Books" />
+    <NavigationProperty Name="tbl_member" Relationship="lastDbModel.FK_tbl_wishlist_tbl_member" FromRole="tbl_wishlist" ToRole="tbl_member" />
+  </EntityType>
+  <Association Name="FK_tbl_wishlist_Tbl_Books">
+    <End Type="lastDbModel.Tbl_Books" Role="Tbl_Books" Multiplicity="1" />
+    <End Type="lastDbModel.tbl_wishlist" Role="tbl_wishlist" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Books">
+        <PropertyRef Name="Book_id" />
+      </Principal>
+      <Dependent Role="tbl_wishlist">
+        <PropertyRef Name="Book_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_wishlist_tbl_member">
+    <End Type="lastDbModel.tbl_member" Role="tbl_member" Multiplicity="1" />
+    <End Type="lastDbModel.tbl_wishlist" Role="tbl_wishlist" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_member">
+        <PropertyRef Name="mem_id" />
+      </Principal>
+      <Dependent Role="tbl_wishlist">
+        <PropertyRef Name="mem_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

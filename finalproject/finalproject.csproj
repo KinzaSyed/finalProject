@@ -202,6 +202,9 @@
     <Compile Include="Models\Tbl_Vendorr.cs">
       <DependentUpon>MyModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\tbl_wishlist.cs">
+      <DependentUpon>MyModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -319,6 +322,9 @@
     <Content Include="Views\Ebooks\Details.cshtml" />
     <Content Include="Views\Ebooks\Edit.cshtml" />
     <Content Include="Views\Ebooks\Delete.cshtml" />
+    <Content Include="Views\Ebooks\ReadABook.cshtml" />
+    <Content Include="Views\Tbl_member\PersonalInfo.cshtml" />
+    <Content Include="Views\Tbl_member\BestSeller.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

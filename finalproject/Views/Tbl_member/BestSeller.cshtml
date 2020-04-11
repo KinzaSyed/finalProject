@@ -1,0 +1,12 @@
+﻿@model List<finalproject.Models.Tbl_Books>
+
+
+@foreach (var item in Model)
+{
+    <table>
+        <tr>
+            <td>Book name</td>
+            <td> @item.Book_name </td>
+        </tr>
+    </table>
+}

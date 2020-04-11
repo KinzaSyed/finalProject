@@ -154,5 +154,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="tbl_wishlist">
+      <EntityTypeMapping TypeName="lastDbModel.tbl_wishlist">
+        <MappingFragment StoreEntitySet="tbl_wishlist">
+          <ScalarProperty Name="Wish_date" ColumnName="Wish_date" />
+          <ScalarProperty Name="mem_Id" ColumnName="mem_Id" />
+          <ScalarProperty Name="Book_ID" ColumnName="Book_ID" />
+          <ScalarProperty Name="Wish_Id" ColumnName="Wish_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -38,5 +38,6 @@ namespace finalproject.Models
         public virtual DbSet<Ebooks_db> Ebooks_db { get; set; }
         public virtual DbSet<EBook_Review_db> EBook_Review_db { get; set; }
         public virtual DbSet<Reading_History> Reading_History { get; set; }
+        public virtual DbSet<tbl_wishlist> tbl_wishlist { get; set; }
     }
 }
