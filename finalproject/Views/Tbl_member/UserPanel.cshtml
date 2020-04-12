@@ -13,31 +13,41 @@
 }
 
 <h1>Best seller book</h1>
-    <div id="tableContiner">
-        @{
-            Html.RenderAction("BestSeller","Tbl_member");
-        }
-    </div>
+<div id="tableContiner">
+    @{
+        Html.RenderAction("BestSeller", "Tbl_member");
+    }
+</div>
 
+
+<h4>wishlist</h4>
+<div id="tableContiner">
+
+
+    @{Html.RenderAction("wishlistwindow", "tbl_wishlist");}
+    @*@{
+        Html.RenderAction("wishlistwindow", "tbl_wishlist");
+    }*@
+</div>
 
 
 <h1>Recent Readings</h1>
 
-    <div class="row" style="margin-bottom: 100%;">
+<div class="row" style="margin-bottom: 100%;">
 
-        <div class="row">
+    <div class="row">
 
 
 
-            @foreach (var item in Model)
-            {
+        @foreach (var item in Model)
+        {
             <div class="col-lg-4 col-md-4" style="height:200px;margin-bottom:100px ">
 
                 <img class="img-rounded img-responsive cimg" style="height:100%; width:100%; " src="@Url.Content(item.Ebooks_db.Ebook_img)" />
 
 
 
-                <label >Name </label>
+                <label>Name </label>
 
                 @item.Ebooks_db.Ebook_name
 
@@ -49,12 +59,12 @@
                 <br />
 
 
-                <label >Author</label>
+                <label>Author</label>
 
                 @item.Ebooks_db.Ebook_author
 
                 <br />
-                <label >
+                <label>
                     Category
                 </label>
                 @item.Ebooks_db.Book_categoryy.cat_name
@@ -65,124 +75,123 @@
                 <label>Edition</label>
                 @item.Ebooks_db.Ebook_edition
                 <br />
-                
-                
+
+
                 <label>Date Time&nbsp;</label>
                 @item.Read_Date
                 <br />
-            
+
                 <p style="text-align: center; "><a class="btn btn-success btn-lg" href="@item.Ebooks_db.Ebook_pdffile" target="_blank"> <span class="glyphicon glyphicon-book" /> Continue Reading</a></p>
 
             </div>
-                    }
+        }
+    </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<div class="container">
+        <div class="row">
+
+            @if (item.Ebooks_db.Ebook_img != null)
+            {
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <img style="width:250px ; height:350px ;" src="@Url.Content(item.Ebooks_db.Ebook_img)" />
+
                 </div>
+            }
+
+
+
+
+            <div class="col-lg-12 ">
+                <table class="table-bordered">
+
+                    <tr>
+
+                        <td>Name</td>
+                        <td>@item.Ebooks_db.Ebook_name</td>
+
+
+                    </tr>
+                    <tr>
+                        <td>Publisher</td>
+                        <td>@item.Ebooks_db.Ebook_publisher</td>
+
+
+
+                    </tr>
+                    <tr>
+                        <td>Author</td>
+                        <td>@item.Ebooks_db.Ebook_author</td>
+
+
+
+                    </tr>
+                    <tr>
+                        <td>Category</td>
+                        <td>@item.Ebooks_db.Book_categoryy.cat_name</td>
+
+
+                    </tr>
+                    <tr>
+                        <td>Edition</td>
+                        <td>@item.Ebooks_db.Ebook_edition</td>
+
+
+                    </tr>
+
+                    <tr>
+                        <td>Date Time&nbsp;</td>
+                        <td>@item.Read_Date</td>
+
+
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align:center">
+                            <a href="@item.Ebooks_db.Ebook_pdffile" target="_blank">EBook</a>
+
+                            <br />
+                        </td>
+                    </tr>
+
+
+
+
+                </table>
+
 
 
             </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        @*<div class="container">
-            <div class="row">
-
-                @if (item.Ebooks_db.Ebook_img != null)
-                {
-                    <div class="col-lg-4 col-md-4 col-sm-4">
-                        <img style="width:250px ; height:350px ;" src="@Url.Content(item.Ebooks_db.Ebook_img)" />
-
-                    </div>
-                }
-
-
-
-
-                <div class="col-lg-12 ">
-                    <table class="table-bordered">
-
-                        <tr>
-
-                            <td>Name</td>
-                            <td>@item.Ebooks_db.Ebook_name</td>
-
-
-                        </tr>
-                        <tr>
-                            <td>Publisher</td>
-                            <td>@item.Ebooks_db.Ebook_publisher</td>
-
-
-
-                        </tr>
-                        <tr>
-                            <td>Author</td>
-                            <td>@item.Ebooks_db.Ebook_author</td>
-
-
-
-                        </tr>
-                        <tr>
-                            <td>Category</td>
-                            <td>@item.Ebooks_db.Book_categoryy.cat_name</td>
-
-
-                        </tr>
-                        <tr>
-                            <td>Edition</td>
-                            <td>@item.Ebooks_db.Ebook_edition</td>
-
-
-                        </tr>
-
-                        <tr>
-                            <td>Date Time&nbsp;</td>
-                            <td>@item.Read_Date</td>
-
-
-                        </tr>
-                        <tr>
-                            <td colspan="2" style="text-align:center">
-                                <a href="@item.Ebooks_db.Ebook_pdffile" target="_blank">EBook</a>
-
-                                <br />
-                            </td>
-                        </tr>
-
-
-
-
-                    </table>
-
-
-
-                </div>
-
-            </div>
-        </div>*@
-       
+        </div>
+    </div>*@

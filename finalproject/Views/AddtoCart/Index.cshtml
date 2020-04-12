@@ -55,7 +55,7 @@
         <img class="img-rounded img-responsive cimg" style="height:100%; width:100%; " src="@Url.Content(item.Book_img)" />
         <h4 style="color:#808080;font-family:'Arial Rounded MT' ;text-align: center">@item.Book_name <small> @item.Book_price Rs</small></h4>
         <h3 style="text-align: center; "><a class="btn btn-success btn-sm" href="@Url.Action("addtocart", new { id = item.Book_id })"><i style="font-size:24px" class="fa">&#xf07a;</i>&nbsp; Add to Cart</a>
-        <a class="btn btn-warning" href="@Url.Action("Create","tbl_wishlist")">Add to Wishlist</a> </h3>
+        <a class="btn btn-warning" href="@Url.Action("Create","tbl_wishlist",new { id = item.Book_id })">Add to Wishlist</a> </h3>
         <h3 style="text-align: center; "><a class="btn btn-info btn-sm" href="@Url.Action("Details", "Tbl_Book",new { id = item.Book_id })">Details</a></h3>
             <br />
             <br />

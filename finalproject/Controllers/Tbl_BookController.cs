@@ -15,6 +15,12 @@ namespace finalproject.Controllers
         // GET: Tbl_Book
         lastDbEntities db = new lastDbEntities();
 
+        //public ActionResult booklib()
+        //{
+
+        //}
+
+
 
         public ActionResult Index()
         {
@@ -281,6 +287,23 @@ namespace finalproject.Controllers
             return RedirectToAction("Details", "Tbl_Book", new { id = review.BookId });
 
         }
+
+        public ActionResult Searching(string searchBy, string search)
+        {
+
+            
+            if (searchBy == "cat_name")
+            {
+                return View(db.Tbl_Books.Where(x => x.Book_categoryy.cat_name.StartsWith(search) || search == null).ToList());
+            }
+            if (searchBy == "Book_name")
+            {
+                return View(db.Tbl_Books.Where(x => x.Book_name.StartsWith(search) || search == null).ToList());
+            }
+            else
+                return View(db.Tbl_Books.Where(x => x.Book_author.auth_name.StartsWith(search) || search == null).ToList());
+        }
+
 
         // GET: Bookcategoryy/Delete/5
         public ActionResult Delete(int? id)

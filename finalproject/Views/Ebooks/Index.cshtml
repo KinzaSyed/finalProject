@@ -19,7 +19,7 @@
             <th>Publisher</th>
             <th>Author</th>
             <th>Category</th>
-            <th>PDF</th>
+            @*<th>PDF</th>*@
             <th>Edition</th>
             <th>Member Name</th>
 
@@ -44,7 +44,7 @@
                     <td>@item.Ebook_publisher</td>
                     <td>@item.Ebook_author</td>
                     <td>@item.cat_name</td>
-                    <td><a target="_blank" href="@Url.Content(item.Ebook_pdffile)">PDF Book</a></td>
+                    @*<td><a target="_blank" href="@Url.Content(item.Ebook_pdffile)">PDF Book</a></td>*@
                     <td>@item.Ebook_edition</td>
                     <td>@item.mem_name</td>
                     <td>

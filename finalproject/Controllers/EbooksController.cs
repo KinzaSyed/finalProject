@@ -16,6 +16,24 @@ namespace finalproject.Controllers
 
         lastDbEntities db = new lastDbEntities();
 
+
+        public ActionResult SearchingEbook(string searchBy, string search)
+        {
+
+
+            if (searchBy == "cat_name")
+            {
+                return View(db.Ebooks_db.Where(x => x.Book_categoryy.cat_name.StartsWith(search) || search == null).ToList());
+            }
+            if (searchBy == "Book_name")
+            {
+                return View(db.Ebooks_db.Where(x => x.Ebook_name.StartsWith(search) || search == null).ToList());
+            }
+            else
+                return View(db.Ebooks_db.Where(x => x.Ebook_author.StartsWith(search) || search == null).ToList());
+        }
+
+
         // GET: Ebooks
         public ActionResult Index()
         { int memid = Convert.ToInt32(Session["mem_id"]);

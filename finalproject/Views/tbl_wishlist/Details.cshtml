@@ -1,0 +1,42 @@
+﻿@model finalproject.Models.tbl_wishlist
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tbl_wishlist</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Wish_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Wish_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tbl_Books.Book_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tbl_Books.Book_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_member.mem_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_member.mem_name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Wish_Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

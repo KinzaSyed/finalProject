@@ -139,6 +139,7 @@
     <Compile Include="Controllers\Tbl_BookController.cs" />
     <Compile Include="Controllers\Tbl_memberController.cs" />
     <Compile Include="Controllers\Tbl_VendorrController.cs" />
+    <Compile Include="Controllers\tbl_wishlistController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -325,6 +326,15 @@
     <Content Include="Views\Ebooks\ReadABook.cshtml" />
     <Content Include="Views\Tbl_member\PersonalInfo.cshtml" />
     <Content Include="Views\Tbl_member\BestSeller.cshtml" />
+    <Content Include="Views\tbl_wishlist\Create.cshtml" />
+    <Content Include="Views\tbl_wishlist\Delete.cshtml" />
+    <Content Include="Views\tbl_wishlist\Details.cshtml" />
+    <Content Include="Views\tbl_wishlist\Edit.cshtml" />
+    <Content Include="Views\tbl_wishlist\Index.cshtml" />
+    <Content Include="Views\tbl_wishlist\wishlistwindow.cshtml" />
+    <Content Include="Views\Tbl_Book\BookSearching.cshtml" />
+    <Content Include="Views\Tbl_Book\Searching.cshtml" />
+    <Content Include="Views\Ebooks\SearchingEbook.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
