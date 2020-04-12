@@ -140,16 +140,22 @@ namespace finalproject.Controllers
         // GET: tbl_wishlist/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             tbl_wishlist tbl_wishlist = db.tbl_wishlist.Find(id);
-            if (tbl_wishlist == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tbl_wishlist);
+            db.tbl_wishlist.Remove(tbl_wishlist);
+            db.SaveChanges();
+            return RedirectToAction("UserPanel","Tbl_member");
+
+
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
+            //tbl_wishlist tbl_wishlist = db.tbl_wishlist.Find(id);
+            //if (tbl_wishlist == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            //return View(tbl_wishlist);
         }
 
         // POST: tbl_wishlist/Delete/5
