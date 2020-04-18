@@ -11,8 +11,14 @@
     <h3> Welcome @Session["mem_email"].ToString() To Member Panel</h3>
 
 }
+<div id="tableContiner" >
 
-<h1>Best seller book</h1>
+
+    @{Html.RenderAction("wishlistwindow", "tbl_wishlist");}
+
+</div>
+
+<h3>Best seller book</h3>
 <div id="tableContiner">
     @{
         Html.RenderAction("BestSeller", "Tbl_member");
@@ -20,13 +26,7 @@
 </div>
 
 
-<h4>wishlist</h4>
-<div id="tableContiner">
 
-
-    @{Html.RenderAction("wishlistwindow", "tbl_wishlist");}
-   
-</div>
 
 
 <h1>Recent Readings</h1>

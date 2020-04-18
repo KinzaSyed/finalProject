@@ -1,15 +1,78 @@
 ﻿@model List<finalproject.Models.Tbl_Books>
+<style>
+    tr{
+        font-size: 20px;
+        text-align:center
+    }
+</style>
 
 
-@foreach (var item in Model)
-{
-    <table>
-        <tr>
-            <td><img style="width:50px;height:50px;" src="@Url.Content(item.Book_img)" /></td>
-            <td>Book name</td>
-            <td> @item.Book_name </td>
-            <td>@item.Book_author.auth_name</td>
+    <div class="container">
+        <div class="row">
+
+            @foreach (var item in Model)
+            {
+
+
+                
+                     <div @*class="col-sm"*@ class="col-lg-4 col-md-4" style="border:2px">
+
+                                  <img class="img-rounded img-responsive cimg" style="height:200px; width:250px; align-self:center" src="@Url.Content(item.Book_img)" />
+                    <br />
+                    Book name: @item.Book_name
+                         wq
+                    <br />
+                    Author: @item.Book_author.auth_name
+
+                    <br />
+                          Price: @item.Book_price
+                      </div>
+                  
+                 
+
+
+            }
+       
         
+        
+        
+        </div>
+    </div>
+
+
+
+
+
+    @*<table class="col-lg-4 col-md-4" style="background-color:hotpink; height:300px;margin-bottom:100px">
+       
+        <tr>
+            <td><img class="img-rounded img-responsive cimg" style="height:200px; width:250px; align-self:center" src="@Url.Content(item.Book_img)" /></td>
         </tr>
-    </table>
-}
+      
+        <tr>
+            <td>Book name: @item.Book_name </td>
+        </tr>
+
+        <tr>
+            <td>Author: @item.Book_author.auth_name</td>
+        </tr>
+        <tr>
+            <td>Price: @item.Book_price</td>
+        </tr>*@
+
+
+
+
+        @*<div class="col-lg-4 col-md-4" style="height:300px;margin-top:100px;margin-bottom:100px ">
+            <img class="img-rounded img-responsive cimg" style="height:100%; width:100%; " src="@Url.Content(item.Book_img)" />
+            @*<h4 style="color:#808080;font-family:'Arial Rounded MT' ;text-align: center">@item.Ebook_name <small> @item.cat_name</small></h4>
+            <h3 style="text-align: center; ">Add to Readings</a></h3>
+
+        </div>*@
+
+
+    @*</table>*@
+    
+
+
+
