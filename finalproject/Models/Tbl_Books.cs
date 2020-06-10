@@ -27,14 +27,12 @@ namespace finalproject.Models
         public string Book_Edition { get; set; }
         public Nullable<int> Book_price { get; set; }
         public string Book_img { get; set; }
-        public Nullable<int> auth_id { get; set; }
-        public Nullable<int> pub_id { get; set; }
+        public string auth_id { get; set; }
+        public string pub_id { get; set; }
         public Nullable<int> cat_id { get; set; }
         public Nullable<int> Vendor_id { get; set; }
     
-        public virtual Book_author Book_author { get; set; }
         public virtual Book_categoryy Book_categoryy { get; set; }
-        public virtual Book_publisher Book_publisher { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Book_Review> Book_Review { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

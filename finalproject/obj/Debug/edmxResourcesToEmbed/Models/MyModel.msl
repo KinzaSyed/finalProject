@@ -1,26 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="lastDbModelStoreContainer" CdmEntityContainer="lastDbEntities">
-    <EntitySetMapping Name="Book_author">
-      <EntityTypeMapping TypeName="lastDbModel.Book_author">
-        <MappingFragment StoreEntitySet="Book_author">
-          <ScalarProperty Name="auth_id" ColumnName="auth_id" />
-          <ScalarProperty Name="auth_name" ColumnName="auth_name" />
-          <ScalarProperty Name="auth_email" ColumnName="auth_email" />
-          <ScalarProperty Name="auth_contact" ColumnName="auth_contact" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Book_publisher">
-      <EntityTypeMapping TypeName="lastDbModel.Book_publisher">
-        <MappingFragment StoreEntitySet="Book_publisher">
-          <ScalarProperty Name="pub_id" ColumnName="pub_id" />
-          <ScalarProperty Name="pub_name" ColumnName="pub_name" />
-          <ScalarProperty Name="pub_email" ColumnName="pub_email" />
-          <ScalarProperty Name="pub_contact" ColumnName="pub_contact" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Book_categoryy">
       <EntityTypeMapping TypeName="lastDbModel.Book_categoryy">
         <MappingFragment StoreEntitySet="Book_categoryy">
@@ -102,21 +82,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Tbl_Books">
-      <EntityTypeMapping TypeName="lastDbModel.Tbl_Books">
-        <MappingFragment StoreEntitySet="Tbl_Books">
-          <ScalarProperty Name="Vendor_id" ColumnName="Vendor_id" />
-          <ScalarProperty Name="cat_id" ColumnName="cat_id" />
-          <ScalarProperty Name="pub_id" ColumnName="pub_id" />
-          <ScalarProperty Name="auth_id" ColumnName="auth_id" />
-          <ScalarProperty Name="Book_img" ColumnName="Book_img" />
-          <ScalarProperty Name="Book_price" ColumnName="Book_price" />
-          <ScalarProperty Name="Book_Edition" ColumnName="Book_Edition" />
-          <ScalarProperty Name="Book_name" ColumnName="Book_name" />
-          <ScalarProperty Name="Book_id" ColumnName="Book_id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Ebooks_db">
       <EntityTypeMapping TypeName="lastDbModel.Ebooks_db">
         <MappingFragment StoreEntitySet="Ebooks_db">
@@ -161,6 +126,21 @@
           <ScalarProperty Name="mem_Id" ColumnName="mem_Id" />
           <ScalarProperty Name="Book_ID" ColumnName="Book_ID" />
           <ScalarProperty Name="Wish_Id" ColumnName="Wish_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_Books">
+      <EntityTypeMapping TypeName="lastDbModel.Tbl_Books">
+        <MappingFragment StoreEntitySet="Tbl_Books">
+          <ScalarProperty Name="Vendor_id" ColumnName="Vendor_id" />
+          <ScalarProperty Name="cat_id" ColumnName="cat_id" />
+          <ScalarProperty Name="pub_id" ColumnName="pub_id" />
+          <ScalarProperty Name="auth_id" ColumnName="auth_id" />
+          <ScalarProperty Name="Book_img" ColumnName="Book_img" />
+          <ScalarProperty Name="Book_price" ColumnName="Book_price" />
+          <ScalarProperty Name="Book_Edition" ColumnName="Book_Edition" />
+          <ScalarProperty Name="Book_name" ColumnName="Book_name" />
+          <ScalarProperty Name="Book_id" ColumnName="Book_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -1,22 +1,29 @@
 ﻿@model finalproject.Models.Book_categoryy
+@if (Session["Admin_id"] != null && Session["Admin_email"] != null)
+{
+    Layout = "~/Views/Shared/_sidePanelPage.cshtml";
 
-@{
+}
+else
+{
+
+
     ViewBag.Title = "Create";
 }
 
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>Book_categoryy</h4>
+
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            <label class="control-label col-md-2">Catefory Name</label>
+            <label class="control-label col-md-2">Category Name</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.cat_name, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.cat_name, "", new { @class = "text-danger" })
@@ -43,6 +50,6 @@
     @Html.ActionLink("Back to List", "Index")
 </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+@*@section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }*@

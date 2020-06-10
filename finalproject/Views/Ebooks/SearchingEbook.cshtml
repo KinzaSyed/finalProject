@@ -10,7 +10,7 @@
 
 <nav class="navbar navbar-light bg-light">
     @using (Html.BeginForm("SearchingEbook", "Ebooks", FormMethod.Get))
-    {@Html.TextBox("search") <input type="submit" value="Search" /><br  /><br />
+    {@Html.TextBox("search") <input class="btn-primary" type="submit" value="Search" /><br  /><br />
     <b>Search By</b>
     @Html.RadioButton("searchBy", "Book_name") <text>Name</text>
     @Html.RadioButton("searchBy", "cat_name") <text>Category</text>
@@ -30,11 +30,11 @@
             <th>Image</th>
             <th>Name</th>
             <th>Edition</th>
-            <th>Price</th>
+            
             <th>Author</th>
             <th>Publisher</th>
             <th>Category</th>
-            <th>Vendor</th>
+            <th>Created By</th>
 
         </tr>
 

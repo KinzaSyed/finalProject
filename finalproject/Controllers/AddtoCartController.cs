@@ -15,8 +15,9 @@ namespace finalproject.Controllers
 
 
        
-    // GET: AddtoCart
-    public ActionResult Index()
+
+        // GET: AddtoCart
+        public ActionResult Index()
         {
             if (Session["mem_id"] != null && Session["mem_email"] != null)
             {

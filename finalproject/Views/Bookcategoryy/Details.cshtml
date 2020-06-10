@@ -1,6 +1,13 @@
 ﻿@model finalproject.Models.Book_categoryy
 
-@{
+@if (Session["Admin_id"] != null && Session["Admin_email"] != null)
+{
+    Layout = "~/Views/Shared/_sidePanelPage.cshtml";
+
+}
+else
+{
+
     ViewBag.Title = "Details";
 }
 

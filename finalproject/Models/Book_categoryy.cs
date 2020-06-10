@@ -17,8 +17,8 @@ namespace finalproject.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Book_categoryy()
         {
-            this.Tbl_Books = new HashSet<Tbl_Books>();
             this.Ebooks_db = new HashSet<Ebooks_db>();
+            this.Tbl_Books = new HashSet<Tbl_Books>();
         }
     
         public int cat_id { get; set; }
@@ -26,8 +26,8 @@ namespace finalproject.Models
         public string cat_status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tbl_Books> Tbl_Books { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ebooks_db> Ebooks_db { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tbl_Books> Tbl_Books { get; set; }
     }
 }

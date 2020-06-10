@@ -5,15 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="lastDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Book_author">
-          <Key>
-            <PropertyRef Name="auth_id" />
-          </Key>
-          <Property Name="auth_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="auth_name" Type="varchar" MaxLength="50" />
-          <Property Name="auth_email" Type="varchar" MaxLength="50" />
-          <Property Name="auth_contact" Type="varchar" MaxLength="50" />
-        </EntityType>
         <EntityType Name="Book_categoryy">
           <Key>
             <PropertyRef Name="cat_id" />
@@ -21,15 +12,6 @@
           <Property Name="cat_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="cat_name" Type="varchar" MaxLength="50" />
           <Property Name="cat_status" Type="varchar" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="Book_publisher">
-          <Key>
-            <PropertyRef Name="pub_id" />
-          </Key>
-          <Property Name="pub_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="pub_name" Type="varchar" MaxLength="50" />
-          <Property Name="pub_email" Type="varchar" MaxLength="50" />
-          <Property Name="pub_contact" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Book_Review">
           <Key>
@@ -117,8 +99,8 @@
           <Property Name="Book_Edition" Type="varchar" MaxLength="50" />
           <Property Name="Book_price" Type="int" />
           <Property Name="Book_img" Type="varchar(max)" />
-          <Property Name="auth_id" Type="int" />
-          <Property Name="pub_id" Type="int" />
+          <Property Name="auth_id" Type="varchar" MaxLength="100" />
+          <Property Name="pub_id" Type="varchar" MaxLength="100" />
           <Property Name="cat_id" Type="int" />
           <Property Name="Vendor_id" Type="int" />
         </EntityType>
@@ -190,18 +172,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Tbl_Books__auth___267ABA7A">
-          <End Role="Book_author" Type="Self.Book_author" Multiplicity="0..1" />
-          <End Role="Tbl_Books" Type="Self.Tbl_Books" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Book_author">
-              <PropertyRef Name="auth_id" />
-            </Principal>
-            <Dependent Role="Tbl_Books">
-              <PropertyRef Name="auth_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Tbl_Books__cat_i__286302EC">
           <End Role="Book_categoryy" Type="Self.Book_categoryy" Multiplicity="0..1" />
           <End Role="Tbl_Books" Type="Self.Tbl_Books" Multiplicity="*" />
@@ -211,18 +181,6 @@
             </Principal>
             <Dependent Role="Tbl_Books">
               <PropertyRef Name="cat_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Tbl_Books__pub_i__276EDEB3">
-          <End Role="Book_publisher" Type="Self.Book_publisher" Multiplicity="0..1" />
-          <End Role="Tbl_Books" Type="Self.Tbl_Books" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Book_publisher">
-              <PropertyRef Name="pub_id" />
-            </Principal>
-            <Dependent Role="Tbl_Books">
-              <PropertyRef Name="pub_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -371,9 +329,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="lastDbModelStoreContainer">
-          <EntitySet Name="Book_author" EntityType="Self.Book_author" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Book_categoryy" EntityType="Self.Book_categoryy" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Book_publisher" EntityType="Self.Book_publisher" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Book_Review" EntityType="Self.Book_Review" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BTransaction" EntityType="Self.BTransaction" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EBook_Review_db" EntityType="Self.EBook_Review_db" Schema="dbo" store:Type="Tables" />
@@ -397,16 +353,8 @@
             <End Role="tbl_member" EntitySet="tbl_member" />
             <End Role="Invoice" EntitySet="Invoice" />
           </AssociationSet>
-          <AssociationSet Name="FK__Tbl_Books__auth___267ABA7A" Association="Self.FK__Tbl_Books__auth___267ABA7A">
-            <End Role="Book_author" EntitySet="Book_author" />
-            <End Role="Tbl_Books" EntitySet="Tbl_Books" />
-          </AssociationSet>
           <AssociationSet Name="FK__Tbl_Books__cat_i__286302EC" Association="Self.FK__Tbl_Books__cat_i__286302EC">
             <End Role="Book_categoryy" EntitySet="Book_categoryy" />
-            <End Role="Tbl_Books" EntitySet="Tbl_Books" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Tbl_Books__pub_i__276EDEB3" Association="Self.FK__Tbl_Books__pub_i__276EDEB3">
-            <End Role="Book_publisher" EntitySet="Book_publisher" />
             <End Role="Tbl_Books" EntitySet="Tbl_Books" />
           </AssociationSet>
           <AssociationSet Name="FK__Tbl_Books__Vendo__29572725" Association="Self.FK__Tbl_Books__Vendo__29572725">
@@ -462,29 +410,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="lastDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Book_author">
-          <Key>
-            <PropertyRef Name="auth_id" />
-          </Key>
-          <Property Name="auth_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="auth_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="auth_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="auth_contact" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Tbl_Books" Relationship="lastDbModel.FK__Tbl_Books__auth___267ABA7A" FromRole="Book_author" ToRole="Tbl_Books" />
-        </EntityType>
-        <EntityType Name="Book_publisher">
-          <Key>
-            <PropertyRef Name="pub_id" />
-          </Key>
-          <Property Name="pub_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="pub_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="pub_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="pub_contact" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Tbl_Books" Relationship="lastDbModel.FK__Tbl_Books__pub_i__276EDEB3" FromRole="Book_publisher" ToRole="Tbl_Books" />
-        </EntityType>
         <EntityContainer Name="lastDbEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Book_author" EntityType="Self.Book_author" />
-          <EntitySet Name="Book_publisher" EntityType="Self.Book_publisher" />
           <EntitySet Name="Book_categoryy" EntityType="lastDbModel.Book_categoryy" />
           <EntitySet Name="tbl_member" EntityType="lastDbModel.tbl_member" />
           <EntitySet Name="Tbl_admin" EntityType="lastDbModel.Tbl_admin" />
@@ -507,31 +433,6 @@
           <AssociationSet Name="FK_Book_Review_tbl_member" Association="lastDbModel.FK_Book_Review_tbl_member">
             <End Role="tbl_member" EntitySet="tbl_member" />
             <End Role="Book_Review" EntitySet="Book_Review" />
-          </AssociationSet>
-          <EntitySet Name="Tbl_Books" EntityType="lastDbModel.Tbl_Books" />
-          <AssociationSet Name="FK__Tbl_Books__auth___267ABA7A" Association="lastDbModel.FK__Tbl_Books__auth___267ABA7A">
-            <End Role="Book_author" EntitySet="Book_author" />
-            <End Role="Tbl_Books" EntitySet="Tbl_Books" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Tbl_Books__cat_i__286302EC" Association="lastDbModel.FK__Tbl_Books__cat_i__286302EC">
-            <End Role="Book_categoryy" EntitySet="Book_categoryy" />
-            <End Role="Tbl_Books" EntitySet="Tbl_Books" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Tbl_Books__pub_i__276EDEB3" Association="lastDbModel.FK__Tbl_Books__pub_i__276EDEB3">
-            <End Role="Book_publisher" EntitySet="Book_publisher" />
-            <End Role="Tbl_Books" EntitySet="Tbl_Books" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Book_Review_Tbl_Books" Association="lastDbModel.FK_Book_Review_Tbl_Books">
-            <End Role="Tbl_Books" EntitySet="Tbl_Books" />
-            <End Role="Book_Review" EntitySet="Book_Review" />
-          </AssociationSet>
-          <AssociationSet Name="FK__BTransact__Book___4CA06362" Association="lastDbModel.FK__BTransact__Book___4CA06362">
-            <End Role="Tbl_Books" EntitySet="Tbl_Books" />
-            <End Role="BTransaction" EntitySet="BTransactions" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Tbl_Books__Vendo__29572725" Association="lastDbModel.FK__Tbl_Books__Vendo__29572725">
-            <End Role="Tbl_Vendorr" EntitySet="Tbl_Vendorr" />
-            <End Role="Tbl_Books" EntitySet="Tbl_Books" />
           </AssociationSet>
           <EntitySet Name="Ebooks_db" EntityType="lastDbModel.Ebooks_db" />
           <AssociationSet Name="FK_Ebooks_db_Book_categoryy" Association="lastDbModel.FK_Ebooks_db_Book_categoryy">
@@ -561,12 +462,29 @@
             <End Role="Reading_History" EntitySet="Reading_History" />
           </AssociationSet>
           <EntitySet Name="tbl_wishlist" EntityType="lastDbModel.tbl_wishlist" />
-          <AssociationSet Name="FK_tbl_wishlist_Tbl_Books" Association="lastDbModel.FK_tbl_wishlist_Tbl_Books">
-            <End Role="Tbl_Books" EntitySet="Tbl_Books" />
-            <End Role="tbl_wishlist" EntitySet="tbl_wishlist" />
-          </AssociationSet>
           <AssociationSet Name="FK_tbl_wishlist_tbl_member" Association="lastDbModel.FK_tbl_wishlist_tbl_member">
             <End Role="tbl_member" EntitySet="tbl_member" />
+            <End Role="tbl_wishlist" EntitySet="tbl_wishlist" />
+          </AssociationSet>
+          <EntitySet Name="Tbl_Books" EntityType="lastDbModel.Tbl_Books" />
+          <AssociationSet Name="FK__Tbl_Books__cat_i__286302EC" Association="lastDbModel.FK__Tbl_Books__cat_i__286302EC">
+            <End Role="Book_categoryy" EntitySet="Book_categoryy" />
+            <End Role="Tbl_Books" EntitySet="Tbl_Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Book_Review_Tbl_Books" Association="lastDbModel.FK_Book_Review_Tbl_Books">
+            <End Role="Tbl_Books" EntitySet="Tbl_Books" />
+            <End Role="Book_Review" EntitySet="Book_Review" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BTransact__Book___4CA06362" Association="lastDbModel.FK__BTransact__Book___4CA06362">
+            <End Role="Tbl_Books" EntitySet="Tbl_Books" />
+            <End Role="BTransaction" EntitySet="BTransactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Books__Vendo__29572725" Association="lastDbModel.FK__Tbl_Books__Vendo__29572725">
+            <End Role="Tbl_Vendorr" EntitySet="Tbl_Vendorr" />
+            <End Role="Tbl_Books" EntitySet="Tbl_Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_wishlist_Tbl_Books" Association="lastDbModel.FK_tbl_wishlist_Tbl_Books">
+            <End Role="Tbl_Books" EntitySet="Tbl_Books" />
             <End Role="tbl_wishlist" EntitySet="tbl_wishlist" />
           </AssociationSet>
           </EntityContainer>
@@ -577,8 +495,8 @@
           <Property Name="cat_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="cat_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="cat_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Tbl_Books" Relationship="lastDbModel.FK__Tbl_Books__cat_i__286302EC" FromRole="Book_categoryy" ToRole="Tbl_Books" />
           <NavigationProperty Name="Ebooks_db" Relationship="lastDbModel.FK_Ebooks_db_Book_categoryy" FromRole="Book_categoryy" ToRole="Ebooks_db" />
+          <NavigationProperty Name="Tbl_Books" Relationship="lastDbModel.FK__Tbl_Books__cat_i__286302EC" FromRole="Book_categoryy" ToRole="Tbl_Books" />
         </EntityType>
         <EntityType Name="tbl_member">
           <Key>
@@ -709,99 +627,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Tbl_Books">
-          <Key>
-            <PropertyRef Name="Book_id" />
-          </Key>
-          <Property Name="Book_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Book_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Book_Edition" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Book_price" Type="Int32" />
-          <Property Name="Book_img" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="auth_id" Type="Int32" />
-          <Property Name="pub_id" Type="Int32" />
-          <Property Name="cat_id" Type="Int32" />
-          <Property Name="Vendor_id" Type="Int32" />
-          <NavigationProperty Name="Book_author" Relationship="lastDbModel.FK__Tbl_Books__auth___267ABA7A" FromRole="Tbl_Books" ToRole="Book_author" />
-          <NavigationProperty Name="Book_categoryy" Relationship="lastDbModel.FK__Tbl_Books__cat_i__286302EC" FromRole="Tbl_Books" ToRole="Book_categoryy" />
-          <NavigationProperty Name="Book_publisher" Relationship="lastDbModel.FK__Tbl_Books__pub_i__276EDEB3" FromRole="Tbl_Books" ToRole="Book_publisher" />
-          <NavigationProperty Name="Book_Review" Relationship="lastDbModel.FK_Book_Review_Tbl_Books" FromRole="Tbl_Books" ToRole="Book_Review" />
-          <NavigationProperty Name="BTransactions" Relationship="lastDbModel.FK__BTransact__Book___4CA06362" FromRole="Tbl_Books" ToRole="BTransaction" />
-          <NavigationProperty Name="Tbl_Vendorr" Relationship="lastDbModel.FK__Tbl_Books__Vendo__29572725" FromRole="Tbl_Books" ToRole="Tbl_Vendorr" />
-          <NavigationProperty Name="tbl_wishlist" Relationship="lastDbModel.FK_tbl_wishlist_Tbl_Books" FromRole="Tbl_Books" ToRole="tbl_wishlist" />
-        </EntityType>
-        <Association Name="FK__Tbl_Books__auth___267ABA7A">
-          <End Type="lastDbModel.Book_author" Role="Book_author" Multiplicity="0..1" />
-          <End Type="lastDbModel.Tbl_Books" Role="Tbl_Books" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Book_author">
-              <PropertyRef Name="auth_id" />
-            </Principal>
-            <Dependent Role="Tbl_Books">
-              <PropertyRef Name="auth_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Tbl_Books__cat_i__286302EC">
-          <End Type="lastDbModel.Book_categoryy" Role="Book_categoryy" Multiplicity="0..1" />
-          <End Type="lastDbModel.Tbl_Books" Role="Tbl_Books" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Book_categoryy">
-              <PropertyRef Name="cat_id" />
-            </Principal>
-            <Dependent Role="Tbl_Books">
-              <PropertyRef Name="cat_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Tbl_Books__pub_i__276EDEB3">
-          <End Type="lastDbModel.Book_publisher" Role="Book_publisher" Multiplicity="0..1" />
-          <End Type="lastDbModel.Tbl_Books" Role="Tbl_Books" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Book_publisher">
-              <PropertyRef Name="pub_id" />
-            </Principal>
-            <Dependent Role="Tbl_Books">
-              <PropertyRef Name="pub_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Book_Review_Tbl_Books">
-          <End Type="lastDbModel.Tbl_Books" Role="Tbl_Books" Multiplicity="1" />
-          <End Type="lastDbModel.Book_Review" Role="Book_Review" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tbl_Books">
-              <PropertyRef Name="Book_id" />
-            </Principal>
-            <Dependent Role="Book_Review">
-              <PropertyRef Name="BookId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__BTransact__Book___4CA06362">
-          <End Type="lastDbModel.Tbl_Books" Role="Tbl_Books" Multiplicity="0..1" />
-          <End Type="lastDbModel.BTransaction" Role="BTransaction" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tbl_Books">
-              <PropertyRef Name="Book_id" />
-            </Principal>
-            <Dependent Role="BTransaction">
-              <PropertyRef Name="Book_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Tbl_Books__Vendo__29572725">
-          <End Type="lastDbModel.Tbl_Vendorr" Role="Tbl_Vendorr" Multiplicity="0..1" />
-          <End Type="lastDbModel.Tbl_Books" Role="Tbl_Books" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tbl_Vendorr">
-              <PropertyRef Name="Vendor_id" />
-            </Principal>
-            <Dependent Role="Tbl_Books">
-              <PropertyRef Name="Vendor_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Ebooks_db">
           <Key>
             <PropertyRef Name="Ebook_id" />
@@ -924,21 +749,9 @@
           <Property Name="Book_ID" Type="Int32" Nullable="false" />
           <Property Name="mem_Id" Type="Int32" Nullable="false" />
           <Property Name="Wish_date" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Tbl_Books" Relationship="lastDbModel.FK_tbl_wishlist_Tbl_Books" FromRole="tbl_wishlist" ToRole="Tbl_Books" />
           <NavigationProperty Name="tbl_member" Relationship="lastDbModel.FK_tbl_wishlist_tbl_member" FromRole="tbl_wishlist" ToRole="tbl_member" />
+          <NavigationProperty Name="Tbl_Books" Relationship="lastDbModel.FK_tbl_wishlist_Tbl_Books" FromRole="tbl_wishlist" ToRole="Tbl_Books" />
         </EntityType>
-        <Association Name="FK_tbl_wishlist_Tbl_Books">
-          <End Type="lastDbModel.Tbl_Books" Role="Tbl_Books" Multiplicity="1" />
-          <End Type="lastDbModel.tbl_wishlist" Role="tbl_wishlist" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tbl_Books">
-              <PropertyRef Name="Book_id" />
-            </Principal>
-            <Dependent Role="tbl_wishlist">
-              <PropertyRef Name="Book_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_tbl_wishlist_tbl_member">
           <End Type="lastDbModel.tbl_member" Role="tbl_member" Multiplicity="1" />
           <End Type="lastDbModel.tbl_wishlist" Role="tbl_wishlist" Multiplicity="*" />
@@ -951,32 +764,91 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Tbl_Books">
+          <Key>
+            <PropertyRef Name="Book_id" />
+          </Key>
+          <Property Name="Book_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Book_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Book_Edition" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Book_price" Type="Int32" />
+          <Property Name="Book_img" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="auth_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="pub_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="cat_id" Type="Int32" />
+          <Property Name="Vendor_id" Type="Int32" />
+          <NavigationProperty Name="Book_categoryy" Relationship="lastDbModel.FK__Tbl_Books__cat_i__286302EC" FromRole="Tbl_Books" ToRole="Book_categoryy" />
+          <NavigationProperty Name="Book_Review" Relationship="lastDbModel.FK_Book_Review_Tbl_Books" FromRole="Tbl_Books" ToRole="Book_Review" />
+          <NavigationProperty Name="BTransactions" Relationship="lastDbModel.FK__BTransact__Book___4CA06362" FromRole="Tbl_Books" ToRole="BTransaction" />
+          <NavigationProperty Name="Tbl_Vendorr" Relationship="lastDbModel.FK__Tbl_Books__Vendo__29572725" FromRole="Tbl_Books" ToRole="Tbl_Vendorr" />
+          <NavigationProperty Name="tbl_wishlist" Relationship="lastDbModel.FK_tbl_wishlist_Tbl_Books" FromRole="Tbl_Books" ToRole="tbl_wishlist" />
+        </EntityType>
+        <Association Name="FK__Tbl_Books__cat_i__286302EC">
+          <End Type="lastDbModel.Book_categoryy" Role="Book_categoryy" Multiplicity="0..1" />
+          <End Type="lastDbModel.Tbl_Books" Role="Tbl_Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book_categoryy">
+              <PropertyRef Name="cat_id" />
+            </Principal>
+            <Dependent Role="Tbl_Books">
+              <PropertyRef Name="cat_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Book_Review_Tbl_Books">
+          <End Type="lastDbModel.Tbl_Books" Role="Tbl_Books" Multiplicity="1" />
+          <End Type="lastDbModel.Book_Review" Role="Book_Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Books">
+              <PropertyRef Name="Book_id" />
+            </Principal>
+            <Dependent Role="Book_Review">
+              <PropertyRef Name="BookId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BTransact__Book___4CA06362">
+          <End Type="lastDbModel.Tbl_Books" Role="Tbl_Books" Multiplicity="0..1" />
+          <End Type="lastDbModel.BTransaction" Role="BTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Books">
+              <PropertyRef Name="Book_id" />
+            </Principal>
+            <Dependent Role="BTransaction">
+              <PropertyRef Name="Book_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Books__Vendo__29572725">
+          <End Type="lastDbModel.Tbl_Vendorr" Role="Tbl_Vendorr" Multiplicity="0..1" />
+          <End Type="lastDbModel.Tbl_Books" Role="Tbl_Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Vendorr">
+              <PropertyRef Name="Vendor_id" />
+            </Principal>
+            <Dependent Role="Tbl_Books">
+              <PropertyRef Name="Vendor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_wishlist_Tbl_Books">
+          <End Type="lastDbModel.Tbl_Books" Role="Tbl_Books" Multiplicity="1" />
+          <End Type="lastDbModel.tbl_wishlist" Role="tbl_wishlist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Books">
+              <PropertyRef Name="Book_id" />
+            </Principal>
+            <Dependent Role="tbl_wishlist">
+              <PropertyRef Name="Book_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="lastDbModelStoreContainer" CdmEntityContainer="lastDbEntities">
-          <EntitySetMapping Name="Book_author">
-            <EntityTypeMapping TypeName="lastDbModel.Book_author">
-              <MappingFragment StoreEntitySet="Book_author">
-                <ScalarProperty Name="auth_id" ColumnName="auth_id" />
-                <ScalarProperty Name="auth_name" ColumnName="auth_name" />
-                <ScalarProperty Name="auth_email" ColumnName="auth_email" />
-                <ScalarProperty Name="auth_contact" ColumnName="auth_contact" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Book_publisher">
-            <EntityTypeMapping TypeName="lastDbModel.Book_publisher">
-              <MappingFragment StoreEntitySet="Book_publisher">
-                <ScalarProperty Name="pub_id" ColumnName="pub_id" />
-                <ScalarProperty Name="pub_name" ColumnName="pub_name" />
-                <ScalarProperty Name="pub_email" ColumnName="pub_email" />
-                <ScalarProperty Name="pub_contact" ColumnName="pub_contact" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Book_categoryy">
             <EntityTypeMapping TypeName="lastDbModel.Book_categoryy">
               <MappingFragment StoreEntitySet="Book_categoryy">
@@ -1058,21 +930,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Tbl_Books">
-            <EntityTypeMapping TypeName="lastDbModel.Tbl_Books">
-              <MappingFragment StoreEntitySet="Tbl_Books">
-                <ScalarProperty Name="Vendor_id" ColumnName="Vendor_id" />
-                <ScalarProperty Name="cat_id" ColumnName="cat_id" />
-                <ScalarProperty Name="pub_id" ColumnName="pub_id" />
-                <ScalarProperty Name="auth_id" ColumnName="auth_id" />
-                <ScalarProperty Name="Book_img" ColumnName="Book_img" />
-                <ScalarProperty Name="Book_price" ColumnName="Book_price" />
-                <ScalarProperty Name="Book_Edition" ColumnName="Book_Edition" />
-                <ScalarProperty Name="Book_name" ColumnName="Book_name" />
-                <ScalarProperty Name="Book_id" ColumnName="Book_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Ebooks_db">
             <EntityTypeMapping TypeName="lastDbModel.Ebooks_db">
               <MappingFragment StoreEntitySet="Ebooks_db">
@@ -1117,6 +974,21 @@
                 <ScalarProperty Name="mem_Id" ColumnName="mem_Id" />
                 <ScalarProperty Name="Book_ID" ColumnName="Book_ID" />
                 <ScalarProperty Name="Wish_Id" ColumnName="Wish_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Books">
+            <EntityTypeMapping TypeName="lastDbModel.Tbl_Books">
+              <MappingFragment StoreEntitySet="Tbl_Books">
+                <ScalarProperty Name="Vendor_id" ColumnName="Vendor_id" />
+                <ScalarProperty Name="cat_id" ColumnName="cat_id" />
+                <ScalarProperty Name="pub_id" ColumnName="pub_id" />
+                <ScalarProperty Name="auth_id" ColumnName="auth_id" />
+                <ScalarProperty Name="Book_img" ColumnName="Book_img" />
+                <ScalarProperty Name="Book_price" ColumnName="Book_price" />
+                <ScalarProperty Name="Book_Edition" ColumnName="Book_Edition" />
+                <ScalarProperty Name="Book_name" ColumnName="Book_name" />
+                <ScalarProperty Name="Book_id" ColumnName="Book_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

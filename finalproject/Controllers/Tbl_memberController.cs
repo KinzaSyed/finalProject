@@ -105,6 +105,10 @@ namespace finalproject.Controllers
         }
 
 
+        public ActionResult Totalmem()
+        {
+            return View(db.tbl_member.ToList());
+        }
 
 
 

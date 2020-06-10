@@ -1,6 +1,12 @@
 ﻿@model finalproject.Models.Book_categoryy
+@if (Session["Admin_id"] != null && Session["Admin_email"] != null)
+{
+    Layout = "~/Views/Shared/_sidePanelPage.cshtml";
 
-@{
+}
+else
+{
+
     ViewBag.Title = "Delete";
 }
 
@@ -12,31 +18,32 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-           Category Name
+            Category Name
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.cat_name)
         </dd>
 
-      <dt>
-           Catefory Status
+        <dt>
+            Catefory Status
         </dt>
 
-       <dd>
+        <dd>
             @Html.DisplayFor(model => model.cat_status)
         </dd>
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
-    <div class="form-actions no-color">
-        <a class="btn btn-info" href="@Url.Action("Index")">Back to List</a>
+        <div class="form-actions no-color">
+            <a class="btn btn-info" href="@Url.Action("Index")">Back to List</a>
 
-        <input type="submit" value="Delete" class="btn btn-danger" />
+            <input type="submit" value="Delete" class="btn btn-danger" />
 
-    </div>
+        </div>
     }
 </div>

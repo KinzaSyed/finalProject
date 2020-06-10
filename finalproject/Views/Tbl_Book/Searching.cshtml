@@ -1,6 +1,12 @@
 ﻿
 @model IEnumerable<finalproject.Models.Tbl_Books>
-@{
+@if (Session["Admin_id"] != null && Session["Admin_email"] != null)
+{
+    Layout = "~/Views/Shared/_sidePanelPage.cshtml";
+
+}
+else
+{
     ViewBag.Title = "Searching";
 }
 
@@ -9,8 +15,8 @@
 
 <nav class="navbar navbar-light bg-light">
     @using (Html.BeginForm("Searching", "Tbl_Book", FormMethod.Get))
-    {@Html.TextBox("search") <input type="submit" value="Search" />
-    <br  /> <br  />
+    {@Html.TextBox("search") <input class="btn-primary" type="submit" value="Search" />
+    <br /> <br />
     <b>Search By</b>
     @Html.RadioButton("searchBy", "Book_name") <text>Name</text>
     @Html.RadioButton("searchBy", "cat_name") <text>Category</text>
@@ -43,59 +49,59 @@
 
 
     </thead>
-@if (Model.Count() == 0)
-{
-    <tr>
-        <td colspan="8">No Book Found</td>
-    </tr>
-}
-else
-{
+    @if (Model.Count() == 0)
+    {
+        <tr>
+            <td colspan="8">No Book Found</td>
+        </tr>
+    }
+    else
+    {
 
-    <tbody>
-        @if (Model != null)
-        {
+        <tbody>
+            @if (Model != null)
+            {
 
-            foreach (var item in Model)
+                foreach (var item in Model)
 
+                {
+                    <tr>
+
+                        <td><img style="width:50px;height:50px;" src="@Url.Content(item.Book_img)" /></td>
+                        <td>@item.Book_name</td>
+                        <td>@item.Book_Edition</td>
+                        <td>@item.Book_price</td>
+                        <td>@item.auth_id</td>
+                        <td>@item.pub_id</td>
+                        <td>@item.Book_categoryy.cat_name</td>
+                        <td>@item.Tbl_Vendorr.Vendor_name</td>
+                        <td>
+
+
+
+
+
+
+                            <a class="btn btn-info btn-sm" href="@Url.Action("Details", new { id = item.Book_id })">Details</a>
+
+                        </td>
+
+                    </tr>
+                }
+            }
+            else
             {
                 <tr>
-
-                    <td><img style="width:50px;height:50px;" src="@Url.Content(item.Book_img)" /></td>
-                    <td>@item.Book_name</td>
-                    <td>@item.Book_Edition</td>
-                    <td>@item.Book_price</td>
-                    <td>@item.Book_author.auth_name</td>
-                    <td>@item.Book_publisher.pub_name</td>
-                    <td>@item.Book_categoryy.cat_name</td>
-                    <td>@item.Tbl_Vendorr.Vendor_name</td>
-                    <td>
-
-
-
-
-                     
-
-                        <a class="btn btn-info btn-sm" href="@Url.Action("Details", new { id = item.Book_id })">Details</a>
-
-                    </td>
-
+                    <td colspan="9">No Result Found...</td>
                 </tr>
             }
-        }
-        else
-        {
-            <tr>
-                <td colspan="9">No Result Found...</td>
-            </tr>
-        }
 
 
 
 
-    </tbody>
+        </tbody>
 
-}
+    }
 
 
 

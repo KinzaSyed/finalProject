@@ -2,9 +2,10 @@
 
 @{
     ViewBag.Title = "AdminPanel";
+    Layout = "~/Views/Shared/_sidePanelPage.cshtml";
 }
 
-<h2>AdminPanel</h2>
+
 
 @if (Session["Admin_id"] != null && Session["Admin_email"] != null)
 {

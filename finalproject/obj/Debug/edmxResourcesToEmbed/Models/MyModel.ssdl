@@ -1,14 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="lastDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityType Name="Book_author">
-    <Key>
-      <PropertyRef Name="auth_id" />
-    </Key>
-    <Property Name="auth_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="auth_name" Type="varchar" MaxLength="50" />
-    <Property Name="auth_email" Type="varchar" MaxLength="50" />
-    <Property Name="auth_contact" Type="varchar" MaxLength="50" />
-  </EntityType>
   <EntityType Name="Book_categoryy">
     <Key>
       <PropertyRef Name="cat_id" />
@@ -16,15 +7,6 @@
     <Property Name="cat_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="cat_name" Type="varchar" MaxLength="50" />
     <Property Name="cat_status" Type="varchar" MaxLength="50" />
-  </EntityType>
-  <EntityType Name="Book_publisher">
-    <Key>
-      <PropertyRef Name="pub_id" />
-    </Key>
-    <Property Name="pub_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="pub_name" Type="varchar" MaxLength="50" />
-    <Property Name="pub_email" Type="varchar" MaxLength="50" />
-    <Property Name="pub_contact" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Book_Review">
     <Key>
@@ -112,8 +94,8 @@
     <Property Name="Book_Edition" Type="varchar" MaxLength="50" />
     <Property Name="Book_price" Type="int" />
     <Property Name="Book_img" Type="varchar(max)" />
-    <Property Name="auth_id" Type="int" />
-    <Property Name="pub_id" Type="int" />
+    <Property Name="auth_id" Type="varchar" MaxLength="100" />
+    <Property Name="pub_id" Type="varchar" MaxLength="100" />
     <Property Name="cat_id" Type="int" />
     <Property Name="Vendor_id" Type="int" />
   </EntityType>
@@ -185,18 +167,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Tbl_Books__auth___267ABA7A">
-    <End Role="Book_author" Type="Self.Book_author" Multiplicity="0..1" />
-    <End Role="Tbl_Books" Type="Self.Tbl_Books" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Book_author">
-        <PropertyRef Name="auth_id" />
-      </Principal>
-      <Dependent Role="Tbl_Books">
-        <PropertyRef Name="auth_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK__Tbl_Books__cat_i__286302EC">
     <End Role="Book_categoryy" Type="Self.Book_categoryy" Multiplicity="0..1" />
     <End Role="Tbl_Books" Type="Self.Tbl_Books" Multiplicity="*" />
@@ -206,18 +176,6 @@
       </Principal>
       <Dependent Role="Tbl_Books">
         <PropertyRef Name="cat_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__Tbl_Books__pub_i__276EDEB3">
-    <End Role="Book_publisher" Type="Self.Book_publisher" Multiplicity="0..1" />
-    <End Role="Tbl_Books" Type="Self.Tbl_Books" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Book_publisher">
-        <PropertyRef Name="pub_id" />
-      </Principal>
-      <Dependent Role="Tbl_Books">
-        <PropertyRef Name="pub_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -366,9 +324,7 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="lastDbModelStoreContainer">
-    <EntitySet Name="Book_author" EntityType="Self.Book_author" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Book_categoryy" EntityType="Self.Book_categoryy" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Book_publisher" EntityType="Self.Book_publisher" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Book_Review" EntityType="Self.Book_Review" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BTransaction" EntityType="Self.BTransaction" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="EBook_Review_db" EntityType="Self.EBook_Review_db" Schema="dbo" store:Type="Tables" />
@@ -392,16 +348,8 @@
       <End Role="tbl_member" EntitySet="tbl_member" />
       <End Role="Invoice" EntitySet="Invoice" />
     </AssociationSet>
-    <AssociationSet Name="FK__Tbl_Books__auth___267ABA7A" Association="Self.FK__Tbl_Books__auth___267ABA7A">
-      <End Role="Book_author" EntitySet="Book_author" />
-      <End Role="Tbl_Books" EntitySet="Tbl_Books" />
-    </AssociationSet>
     <AssociationSet Name="FK__Tbl_Books__cat_i__286302EC" Association="Self.FK__Tbl_Books__cat_i__286302EC">
       <End Role="Book_categoryy" EntitySet="Book_categoryy" />
-      <End Role="Tbl_Books" EntitySet="Tbl_Books" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Tbl_Books__pub_i__276EDEB3" Association="Self.FK__Tbl_Books__pub_i__276EDEB3">
-      <End Role="Book_publisher" EntitySet="Book_publisher" />
       <End Role="Tbl_Books" EntitySet="Tbl_Books" />
     </AssociationSet>
     <AssociationSet Name="FK__Tbl_Books__Vendo__29572725" Association="Self.FK__Tbl_Books__Vendo__29572725">

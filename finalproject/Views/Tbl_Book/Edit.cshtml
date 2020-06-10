@@ -1,6 +1,11 @@
 ﻿@model finalproject.Models.Tbl_Books
+@if (Session["Admin_id"] != null && Session["Admin_email"] != null)
+{
+    Layout = "~/Views/Shared/_sidePanelPage.cshtml";
 
-@{
+}
+else
+{
     ViewBag.Title = "Edit";
 }
 
@@ -9,9 +14,9 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-      
+
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Book_id)
@@ -44,6 +49,10 @@
             <label class="control-label col-md-2">Book Image</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Book_img, new { htmlAttributes = new { @class = "form-control" } })
+                @*<img src="@Url.Content(Session["imgPath"].ToString())" height="100" width="100" />*@
+                <input type="file" id="file" name="file" />
+
+
                 @Html.ValidationMessageFor(model => model.Book_img, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -51,7 +60,7 @@
         <div class="form-group">
             <label class="control-label col-md-2">Book Author</label>
             <div class="col-md-10">
-                @Html.DropDownListFor(x => x.auth_id, ViewBag.authlist as SelectList, "--Select--", new { @class = "form-control" })
+                @Html.EditorFor(model => model.auth_id, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.auth_id, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -59,7 +68,7 @@
         <div class="form-group">
             <label class="control-label col-md-2">Book Publisher</label>
             <div class="col-md-10">
-                @Html.DropDownList("pub_id", ViewBag.publist as SelectList, htmlAttributes: new { @class = "form-control" })
+                @Html.EditorFor(model => model.pub_id, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.pub_id, "", new { @class = "text-danger" })
             </div>
         </div>

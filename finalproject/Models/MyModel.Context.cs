@@ -25,8 +25,6 @@ namespace finalproject.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Book_author> Book_author { get; set; }
-        public virtual DbSet<Book_publisher> Book_publisher { get; set; }
         public virtual DbSet<Book_categoryy> Book_categoryy { get; set; }
         public virtual DbSet<tbl_member> tbl_member { get; set; }
         public virtual DbSet<Tbl_admin> Tbl_admin { get; set; }
@@ -34,10 +32,10 @@ namespace finalproject.Models
         public virtual DbSet<BTransaction> BTransactions { get; set; }
         public virtual DbSet<Invoice> Invoices { get; set; }
         public virtual DbSet<Book_Review> Book_Review { get; set; }
-        public virtual DbSet<Tbl_Books> Tbl_Books { get; set; }
         public virtual DbSet<Ebooks_db> Ebooks_db { get; set; }
         public virtual DbSet<EBook_Review_db> EBook_Review_db { get; set; }
         public virtual DbSet<Reading_History> Reading_History { get; set; }
         public virtual DbSet<tbl_wishlist> tbl_wishlist { get; set; }
+        public virtual DbSet<Tbl_Books> Tbl_Books { get; set; }
     }
 }

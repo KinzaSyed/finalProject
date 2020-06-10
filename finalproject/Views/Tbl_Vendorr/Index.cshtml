@@ -1,36 +1,44 @@
 ﻿@model IEnumerable<finalproject.Models.Tbl_Vendorr>
 
-@{
-    ViewBag.Title = "Index";
-}
 
+@if (Session["Admin_id"] != null && Session["Admin_email"] != null)
+{
+    Layout = "~/Views/Shared/_sidePanelPage.cshtml";
+}
+else
+{
+  
+        ViewBag.Title = "Index";
+  
+
+}
 <h2>All Vendors</h2>
 
 <a class="btn btn-info btn-lg" href="@Url.Action("Create")">Add Vendor</a>
 <br />
 <br />
-<table  class="table table-striped table-responsive">
+<table class="table table-striped table-responsive">
     <tr>
         <th>
             Name
         </th>
         <th>
-           Email
+            Email
         </th>
         @*<th>
-            @Html.DisplayNameFor(model => model.Vendor_password)
-        </th>*@
+                @Html.DisplayNameFor(model => model.Vendor_password)
+            </th>*@
         <th>
-           Contact No
+            Contact No
         </th>
         @*<th>
-            @Html.DisplayNameFor(model => model.Vendor_status)
-        </th>*@
+                @Html.DisplayNameFor(model => model.Vendor_status)
+            </th>*@
         <th>
-           Shop Address
+            Shop Address
         </th>
         <th>
-          Created By
+            Created By
         </th>
         <th></th>
     </tr>
@@ -45,14 +53,14 @@
                 @Html.DisplayFor(modelItem => item.Vendor_email)
             </td>
             @*<td>
-                @Html.DisplayFor(modelItem => item.Vendor_password)
-            </td>*@
+                    @Html.DisplayFor(modelItem => item.Vendor_password)
+                </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.Vendor_contactno)
             </td>
             @*<td>
-                @Html.DisplayFor(modelItem => item.Vendor_status)
-            </td>*@
+                    @Html.DisplayFor(modelItem => item.Vendor_status)
+                </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.Vendor_ShopAdr)
             </td>
@@ -66,7 +74,7 @@
 
 
                 <a class="btn btn-info btn-sm" href="@Url.Action("Details", new { id = item.Vendor_id })">Details</a>
-               
+
             </td>
         </tr>
     }

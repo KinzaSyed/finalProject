@@ -32,7 +32,29 @@ namespace finalproject.Controllers
             else
                 return View(db.Ebooks_db.Where(x => x.Ebook_author.StartsWith(search) || search == null).ToList());
         }
+        public ActionResult Totalebooks()
+        {
+            List<Ebooks_db> Booklist = db.Ebooks_db.ToList();
 
+            List<Tbl_for_Ebooks> booklistdis = Booklist.Select(x => new Tbl_for_Ebooks
+            {
+                Ebook_id = x.Ebook_id,
+                Ebook_name = x.Ebook_name,
+                Ebook_publisher = x.Ebook_publisher,
+                Ebook_author = x.Ebook_author,
+                cat_id = Convert.ToInt32(x.cat_id),
+                cat_name = x.Book_categoryy.cat_name,
+                Ebook_img = x.Ebook_img,
+                Ebook_pdffile = x.Ebook_pdffile,
+                Ebook_edition = x.Ebook_edition,
+                mem_id = Convert.ToInt32(x.mem_id),
+                mem_name = x.tbl_member.mem_name,
+            }).ToList();
+
+
+
+            return View(booklistdis);
+        }
 
         // GET: Ebooks
         public ActionResult Index()

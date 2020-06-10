@@ -20,7 +20,30 @@ namespace finalproject.Controllers
 
         //}
 
+        public ActionResult Totalbooks()
+        {
+            List<Tbl_Books> Booklist = db.Tbl_Books.ToList();
+            List<Tbl_for_books> booklistdis = Booklist.Select(x => new Tbl_for_books
+            {
+                Book_id = x.Book_id,
+                Book_name = x.Book_name,
+                Book_Edition = x.Book_Edition,
+                Book_price = x.Book_price,
+                Book_img = x.Book_img,
+                auth_id = x.auth_id,
+                pub_id = x.pub_id,
+                cat_id = Convert.ToInt32(x.cat_id),
+                cat_name = x.Book_categoryy.cat_name,
+                Vendor_id = Convert.ToInt32(x.Vendor_id),
+                Vendor_name = x.Tbl_Vendorr.Vendor_name,
+                //   Book_ebook = x.Book_ebook
 
+
+
+            }).ToList();
+
+            return View(booklistdis);
+        }
 
         public ActionResult Index()
         {
@@ -32,10 +55,10 @@ namespace finalproject.Controllers
                 Book_Edition = x.Book_Edition,
                 Book_price = x.Book_price,
                 Book_img = x.Book_img,
-                auth_id = Convert.ToInt32(x.auth_id),
-                auth_name = x.Book_author.auth_name,
-                pub_id = Convert.ToInt32(x.pub_id),
-                pub_name = x.Book_publisher.pub_name,
+                auth_id = x.auth_id,
+              
+                pub_id = x.pub_id,
+           
                 cat_id = Convert.ToInt32(x.cat_id),
                 cat_name = x.Book_categoryy.cat_name,
                 Vendor_id = Convert.ToInt32(x.Vendor_id),
@@ -52,11 +75,11 @@ namespace finalproject.Controllers
         public ActionResult Create()
         {
 
-            List<Book_author> li = db.Book_author.ToList();
-            ViewBag.authlist = new SelectList(li, "auth_id", "auth_name");
+            //List<Book_author> li = db.Book_author.ToList();
+            //ViewBag.authlist = new SelectList(li, "auth_id", "auth_name");
 
-            List<Book_publisher> li2 = db.Book_publisher.ToList();
-            ViewBag.publist = new SelectList(li2, "pub_id", "pub_name");
+            //List<Book_publisher> li2 = db.Book_publisher.ToList();
+            //ViewBag.publist = new SelectList(li2, "pub_id", "pub_name");
 
 
 
@@ -90,11 +113,11 @@ namespace finalproject.Controllers
 
 
 
-                List<Book_author> li = db.Book_author.ToList();
-                ViewBag.authlist = new SelectList(li, "auth_id", "auth_name");
+                //List<Book_author> li = db.Book_author.ToList();
+                //ViewBag.authlist = new SelectList(li, "auth_id", "auth_name");
 
-                List<Book_publisher> li2 = db.Book_publisher.ToList();
-                ViewBag.publist = new SelectList(li2, "pub_id", "pub_name");
+                //List<Book_publisher> li2 = db.Book_publisher.ToList();
+                //ViewBag.publist = new SelectList(li2, "pub_id", "pub_name");
 
 
 
@@ -237,16 +260,18 @@ namespace finalproject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            
             Tbl_Books Tbl_Books = db.Tbl_Books.Find(id);
+          
             if (Tbl_Books == null)
             {
                 return HttpNotFound();
             }
-            List<Book_author> li = db.Book_author.ToList();
-            ViewBag.authlist = new SelectList(li, "auth_id", "auth_name");
+            //List<Book_author> li = db.Book_author.ToList();
+            //ViewBag.authlist = new SelectList(li, "auth_id", "auth_name");
 
-            List<Book_publisher> li2 = db.Book_publisher.ToList();
-            ViewBag.publist = new SelectList(li2, "pub_id", "pub_name");
+            //List<Book_publisher> li2 = db.Book_publisher.ToList();
+            //ViewBag.publist = new SelectList(li2, "pub_id", "pub_name");
 
 
 
@@ -259,12 +284,12 @@ namespace finalproject.Controllers
             ViewBag.venlist = new SelectList(li4, "Vendor_id", "Vendor_name");
             return View(Tbl_Books);
         }
-
-        // POST: Bookcategoryy/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        //POST: Bookcategoryy/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+
         public ActionResult Edit([Bind(Include = "Book_id,Book_name,Book_Edition,Book_price,Book_img,auth_id,pub_id,cat_id,Vendor_id")]Tbl_Books Tbl_Books)
         {
             if (ModelState.IsValid)
@@ -275,6 +300,59 @@ namespace finalproject.Controllers
             }
             return View(Tbl_Books);
         }
+
+        //public ActionResult Edit(HttpPostedFileBase file, Tbl_Books bok)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+
+        //        if (file != null)
+        //        {
+        //            string path = uploadingfile(file);
+        //            if (path.Equals("-1"))
+        //            {
+        //                ViewBag.error = "Image could not be uploaded....";
+        //            }
+        //            else
+        //            {
+        //                db.Entry(bok).State = EntityState.Modified;
+        //                if (db.SaveChanges() > 0)
+        //                {
+        //                    file.SaveAs(path);
+        //                    Session["msg"] = "Image Updated";
+        //                    return RedirectToAction("Index");
+        //                }
+        //            }
+
+        //        }
+        //        else
+        //        {
+        //            bok.Book_img = Session["imgPath"].ToString();
+        //            db.Entry(bok).State = EntityState.Modified;
+        //            if (db.SaveChanges() > 0)
+        //            {
+        //                Session["msg"] = "Data Updated";
+        //                return RedirectToAction("Index");
+        //            }
+        //        }
+
+        //    }
+        //    return View(bok);
+        //}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         [HttpPost]
         public ActionResult SendReview(Book_Review review, double rating)
         {
@@ -301,7 +379,7 @@ namespace finalproject.Controllers
                 return View(db.Tbl_Books.Where(x => x.Book_name.StartsWith(search) || search == null).ToList());
             }
             else
-                return View(db.Tbl_Books.Where(x => x.Book_author.auth_name.StartsWith(search) || search == null).ToList());
+                return View(db.Tbl_Books.Where(x => x.Book_name.StartsWith(search) || search == null).ToList());
         }
 
 

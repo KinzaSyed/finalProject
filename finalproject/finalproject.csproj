@@ -134,6 +134,7 @@
     <Compile Include="Controllers\BookpublisherController.cs" />
     <Compile Include="Controllers\EbooksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InvoicesController.cs" />
     <Compile Include="Controllers\ReadingHistoryController.cs" />
     <Compile Include="Controllers\TbladminController.cs" />
     <Compile Include="Controllers\Tbl_BookController.cs" />
@@ -144,13 +145,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\author_validation.cs" />
-    <Compile Include="Models\Book_author.cs">
-      <DependentUpon>MyModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Book_categoryy.cs">
-      <DependentUpon>MyModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Book_publisher.cs">
       <DependentUpon>MyModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Book_Review.cs">
@@ -223,6 +218,7 @@
     <Content Include="Content\rateyo\jquery.rateyo.js" />
     <Content Include="Content\rateyo\jquery.rateyo.min.css" />
     <Content Include="Content\rateyo\jquery.rateyo.min.js" />
+    <Content Include="Content\simple-sidebar.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -249,6 +245,7 @@
     <Content Include="Content\rateyo\jquery.rateyo.less" />
     <Content Include="Content\rateyo\jquery.rateyo.min.css.map" />
     <Content Include="Content\rateyo\jquery.rateyo.min.js.map" />
+    <Content Include="Content\pdfbooks\Payment Voucher.pdf" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -274,16 +271,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Bookauthor\Create.cshtml" />
-    <Content Include="Views\Bookauthor\Delete.cshtml" />
-    <Content Include="Views\Bookauthor\Details.cshtml" />
-    <Content Include="Views\Bookauthor\Edit.cshtml" />
-    <Content Include="Views\Bookauthor\Index.cshtml" />
-    <Content Include="Views\Bookpublisher\Create.cshtml" />
-    <Content Include="Views\Bookpublisher\Delete.cshtml" />
-    <Content Include="Views\Bookpublisher\Details.cshtml" />
-    <Content Include="Views\Bookpublisher\Edit.cshtml" />
-    <Content Include="Views\Bookpublisher\Index.cshtml" />
     <Content Include="Views\Bookcategoryy\Create.cshtml" />
     <Content Include="Views\Bookcategoryy\Delete.cshtml" />
     <Content Include="Views\Bookcategoryy\Details.cshtml" />
@@ -335,10 +322,21 @@
     <Content Include="Views\Tbl_Book\BookSearching.cshtml" />
     <Content Include="Views\Tbl_Book\Searching.cshtml" />
     <Content Include="Views\Ebooks\SearchingEbook.cshtml" />
+    <Content Include="Views\Invoices\Create.cshtml" />
+    <Content Include="Views\Invoices\Delete.cshtml" />
+    <Content Include="Views\Invoices\Details.cshtml" />
+    <Content Include="Views\Invoices\Edit.cshtml" />
+    <Content Include="Views\Invoices\Index.cshtml" />
+    <Content Include="Views\Invoices\YouInvoice.cshtml" />
+    <Content Include="Views\Bookcategoryy\totalcat.cshtml" />
+    <Content Include="Views\Tbl_member\Totalmem.cshtml" />
+    <Content Include="Views\Tbl_Vendorr\Totalven.cshtml" />
+    <Content Include="Views\Tbl_Book\Totalbooks.cshtml" />
+    <Content Include="Views\Ebooks\Totalebooks.cshtml" />
+    <Content Include="Views\Shared\_sidePanelPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\pdfbooks\" />
     <Folder Include="Views\ReadingHistory\" />
   </ItemGroup>
   <ItemGroup>

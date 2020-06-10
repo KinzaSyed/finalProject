@@ -15,6 +15,12 @@ namespace finalproject.Controllers
         private lastDbEntities db = new lastDbEntities();
 
         // GET: Bookcategoryy
+
+        public ActionResult totalcat()
+        {
+            return View(db.Book_categoryy.ToList());
+        }
+
         public ActionResult Index()
         {
             return View(db.Book_categoryy.ToList());

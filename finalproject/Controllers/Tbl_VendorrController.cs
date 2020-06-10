@@ -74,7 +74,11 @@ namespace finalproject.Controllers
 
 
 
-
+        public ActionResult Totalven()
+        {
+            var tbl_Vendorr = db.Tbl_Vendorr.Include(t => t.Tbl_admin);
+            return View(tbl_Vendorr.ToList());
+        }
 
 
 

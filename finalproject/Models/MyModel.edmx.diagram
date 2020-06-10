@@ -5,9 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="4da1027ae1ac45ef89bdf20a1a890946" Name="Diagram1">
-        <EntityTypeShape EntityType="lastDbModel.Book_author" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="lastDbModel.Book_publisher" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="lastDbModel.Book_categoryy" Width="1.5" PointX="3.375" PointY="3.75" />
+        <EntityTypeShape EntityType="lastDbModel.Book_categoryy" Width="1.5" PointX="2.75" PointY="4.375" />
         <EntityTypeShape EntityType="lastDbModel.tbl_member" Width="1.5" PointX="3.375" PointY="0.75" />
         <EntityTypeShape EntityType="lastDbModel.Tbl_admin" Width="1.5" PointX="5.375" PointY="1.125" />
         <EntityTypeShape EntityType="lastDbModel.Tbl_Vendorr" Width="1.5" PointX="7.625" PointY="1" />
@@ -18,13 +16,6 @@
         <AssociationConnector Association="lastDbModel.FK__Invoice__mem_id__49C3F6B7" />
         <EntityTypeShape EntityType="lastDbModel.Book_Review" Width="1.5" PointX="12.125" PointY="0.75" />
         <AssociationConnector Association="lastDbModel.FK_Book_Review_tbl_member" />
-        <EntityTypeShape EntityType="lastDbModel.Tbl_Books" Width="1.5" PointX="9.875" PointY="0.875" />
-        <AssociationConnector Association="lastDbModel.FK__Tbl_Books__auth___267ABA7A" />
-        <AssociationConnector Association="lastDbModel.FK__Tbl_Books__cat_i__286302EC" />
-        <AssociationConnector Association="lastDbModel.FK__Tbl_Books__pub_i__276EDEB3" />
-        <AssociationConnector Association="lastDbModel.FK_Book_Review_Tbl_Books" />
-        <AssociationConnector Association="lastDbModel.FK__BTransact__Book___4CA06362" />
-        <AssociationConnector Association="lastDbModel.FK__Tbl_Books__Vendo__29572725" />
         <EntityTypeShape EntityType="lastDbModel.Ebooks_db" Width="1.5" PointX="8.625" PointY="5.625" />
         <AssociationConnector Association="lastDbModel.FK_Ebooks_db_Book_categoryy" />
         <AssociationConnector Association="lastDbModel.FK_Ebooks_db_tbl_member" />
@@ -35,8 +26,13 @@
         <AssociationConnector Association="lastDbModel.FK_Reading_History_Ebooks_db" />
         <AssociationConnector Association="lastDbModel.FK_Reading_History_tbl_member" />
         <EntityTypeShape EntityType="lastDbModel.tbl_wishlist" Width="1.5" PointX="15.125" PointY="0.75" />
-        <AssociationConnector Association="lastDbModel.FK_tbl_wishlist_Tbl_Books" />
         <AssociationConnector Association="lastDbModel.FK_tbl_wishlist_tbl_member" />
+        <EntityTypeShape EntityType="lastDbModel.Tbl_Books" Width="1.5" PointX="9.875" PointY="0.875" />
+        <AssociationConnector Association="lastDbModel.FK__Tbl_Books__cat_i__286302EC" />
+        <AssociationConnector Association="lastDbModel.FK_Book_Review_Tbl_Books" />
+        <AssociationConnector Association="lastDbModel.FK__BTransact__Book___4CA06362" />
+        <AssociationConnector Association="lastDbModel.FK__Tbl_Books__Vendo__29572725" />
+        <AssociationConnector Association="lastDbModel.FK_tbl_wishlist_Tbl_Books" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -1,6 +1,13 @@
 ﻿@model IEnumerable<finalproject.Models.Book_categoryy>
 
-@{
+@if (Session["Admin_id"] != null && Session["Admin_email"] != null)
+{
+    Layout = "~/Views/Shared/_sidePanelPage.cshtml";
+
+}
+else
+{
+
     ViewBag.Title = "Index";
 }
 
@@ -27,9 +34,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.cat_name)
             </td>
-        <td>
-                    @Html.DisplayFor(modelItem => item.cat_status)
-                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cat_status)
+            </td>
             <td>
                 <a class="btn btn-success btn-sm" href="@Url.Action("Edit", new { id = item.cat_id })">Edit</a>
                 <a class="btn btn-danger btn-sm" href="@Url.Action("Delete", new { id = item.cat_id })">Delete</a>

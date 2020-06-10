@@ -26,7 +26,7 @@ namespace finalproject.Models
         public string Book_img { get; set; }
 
 
-        public int auth_id { get; set; }
+        public string auth_id { get; set; }
         [DisplayName("Author Name")]
         public string auth_name { get; set; }
 
@@ -36,7 +36,7 @@ namespace finalproject.Models
         public string cat_name { get; set; }
 
 
-        public int pub_id { get; set; }
+        public string pub_id { get; set; }
         [DisplayName("Publisher Name")]
         public string pub_name { get; set; }
 

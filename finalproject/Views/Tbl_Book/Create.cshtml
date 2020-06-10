@@ -1,5 +1,11 @@
 ﻿@model finalproject.Models.Tbl_for_books
-@{
+@if (Session["Admin_id"] != null && Session["Admin_email"] != null)
+{
+    Layout = "~/Views/Shared/_sidePanelPage.cshtml";
+
+}
+else
+{
     ViewBag.Title = "Create";
 }
 
@@ -10,106 +16,106 @@
 
 
 
-<div class="container" style="border:inset dotted black">
-    <div class="form-horizontal">
-        <div class="form-group">
-            <label class="control-label col-md-2" for="email">Authour</label>
+    <div class="container" style="border:inset dotted black">
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label col-md-2" for="email">Authour</label>
 
-            <div class="col-md-10">
-                @Html.DropDownListFor(x => x.auth_id, ViewBag.authlist as SelectList, "--Select--", new { @class = "form-control" })
-                <div style="color:red">
-                    @Html.ValidationMessageFor(x => x.auth_name)
+                <div class="col-md-10">
+                    @Html.TextBoxFor(x => x.auth_id, new { @class = "form-control" })
+                    <div style="color:red">
+                        @Html.ValidationMessageFor(x => x.auth_name)
 
 
 
+                    </div>
                 </div>
-            </div>
-            
 
-        </div>
-
-
-
-        <div class="form-group">
-            <label class="control-label col-md-2" for="email">Category</label>
-
-            <div class="col-md-10">
-                @Html.DropDownListFor(x => x.cat_id, ViewBag.catlist as SelectList, "--Select--", new { @class = "form-control" })
-                <div style="color:red">
-                    @Html.ValidationMessageFor(x => x.cat_name)
-
-
-
-                </div>
-            </div>
-           
-
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2" for="email">Publisher</label>
-
-            <div class="col-md-10">
-                @Html.DropDownListFor(x => x.pub_id, ViewBag.publist as SelectList, "--Select--", new { @class = "form-control" })
-                <div style="color:red">
-                    @Html.ValidationMessageFor(x => x.pub_name)
-
-
-
-                </div>
-            </div>
-            
-
-        </div>
-        <div class="form-group">
-            <label class="control-label col-md-2" for="email">Vendor</label>
-
-            <div class="col-md-10">
-                @Html.DropDownListFor(x => x.Vendor_id, ViewBag.venlist as SelectList, "--Select--", new { @class = "form-control" })
-                <div style="color:red">
-                    @Html.ValidationMessageFor(x => x.Vendor_name)
-
-
-
-                </div>
-            </div>
-            
-
-
-        </div>
-
-
-        <div class="form-group">
-            <label class="control-label col-md-2" for="email">Book Name</label>
-           
-            <div class="col-md-10">
-                @Html.TextBoxFor(x => x.Book_name, new { @class = "form-control" })
-                <div style="color:red">
-                    @Html.ValidationMessageFor(x => x.Book_name)
-
-
-
-                </div>
-            </div>
-          
-
-        </div>
-        <div class="form-group">
-            <label class="control-label col-md-2" for="email">Book Edition</label>
-
-            <div class="col-md-10">
-                @Html.TextBoxFor(x => x.Book_Edition, new { @class = "form-control" })
-                <div style="color:red">
-                    @Html.ValidationMessageFor(x => x.Book_Edition)
-
-
-
-                </div>
 
             </div>
 
 
-        </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2" for="email">Category</label>
+
+                <div class="col-md-10">
+                    @Html.DropDownListFor(x => x.cat_id, ViewBag.catlist as SelectList, "--Select--", new { @class = "form-control" })
+                    <div style="color:red">
+                        @Html.ValidationMessageFor(x => x.cat_name)
+
+
+
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2" for="email">Publisher</label>
+
+                <div class="col-md-10">
+                    @Html.TextBoxFor(x => x.pub_id, new { @class = "form-control" })
+                    <div style="color:red">
+                        @Html.ValidationMessageFor(x => x.pub_name)
+
+
+
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2" for="email">Vendor</label>
+
+                <div class="col-md-10">
+                    @Html.DropDownListFor(x => x.Vendor_id, ViewBag.venlist as SelectList, "--Select--", new { @class = "form-control" })
+                    <div style="color:red">
+                        @Html.ValidationMessageFor(x => x.Vendor_name)
+
+
+
+                    </div>
+                </div>
+
+
+
+            </div>
+
+
+            <div class="form-group">
+                <label class="control-label col-md-2" for="email">Book Name</label>
+
+                <div class="col-md-10">
+                    @Html.TextBoxFor(x => x.Book_name, new { @class = "form-control" })
+                    <div style="color:red">
+                        @Html.ValidationMessageFor(x => x.Book_name)
+
+
+
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2" for="email">Book Edition</label>
+
+                <div class="col-md-10">
+                    @Html.TextBoxFor(x => x.Book_Edition, new { @class = "form-control" })
+                    <div style="color:red">
+                        @Html.ValidationMessageFor(x => x.Book_Edition)
+
+
+
+                    </div>
+
+                </div>
+
+
+            </div>
 
             <div class="form-group">
                 <label class="control-label col-md-2" for="email">Book Price</label>
@@ -136,8 +142,8 @@
 
 
             </div>
-          
-        <div class="form-group">
+
+            <div class="form-group">
                 <div class="col-md-offset-3 col-md-2">
                     <input type="submit" value="Add" class="btn btn-block btn-success" />
 
@@ -152,6 +158,6 @@
 
     </div>
 
-   
+
 
 }

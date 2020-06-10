@@ -1,12 +1,18 @@
 ﻿@model finalproject.Models.Tbl_Books
 
-@{
+@if (Session["Admin_id"] != null && Session["Admin_email"] != null)
+{
+    Layout = "~/Views/Shared/_sidePanelPage.cshtml";
+
+}
+else
+{
     ViewBag.Title = "Delete";
 }
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-  
+
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -34,19 +40,19 @@
         </dd>
 
         @*<dt>
-            @Html.DisplayNameFor(model => model.Book_img)
-        </dt>
+                @Html.DisplayNameFor(model => model.Book_img)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Book_img)
-        </dd>*@
+            <dd>
+                @Html.DisplayFor(model => model.Book_img)
+            </dd>*@
 
         <dt>
             Book Author
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Book_author.auth_name)
+            @Html.DisplayFor(model => model.auth_id)
         </dd>
 
         <dt>
@@ -62,11 +68,11 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Book_publisher.pub_name)
+            @Html.DisplayFor(model => model.pub_id)
         </dd>
 
         <dt>
-          Created By
+            Created By
         </dt>
 
         <dd>
@@ -75,13 +81,14 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
-    <div class="form-actions no-color">
-        <a class="btn btn-info" href="@Url.Action("Index")">Back to List</a>
+        <div class="form-actions no-color">
+            <a class="btn btn-info" href="@Url.Action("Index")">Back to List</a>
 
-        <input type="submit" value="Delete" class="btn btn-danger" />
-    </div>
+            <input type="submit" value="Delete" class="btn btn-danger" />
+        </div>
     }
 </div>

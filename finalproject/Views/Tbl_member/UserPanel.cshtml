@@ -29,7 +29,7 @@
 
 
 
-<h1>Recent Readings</h1>
+<h1 style="font-family: ">Recent Readings</h1>
 
 <div class="row" style="margin-bottom: 100%;">
 
@@ -39,49 +39,49 @@
 
         @foreach (var item in Model)
         {
-            <div class="col-lg-4 col-md-4" style="height:200px;margin-bottom:100px ">
+        <div class="col-lg-4 col-md-4" style="height:200px;margin-bottom:100px ">
 
-                <img class="img-rounded img-responsive cimg" style="height:100%; width:100%; " src="@Url.Content(item.Ebooks_db.Ebook_img)" />
-
-
-
-                <label>Name </label>
-
-                @item.Ebooks_db.Ebook_name
-
-                <br />
+            <img class="img-rounded img-responsive cimg" style="height:100%; width:100%; " src="@Url.Content(item.Ebooks_db.Ebook_img)" />
 
 
-                <label>Publisher</label>
-                @item.Ebooks_db.Ebook_publisher
-                <br />
+
+            <label>Name </label>
+
+            @item.Ebooks_db.Ebook_name
+
+            <br />
 
 
-                <label>Author</label>
-
-                @item.Ebooks_db.Ebook_author
-
-                <br />
-                <label>
-                    Category
-                </label>
-                @item.Ebooks_db.Book_categoryy.cat_name
-
-                <br />
+            <label>Publisher</label>
+            @item.Ebooks_db.Ebook_publisher
+            <br />
 
 
-                <label>Edition</label>
-                @item.Ebooks_db.Ebook_edition
-                <br />
+            <label>Author</label>
+
+            @item.Ebooks_db.Ebook_author
+
+            <br />
+            <label>
+                Category
+            </label>
+            @item.Ebooks_db.Book_categoryy.cat_name
+
+            <br />
 
 
-                <label>Date Time&nbsp;</label>
-                @item.Read_Date
-                <br />
+            <label>Edition</label>
+            @item.Ebooks_db.Ebook_edition
+            <br />
 
-                <p style="text-align: center; "><a class="btn btn-success btn-lg" href="@item.Ebooks_db.Ebook_pdffile" target="_blank"> <span class="glyphicon glyphicon-book" /> Continue Reading</a></p>
 
-            </div>
+            <label>Date Time&nbsp;</label>
+            @item.Read_Date
+            <br />
+
+            <p style="text-align: center; margin-bottom: 100px "><a class="btn btn-success btn-lg" href="@Url.Content(item.Ebooks_db.Ebook_pdffile)" target="_blank"> <span class="glyphicon glyphicon-book" /> Continue Reading</a></p>
+           
+        </div>
         }
     </div>
 
