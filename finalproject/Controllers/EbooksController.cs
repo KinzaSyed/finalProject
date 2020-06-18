@@ -7,6 +7,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using PagedList.Mvc;
 
 namespace finalproject.Controllers
 {
@@ -17,20 +19,26 @@ namespace finalproject.Controllers
         lastDbEntities db = new lastDbEntities();
 
 
-        public ActionResult SearchingEbook(string searchBy, string search)
+        public ActionResult SearchingEbook(string searchBy, string search, int? page)
         {
 
 
             if (searchBy == "cat_name")
             {
-                return View(db.Ebooks_db.Where(x => x.Book_categoryy.cat_name.StartsWith(search) || search == null).ToList());
+                return View(db.Ebooks_db.Where
+                    (x => x.Book_categoryy.cat_name.StartsWith(search) || search == null)
+                    .ToList().ToPagedList(page ?? 1, 3));
             }
             if (searchBy == "Book_name")
             {
-                return View(db.Ebooks_db.Where(x => x.Ebook_name.StartsWith(search) || search == null).ToList());
+                return View(db.Ebooks_db.Where
+                    (x => x.Ebook_name.StartsWith(search) || search == null)
+                    .ToList().ToPagedList(page ?? 1, 3));
             }
             else
-                return View(db.Ebooks_db.Where(x => x.Ebook_author.StartsWith(search) || search == null).ToList());
+                return View(db.Ebooks_db.Where
+                    (x => x.Ebook_author.StartsWith(search) || search == null)
+                    .ToList().ToPagedList(page ?? 1, 3));
         }
         public ActionResult Totalebooks()
         {
@@ -345,11 +353,11 @@ namespace finalproject.Controllers
 
         public ActionResult ReadABook()
         {
-            int memid = Convert.ToInt32(Session["mem_id"]);
+           
 
+            
 
-
-            List<Ebooks_db> Booklist = db.Ebooks_db.Where(x => x.mem_id == memid).ToList();
+            List<Ebooks_db> Booklist = db.Ebooks_db.ToList();
             List<Tbl_for_Ebooks> booklistdis = Booklist.Select(x => new Tbl_for_Ebooks
             {
                 Ebook_id = x.Ebook_id,

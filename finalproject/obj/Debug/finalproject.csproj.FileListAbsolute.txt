@@ -118,3 +118,7 @@ C:\Users\Kinza Syed\source\repos\finalproject\finalproject\obj\Debug\finalprojec
 C:\Users\Kinza Syed\source\repos\finalproject\finalproject\obj\Debug\finalproject.dll
 C:\Users\Kinza Syed\source\repos\finalproject\finalproject\obj\Debug\finalproject.pdb
 C:\Users\Kinza Syed\source\repos\finalproject\finalproject\obj\Debug\finalproject.csprojAssemblyReference.cache
+C:\Users\Kinza Syed\source\repos\finalproject\finalproject\bin\PagedList.dll
+C:\Users\Kinza Syed\source\repos\finalproject\finalproject\bin\PagedList.Mvc.dll
+C:\Users\Kinza Syed\source\repos\finalproject\finalproject\bin\PagedList.xml
+C:\Users\Kinza Syed\source\repos\finalproject\finalproject\bin\PagedList.Mvc.xml

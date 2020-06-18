@@ -1,5 +1,7 @@
-﻿
-@model IEnumerable<finalproject.Models.Tbl_Books>
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<finalproject.Models.Tbl_Books>
 @if (Session["Admin_id"] != null && Session["Admin_email"] != null)
 {
     Layout = "~/Views/Shared/_sidePanelPage.cshtml";
@@ -108,3 +110,12 @@ else
 
 
 </table>
+
+@Html.PagedListPager( Model, page => Url.Action("Searching",
+    new {page, search = Request.QueryString["search"],
+        searchBy = Request.QueryString["searchBy"] }),
+    new PagedListRenderOptions() {Display = PagedListDisplayMode.IfNeeded
+    , DisplayPageCountAndCurrentLocation = true
+    ,DisplayItemSliceAndTotal = true
+    }
+    )

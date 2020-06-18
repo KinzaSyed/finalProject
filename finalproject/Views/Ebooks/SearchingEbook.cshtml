@@ -1,4 +1,7 @@
-﻿@model IEnumerable<finalproject.Models.Ebooks_db>
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<finalproject.Models.Ebooks_db>
 @{
     ViewBag.Title = "SearchingEbook";
 }
@@ -10,7 +13,7 @@
 
 <nav class="navbar navbar-light bg-light">
     @using (Html.BeginForm("SearchingEbook", "Ebooks", FormMethod.Get))
-    {@Html.TextBox("search") <input class="btn-primary" type="submit" value="Search" /><br  /><br />
+    {@Html.TextBox("search") <input class="btn-primary" type="submit" value="Search" /><br /><br />
     <b>Search By</b>
     @Html.RadioButton("searchBy", "Book_name") <text>Name</text>
     @Html.RadioButton("searchBy", "cat_name") <text>Category</text>
@@ -30,7 +33,7 @@
             <th>Image</th>
             <th>Name</th>
             <th>Edition</th>
-            
+
             <th>Author</th>
             <th>Publisher</th>
             <th>Category</th>
@@ -101,3 +104,12 @@
 
 
 </table>
+
+@Html.PagedListPager( Model, page => Url.Action("SearchingEbook",
+    new {page, search = Request.QueryString["search"],
+        searchBy = Request.QueryString["searchBy"] }),
+    new PagedListRenderOptions() {Display = PagedListDisplayMode.IfNeeded
+    , DisplayPageCountAndCurrentLocation = true
+    ,DisplayItemSliceAndTotal = true
+    }
+    )

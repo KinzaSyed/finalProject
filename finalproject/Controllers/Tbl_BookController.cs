@@ -7,6 +7,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using PagedList.Mvc;
 
 namespace finalproject.Controllers
 {
@@ -366,20 +368,23 @@ namespace finalproject.Controllers
 
         }
 
-        public ActionResult Searching(string searchBy, string search)
+        public ActionResult Searching(string searchBy, string search , int? page)
         {
 
             
             if (searchBy == "cat_name")
             {
-                return View(db.Tbl_Books.Where(x => x.Book_categoryy.cat_name.StartsWith(search) || search == null).ToList());
+                return View(db.Tbl_Books.Where(x => x.Book_categoryy.cat_name.StartsWith(search) || search == null)
+                    .ToList().ToPagedList(page ?? 1,3));
             }
             if (searchBy == "Book_name")
             {
-                return View(db.Tbl_Books.Where(x => x.Book_name.StartsWith(search) || search == null).ToList());
+                return View(db.Tbl_Books.Where(x => x.Book_name.StartsWith(search) || search == null)
+                    .ToList().ToPagedList(page ?? 1, 3));
             }
             else
-                return View(db.Tbl_Books.Where(x => x.Book_name.StartsWith(search) || search == null).ToList());
+                return View(db.Tbl_Books.Where(x => x.pub_id.StartsWith(search) || search == null)
+                    .ToList().ToPagedList(page ?? 1, 3));
         }
 
 
