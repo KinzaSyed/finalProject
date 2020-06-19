@@ -1,0 +1,60 @@
+﻿@model IEnumerable<finalproject.Models.tbl_member>
+
+@{
+    ViewBag.Title = "PublicProfile";
+
+}
+@*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">*@
+
+<h2>Find People</h2>
+
+
+
+
+<table class="table">
+    <tr>    
+        <th>
+            @Html.DisplayNameFor(model => model.mem_name)
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.mem_email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.mem_contact)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.mem_password)
+            </th>*@
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.mem_name)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.mem_email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.mem_contact)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.mem_password)
+                </td>*@
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { id=item.mem_id }) |*@
+                @Html.ActionLink("Follow", "Edit", new { id = item.mem_id }) |
+                @Html.ActionLink("Details", "DetailsPublic", new { id = item.mem_id })
+                @*@Html.ActionLink("Delete", "Delete", new { id = item.mem_id })*@
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+@*<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>*@

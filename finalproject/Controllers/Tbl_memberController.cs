@@ -14,6 +14,26 @@ namespace finalproject.Controllers
     {
         private lastDbEntities db = new lastDbEntities();
 
+        public ActionResult DetailsPublic(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            tbl_member tbl_member = db.tbl_member.Find(id);
+            if (tbl_member == null)
+            {
+                return HttpNotFound();
+            }
+            return View(tbl_member);
+        }
+        public ActionResult PublicProfile()
+        {
+
+            return View(db.tbl_member.ToList());
+          
+        }
+
 
         public ActionResult Login()
         {
@@ -118,7 +138,6 @@ namespace finalproject.Controllers
         {
             return View(db.tbl_member.ToList());
         }
-
         // GET: Tbl_member/Details/5
         public ActionResult Details(int? id)
         {
