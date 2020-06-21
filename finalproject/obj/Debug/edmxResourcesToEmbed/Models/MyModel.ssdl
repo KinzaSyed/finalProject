@@ -99,6 +99,15 @@
     <Property Name="cat_id" Type="int" />
     <Property Name="Vendor_id" Type="int" />
   </EntityType>
+  <EntityType Name="tbl_follow">
+    <Key>
+      <PropertyRef Name="follow_id" />
+    </Key>
+    <Property Name="follow_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="follow_time" Type="datetime" />
+    <Property Name="followedby_id" Type="int" Nullable="false" />
+    <Property Name="followed_id" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="tbl_member">
     <Key>
       <PropertyRef Name="mem_id" />
@@ -108,6 +117,14 @@
     <Property Name="mem_email" Type="varchar" MaxLength="50" />
     <Property Name="mem_contact" Type="varchar" MaxLength="50" />
     <Property Name="mem_password" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tbl_subscribe">
+    <Key>
+      <PropertyRef Name="sub_id" />
+    </Key>
+    <Property Name="sub_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sub_email" Type="varchar" MaxLength="50" />
+    <Property Name="sub_date" Type="datetime" />
   </EntityType>
   <EntityType Name="Tbl_Vendorr">
     <Key>
@@ -299,6 +316,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_tbl_follow_tbl_member">
+    <End Role="tbl_member" Type="Self.tbl_member" Multiplicity="1" />
+    <End Role="tbl_follow" Type="Self.tbl_follow" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_member">
+        <PropertyRef Name="mem_id" />
+      </Principal>
+      <Dependent Role="tbl_follow">
+        <PropertyRef Name="followedby_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_follow_tbl_member1">
+    <End Role="tbl_member" Type="Self.tbl_member" Multiplicity="1" />
+    <End Role="tbl_follow" Type="Self.tbl_follow" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_member">
+        <PropertyRef Name="mem_id" />
+      </Principal>
+      <Dependent Role="tbl_follow">
+        <PropertyRef Name="followed_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_tbl_wishlist_Tbl_Books">
     <End Role="Tbl_Books" Type="Self.Tbl_Books" Multiplicity="1" />
     <End Role="tbl_wishlist" Type="Self.tbl_wishlist" Multiplicity="*" />
@@ -333,7 +374,9 @@
     <EntitySet Name="Reading_History" EntityType="Self.Reading_History" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tbl_admin" EntityType="Self.Tbl_admin" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tbl_Books" EntityType="Self.Tbl_Books" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_follow" EntityType="Self.tbl_follow" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_member" EntityType="Self.tbl_member" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_subscribe" EntityType="Self.tbl_subscribe" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tbl_Vendorr" EntityType="Self.Tbl_Vendorr" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_wishlist" EntityType="Self.tbl_wishlist" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK__BTransact__Book___4CA06362" Association="Self.FK__BTransact__Book___4CA06362">
@@ -391,6 +434,14 @@
     <AssociationSet Name="FK_Reading_History_tbl_member" Association="Self.FK_Reading_History_tbl_member">
       <End Role="tbl_member" EntitySet="tbl_member" />
       <End Role="Reading_History" EntitySet="Reading_History" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_follow_tbl_member" Association="Self.FK_tbl_follow_tbl_member">
+      <End Role="tbl_member" EntitySet="tbl_member" />
+      <End Role="tbl_follow" EntitySet="tbl_follow" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_follow_tbl_member1" Association="Self.FK_tbl_follow_tbl_member1">
+      <End Role="tbl_member" EntitySet="tbl_member" />
+      <End Role="tbl_follow" EntitySet="tbl_follow" />
     </AssociationSet>
     <AssociationSet Name="FK_tbl_wishlist_Tbl_Books" Association="Self.FK_tbl_wishlist_Tbl_Books">
       <End Role="Tbl_Books" EntitySet="Tbl_Books" />

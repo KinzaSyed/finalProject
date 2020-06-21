@@ -37,5 +37,7 @@ namespace finalproject.Models
         public virtual DbSet<Reading_History> Reading_History { get; set; }
         public virtual DbSet<tbl_wishlist> tbl_wishlist { get; set; }
         public virtual DbSet<Tbl_Books> Tbl_Books { get; set; }
+        public virtual DbSet<tbl_follow> tbl_follow { get; set; }
+        public virtual DbSet<tbl_subscribe> tbl_subscribe { get; set; }
     }
 }

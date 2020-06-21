@@ -196,9 +196,15 @@
     <Compile Include="Models\Tbl_Books.cs">
       <DependentUpon>MyModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\tbl_follow.cs">
+      <DependentUpon>MyModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Tbl_for_Ebooks.cs" />
     <Compile Include="Models\Tbl_for_books.cs" />
     <Compile Include="Models\tbl_member.cs">
+      <DependentUpon>MyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_subscribe.cs">
       <DependentUpon>MyModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Tbl_Vendorr.cs">
@@ -343,6 +349,7 @@
     <Content Include="Views\Shared\_sidePanelPage.cshtml" />
     <Content Include="Views\Tbl_member\PublicProfile.cshtml" />
     <Content Include="Views\Tbl_member\DetailsPublic.cshtml" />
+    <Content Include="Views\Home\subscribe.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

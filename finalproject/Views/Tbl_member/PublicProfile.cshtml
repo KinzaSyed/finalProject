@@ -45,7 +45,10 @@
                 </td>*@
             <td>
                 @*@Html.ActionLink("Edit", "Edit", new { id=item.mem_id }) |*@
-                @Html.ActionLink("Follow", "Edit", new { id = item.mem_id }) |
+
+                @Html.ActionLink("Follow", "FollowPeople", new { id = item.mem_id }) |
+                <a class="btn btn-danger btn-sm" href="@Url.Action("FollowPeople", new { followed_id = item.mem_id }) ">Follow</a>
+                |
                 @Html.ActionLink("Details", "DetailsPublic", new { id = item.mem_id })
                 @*@Html.ActionLink("Delete", "Delete", new { id = item.mem_id })*@
             </td>

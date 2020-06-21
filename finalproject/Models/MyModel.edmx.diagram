@@ -33,6 +33,10 @@
         <AssociationConnector Association="lastDbModel.FK__BTransact__Book___4CA06362" />
         <AssociationConnector Association="lastDbModel.FK__Tbl_Books__Vendo__29572725" />
         <AssociationConnector Association="lastDbModel.FK_tbl_wishlist_Tbl_Books" />
+        <EntityTypeShape EntityType="lastDbModel.tbl_follow" Width="1.5" PointX="6.375" PointY="9.25" />
+        <EntityTypeShape EntityType="lastDbModel.tbl_subscribe" Width="1.5" PointX="1.125" PointY="1.625" />
+        <AssociationConnector Association="lastDbModel.FK_tbl_follow_tbl_member" />
+        <AssociationConnector Association="lastDbModel.FK_tbl_follow_tbl_member1" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

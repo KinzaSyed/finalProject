@@ -23,6 +23,8 @@ namespace finalproject.Models
             this.EBook_Review_db = new HashSet<EBook_Review_db>();
             this.Reading_History = new HashSet<Reading_History>();
             this.tbl_wishlist = new HashSet<tbl_wishlist>();
+            this.tbl_follow = new HashSet<tbl_follow>();
+            this.tbl_follow1 = new HashSet<tbl_follow>();
         }
     
         public int mem_id { get; set; }
@@ -43,5 +45,9 @@ namespace finalproject.Models
         public virtual ICollection<Reading_History> Reading_History { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_wishlist> tbl_wishlist { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbl_follow> tbl_follow { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbl_follow> tbl_follow1 { get; set; }
     }
 }

@@ -16,12 +16,24 @@ namespace finalproject.Controllers
 
         // GET: tbl_wishlist
 
-        
+        //public ActionResult Index()
+        //{
+        //    int memid = Convert.ToInt32(Session["mem_id"]);
+        //    List<Ebooks_db> Booklist = db.Ebooks_db.Where(x => x.mem_id == memid).ToList();
+        //    List<Tbl_for_Ebooks> booklistdis = Booklist.Select(x => new Tbl_for_Ebooks
+        //    {
+        //    }).ToList();
+        //    return View(booklistdis);
+        //}
 
-             public ActionResult wishlistwindow()
+        public ActionResult wishlistwindow()
         {
-            var tbl_wishlist1 = db.tbl_wishlist.Include(t => t.Tbl_Books).Include(t => t.tbl_member);
-            return View(tbl_wishlist1.ToList());
+            int memid = Convert.ToInt32(Session["mem_id"]);
+            List<tbl_wishlist> wish = db.tbl_wishlist.Where(x=>x.mem_Id == memid).ToList();
+            var tbl_wishlist1 = 
+                db.tbl_wishlist.Include(t => t.Tbl_Books).Include(t => t.tbl_member);
+
+            return View(wish);
         }
 
         public ActionResult Index()

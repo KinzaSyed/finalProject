@@ -144,5 +144,24 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="tbl_follow">
+      <EntityTypeMapping TypeName="lastDbModel.tbl_follow">
+        <MappingFragment StoreEntitySet="tbl_follow">
+          <ScalarProperty Name="followed_id" ColumnName="followed_id" />
+          <ScalarProperty Name="followedby_id" ColumnName="followedby_id" />
+          <ScalarProperty Name="follow_time" ColumnName="follow_time" />
+          <ScalarProperty Name="follow_id" ColumnName="follow_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_subscribe">
+      <EntityTypeMapping TypeName="lastDbModel.tbl_subscribe">
+        <MappingFragment StoreEntitySet="tbl_subscribe">
+          <ScalarProperty Name="sub_date" ColumnName="sub_date" />
+          <ScalarProperty Name="sub_email" ColumnName="sub_email" />
+          <ScalarProperty Name="sub_id" ColumnName="sub_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

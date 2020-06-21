@@ -1,0 +1,18 @@
+﻿@model finalproject.Models.tbl_subscribe
+@{
+                /**/
+
+                Layout = null;
+
+}
+
+
+@using (Html.BeginForm("subscribe", "Home",
+    FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+<input  type="text" placeholder="baabaa@gmail.com" name="subscriber_email" />
+    @Html.ValidationMessageFor(x => x.sub_email)
+
+    <input type="submit" value="Subscribe" class="btn btn-block btn-success" />
+
+}

@@ -104,6 +104,15 @@
           <Property Name="cat_id" Type="int" />
           <Property Name="Vendor_id" Type="int" />
         </EntityType>
+        <EntityType Name="tbl_follow">
+          <Key>
+            <PropertyRef Name="follow_id" />
+          </Key>
+          <Property Name="follow_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="follow_time" Type="datetime" />
+          <Property Name="followedby_id" Type="int" Nullable="false" />
+          <Property Name="followed_id" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="tbl_member">
           <Key>
             <PropertyRef Name="mem_id" />
@@ -113,6 +122,14 @@
           <Property Name="mem_email" Type="varchar" MaxLength="50" />
           <Property Name="mem_contact" Type="varchar" MaxLength="50" />
           <Property Name="mem_password" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_subscribe">
+          <Key>
+            <PropertyRef Name="sub_id" />
+          </Key>
+          <Property Name="sub_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sub_email" Type="varchar" MaxLength="50" />
+          <Property Name="sub_date" Type="datetime" />
         </EntityType>
         <EntityType Name="Tbl_Vendorr">
           <Key>
@@ -304,6 +321,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_tbl_follow_tbl_member">
+          <End Role="tbl_member" Type="Self.tbl_member" Multiplicity="1" />
+          <End Role="tbl_follow" Type="Self.tbl_follow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_member">
+              <PropertyRef Name="mem_id" />
+            </Principal>
+            <Dependent Role="tbl_follow">
+              <PropertyRef Name="followedby_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_follow_tbl_member1">
+          <End Role="tbl_member" Type="Self.tbl_member" Multiplicity="1" />
+          <End Role="tbl_follow" Type="Self.tbl_follow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_member">
+              <PropertyRef Name="mem_id" />
+            </Principal>
+            <Dependent Role="tbl_follow">
+              <PropertyRef Name="followed_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tbl_wishlist_Tbl_Books">
           <End Role="Tbl_Books" Type="Self.Tbl_Books" Multiplicity="1" />
           <End Role="tbl_wishlist" Type="Self.tbl_wishlist" Multiplicity="*" />
@@ -338,7 +379,9 @@
           <EntitySet Name="Reading_History" EntityType="Self.Reading_History" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_admin" EntityType="Self.Tbl_admin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_Books" EntityType="Self.Tbl_Books" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_follow" EntityType="Self.tbl_follow" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_member" EntityType="Self.tbl_member" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_subscribe" EntityType="Self.tbl_subscribe" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_Vendorr" EntityType="Self.Tbl_Vendorr" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_wishlist" EntityType="Self.tbl_wishlist" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__BTransact__Book___4CA06362" Association="Self.FK__BTransact__Book___4CA06362">
@@ -396,6 +439,14 @@
           <AssociationSet Name="FK_Reading_History_tbl_member" Association="Self.FK_Reading_History_tbl_member">
             <End Role="tbl_member" EntitySet="tbl_member" />
             <End Role="Reading_History" EntitySet="Reading_History" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_follow_tbl_member" Association="Self.FK_tbl_follow_tbl_member">
+            <End Role="tbl_member" EntitySet="tbl_member" />
+            <End Role="tbl_follow" EntitySet="tbl_follow" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_follow_tbl_member1" Association="Self.FK_tbl_follow_tbl_member1">
+            <End Role="tbl_member" EntitySet="tbl_member" />
+            <End Role="tbl_follow" EntitySet="tbl_follow" />
           </AssociationSet>
           <AssociationSet Name="FK_tbl_wishlist_Tbl_Books" Association="Self.FK_tbl_wishlist_Tbl_Books">
             <End Role="Tbl_Books" EntitySet="Tbl_Books" />
@@ -487,6 +538,16 @@
             <End Role="Tbl_Books" EntitySet="Tbl_Books" />
             <End Role="tbl_wishlist" EntitySet="tbl_wishlist" />
           </AssociationSet>
+          <EntitySet Name="tbl_follow" EntityType="lastDbModel.tbl_follow" />
+          <EntitySet Name="tbl_subscribe" EntityType="lastDbModel.tbl_subscribe" />
+          <AssociationSet Name="FK_tbl_follow_tbl_member" Association="lastDbModel.FK_tbl_follow_tbl_member">
+            <End Role="tbl_member" EntitySet="tbl_member" />
+            <End Role="tbl_follow" EntitySet="tbl_follow" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_follow_tbl_member1" Association="lastDbModel.FK_tbl_follow_tbl_member1">
+            <End Role="tbl_member" EntitySet="tbl_member" />
+            <End Role="tbl_follow" EntitySet="tbl_follow" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Book_categoryy">
           <Key>
@@ -513,6 +574,8 @@
           <NavigationProperty Name="EBook_Review_db" Relationship="lastDbModel.FK_EBook_Review_db_tbl_member" FromRole="tbl_member" ToRole="EBook_Review_db" />
           <NavigationProperty Name="Reading_History" Relationship="lastDbModel.FK_Reading_History_tbl_member" FromRole="tbl_member" ToRole="Reading_History" />
           <NavigationProperty Name="tbl_wishlist" Relationship="lastDbModel.FK_tbl_wishlist_tbl_member" FromRole="tbl_member" ToRole="tbl_wishlist" />
+          <NavigationProperty Name="tbl_follow" Relationship="lastDbModel.FK_tbl_follow_tbl_member" FromRole="tbl_member" ToRole="tbl_follow" />
+          <NavigationProperty Name="tbl_follow1" Relationship="lastDbModel.FK_tbl_follow_tbl_member1" FromRole="tbl_member" ToRole="tbl_follow" />
         </EntityType>
         <EntityType Name="Tbl_admin">
           <Key>
@@ -843,6 +906,49 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="tbl_follow">
+          <Key>
+            <PropertyRef Name="follow_id" />
+          </Key>
+          <Property Name="follow_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="follow_time" Type="DateTime" Precision="3" />
+          <Property Name="followedby_id" Type="Int32" Nullable="false" />
+          <Property Name="followed_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tbl_member" Relationship="lastDbModel.FK_tbl_follow_tbl_member" FromRole="tbl_follow" ToRole="tbl_member" />
+          <NavigationProperty Name="tbl_member1" Relationship="lastDbModel.FK_tbl_follow_tbl_member1" FromRole="tbl_follow" ToRole="tbl_member" />
+        </EntityType>
+        <EntityType Name="tbl_subscribe">
+          <Key>
+            <PropertyRef Name="sub_id" />
+          </Key>
+          <Property Name="sub_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sub_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="sub_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <Association Name="FK_tbl_follow_tbl_member">
+          <End Type="lastDbModel.tbl_member" Role="tbl_member" Multiplicity="1" />
+          <End Type="lastDbModel.tbl_follow" Role="tbl_follow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_member">
+              <PropertyRef Name="mem_id" />
+            </Principal>
+            <Dependent Role="tbl_follow">
+              <PropertyRef Name="followedby_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_follow_tbl_member1">
+          <End Type="lastDbModel.tbl_member" Role="tbl_member" Multiplicity="1" />
+          <End Type="lastDbModel.tbl_follow" Role="tbl_follow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_member">
+              <PropertyRef Name="mem_id" />
+            </Principal>
+            <Dependent Role="tbl_follow">
+              <PropertyRef Name="followed_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -989,6 +1095,25 @@
                 <ScalarProperty Name="Book_Edition" ColumnName="Book_Edition" />
                 <ScalarProperty Name="Book_name" ColumnName="Book_name" />
                 <ScalarProperty Name="Book_id" ColumnName="Book_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_follow">
+            <EntityTypeMapping TypeName="lastDbModel.tbl_follow">
+              <MappingFragment StoreEntitySet="tbl_follow">
+                <ScalarProperty Name="followed_id" ColumnName="followed_id" />
+                <ScalarProperty Name="followedby_id" ColumnName="followedby_id" />
+                <ScalarProperty Name="follow_time" ColumnName="follow_time" />
+                <ScalarProperty Name="follow_id" ColumnName="follow_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_subscribe">
+            <EntityTypeMapping TypeName="lastDbModel.tbl_subscribe">
+              <MappingFragment StoreEntitySet="tbl_subscribe">
+                <ScalarProperty Name="sub_date" ColumnName="sub_date" />
+                <ScalarProperty Name="sub_email" ColumnName="sub_email" />
+                <ScalarProperty Name="sub_id" ColumnName="sub_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

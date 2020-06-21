@@ -14,6 +14,20 @@ namespace finalproject.Controllers
     {
         private lastDbEntities db = new lastDbEntities();
 
+
+       
+            public ActionResult FollowPeople(tbl_follow follow, int followed_id)
+        {
+            string mem_email = Session["mem_email"].ToString();
+            follow.follow_time = DateTime.Now;
+            follow.followedby_id = db.tbl_member.Single(a => a.mem_email.Equals(mem_email)).mem_id;
+            follow.followed_id = followed_id;
+            db.tbl_follow.Add(follow);
+            db.SaveChanges();
+            return RedirectToAction("PublicProfile", "Tbl_member");
+
+        }
+
         public ActionResult DetailsPublic(int? id)
         {
             if (id == null)
@@ -27,12 +41,31 @@ namespace finalproject.Controllers
             }
             return View(tbl_member);
         }
-        public ActionResult PublicProfile()
-        {
+        //public ActionResult PublicProfile()
+        //{
+        //    var members = from A in db.tbl_follow
+        //                  join Bi in db.tbl_member
+        //                  on A.followed_id
+        //                  equals Bi.mem_id
+                          
+        //                  /*where A.follow_id*/ into fol
+        //                  from tbl_follow in fol.Distinct()
+                          
+        //                  select new { memid = tbl_follow.mem_id };
+        //    //ye error ha
+        //    //is null
+        //    //select B.mem_id;
+        //    List<tbl_member> memberList = new List<tbl_member>();
+        //    foreach (var member in members)
+        //    {
+        //        var mem = db.tbl_member.Where(x => x.mem_id == member.memid).First();
+        //        memberList.Add(mem);
+        //    }
+               
 
-            return View(db.tbl_member.ToList());
+        //    return View(memberList);
           
-        }
+        //}
 
 
         public ActionResult Login()
@@ -78,7 +111,7 @@ namespace finalproject.Controllers
             var BestsellingBooks =(from item in db.BTransactions
              group item.Transaction_qty by item.Book_id into g
             orderby g.Sum() descending
-            select g.Key).Take(5);
+            select g.Key).Take(2);
             List<Tbl_Books> books = new List<Tbl_Books>();
             foreach(var bookid in BestsellingBooks)
             {
