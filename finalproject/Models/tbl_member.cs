@@ -17,14 +17,18 @@ namespace finalproject.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tbl_member()
         {
-            this.Invoices = new HashSet<Invoice>();
             this.Book_Review = new HashSet<Book_Review>();
-            this.Ebooks_db = new HashSet<Ebooks_db>();
             this.EBook_Review_db = new HashSet<EBook_Review_db>();
+            this.Ebooks_db = new HashSet<Ebooks_db>();
+            this.Invoices = new HashSet<Invoice>();
             this.Reading_History = new HashSet<Reading_History>();
-            this.tbl_wishlist = new HashSet<tbl_wishlist>();
             this.tbl_follow = new HashSet<tbl_follow>();
             this.tbl_follow1 = new HashSet<tbl_follow>();
+            this.tbl_wishlist = new HashSet<tbl_wishlist>();
+            this.tbl_blog = new HashSet<tbl_blog>();
+            this.tbl_cmnts = new HashSet<tbl_cmnts>();
+            this.tbl_group = new HashSet<tbl_group>();
+            this.tbl_group1 = new HashSet<tbl_group>();
         }
     
         public int mem_id { get; set; }
@@ -32,22 +36,32 @@ namespace finalproject.Models
         public string mem_email { get; set; }
         public string mem_contact { get; set; }
         public string mem_password { get; set; }
+        public string mem_address { get; set; }
+        public Nullable<System.DateTime> mem_dob { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Invoice> Invoices { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Book_Review> Book_Review { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Ebooks_db> Ebooks_db { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EBook_Review_db> EBook_Review_db { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Reading_History> Reading_History { get; set; }
+        public virtual ICollection<Ebooks_db> Ebooks_db { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbl_wishlist> tbl_wishlist { get; set; }
+        public virtual ICollection<Invoice> Invoices { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Reading_History> Reading_History { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_follow> tbl_follow { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_follow> tbl_follow1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbl_wishlist> tbl_wishlist { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbl_blog> tbl_blog { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbl_cmnts> tbl_cmnts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbl_group> tbl_group { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbl_group> tbl_group1 { get; set; }
     }
 }

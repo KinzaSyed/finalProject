@@ -85,6 +85,18 @@
     <Property Name="Admin_contact" Type="varchar" MaxLength="50" />
     <Property Name="Admin_status" Type="varchar" MaxLength="50" />
   </EntityType>
+  <EntityType Name="tbl_blog">
+    <Key>
+      <PropertyRef Name="blog_id" />
+    </Key>
+    <Property Name="blog_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="blog_datetime" Type="datetime" Nullable="false" />
+    <Property Name="blog_groupid" Type="int" Nullable="false" />
+    <Property Name="blog_createdby" Type="int" Nullable="false" />
+    <Property Name="blog_img" Type="varchar(max)" />
+    <Property Name="blog_title" Type="varchar" MaxLength="500" />
+    <Property Name="blog_body" Type="varbinary" MaxLength="500" />
+  </EntityType>
   <EntityType Name="Tbl_Books">
     <Key>
       <PropertyRef Name="Book_id" />
@@ -99,6 +111,25 @@
     <Property Name="cat_id" Type="int" />
     <Property Name="Vendor_id" Type="int" />
   </EntityType>
+  <EntityType Name="tbl_cmnts">
+    <Key>
+      <PropertyRef Name="cmnts_id" />
+    </Key>
+    <Property Name="cmnts_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cmnts_createdby" Type="int" Nullable="false" />
+    <Property Name="cmnts_datetime" Type="datetime" Nullable="false" />
+    <Property Name="cmnts_content" Type="varchar" MaxLength="500" />
+    <Property Name="cmnts_blogid" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_contactus">
+    <Key>
+      <PropertyRef Name="contactus_id" />
+    </Key>
+    <Property Name="contactus_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="contactys_datetime" Type="datetime" Nullable="false" />
+    <Property Name="contactus_email" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="contactus_content" Type="varchar" MaxLength="500" Nullable="false" />
+  </EntityType>
   <EntityType Name="tbl_follow">
     <Key>
       <PropertyRef Name="follow_id" />
@@ -107,6 +138,15 @@
     <Property Name="follow_time" Type="datetime" />
     <Property Name="followedby_id" Type="int" Nullable="false" />
     <Property Name="followed_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_group">
+    <Key>
+      <PropertyRef Name="group_id" />
+    </Key>
+    <Property Name="group_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="group_datetime" Type="datetime" Nullable="false" />
+    <Property Name="group_members" Type="int" Nullable="false" />
+    <Property Name="group_createdby" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="tbl_member">
     <Key>
@@ -117,6 +157,8 @@
     <Property Name="mem_email" Type="varchar" MaxLength="50" />
     <Property Name="mem_contact" Type="varchar" MaxLength="50" />
     <Property Name="mem_password" Type="varchar" MaxLength="50" />
+    <Property Name="mem_address" Type="varchar" MaxLength="50" />
+    <Property Name="mem_dob" Type="date" />
   </EntityType>
   <EntityType Name="tbl_subscribe">
     <Key>
@@ -316,6 +358,54 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_tbl_blog_tbl_group">
+    <End Role="tbl_group" Type="Self.tbl_group" Multiplicity="1" />
+    <End Role="tbl_blog" Type="Self.tbl_blog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_group">
+        <PropertyRef Name="group_id" />
+      </Principal>
+      <Dependent Role="tbl_blog">
+        <PropertyRef Name="blog_groupid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_blog_tbl_member">
+    <End Role="tbl_member" Type="Self.tbl_member" Multiplicity="1" />
+    <End Role="tbl_blog" Type="Self.tbl_blog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_member">
+        <PropertyRef Name="mem_id" />
+      </Principal>
+      <Dependent Role="tbl_blog">
+        <PropertyRef Name="blog_createdby" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_cmnts_tbl_blog">
+    <End Role="tbl_blog" Type="Self.tbl_blog" Multiplicity="1" />
+    <End Role="tbl_cmnts" Type="Self.tbl_cmnts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_blog">
+        <PropertyRef Name="blog_id" />
+      </Principal>
+      <Dependent Role="tbl_cmnts">
+        <PropertyRef Name="cmnts_blogid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_cmnts_tbl_member">
+    <End Role="tbl_member" Type="Self.tbl_member" Multiplicity="1" />
+    <End Role="tbl_cmnts" Type="Self.tbl_cmnts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_member">
+        <PropertyRef Name="mem_id" />
+      </Principal>
+      <Dependent Role="tbl_cmnts">
+        <PropertyRef Name="cmnts_createdby" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_tbl_follow_tbl_member">
     <End Role="tbl_member" Type="Self.tbl_member" Multiplicity="1" />
     <End Role="tbl_follow" Type="Self.tbl_follow" Multiplicity="*" />
@@ -337,6 +427,30 @@
       </Principal>
       <Dependent Role="tbl_follow">
         <PropertyRef Name="followed_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_group_tbl_member">
+    <End Role="tbl_member" Type="Self.tbl_member" Multiplicity="1" />
+    <End Role="tbl_group" Type="Self.tbl_group" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_member">
+        <PropertyRef Name="mem_id" />
+      </Principal>
+      <Dependent Role="tbl_group">
+        <PropertyRef Name="group_createdby" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_group_tbl_member1">
+    <End Role="tbl_member" Type="Self.tbl_member" Multiplicity="1" />
+    <End Role="tbl_group" Type="Self.tbl_group" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_member">
+        <PropertyRef Name="mem_id" />
+      </Principal>
+      <Dependent Role="tbl_group">
+        <PropertyRef Name="group_members" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -373,8 +487,12 @@
     <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Reading_History" EntityType="Self.Reading_History" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tbl_admin" EntityType="Self.Tbl_admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_blog" EntityType="Self.tbl_blog" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tbl_Books" EntityType="Self.Tbl_Books" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_cmnts" EntityType="Self.tbl_cmnts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_contactus" EntityType="Self.tbl_contactus" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_follow" EntityType="Self.tbl_follow" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_group" EntityType="Self.tbl_group" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_member" EntityType="Self.tbl_member" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_subscribe" EntityType="Self.tbl_subscribe" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tbl_Vendorr" EntityType="Self.Tbl_Vendorr" Schema="dbo" store:Type="Tables" />
@@ -435,6 +553,22 @@
       <End Role="tbl_member" EntitySet="tbl_member" />
       <End Role="Reading_History" EntitySet="Reading_History" />
     </AssociationSet>
+    <AssociationSet Name="FK_tbl_blog_tbl_group" Association="Self.FK_tbl_blog_tbl_group">
+      <End Role="tbl_group" EntitySet="tbl_group" />
+      <End Role="tbl_blog" EntitySet="tbl_blog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_blog_tbl_member" Association="Self.FK_tbl_blog_tbl_member">
+      <End Role="tbl_member" EntitySet="tbl_member" />
+      <End Role="tbl_blog" EntitySet="tbl_blog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_cmnts_tbl_blog" Association="Self.FK_tbl_cmnts_tbl_blog">
+      <End Role="tbl_blog" EntitySet="tbl_blog" />
+      <End Role="tbl_cmnts" EntitySet="tbl_cmnts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_cmnts_tbl_member" Association="Self.FK_tbl_cmnts_tbl_member">
+      <End Role="tbl_member" EntitySet="tbl_member" />
+      <End Role="tbl_cmnts" EntitySet="tbl_cmnts" />
+    </AssociationSet>
     <AssociationSet Name="FK_tbl_follow_tbl_member" Association="Self.FK_tbl_follow_tbl_member">
       <End Role="tbl_member" EntitySet="tbl_member" />
       <End Role="tbl_follow" EntitySet="tbl_follow" />
@@ -442,6 +576,14 @@
     <AssociationSet Name="FK_tbl_follow_tbl_member1" Association="Self.FK_tbl_follow_tbl_member1">
       <End Role="tbl_member" EntitySet="tbl_member" />
       <End Role="tbl_follow" EntitySet="tbl_follow" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_group_tbl_member" Association="Self.FK_tbl_group_tbl_member">
+      <End Role="tbl_member" EntitySet="tbl_member" />
+      <End Role="tbl_group" EntitySet="tbl_group" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_group_tbl_member1" Association="Self.FK_tbl_group_tbl_member1">
+      <End Role="tbl_member" EntitySet="tbl_member" />
+      <End Role="tbl_group" EntitySet="tbl_group" />
     </AssociationSet>
     <AssociationSet Name="FK_tbl_wishlist_Tbl_Books" Association="Self.FK_tbl_wishlist_Tbl_Books">
       <End Role="Tbl_Books" EntitySet="Tbl_Books" />

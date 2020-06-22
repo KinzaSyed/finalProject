@@ -9,7 +9,7 @@
 {
 <h3> Welcome   @Html.DisplayFor(model => model.Vendor_name) To Vendor Panel</h3>
 
-}
+
 
 
 <div>
@@ -78,3 +78,8 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.Vendor_id }) 
  
 </p>
+}
+else
+{
+    <h1>Please Login to view this page</h1>
+}

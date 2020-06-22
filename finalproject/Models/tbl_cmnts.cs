@@ -12,16 +12,15 @@ namespace finalproject.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Book_Review
+    public partial class tbl_cmnts
     {
-        public int Review_id { get; set; }
-        public string ContentC { get; set; }
-        public double Rating { get; set; }
-        public System.DateTime DatePost { get; set; }
-        public int BookId { get; set; }
-        public int memberId { get; set; }
+        public int cmnts_id { get; set; }
+        public int cmnts_createdby { get; set; }
+        public System.DateTime cmnts_datetime { get; set; }
+        public string cmnts_content { get; set; }
+        public int cmnts_blogid { get; set; }
     
-        public virtual Tbl_Books Tbl_Books { get; set; }
+        public virtual tbl_blog tbl_blog { get; set; }
         public virtual tbl_member tbl_member { get; set; }
     }
 }

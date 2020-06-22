@@ -32,10 +32,10 @@ namespace finalproject.Models
         public int mem_id { get; set; }
     
         public virtual Book_categoryy Book_categoryy { get; set; }
-        public virtual tbl_member tbl_member { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EBook_Review_db> EBook_Review_db { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reading_History> Reading_History { get; set; }
+        public virtual tbl_member tbl_member { get; set; }
     }
 }

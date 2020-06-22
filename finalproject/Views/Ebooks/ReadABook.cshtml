@@ -6,6 +6,11 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <h1>Available E-Book:</h1>
+@if (Session["mem_id"] != null && Session["mem_email"] != null)
+{
+
+
+
 
 <div class="row" style="margin-bottom: 100px;">
 
@@ -15,17 +20,17 @@
 
         foreach (var item in Model)
         {
-    <div class="col-lg-3 col-md-3" style="height:300px;margin-top:50px;margin-bottom:100px ">
-        <img class="img-rounded img-responsive cimg" style="height:100%; width:100%; border:#9974AA solid ;border-width:1px" src="@Url.Content(item.Ebook_img)" />
-        <h4 style="color:#808080;font-family:'Arial Rounded MT' ;text-align: center">@item.Ebook_name </h4>
-        <h4 style="color:#808080;font-family:'Arial Rounded MT' ;text-align: center"> @item.cat_name</h4>
+            <div class="col-lg-3 col-md-3" style="height:300px;margin-top:50px;margin-bottom:100px ">
+                <img class="img-rounded img-responsive cimg" style="height:100%; width:100%; border:#9974AA solid ;border-width:1px" src="@Url.Content(item.Ebook_img)" />
+                <h4 style="color:#808080;font-family:'Arial Rounded MT' ;text-align: center">@item.Ebook_name </h4>
+                <h4 style="color:#808080;font-family:'Arial Rounded MT' ;text-align: center"> @item.cat_name</h4>
 
-       
-        <h4 style="text-align: center; "><a class="btn btn-success btn-sm" href="@Url.Action("addtoReadings", new { id = item.Ebook_id })"><i style="font-size:20px" class="fa">&#xf07a;</i> Add to Readings</a> <a class="btn btn-info btn-md" href="@Url.Action("Details", "Ebooks",new { id = item.Ebook_id })">Details</a></h4>
-        @*<h3 style="text-align: center; "><a class="btn btn-info btn-sm" href="@Url.Action("Details", "Ebooks",new { id = item.Ebook_id })">Details</a></h3>*@
-        <br />
-        <br />
-    </div>
+
+                <h4 style="text-align: center; "><a class="btn btn-success btn-sm" href="@Url.Action("addtoReadings", new { id = item.Ebook_id })"><i style="font-size:20px" class="fa">&#xf07a;</i> Add to Readings</a> <a class="btn btn-info btn-md" href="@Url.Action("Details", "Ebooks", new { id = item.Ebook_id })">Details</a></h4>
+                @*<h3 style="text-align: center; "><a class="btn btn-info btn-sm" href="@Url.Action("Details", "Ebooks",new { id = item.Ebook_id })">Details</a></h3>*@
+                <br />
+                <br />
+            </div>
         }
 
 
@@ -37,3 +42,8 @@
 </div>
 
 
+}
+else
+{
+    <h1>Please Login to view this page</h1>
+}

@@ -10,17 +10,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="tbl_member">
-      <EntityTypeMapping TypeName="lastDbModel.tbl_member">
-        <MappingFragment StoreEntitySet="tbl_member">
-          <ScalarProperty Name="mem_password" ColumnName="mem_password" />
-          <ScalarProperty Name="mem_contact" ColumnName="mem_contact" />
-          <ScalarProperty Name="mem_email" ColumnName="mem_email" />
-          <ScalarProperty Name="mem_name" ColumnName="mem_name" />
-          <ScalarProperty Name="mem_id" ColumnName="mem_id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Tbl_admin">
       <EntityTypeMapping TypeName="lastDbModel.Tbl_admin">
         <MappingFragment StoreEntitySet="Tbl_admin">
@@ -160,6 +149,63 @@
           <ScalarProperty Name="sub_date" ColumnName="sub_date" />
           <ScalarProperty Name="sub_email" ColumnName="sub_email" />
           <ScalarProperty Name="sub_id" ColumnName="sub_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_member">
+      <EntityTypeMapping TypeName="lastDbModel.tbl_member">
+        <MappingFragment StoreEntitySet="tbl_member">
+          <ScalarProperty Name="mem_dob" ColumnName="mem_dob" />
+          <ScalarProperty Name="mem_address" ColumnName="mem_address" />
+          <ScalarProperty Name="mem_password" ColumnName="mem_password" />
+          <ScalarProperty Name="mem_contact" ColumnName="mem_contact" />
+          <ScalarProperty Name="mem_email" ColumnName="mem_email" />
+          <ScalarProperty Name="mem_name" ColumnName="mem_name" />
+          <ScalarProperty Name="mem_id" ColumnName="mem_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_blog">
+      <EntityTypeMapping TypeName="lastDbModel.tbl_blog">
+        <MappingFragment StoreEntitySet="tbl_blog">
+          <ScalarProperty Name="blog_body" ColumnName="blog_body" />
+          <ScalarProperty Name="blog_title" ColumnName="blog_title" />
+          <ScalarProperty Name="blog_img" ColumnName="blog_img" />
+          <ScalarProperty Name="blog_createdby" ColumnName="blog_createdby" />
+          <ScalarProperty Name="blog_groupid" ColumnName="blog_groupid" />
+          <ScalarProperty Name="blog_datetime" ColumnName="blog_datetime" />
+          <ScalarProperty Name="blog_id" ColumnName="blog_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_cmnts">
+      <EntityTypeMapping TypeName="lastDbModel.tbl_cmnts">
+        <MappingFragment StoreEntitySet="tbl_cmnts">
+          <ScalarProperty Name="cmnts_blogid" ColumnName="cmnts_blogid" />
+          <ScalarProperty Name="cmnts_content" ColumnName="cmnts_content" />
+          <ScalarProperty Name="cmnts_datetime" ColumnName="cmnts_datetime" />
+          <ScalarProperty Name="cmnts_createdby" ColumnName="cmnts_createdby" />
+          <ScalarProperty Name="cmnts_id" ColumnName="cmnts_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_contactus">
+      <EntityTypeMapping TypeName="lastDbModel.tbl_contactus">
+        <MappingFragment StoreEntitySet="tbl_contactus">
+          <ScalarProperty Name="contactus_content" ColumnName="contactus_content" />
+          <ScalarProperty Name="contactus_email" ColumnName="contactus_email" />
+          <ScalarProperty Name="contactys_datetime" ColumnName="contactys_datetime" />
+          <ScalarProperty Name="contactus_id" ColumnName="contactus_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_group">
+      <EntityTypeMapping TypeName="lastDbModel.tbl_group">
+        <MappingFragment StoreEntitySet="tbl_group">
+          <ScalarProperty Name="group_createdby" ColumnName="group_createdby" />
+          <ScalarProperty Name="group_members" ColumnName="group_members" />
+          <ScalarProperty Name="group_datetime" ColumnName="group_datetime" />
+          <ScalarProperty Name="group_id" ColumnName="group_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

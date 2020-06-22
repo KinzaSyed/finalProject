@@ -193,7 +193,16 @@
     <Compile Include="Models\Tbl_admin.cs">
       <DependentUpon>MyModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\tbl_blog.cs">
+      <DependentUpon>MyModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Tbl_Books.cs">
+      <DependentUpon>MyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_cmnts.cs">
+      <DependentUpon>MyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_contactus.cs">
       <DependentUpon>MyModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbl_follow.cs">
@@ -201,6 +210,9 @@
     </Compile>
     <Compile Include="Models\Tbl_for_Ebooks.cs" />
     <Compile Include="Models\Tbl_for_books.cs" />
+    <Compile Include="Models\tbl_group.cs">
+      <DependentUpon>MyModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tbl_member.cs">
       <DependentUpon>MyModel.tt</DependentUpon>
     </Compile>

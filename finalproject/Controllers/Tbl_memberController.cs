@@ -197,7 +197,7 @@ namespace finalproject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "mem_id,mem_name,mem_email,mem_contact,mem_password")] tbl_member tbl_member)
+        public ActionResult Create([Bind(Include = "mem_id,mem_name,mem_email,mem_contact,mem_password,mem_address,mem_dob")] tbl_member tbl_member)
         {
             if (ModelState.IsValid)
             {
@@ -229,7 +229,7 @@ namespace finalproject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "mem_id,mem_name,mem_email,mem_contact,mem_password")] tbl_member tbl_member)
+        public ActionResult Edit([Bind(Include = "mem_id,mem_name,mem_email,mem_contact,mem_password,mem_address,mem_dob")] tbl_member tbl_member)
         {
             if (ModelState.IsValid)
             {

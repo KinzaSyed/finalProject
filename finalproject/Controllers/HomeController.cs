@@ -12,6 +12,15 @@ namespace finalproject.Controllers
 
         lastDbEntities db = new lastDbEntities();
     
+        public ActionResult ContactUs(tbl_contactus contactus ,string email, string content)
+        {
+            contactus.contactus_content = content;
+            contactus.contactus_email = email;
+            contactus.contactys_datetime = DateTime.Now;
+            db.tbl_contactus.Add(contactus);
+            db.SaveChanges();
+            return RedirectToAction("Contact");
+        }
         public ActionResult subscribe(tbl_subscribe subscribe,string subscriber_email)
         {
 

@@ -2,7 +2,6 @@
 <Schema Namespace="lastDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityContainer Name="lastDbEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Book_categoryy" EntityType="lastDbModel.Book_categoryy" />
-    <EntitySet Name="tbl_member" EntityType="lastDbModel.tbl_member" />
     <EntitySet Name="Tbl_admin" EntityType="lastDbModel.Tbl_admin" />
     <EntitySet Name="Tbl_Vendorr" EntityType="lastDbModel.Tbl_Vendorr" />
     <AssociationSet Name="FK__Tbl_Vendo__Admin__1ED998B2" Association="lastDbModel.FK__Tbl_Vendo__Admin__1ED998B2">
@@ -15,22 +14,10 @@
       <End Role="Invoice" EntitySet="Invoices" />
       <End Role="BTransaction" EntitySet="BTransactions" />
     </AssociationSet>
-    <AssociationSet Name="FK__Invoice__mem_id__49C3F6B7" Association="lastDbModel.FK__Invoice__mem_id__49C3F6B7">
-      <End Role="tbl_member" EntitySet="tbl_member" />
-      <End Role="Invoice" EntitySet="Invoices" />
-    </AssociationSet>
     <EntitySet Name="Book_Review" EntityType="lastDbModel.Book_Review" />
-    <AssociationSet Name="FK_Book_Review_tbl_member" Association="lastDbModel.FK_Book_Review_tbl_member">
-      <End Role="tbl_member" EntitySet="tbl_member" />
-      <End Role="Book_Review" EntitySet="Book_Review" />
-    </AssociationSet>
     <EntitySet Name="Ebooks_db" EntityType="lastDbModel.Ebooks_db" />
     <AssociationSet Name="FK_Ebooks_db_Book_categoryy" Association="lastDbModel.FK_Ebooks_db_Book_categoryy">
       <End Role="Book_categoryy" EntitySet="Book_categoryy" />
-      <End Role="Ebooks_db" EntitySet="Ebooks_db" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Ebooks_db_tbl_member" Association="lastDbModel.FK_Ebooks_db_tbl_member">
-      <End Role="tbl_member" EntitySet="tbl_member" />
       <End Role="Ebooks_db" EntitySet="Ebooks_db" />
     </AssociationSet>
     <EntitySet Name="EBook_Review_db" EntityType="lastDbModel.EBook_Review_db" />
@@ -38,24 +25,12 @@
       <End Role="Ebooks_db" EntitySet="Ebooks_db" />
       <End Role="EBook_Review_db" EntitySet="EBook_Review_db" />
     </AssociationSet>
-    <AssociationSet Name="FK_EBook_Review_db_tbl_member" Association="lastDbModel.FK_EBook_Review_db_tbl_member">
-      <End Role="tbl_member" EntitySet="tbl_member" />
-      <End Role="EBook_Review_db" EntitySet="EBook_Review_db" />
-    </AssociationSet>
     <EntitySet Name="Reading_History" EntityType="lastDbModel.Reading_History" />
     <AssociationSet Name="FK_Reading_History_Ebooks_db" Association="lastDbModel.FK_Reading_History_Ebooks_db">
       <End Role="Ebooks_db" EntitySet="Ebooks_db" />
       <End Role="Reading_History" EntitySet="Reading_History" />
     </AssociationSet>
-    <AssociationSet Name="FK_Reading_History_tbl_member" Association="lastDbModel.FK_Reading_History_tbl_member">
-      <End Role="tbl_member" EntitySet="tbl_member" />
-      <End Role="Reading_History" EntitySet="Reading_History" />
-    </AssociationSet>
     <EntitySet Name="tbl_wishlist" EntityType="lastDbModel.tbl_wishlist" />
-    <AssociationSet Name="FK_tbl_wishlist_tbl_member" Association="lastDbModel.FK_tbl_wishlist_tbl_member">
-      <End Role="tbl_member" EntitySet="tbl_member" />
-      <End Role="tbl_wishlist" EntitySet="tbl_wishlist" />
-    </AssociationSet>
     <EntitySet Name="Tbl_Books" EntityType="lastDbModel.Tbl_Books" />
     <AssociationSet Name="FK__Tbl_Books__cat_i__286302EC" Association="lastDbModel.FK__Tbl_Books__cat_i__286302EC">
       <End Role="Book_categoryy" EntitySet="Book_categoryy" />
@@ -79,6 +54,27 @@
     </AssociationSet>
     <EntitySet Name="tbl_follow" EntityType="lastDbModel.tbl_follow" />
     <EntitySet Name="tbl_subscribe" EntityType="lastDbModel.tbl_subscribe" />
+    <EntitySet Name="tbl_member" EntityType="lastDbModel.tbl_member" />
+    <AssociationSet Name="FK_Book_Review_tbl_member" Association="lastDbModel.FK_Book_Review_tbl_member">
+      <End Role="tbl_member" EntitySet="tbl_member" />
+      <End Role="Book_Review" EntitySet="Book_Review" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EBook_Review_db_tbl_member" Association="lastDbModel.FK_EBook_Review_db_tbl_member">
+      <End Role="tbl_member" EntitySet="tbl_member" />
+      <End Role="EBook_Review_db" EntitySet="EBook_Review_db" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ebooks_db_tbl_member" Association="lastDbModel.FK_Ebooks_db_tbl_member">
+      <End Role="tbl_member" EntitySet="tbl_member" />
+      <End Role="Ebooks_db" EntitySet="Ebooks_db" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Invoice__mem_id__49C3F6B7" Association="lastDbModel.FK__Invoice__mem_id__49C3F6B7">
+      <End Role="tbl_member" EntitySet="tbl_member" />
+      <End Role="Invoice" EntitySet="Invoices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reading_History_tbl_member" Association="lastDbModel.FK_Reading_History_tbl_member">
+      <End Role="tbl_member" EntitySet="tbl_member" />
+      <End Role="Reading_History" EntitySet="Reading_History" />
+    </AssociationSet>
     <AssociationSet Name="FK_tbl_follow_tbl_member" Association="lastDbModel.FK_tbl_follow_tbl_member">
       <End Role="tbl_member" EntitySet="tbl_member" />
       <End Role="tbl_follow" EntitySet="tbl_follow" />
@@ -86,6 +82,38 @@
     <AssociationSet Name="FK_tbl_follow_tbl_member1" Association="lastDbModel.FK_tbl_follow_tbl_member1">
       <End Role="tbl_member" EntitySet="tbl_member" />
       <End Role="tbl_follow" EntitySet="tbl_follow" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_wishlist_tbl_member" Association="lastDbModel.FK_tbl_wishlist_tbl_member">
+      <End Role="tbl_member" EntitySet="tbl_member" />
+      <End Role="tbl_wishlist" EntitySet="tbl_wishlist" />
+    </AssociationSet>
+    <EntitySet Name="tbl_blog" EntityType="lastDbModel.tbl_blog" />
+    <EntitySet Name="tbl_cmnts" EntityType="lastDbModel.tbl_cmnts" />
+    <EntitySet Name="tbl_contactus" EntityType="lastDbModel.tbl_contactus" />
+    <EntitySet Name="tbl_group" EntityType="lastDbModel.tbl_group" />
+    <AssociationSet Name="FK_tbl_blog_tbl_group" Association="lastDbModel.FK_tbl_blog_tbl_group">
+      <End Role="tbl_group" EntitySet="tbl_group" />
+      <End Role="tbl_blog" EntitySet="tbl_blog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_blog_tbl_member" Association="lastDbModel.FK_tbl_blog_tbl_member">
+      <End Role="tbl_member" EntitySet="tbl_member" />
+      <End Role="tbl_blog" EntitySet="tbl_blog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_cmnts_tbl_blog" Association="lastDbModel.FK_tbl_cmnts_tbl_blog">
+      <End Role="tbl_blog" EntitySet="tbl_blog" />
+      <End Role="tbl_cmnts" EntitySet="tbl_cmnts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_cmnts_tbl_member" Association="lastDbModel.FK_tbl_cmnts_tbl_member">
+      <End Role="tbl_member" EntitySet="tbl_member" />
+      <End Role="tbl_cmnts" EntitySet="tbl_cmnts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_group_tbl_member" Association="lastDbModel.FK_tbl_group_tbl_member">
+      <End Role="tbl_member" EntitySet="tbl_member" />
+      <End Role="tbl_group" EntitySet="tbl_group" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_group_tbl_member1" Association="lastDbModel.FK_tbl_group_tbl_member1">
+      <End Role="tbl_member" EntitySet="tbl_member" />
+      <End Role="tbl_group" EntitySet="tbl_group" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Book_categoryy">
@@ -97,24 +125,6 @@
     <Property Name="cat_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Ebooks_db" Relationship="lastDbModel.FK_Ebooks_db_Book_categoryy" FromRole="Book_categoryy" ToRole="Ebooks_db" />
     <NavigationProperty Name="Tbl_Books" Relationship="lastDbModel.FK__Tbl_Books__cat_i__286302EC" FromRole="Book_categoryy" ToRole="Tbl_Books" />
-  </EntityType>
-  <EntityType Name="tbl_member">
-    <Key>
-      <PropertyRef Name="mem_id" />
-    </Key>
-    <Property Name="mem_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="mem_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="mem_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="mem_contact" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="mem_password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Invoices" Relationship="lastDbModel.FK__Invoice__mem_id__49C3F6B7" FromRole="tbl_member" ToRole="Invoice" />
-    <NavigationProperty Name="Book_Review" Relationship="lastDbModel.FK_Book_Review_tbl_member" FromRole="tbl_member" ToRole="Book_Review" />
-    <NavigationProperty Name="Ebooks_db" Relationship="lastDbModel.FK_Ebooks_db_tbl_member" FromRole="tbl_member" ToRole="Ebooks_db" />
-    <NavigationProperty Name="EBook_Review_db" Relationship="lastDbModel.FK_EBook_Review_db_tbl_member" FromRole="tbl_member" ToRole="EBook_Review_db" />
-    <NavigationProperty Name="Reading_History" Relationship="lastDbModel.FK_Reading_History_tbl_member" FromRole="tbl_member" ToRole="Reading_History" />
-    <NavigationProperty Name="tbl_wishlist" Relationship="lastDbModel.FK_tbl_wishlist_tbl_member" FromRole="tbl_member" ToRole="tbl_wishlist" />
-    <NavigationProperty Name="tbl_follow" Relationship="lastDbModel.FK_tbl_follow_tbl_member" FromRole="tbl_member" ToRole="tbl_follow" />
-    <NavigationProperty Name="tbl_follow1" Relationship="lastDbModel.FK_tbl_follow_tbl_member1" FromRole="tbl_member" ToRole="tbl_follow" />
   </EntityType>
   <EntityType Name="Tbl_admin">
     <Key>
@@ -192,18 +202,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Invoice__mem_id__49C3F6B7">
-    <End Type="lastDbModel.tbl_member" Role="tbl_member" Multiplicity="0..1" />
-    <End Type="lastDbModel.Invoice" Role="Invoice" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbl_member">
-        <PropertyRef Name="mem_id" />
-      </Principal>
-      <Dependent Role="Invoice">
-        <PropertyRef Name="mem_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityType Name="Book_Review">
     <Key>
       <PropertyRef Name="Review_id" />
@@ -214,21 +212,9 @@
     <Property Name="DatePost" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="BookId" Type="Int32" Nullable="false" />
     <Property Name="memberId" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="tbl_member" Relationship="lastDbModel.FK_Book_Review_tbl_member" FromRole="Book_Review" ToRole="tbl_member" />
     <NavigationProperty Name="Tbl_Books" Relationship="lastDbModel.FK_Book_Review_Tbl_Books" FromRole="Book_Review" ToRole="Tbl_Books" />
+    <NavigationProperty Name="tbl_member" Relationship="lastDbModel.FK_Book_Review_tbl_member" FromRole="Book_Review" ToRole="tbl_member" />
   </EntityType>
-  <Association Name="FK_Book_Review_tbl_member">
-    <End Type="lastDbModel.tbl_member" Role="tbl_member" Multiplicity="1" />
-    <End Type="lastDbModel.Book_Review" Role="Book_Review" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbl_member">
-        <PropertyRef Name="mem_id" />
-      </Principal>
-      <Dependent Role="Book_Review">
-        <PropertyRef Name="memberId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityType Name="Ebooks_db">
     <Key>
       <PropertyRef Name="Ebook_id" />
@@ -243,9 +229,9 @@
     <Property Name="Ebook_edition" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="mem_id" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Book_categoryy" Relationship="lastDbModel.FK_Ebooks_db_Book_categoryy" FromRole="Ebooks_db" ToRole="Book_categoryy" />
-    <NavigationProperty Name="tbl_member" Relationship="lastDbModel.FK_Ebooks_db_tbl_member" FromRole="Ebooks_db" ToRole="tbl_member" />
     <NavigationProperty Name="EBook_Review_db" Relationship="lastDbModel.FK_EBook_Review_db_Ebooks_db" FromRole="Ebooks_db" ToRole="EBook_Review_db" />
     <NavigationProperty Name="Reading_History" Relationship="lastDbModel.FK_Reading_History_Ebooks_db" FromRole="Ebooks_db" ToRole="Reading_History" />
+    <NavigationProperty Name="tbl_member" Relationship="lastDbModel.FK_Ebooks_db_tbl_member" FromRole="Ebooks_db" ToRole="tbl_member" />
   </EntityType>
   <Association Name="FK_Ebooks_db_Book_categoryy">
     <End Type="lastDbModel.Book_categoryy" Role="Book_categoryy" Multiplicity="1" />
@@ -256,18 +242,6 @@
       </Principal>
       <Dependent Role="Ebooks_db">
         <PropertyRef Name="cat_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Ebooks_db_tbl_member">
-    <End Type="lastDbModel.tbl_member" Role="tbl_member" Multiplicity="1" />
-    <End Type="lastDbModel.Ebooks_db" Role="Ebooks_db" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbl_member">
-        <PropertyRef Name="mem_id" />
-      </Principal>
-      <Dependent Role="Ebooks_db">
-        <PropertyRef Name="mem_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -296,18 +270,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_EBook_Review_db_tbl_member">
-    <End Type="lastDbModel.tbl_member" Role="tbl_member" Multiplicity="1" />
-    <End Type="lastDbModel.EBook_Review_db" Role="EBook_Review_db" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbl_member">
-        <PropertyRef Name="mem_id" />
-      </Principal>
-      <Dependent Role="EBook_Review_db">
-        <PropertyRef Name="memberId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityType Name="Reading_History">
     <Key>
       <PropertyRef Name="Read_Hist_Id" />
@@ -331,18 +293,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Reading_History_tbl_member">
-    <End Type="lastDbModel.tbl_member" Role="tbl_member" Multiplicity="1" />
-    <End Type="lastDbModel.Reading_History" Role="Reading_History" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbl_member">
-        <PropertyRef Name="mem_id" />
-      </Principal>
-      <Dependent Role="Reading_History">
-        <PropertyRef Name="memID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityType Name="tbl_wishlist">
     <Key>
       <PropertyRef Name="Wish_Id" />
@@ -351,21 +301,9 @@
     <Property Name="Book_ID" Type="Int32" Nullable="false" />
     <Property Name="mem_Id" Type="Int32" Nullable="false" />
     <Property Name="Wish_date" Type="DateTime" Nullable="false" Precision="3" />
-    <NavigationProperty Name="tbl_member" Relationship="lastDbModel.FK_tbl_wishlist_tbl_member" FromRole="tbl_wishlist" ToRole="tbl_member" />
     <NavigationProperty Name="Tbl_Books" Relationship="lastDbModel.FK_tbl_wishlist_Tbl_Books" FromRole="tbl_wishlist" ToRole="Tbl_Books" />
+    <NavigationProperty Name="tbl_member" Relationship="lastDbModel.FK_tbl_wishlist_tbl_member" FromRole="tbl_wishlist" ToRole="tbl_member" />
   </EntityType>
-  <Association Name="FK_tbl_wishlist_tbl_member">
-    <End Type="lastDbModel.tbl_member" Role="tbl_member" Multiplicity="1" />
-    <End Type="lastDbModel.tbl_wishlist" Role="tbl_wishlist" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbl_member">
-        <PropertyRef Name="mem_id" />
-      </Principal>
-      <Dependent Role="tbl_wishlist">
-        <PropertyRef Name="mem_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityType Name="Tbl_Books">
     <Key>
       <PropertyRef Name="Book_id" />
@@ -464,6 +402,90 @@
     <Property Name="sub_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="sub_date" Type="DateTime" Precision="3" />
   </EntityType>
+  <EntityType Name="tbl_member">
+    <Key>
+      <PropertyRef Name="mem_id" />
+    </Key>
+    <Property Name="mem_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="mem_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="mem_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="mem_contact" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="mem_password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="mem_address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="mem_dob" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Book_Review" Relationship="lastDbModel.FK_Book_Review_tbl_member" FromRole="tbl_member" ToRole="Book_Review" />
+    <NavigationProperty Name="EBook_Review_db" Relationship="lastDbModel.FK_EBook_Review_db_tbl_member" FromRole="tbl_member" ToRole="EBook_Review_db" />
+    <NavigationProperty Name="Ebooks_db" Relationship="lastDbModel.FK_Ebooks_db_tbl_member" FromRole="tbl_member" ToRole="Ebooks_db" />
+    <NavigationProperty Name="Invoices" Relationship="lastDbModel.FK__Invoice__mem_id__49C3F6B7" FromRole="tbl_member" ToRole="Invoice" />
+    <NavigationProperty Name="Reading_History" Relationship="lastDbModel.FK_Reading_History_tbl_member" FromRole="tbl_member" ToRole="Reading_History" />
+    <NavigationProperty Name="tbl_follow" Relationship="lastDbModel.FK_tbl_follow_tbl_member" FromRole="tbl_member" ToRole="tbl_follow" />
+    <NavigationProperty Name="tbl_follow1" Relationship="lastDbModel.FK_tbl_follow_tbl_member1" FromRole="tbl_member" ToRole="tbl_follow" />
+    <NavigationProperty Name="tbl_wishlist" Relationship="lastDbModel.FK_tbl_wishlist_tbl_member" FromRole="tbl_member" ToRole="tbl_wishlist" />
+    <NavigationProperty Name="tbl_blog" Relationship="lastDbModel.FK_tbl_blog_tbl_member" FromRole="tbl_member" ToRole="tbl_blog" />
+    <NavigationProperty Name="tbl_cmnts" Relationship="lastDbModel.FK_tbl_cmnts_tbl_member" FromRole="tbl_member" ToRole="tbl_cmnts" />
+    <NavigationProperty Name="tbl_group" Relationship="lastDbModel.FK_tbl_group_tbl_member" FromRole="tbl_member" ToRole="tbl_group" />
+    <NavigationProperty Name="tbl_group1" Relationship="lastDbModel.FK_tbl_group_tbl_member1" FromRole="tbl_member" ToRole="tbl_group" />
+  </EntityType>
+  <Association Name="FK_Book_Review_tbl_member">
+    <End Type="lastDbModel.tbl_member" Role="tbl_member" Multiplicity="1" />
+    <End Type="lastDbModel.Book_Review" Role="Book_Review" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_member">
+        <PropertyRef Name="mem_id" />
+      </Principal>
+      <Dependent Role="Book_Review">
+        <PropertyRef Name="memberId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EBook_Review_db_tbl_member">
+    <End Type="lastDbModel.tbl_member" Role="tbl_member" Multiplicity="1" />
+    <End Type="lastDbModel.EBook_Review_db" Role="EBook_Review_db" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_member">
+        <PropertyRef Name="mem_id" />
+      </Principal>
+      <Dependent Role="EBook_Review_db">
+        <PropertyRef Name="memberId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ebooks_db_tbl_member">
+    <End Type="lastDbModel.tbl_member" Role="tbl_member" Multiplicity="1" />
+    <End Type="lastDbModel.Ebooks_db" Role="Ebooks_db" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_member">
+        <PropertyRef Name="mem_id" />
+      </Principal>
+      <Dependent Role="Ebooks_db">
+        <PropertyRef Name="mem_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Invoice__mem_id__49C3F6B7">
+    <End Type="lastDbModel.tbl_member" Role="tbl_member" Multiplicity="0..1" />
+    <End Type="lastDbModel.Invoice" Role="Invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_member">
+        <PropertyRef Name="mem_id" />
+      </Principal>
+      <Dependent Role="Invoice">
+        <PropertyRef Name="mem_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reading_History_tbl_member">
+    <End Type="lastDbModel.tbl_member" Role="tbl_member" Multiplicity="1" />
+    <End Type="lastDbModel.Reading_History" Role="Reading_History" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_member">
+        <PropertyRef Name="mem_id" />
+      </Principal>
+      <Dependent Role="Reading_History">
+        <PropertyRef Name="memID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_tbl_follow_tbl_member">
     <End Type="lastDbModel.tbl_member" Role="tbl_member" Multiplicity="1" />
     <End Type="lastDbModel.tbl_follow" Role="tbl_follow" Multiplicity="*" />
@@ -485,6 +507,138 @@
       </Principal>
       <Dependent Role="tbl_follow">
         <PropertyRef Name="followed_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_wishlist_tbl_member">
+    <End Type="lastDbModel.tbl_member" Role="tbl_member" Multiplicity="1" />
+    <End Type="lastDbModel.tbl_wishlist" Role="tbl_wishlist" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_member">
+        <PropertyRef Name="mem_id" />
+      </Principal>
+      <Dependent Role="tbl_wishlist">
+        <PropertyRef Name="mem_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="tbl_blog">
+    <Key>
+      <PropertyRef Name="blog_id" />
+    </Key>
+    <Property Name="blog_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="blog_datetime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="blog_groupid" Type="Int32" Nullable="false" />
+    <Property Name="blog_createdby" Type="Int32" Nullable="false" />
+    <Property Name="blog_img" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="blog_title" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="blog_body" Type="Binary" MaxLength="500" FixedLength="false" />
+    <NavigationProperty Name="tbl_group" Relationship="lastDbModel.FK_tbl_blog_tbl_group" FromRole="tbl_blog" ToRole="tbl_group" />
+    <NavigationProperty Name="tbl_member" Relationship="lastDbModel.FK_tbl_blog_tbl_member" FromRole="tbl_blog" ToRole="tbl_member" />
+    <NavigationProperty Name="tbl_cmnts" Relationship="lastDbModel.FK_tbl_cmnts_tbl_blog" FromRole="tbl_blog" ToRole="tbl_cmnts" />
+  </EntityType>
+  <EntityType Name="tbl_cmnts">
+    <Key>
+      <PropertyRef Name="cmnts_id" />
+    </Key>
+    <Property Name="cmnts_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cmnts_createdby" Type="Int32" Nullable="false" />
+    <Property Name="cmnts_datetime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="cmnts_content" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="cmnts_blogid" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tbl_blog" Relationship="lastDbModel.FK_tbl_cmnts_tbl_blog" FromRole="tbl_cmnts" ToRole="tbl_blog" />
+    <NavigationProperty Name="tbl_member" Relationship="lastDbModel.FK_tbl_cmnts_tbl_member" FromRole="tbl_cmnts" ToRole="tbl_member" />
+  </EntityType>
+  <EntityType Name="tbl_contactus">
+    <Key>
+      <PropertyRef Name="contactus_id" />
+    </Key>
+    <Property Name="contactus_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="contactys_datetime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="contactus_email" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="contactus_content" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tbl_group">
+    <Key>
+      <PropertyRef Name="group_id" />
+    </Key>
+    <Property Name="group_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="group_datetime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="group_members" Type="Int32" Nullable="false" />
+    <Property Name="group_createdby" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tbl_blog" Relationship="lastDbModel.FK_tbl_blog_tbl_group" FromRole="tbl_group" ToRole="tbl_blog" />
+    <NavigationProperty Name="tbl_member" Relationship="lastDbModel.FK_tbl_group_tbl_member" FromRole="tbl_group" ToRole="tbl_member" />
+    <NavigationProperty Name="tbl_member1" Relationship="lastDbModel.FK_tbl_group_tbl_member1" FromRole="tbl_group" ToRole="tbl_member" />
+  </EntityType>
+  <Association Name="FK_tbl_blog_tbl_group">
+    <End Type="lastDbModel.tbl_group" Role="tbl_group" Multiplicity="1" />
+    <End Type="lastDbModel.tbl_blog" Role="tbl_blog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_group">
+        <PropertyRef Name="group_id" />
+      </Principal>
+      <Dependent Role="tbl_blog">
+        <PropertyRef Name="blog_groupid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_blog_tbl_member">
+    <End Type="lastDbModel.tbl_member" Role="tbl_member" Multiplicity="1" />
+    <End Type="lastDbModel.tbl_blog" Role="tbl_blog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_member">
+        <PropertyRef Name="mem_id" />
+      </Principal>
+      <Dependent Role="tbl_blog">
+        <PropertyRef Name="blog_createdby" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_cmnts_tbl_blog">
+    <End Type="lastDbModel.tbl_blog" Role="tbl_blog" Multiplicity="1" />
+    <End Type="lastDbModel.tbl_cmnts" Role="tbl_cmnts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_blog">
+        <PropertyRef Name="blog_id" />
+      </Principal>
+      <Dependent Role="tbl_cmnts">
+        <PropertyRef Name="cmnts_blogid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_cmnts_tbl_member">
+    <End Type="lastDbModel.tbl_member" Role="tbl_member" Multiplicity="1" />
+    <End Type="lastDbModel.tbl_cmnts" Role="tbl_cmnts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_member">
+        <PropertyRef Name="mem_id" />
+      </Principal>
+      <Dependent Role="tbl_cmnts">
+        <PropertyRef Name="cmnts_createdby" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_group_tbl_member">
+    <End Type="lastDbModel.tbl_member" Role="tbl_member" Multiplicity="1" />
+    <End Type="lastDbModel.tbl_group" Role="tbl_group" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_member">
+        <PropertyRef Name="mem_id" />
+      </Principal>
+      <Dependent Role="tbl_group">
+        <PropertyRef Name="group_createdby" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_group_tbl_member1">
+    <End Type="lastDbModel.tbl_member" Role="tbl_member" Multiplicity="1" />
+    <End Type="lastDbModel.tbl_group" Role="tbl_group" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_member">
+        <PropertyRef Name="mem_id" />
+      </Principal>
+      <Dependent Role="tbl_group">
+        <PropertyRef Name="group_members" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

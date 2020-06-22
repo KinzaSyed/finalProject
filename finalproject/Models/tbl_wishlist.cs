@@ -19,7 +19,7 @@ namespace finalproject.Models
         public int mem_Id { get; set; }
         public System.DateTime Wish_date { get; set; }
     
-        public virtual tbl_member tbl_member { get; set; }
         public virtual Tbl_Books Tbl_Books { get; set; }
+        public virtual tbl_member tbl_member { get; set; }
     }
 }

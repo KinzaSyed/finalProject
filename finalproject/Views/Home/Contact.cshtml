@@ -3,7 +3,6 @@
 }
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
-
 <address>
     BookSelf<br />
     Pakistan<br />
@@ -11,7 +10,21 @@
     425.555.0100
 </address>
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+
+
+
+<div class="container">
+
+    @using (Html.BeginForm("ContactUs", "Home", FormMethod.Post))
+    {
+        <div class="form-group">
+            <label>Enter Email</label><input type="text" name="email" class="form-control" placeholder="abcd@gmail.com" />
+            <br />
+            <label>Message</label><textarea name="content" class="form-control" placeholder="Your Message" rows="4" cols="50"></textarea>
+            <br />
+            <input type="submit" value="Send" class="btn btn-primary" />
+
+        </div>
+
+    }
+</div>
