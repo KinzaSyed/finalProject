@@ -28,7 +28,7 @@ namespace finalproject.Models
             this.tbl_blog = new HashSet<tbl_blog>();
             this.tbl_cmnts = new HashSet<tbl_cmnts>();
             this.tbl_group = new HashSet<tbl_group>();
-            this.tbl_group1 = new HashSet<tbl_group>();
+            this.tbl_groupmem = new HashSet<tbl_groupmem>();
         }
     
         public int mem_id { get; set; }
@@ -62,6 +62,6 @@ namespace finalproject.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_group> tbl_group { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbl_group> tbl_group1 { get; set; }
+        public virtual ICollection<tbl_groupmem> tbl_groupmem { get; set; }
     }
 }

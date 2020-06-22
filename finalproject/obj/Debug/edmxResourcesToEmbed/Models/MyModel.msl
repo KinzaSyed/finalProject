@@ -202,10 +202,20 @@
     <EntitySetMapping Name="tbl_group">
       <EntityTypeMapping TypeName="lastDbModel.tbl_group">
         <MappingFragment StoreEntitySet="tbl_group">
+          <ScalarProperty Name="group_title" ColumnName="group_title" />
           <ScalarProperty Name="group_createdby" ColumnName="group_createdby" />
-          <ScalarProperty Name="group_members" ColumnName="group_members" />
           <ScalarProperty Name="group_datetime" ColumnName="group_datetime" />
           <ScalarProperty Name="group_id" ColumnName="group_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_groupmem">
+      <EntityTypeMapping TypeName="lastDbModel.tbl_groupmem">
+        <MappingFragment StoreEntitySet="tbl_groupmem">
+          <ScalarProperty Name="group_mem_joindate" ColumnName="group_mem_joindate" />
+          <ScalarProperty Name="group_mem_memid" ColumnName="group_mem_memid" />
+          <ScalarProperty Name="group_mem_groupid" ColumnName="group_mem_groupid" />
+          <ScalarProperty Name="group_mem_id" ColumnName="group_mem_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

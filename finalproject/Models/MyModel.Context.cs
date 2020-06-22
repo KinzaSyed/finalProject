@@ -43,5 +43,6 @@ namespace finalproject.Models
         public virtual DbSet<tbl_cmnts> tbl_cmnts { get; set; }
         public virtual DbSet<tbl_contactus> tbl_contactus { get; set; }
         public virtual DbSet<tbl_group> tbl_group { get; set; }
+        public virtual DbSet<tbl_groupmem> tbl_groupmem { get; set; }
     }
 }

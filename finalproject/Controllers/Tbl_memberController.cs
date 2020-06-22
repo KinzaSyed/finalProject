@@ -27,6 +27,14 @@ namespace finalproject.Controllers
             return RedirectToAction("PublicProfile", "Tbl_member");
 
         }
+       
+        //public ActionResult WhoTheyFollow(int? id)
+        //{
+           
+
+        
+        //}
+
 
         public ActionResult DetailsPublic(int? id)
         {
@@ -41,29 +49,29 @@ namespace finalproject.Controllers
             }
             return View(tbl_member);
         }
-        //public ActionResult PublicProfile()
+        //public ActionResult publicprofile()
         //{
-        //    var members = from A in db.tbl_follow
-        //                  join Bi in db.tbl_member
-        //                  on A.followed_id
-        //                  equals Bi.mem_id
+        //    var members = from a in db.tbl_follow
+        //                  join bi in db.tbl_member
+        //                  on a.followed_id
+        //                  equals bi.mem_id
                           
-        //                  /*where A.follow_id*/ into fol
-        //                  from tbl_follow in fol.Distinct()
+        //                  /*where a.follow_id*/ into fol
+        //                  from tbl_follow in fol.distinct()
                           
         //                  select new { memid = tbl_follow.mem_id };
         //    //ye error ha
         //    //is null
-        //    //select B.mem_id;
-        //    List<tbl_member> memberList = new List<tbl_member>();
+        //    //select b.mem_id;
+        //    list<tbl_member> memberlist = new list<tbl_member>();
         //    foreach (var member in members)
         //    {
-        //        var mem = db.tbl_member.Where(x => x.mem_id == member.memid).First();
-        //        memberList.Add(mem);
+        //        var mem = db.tbl_member.where(x => x.mem_id == member.memid).first();
+        //        memberlist.add(mem);
         //    }
                
 
-        //    return View(memberList);
+        //    return view(memberlist);
           
         //}
 

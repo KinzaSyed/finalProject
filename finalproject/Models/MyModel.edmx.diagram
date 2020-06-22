@@ -40,13 +40,15 @@
         <EntityTypeShape EntityType="lastDbModel.tbl_blog" Width="1.5" PointX="9.25" PointY="11.75" />
         <EntityTypeShape EntityType="lastDbModel.tbl_cmnts" Width="1.5" PointX="11.5" PointY="11.75" />
         <EntityTypeShape EntityType="lastDbModel.tbl_contactus" Width="1.5" PointX="0.75" PointY="7.75" />
-        <EntityTypeShape EntityType="lastDbModel.tbl_group" Width="1.5" PointX="6" PointY="13" />
-        <AssociationConnector Association="lastDbModel.FK_tbl_blog_tbl_group" />
         <AssociationConnector Association="lastDbModel.FK_tbl_blog_tbl_member" />
         <AssociationConnector Association="lastDbModel.FK_tbl_cmnts_tbl_blog" />
         <AssociationConnector Association="lastDbModel.FK_tbl_cmnts_tbl_member" />
+        <EntityTypeShape EntityType="lastDbModel.tbl_group" Width="1.5" PointX="5.625" PointY="12.25" />
+        <AssociationConnector Association="lastDbModel.FK_tbl_blog_tbl_group" />
         <AssociationConnector Association="lastDbModel.FK_tbl_group_tbl_member" />
-        <AssociationConnector Association="lastDbModel.FK_tbl_group_tbl_member1" />
+        <EntityTypeShape EntityType="lastDbModel.tbl_groupmem" Width="1.5" PointX="7.875" PointY="15.75" />
+        <AssociationConnector Association="lastDbModel.FK_tbl_groupmem_tbl_group" />
+        <AssociationConnector Association="lastDbModel.FK_tbl_groupmem_tbl_member" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

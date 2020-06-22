@@ -143,7 +143,9 @@
     <Compile Include="Controllers\InvoicesController.cs" />
     <Compile Include="Controllers\ReadingHistoryController.cs" />
     <Compile Include="Controllers\TbladminController.cs" />
+    <Compile Include="Controllers\tbl_blogController.cs" />
     <Compile Include="Controllers\Tbl_BookController.cs" />
+    <Compile Include="Controllers\tbl_groupController.cs" />
     <Compile Include="Controllers\Tbl_memberController.cs" />
     <Compile Include="Controllers\Tbl_VendorrController.cs" />
     <Compile Include="Controllers\tbl_wishlistController.cs" />
@@ -211,6 +213,9 @@
     <Compile Include="Models\Tbl_for_Ebooks.cs" />
     <Compile Include="Models\Tbl_for_books.cs" />
     <Compile Include="Models\tbl_group.cs">
+      <DependentUpon>MyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_groupmem.cs">
       <DependentUpon>MyModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbl_member.cs">
@@ -362,6 +367,17 @@
     <Content Include="Views\Tbl_member\PublicProfile.cshtml" />
     <Content Include="Views\Tbl_member\DetailsPublic.cshtml" />
     <Content Include="Views\Home\subscribe.cshtml" />
+    <Content Include="Views\Tbl_member\WhoTheyFollow.cshtml" />
+    <Content Include="Views\tbl_blog\Create.cshtml" />
+    <Content Include="Views\tbl_blog\Delete.cshtml" />
+    <Content Include="Views\tbl_blog\Details.cshtml" />
+    <Content Include="Views\tbl_blog\Edit.cshtml" />
+    <Content Include="Views\tbl_blog\Index.cshtml" />
+    <Content Include="Views\tbl_group\Create.cshtml" />
+    <Content Include="Views\tbl_group\Delete.cshtml" />
+    <Content Include="Views\tbl_group\Details.cshtml" />
+    <Content Include="Views\tbl_group\Edit.cshtml" />
+    <Content Include="Views\tbl_group\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

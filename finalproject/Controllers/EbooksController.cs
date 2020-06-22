@@ -67,9 +67,6 @@ namespace finalproject.Controllers
         // GET: Ebooks
         public ActionResult Index()
         { int memid = Convert.ToInt32(Session["mem_id"]);
-
-
-
             List<Ebooks_db> Booklist = db.Ebooks_db.Where(x => x.mem_id == memid).ToList();
             List<Tbl_for_Ebooks> booklistdis = Booklist.Select(x => new Tbl_for_Ebooks
             {
@@ -85,9 +82,6 @@ namespace finalproject.Controllers
                 mem_id = Convert.ToInt32(x.mem_id),
                 mem_name = x.tbl_member.mem_name,
             }).ToList();
-
-
-
             return View(booklistdis);
         }
         [HttpGet]
