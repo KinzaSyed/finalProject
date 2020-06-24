@@ -11,8 +11,8 @@ namespace finalproject.Controllers
     {
 
         lastDbEntities db = new lastDbEntities();
-    
-        public ActionResult ContactUs(tbl_contactus contactus ,string email, string content)
+
+        public ActionResult ContactUs(tbl_contactus contactus, string email, string content)
         {
             contactus.contactus_content = content;
             contactus.contactus_email = email;
@@ -21,14 +21,25 @@ namespace finalproject.Controllers
             db.SaveChanges();
             return RedirectToAction("Contact");
         }
-        public ActionResult subscribe(tbl_subscribe subscribe,string subscriber_email)
+        [HttpGet]
+        public ActionResult subscribe(/*tbl_subscribe subscribe,string subscriber_email*/)
+        {
+
+            //subscribe.sub_date = DateTime.Now;
+            //subscribe.sub_email = subscriber_email;
+            //db.tbl_subscribe.Add(subscribe);
+            //db.SaveChanges();
+            return View();
+        }
+        [HttpPost]
+        public ActionResult subscribe(tbl_subscribe subscribe, string subscriber_email)
         {
 
             subscribe.sub_date = DateTime.Now;
             subscribe.sub_email = subscriber_email;
             db.tbl_subscribe.Add(subscribe);
             db.SaveChanges();
-            return PartialView();
+            return RedirectToAction("Index");
         }
 
 
