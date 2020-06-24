@@ -1,12 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Net;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using finalproject.Models;
+using Newtonsoft.Json;
 
 namespace finalproject.Controllers
 {
@@ -116,11 +121,14 @@ namespace finalproject.Controllers
 
         public ActionResult BestSeller()
         {
+            List<Tbl_Books> books = new List<Tbl_Books>();
             var BestsellingBooks =(from item in db.BTransactions
              group item.Transaction_qty by item.Book_id into g
             orderby g.Sum() descending
-            select g.Key).Take(2);
-            List<Tbl_Books> books = new List<Tbl_Books>();
+            select g.Key).Take(5);
+
+           
+
             foreach(var bookid in BestsellingBooks)
             {
                 var book = db.Tbl_Books.Single(x => x.Book_id == bookid);
@@ -128,6 +136,134 @@ namespace finalproject.Controllers
 
             }
             return PartialView(books);
+        }
+
+        public ActionResult RecommandBook()
+        {
+            //save file in csv
+            string cs = ConfigurationManager.ConnectionStrings["lastDbEntities"].ConnectionString;
+            StringBuilder sb = new StringBuilder();
+            StringBuilder sb1 = new StringBuilder();
+            string bookQuery = "select Ebook_id,Ebook_name from db.dbo.Ebooks_db;";
+            string RatingQuery = "select EReview_id,ERating,EbookId,memberId from db.dbo.EBook_Review_db;";
+            using (var context = new lastDbEntities())
+            {
+                var connection = (System.Data.SqlClient.SqlConnection)context.Database.Connection;
+                if (connection != null && connection.State == ConnectionState.Closed)
+                {
+                    connection.Open();
+                }
+                DataSet ds = new DataSet();
+                //Ebook save in .csv file 
+                using (var da = new System.Data.SqlClient.SqlDataAdapter(bookQuery, connection))
+                {
+                    da.Fill(ds);
+                    ds.Tables[0].TableName = "Ebook";
+                    sb.Append("Ebook_Id" + ",");
+                    sb.Append("Ebook_name" + ",");
+                    sb.Append("\r\n");
+                }
+                foreach (DataRow b in ds.Tables["Ebook"].Rows)
+                {
+                    int ebookid = Convert.ToInt32(b["Ebook_id"]);
+                    sb.Append(ebookid.ToString() + ',');
+                    sb.Append(b["Ebook_name"].ToString());
+                    sb.Append("\r\n");
+                }
+                string book = "Ebook.csv";
+                StreamWriter file = new StreamWriter(@"C:\Users\Akshay Kumar\Desktop\New folder (3)\Book\finalProject\Knn_Recommandation\" + book);
+                file.WriteLine(sb.ToString());
+                file.Close();
+                //Review save in .csv file 
+                DataSet ds1 = new DataSet();
+                using (var da = new System.Data.SqlClient.SqlDataAdapter(RatingQuery, connection))
+                {
+                    da.Fill(ds1);
+                    ds1.Tables[0].TableName = "Rating";
+                    sb1.Append("EReview_id" + ",");
+                    sb1.Append("memberId" + ",");
+                    sb1.Append("Ebook_Id" + ",");
+                    sb1.Append("ERating" + ",");
+                    sb1.Append("\r\n");
+                }
+                foreach (DataRow b in ds1.Tables["Rating"].Rows)
+                {
+                    int ReviewId = Convert.ToInt32(b["EReview_id"]);
+                    sb1.Append(ReviewId.ToString() + ',');
+                    int memid = Convert.ToInt32(b["memberId"]);
+                    sb1.Append(memid.ToString() + ',');
+                    int EbookId = Convert.ToInt32(b["EbookId"]);
+                    sb1.Append(EbookId.ToString() + ',');
+                    int Rate = Convert.ToInt32(b["ERating"]);
+                    sb1.Append(Rate.ToString() + ',');
+
+                    sb1.Append("\r\n");
+
+                }
+                string rating = "Rating.csv";
+                StreamWriter file1 = new StreamWriter(@"C:\Users\Akshay Kumar\Desktop\New folder (3)\Book\finalProject\Knn_Recommandation\" + rating);
+                file1.WriteLine(sb1.ToString());
+                file1.Close();
+
+            }
+            
+            //API CALL
+            List<string> Recommand = new List<string>(6);
+            List<Ebooks_db> Recommandbooks = new List<Ebooks_db>();
+            string book_name = null;
+            string postdata = null;
+            string result = null;
+            var ids = (from item in db.Reading_History
+                         select item.ebook_id).ToList<int>();
+            Random random = new Random();
+            int index = random.Next(ids.Count);
+            int book_id = ids[index];
+            if (book_id == 0)
+            {
+                book_id = (from item in db.Reading_History
+                               select item.ebook_id).FirstOrDefault();
+            }
+
+            book_name = (from a in db.Ebooks_db
+                         where a.Ebook_id == book_id
+                         select a).Single().Ebook_name;
+
+            string url = string.Format("http://localhost:5000/recommand");
+            WebRequest requestobj = WebRequest.Create(url);
+            requestobj.Method = "POST";
+            requestobj.ContentType = "application/json";
+            if (!string.IsNullOrEmpty(book_name)) { 
+                postdata = "{\"parameter\":\"" + book_name + "\"}";
+            }
+            else{
+                postdata = "{\"parameter\":\"A new journey\"}";}
+            
+            using (var streamWriter = new StreamWriter(requestobj.GetRequestStream()))
+            {
+                streamWriter.Write(postdata);
+                streamWriter.Flush();
+                streamWriter.Close();
+                var httpResponse = (HttpWebResponse)requestobj.GetResponse();
+                using (var streamreader = new StreamReader(httpResponse.GetResponseStream()))
+                {
+                    result = streamreader.ReadToEnd();
+            }}
+            dynamic obj = JsonConvert.DeserializeObject<dynamic>(result);
+            foreach (string i in obj.book)
+            {
+                Recommand.Add(i);
+            }
+            foreach (var bookname in Recommand)
+            {
+                int id = db.Ebooks_db.Where(x => x.Ebook_name == bookname).SingleOrDefault().Ebook_id;
+                var book = db.Ebooks_db.Single(x => x.Ebook_id == id);
+                Recommandbooks.Add(book);
+            }
+
+
+
+
+            return PartialView(Recommandbooks);
         }
 
 
@@ -138,8 +274,7 @@ namespace finalproject.Controllers
             {
                 int mem_id = Convert.ToInt32(Session["mem_id"].ToString());
                 m = db.Reading_History.Where(x => x.memID == mem_id).ToList();
-
-
+                
             }
 
             return View(m);
@@ -152,7 +287,7 @@ namespace finalproject.Controllers
                 int mem_id = Convert.ToInt32(Session["mem_id"].ToString());
                 m = db.tbl_member.Where(x => x.mem_id == mem_id).SingleOrDefault();
 
-
+            
             }
 
             return View(m);

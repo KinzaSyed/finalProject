@@ -192,6 +192,7 @@
     <Compile Include="Models\Reading_History.cs">
       <DependentUpon>MyModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\RecommandBook.cs" />
     <Compile Include="Models\Tbl_admin.cs">
       <DependentUpon>MyModel.tt</DependentUpon>
     </Compile>
@@ -378,6 +379,7 @@
     <Content Include="Views\tbl_group\Details.cshtml" />
     <Content Include="Views\tbl_group\Edit.cshtml" />
     <Content Include="Views\tbl_group\Index.cshtml" />
+    <Content Include="Views\Tbl_member\RecommandBook.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

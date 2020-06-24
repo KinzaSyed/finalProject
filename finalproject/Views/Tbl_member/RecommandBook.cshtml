@@ -1,0 +1,59 @@
+﻿@model List<finalproject.Models.Ebooks_db>
+
+
+<div class="container">
+    <div class="row">
+
+        @foreach (var item in Model)
+        {
+            
+
+    <div class="col-lg-4 col-md-4" style="border:2px">
+
+        <img class="img-rounded img-responsive cimg" style="height:200px; width:250px; align-self:center" src="@Url.Content(item.Ebook_img)" />
+        <br />
+
+        <table style="width:250px;">
+            <tr style="border-bottom: 1px solid gray">
+                <td>
+                    <b>Book name:</b>
+                </td>
+                <td>
+                    &nbsp;@item.Ebook_name
+                </td>
+            </tr>
+
+            <tr style="border-bottom: 1px solid gray">
+                <td><b>Author:</b></td>
+                <td>&nbsp;@item.Ebook_author</td>
+            </tr>
+            <tr style="border-bottom: 1px solid gray">
+                <td><b>Category:</b></td>
+                <td>&nbsp;@item.cat_id </td>
+            </tr>
+            <tr style="border-bottom: 1px solid gray">
+                <td><b>Edition:</b></td>
+                <td>&nbsp;@item.Ebook_edition</td>
+            </tr>
+
+
+        </table>
+        <br />
+
+    </div>
+
+
+
+
+}
+
+
+
+
+    </div>
+</div>
+
+
+
+
+

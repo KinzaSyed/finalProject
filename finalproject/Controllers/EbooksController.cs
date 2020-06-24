@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -231,6 +232,8 @@ namespace finalproject.Controllers
             review.ERating = rating;
             db.EBook_Review_db.Add(review);
             db.SaveChanges();
+           
+            
             return RedirectToAction("Details", "EBooks", new { id = review.EBookId });
 
         }
@@ -327,12 +330,10 @@ namespace finalproject.Controllers
                 int memid = Convert.ToInt32(Session["mem_id"]);
 
                 RD.ebook_id = id;
-
-
+            
                 RD.Read_Date = DateTime.Now;
                 RD.memID = memid;
-
-
+                
                 db.Reading_History.Add(RD);
                 db.SaveChanges();
             }
