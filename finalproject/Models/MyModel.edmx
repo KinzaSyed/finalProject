@@ -100,7 +100,7 @@
           <Property Name="blog_createdby" Type="int" Nullable="false" />
           <Property Name="blog_img" Type="varchar(max)" />
           <Property Name="blog_title" Type="varchar" MaxLength="500" />
-          <Property Name="blog_body" Type="varbinary" MaxLength="500" />
+          <Property Name="blog_body" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Tbl_Books">
           <Key>
@@ -171,8 +171,8 @@
           <Property Name="mem_email" Type="varchar" MaxLength="50" />
           <Property Name="mem_contact" Type="varchar" MaxLength="50" />
           <Property Name="mem_password" Type="varchar" MaxLength="50" />
-          <Property Name="mem_address" Type="varchar" MaxLength="50" />
-          <Property Name="mem_dob" Type="date" />
+          <Property Name="mem_address" Type="varchar(max)" />
+          <Property Name="mem_dob" Type="datetime" />
         </EntityType>
         <EntityType Name="tbl_subscribe">
           <Key>
@@ -683,6 +683,23 @@
           </AssociationSet>
           <EntitySet Name="tbl_follow" EntityType="lastDbModel.tbl_follow" />
           <EntitySet Name="tbl_subscribe" EntityType="lastDbModel.tbl_subscribe" />
+          <EntitySet Name="tbl_cmnts" EntityType="lastDbModel.tbl_cmnts" />
+          <EntitySet Name="tbl_contactus" EntityType="lastDbModel.tbl_contactus" />
+          <EntitySet Name="tbl_group" EntityType="lastDbModel.tbl_group" />
+          <EntitySet Name="tbl_groupmem" EntityType="lastDbModel.tbl_groupmem" />
+          <AssociationSet Name="FK_tbl_groupmem_tbl_group" Association="lastDbModel.FK_tbl_groupmem_tbl_group">
+            <End Role="tbl_group" EntitySet="tbl_group" />
+            <End Role="tbl_groupmem" EntitySet="tbl_groupmem" />
+          </AssociationSet>
+          <EntitySet Name="tbl_blog" EntityType="lastDbModel.tbl_blog" />
+          <AssociationSet Name="FK_tbl_blog_tbl_group" Association="lastDbModel.FK_tbl_blog_tbl_group">
+            <End Role="tbl_group" EntitySet="tbl_group" />
+            <End Role="tbl_blog" EntitySet="tbl_blog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_cmnts_tbl_blog" Association="lastDbModel.FK_tbl_cmnts_tbl_blog">
+            <End Role="tbl_blog" EntitySet="tbl_blog" />
+            <End Role="tbl_cmnts" EntitySet="tbl_cmnts" />
+          </AssociationSet>
           <EntitySet Name="tbl_member" EntityType="lastDbModel.tbl_member" />
           <AssociationSet Name="FK_Book_Review_tbl_member" Association="lastDbModel.FK_Book_Review_tbl_member">
             <End Role="tbl_member" EntitySet="tbl_member" />
@@ -704,6 +721,14 @@
             <End Role="tbl_member" EntitySet="tbl_member" />
             <End Role="Reading_History" EntitySet="Reading_History" />
           </AssociationSet>
+          <AssociationSet Name="FK_tbl_blog_tbl_member" Association="lastDbModel.FK_tbl_blog_tbl_member">
+            <End Role="tbl_member" EntitySet="tbl_member" />
+            <End Role="tbl_blog" EntitySet="tbl_blog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_cmnts_tbl_member" Association="lastDbModel.FK_tbl_cmnts_tbl_member">
+            <End Role="tbl_member" EntitySet="tbl_member" />
+            <End Role="tbl_cmnts" EntitySet="tbl_cmnts" />
+          </AssociationSet>
           <AssociationSet Name="FK_tbl_follow_tbl_member" Association="lastDbModel.FK_tbl_follow_tbl_member">
             <End Role="tbl_member" EntitySet="tbl_member" />
             <End Role="tbl_follow" EntitySet="tbl_follow" />
@@ -712,42 +737,17 @@
             <End Role="tbl_member" EntitySet="tbl_member" />
             <End Role="tbl_follow" EntitySet="tbl_follow" />
           </AssociationSet>
-          <AssociationSet Name="FK_tbl_wishlist_tbl_member" Association="lastDbModel.FK_tbl_wishlist_tbl_member">
-            <End Role="tbl_member" EntitySet="tbl_member" />
-            <End Role="tbl_wishlist" EntitySet="tbl_wishlist" />
-          </AssociationSet>
-          <EntitySet Name="tbl_blog" EntityType="lastDbModel.tbl_blog" />
-          <EntitySet Name="tbl_cmnts" EntityType="lastDbModel.tbl_cmnts" />
-          <EntitySet Name="tbl_contactus" EntityType="lastDbModel.tbl_contactus" />
-          <AssociationSet Name="FK_tbl_blog_tbl_member" Association="lastDbModel.FK_tbl_blog_tbl_member">
-            <End Role="tbl_member" EntitySet="tbl_member" />
-            <End Role="tbl_blog" EntitySet="tbl_blog" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tbl_cmnts_tbl_blog" Association="lastDbModel.FK_tbl_cmnts_tbl_blog">
-            <End Role="tbl_blog" EntitySet="tbl_blog" />
-            <End Role="tbl_cmnts" EntitySet="tbl_cmnts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tbl_cmnts_tbl_member" Association="lastDbModel.FK_tbl_cmnts_tbl_member">
-            <End Role="tbl_member" EntitySet="tbl_member" />
-            <End Role="tbl_cmnts" EntitySet="tbl_cmnts" />
-          </AssociationSet>
-          <EntitySet Name="tbl_group" EntityType="lastDbModel.tbl_group" />
-          <AssociationSet Name="FK_tbl_blog_tbl_group" Association="lastDbModel.FK_tbl_blog_tbl_group">
-            <End Role="tbl_group" EntitySet="tbl_group" />
-            <End Role="tbl_blog" EntitySet="tbl_blog" />
-          </AssociationSet>
           <AssociationSet Name="FK_tbl_group_tbl_member" Association="lastDbModel.FK_tbl_group_tbl_member">
             <End Role="tbl_member" EntitySet="tbl_member" />
             <End Role="tbl_group" EntitySet="tbl_group" />
           </AssociationSet>
-          <EntitySet Name="tbl_groupmem" EntityType="lastDbModel.tbl_groupmem" />
-          <AssociationSet Name="FK_tbl_groupmem_tbl_group" Association="lastDbModel.FK_tbl_groupmem_tbl_group">
-            <End Role="tbl_group" EntitySet="tbl_group" />
-            <End Role="tbl_groupmem" EntitySet="tbl_groupmem" />
-          </AssociationSet>
           <AssociationSet Name="FK_tbl_groupmem_tbl_member" Association="lastDbModel.FK_tbl_groupmem_tbl_member">
             <End Role="tbl_member" EntitySet="tbl_member" />
             <End Role="tbl_groupmem" EntitySet="tbl_groupmem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_wishlist_tbl_member" Association="lastDbModel.FK_tbl_wishlist_tbl_member">
+            <End Role="tbl_member" EntitySet="tbl_member" />
+            <End Role="tbl_wishlist" EntitySet="tbl_wishlist" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Book_categoryy">
@@ -1036,6 +1036,101 @@
           <Property Name="sub_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="sub_date" Type="DateTime" Precision="3" />
         </EntityType>
+        <EntityType Name="tbl_cmnts">
+          <Key>
+            <PropertyRef Name="cmnts_id" />
+          </Key>
+          <Property Name="cmnts_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cmnts_createdby" Type="Int32" Nullable="false" />
+          <Property Name="cmnts_datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="cmnts_content" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="cmnts_blogid" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tbl_blog" Relationship="lastDbModel.FK_tbl_cmnts_tbl_blog" FromRole="tbl_cmnts" ToRole="tbl_blog" />
+          <NavigationProperty Name="tbl_member" Relationship="lastDbModel.FK_tbl_cmnts_tbl_member" FromRole="tbl_cmnts" ToRole="tbl_member" />
+        </EntityType>
+        <EntityType Name="tbl_contactus">
+          <Key>
+            <PropertyRef Name="contactus_id" />
+          </Key>
+          <Property Name="contactus_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="contactys_datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="contactus_email" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="contactus_content" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_group">
+          <Key>
+            <PropertyRef Name="group_id" />
+          </Key>
+          <Property Name="group_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="group_datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="group_createdby" Type="Int32" Nullable="false" />
+          <Property Name="group_title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tbl_groupmem" Relationship="lastDbModel.FK_tbl_groupmem_tbl_group" FromRole="tbl_group" ToRole="tbl_groupmem" />
+          <NavigationProperty Name="tbl_blog" Relationship="lastDbModel.FK_tbl_blog_tbl_group" FromRole="tbl_group" ToRole="tbl_blog" />
+          <NavigationProperty Name="tbl_member" Relationship="lastDbModel.FK_tbl_group_tbl_member" FromRole="tbl_group" ToRole="tbl_member" />
+        </EntityType>
+        <EntityType Name="tbl_groupmem">
+          <Key>
+            <PropertyRef Name="group_mem_id" />
+          </Key>
+          <Property Name="group_mem_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="group_mem_groupid" Type="Int32" Nullable="false" />
+          <Property Name="group_mem_memid" Type="Int32" Nullable="false" />
+          <Property Name="group_mem_joindate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="tbl_group" Relationship="lastDbModel.FK_tbl_groupmem_tbl_group" FromRole="tbl_groupmem" ToRole="tbl_group" />
+          <NavigationProperty Name="tbl_member" Relationship="lastDbModel.FK_tbl_groupmem_tbl_member" FromRole="tbl_groupmem" ToRole="tbl_member" />
+        </EntityType>
+        <Association Name="FK_tbl_groupmem_tbl_group">
+          <End Type="lastDbModel.tbl_group" Role="tbl_group" Multiplicity="1" />
+          <End Type="lastDbModel.tbl_groupmem" Role="tbl_groupmem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_group">
+              <PropertyRef Name="group_id" />
+            </Principal>
+            <Dependent Role="tbl_groupmem">
+              <PropertyRef Name="group_mem_groupid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tbl_blog">
+          <Key>
+            <PropertyRef Name="blog_id" />
+          </Key>
+          <Property Name="blog_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="blog_datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="blog_groupid" Type="Int32" Nullable="false" />
+          <Property Name="blog_createdby" Type="Int32" Nullable="false" />
+          <Property Name="blog_img" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="blog_title" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="blog_body" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tbl_group" Relationship="lastDbModel.FK_tbl_blog_tbl_group" FromRole="tbl_blog" ToRole="tbl_group" />
+          <NavigationProperty Name="tbl_cmnts" Relationship="lastDbModel.FK_tbl_cmnts_tbl_blog" FromRole="tbl_blog" ToRole="tbl_cmnts" />
+          <NavigationProperty Name="tbl_member" Relationship="lastDbModel.FK_tbl_blog_tbl_member" FromRole="tbl_blog" ToRole="tbl_member" />
+        </EntityType>
+        <Association Name="FK_tbl_blog_tbl_group">
+          <End Type="lastDbModel.tbl_group" Role="tbl_group" Multiplicity="1" />
+          <End Type="lastDbModel.tbl_blog" Role="tbl_blog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_group">
+              <PropertyRef Name="group_id" />
+            </Principal>
+            <Dependent Role="tbl_blog">
+              <PropertyRef Name="blog_groupid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_cmnts_tbl_blog">
+          <End Type="lastDbModel.tbl_blog" Role="tbl_blog" Multiplicity="1" />
+          <End Type="lastDbModel.tbl_cmnts" Role="tbl_cmnts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_blog">
+              <PropertyRef Name="blog_id" />
+            </Principal>
+            <Dependent Role="tbl_cmnts">
+              <PropertyRef Name="cmnts_blogid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityType Name="tbl_member">
           <Key>
             <PropertyRef Name="mem_id" />
@@ -1045,21 +1140,21 @@
           <Property Name="mem_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="mem_contact" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="mem_password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="mem_address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="mem_dob" Type="DateTime" Precision="0" />
+          <Property Name="mem_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="mem_dob" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Book_Review" Relationship="lastDbModel.FK_Book_Review_tbl_member" FromRole="tbl_member" ToRole="Book_Review" />
           <NavigationProperty Name="EBook_Review_db" Relationship="lastDbModel.FK_EBook_Review_db_tbl_member" FromRole="tbl_member" ToRole="EBook_Review_db" />
           <NavigationProperty Name="Ebooks_db" Relationship="lastDbModel.FK_Ebooks_db_tbl_member" FromRole="tbl_member" ToRole="Ebooks_db" />
           <NavigationProperty Name="Invoices" Relationship="lastDbModel.FK__Invoice__mem_id__49C3F6B7" FromRole="tbl_member" ToRole="Invoice" />
           <NavigationProperty Name="Reading_History" Relationship="lastDbModel.FK_Reading_History_tbl_member" FromRole="tbl_member" ToRole="Reading_History" />
-          <NavigationProperty Name="tbl_follow" Relationship="lastDbModel.FK_tbl_follow_tbl_member" FromRole="tbl_member" ToRole="tbl_follow" />
-          <NavigationProperty Name="tbl_follow1" Relationship="lastDbModel.FK_tbl_follow_tbl_member1" FromRole="tbl_member" ToRole="tbl_follow" />
-          <NavigationProperty Name="tbl_wishlist" Relationship="lastDbModel.FK_tbl_wishlist_tbl_member" FromRole="tbl_member" ToRole="tbl_wishlist" />
           <NavigationProperty Name="tbl_blog" Relationship="lastDbModel.FK_tbl_blog_tbl_member" FromRole="tbl_member" ToRole="tbl_blog" />
           <NavigationProperty Name="tbl_cmnts" Relationship="lastDbModel.FK_tbl_cmnts_tbl_member" FromRole="tbl_member" ToRole="tbl_cmnts" />
+          <NavigationProperty Name="tbl_follow" Relationship="lastDbModel.FK_tbl_follow_tbl_member" FromRole="tbl_member" ToRole="tbl_follow" />
+          <NavigationProperty Name="tbl_follow1" Relationship="lastDbModel.FK_tbl_follow_tbl_member1" FromRole="tbl_member" ToRole="tbl_follow" />
           <NavigationProperty Name="tbl_group" Relationship="lastDbModel.FK_tbl_group_tbl_member" FromRole="tbl_member" ToRole="tbl_group" />
           <NavigationProperty Name="tbl_groupmem" Relationship="lastDbModel.FK_tbl_groupmem_tbl_member" FromRole="tbl_member" ToRole="tbl_groupmem" />
-          </EntityType>
+          <NavigationProperty Name="tbl_wishlist" Relationship="lastDbModel.FK_tbl_wishlist_tbl_member" FromRole="tbl_member" ToRole="tbl_wishlist" />
+        </EntityType>
         <Association Name="FK_Book_Review_tbl_member">
           <End Type="lastDbModel.tbl_member" Role="tbl_member" Multiplicity="1" />
           <End Type="lastDbModel.Book_Review" Role="Book_Review" Multiplicity="*" />
@@ -1120,6 +1215,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_tbl_blog_tbl_member">
+          <End Type="lastDbModel.tbl_member" Role="tbl_member" Multiplicity="1" />
+          <End Type="lastDbModel.tbl_blog" Role="tbl_blog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_member">
+              <PropertyRef Name="mem_id" />
+            </Principal>
+            <Dependent Role="tbl_blog">
+              <PropertyRef Name="blog_createdby" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_cmnts_tbl_member">
+          <End Type="lastDbModel.tbl_member" Role="tbl_member" Multiplicity="1" />
+          <End Type="lastDbModel.tbl_cmnts" Role="tbl_cmnts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_member">
+              <PropertyRef Name="mem_id" />
+            </Principal>
+            <Dependent Role="tbl_cmnts">
+              <PropertyRef Name="cmnts_createdby" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tbl_follow_tbl_member">
           <End Type="lastDbModel.tbl_member" Role="tbl_member" Multiplicity="1" />
           <End Type="lastDbModel.tbl_follow" Role="tbl_follow" Multiplicity="*" />
@@ -1144,114 +1263,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_tbl_wishlist_tbl_member">
-          <End Type="lastDbModel.tbl_member" Role="tbl_member" Multiplicity="1" />
-          <End Type="lastDbModel.tbl_wishlist" Role="tbl_wishlist" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbl_member">
-              <PropertyRef Name="mem_id" />
-            </Principal>
-            <Dependent Role="tbl_wishlist">
-              <PropertyRef Name="mem_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="tbl_blog">
-          <Key>
-            <PropertyRef Name="blog_id" />
-          </Key>
-          <Property Name="blog_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="blog_datetime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="blog_groupid" Type="Int32" Nullable="false" />
-          <Property Name="blog_createdby" Type="Int32" Nullable="false" />
-          <Property Name="blog_img" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="blog_title" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="blog_body" Type="Binary" MaxLength="500" FixedLength="false" />
-          <NavigationProperty Name="tbl_member" Relationship="lastDbModel.FK_tbl_blog_tbl_member" FromRole="tbl_blog" ToRole="tbl_member" />
-          <NavigationProperty Name="tbl_cmnts" Relationship="lastDbModel.FK_tbl_cmnts_tbl_blog" FromRole="tbl_blog" ToRole="tbl_cmnts" />
-          <NavigationProperty Name="tbl_group" Relationship="lastDbModel.FK_tbl_blog_tbl_group" FromRole="tbl_blog" ToRole="tbl_group" />
-        </EntityType>
-        <EntityType Name="tbl_cmnts">
-          <Key>
-            <PropertyRef Name="cmnts_id" />
-          </Key>
-          <Property Name="cmnts_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="cmnts_createdby" Type="Int32" Nullable="false" />
-          <Property Name="cmnts_datetime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="cmnts_content" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="cmnts_blogid" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="tbl_blog" Relationship="lastDbModel.FK_tbl_cmnts_tbl_blog" FromRole="tbl_cmnts" ToRole="tbl_blog" />
-          <NavigationProperty Name="tbl_member" Relationship="lastDbModel.FK_tbl_cmnts_tbl_member" FromRole="tbl_cmnts" ToRole="tbl_member" />
-        </EntityType>
-        <EntityType Name="tbl_contactus">
-          <Key>
-            <PropertyRef Name="contactus_id" />
-          </Key>
-          <Property Name="contactus_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="contactys_datetime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="contactus_email" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="contactus_content" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <Association Name="FK_tbl_blog_tbl_member">
-          <End Type="lastDbModel.tbl_member" Role="tbl_member" Multiplicity="1" />
-          <End Type="lastDbModel.tbl_blog" Role="tbl_blog" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbl_member">
-              <PropertyRef Name="mem_id" />
-            </Principal>
-            <Dependent Role="tbl_blog">
-              <PropertyRef Name="blog_createdby" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tbl_cmnts_tbl_blog">
-          <End Type="lastDbModel.tbl_blog" Role="tbl_blog" Multiplicity="1" />
-          <End Type="lastDbModel.tbl_cmnts" Role="tbl_cmnts" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbl_blog">
-              <PropertyRef Name="blog_id" />
-            </Principal>
-            <Dependent Role="tbl_cmnts">
-              <PropertyRef Name="cmnts_blogid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tbl_cmnts_tbl_member">
-          <End Type="lastDbModel.tbl_member" Role="tbl_member" Multiplicity="1" />
-          <End Type="lastDbModel.tbl_cmnts" Role="tbl_cmnts" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbl_member">
-              <PropertyRef Name="mem_id" />
-            </Principal>
-            <Dependent Role="tbl_cmnts">
-              <PropertyRef Name="cmnts_createdby" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="tbl_group">
-          <Key>
-            <PropertyRef Name="group_id" />
-          </Key>
-          <Property Name="group_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="group_datetime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="group_createdby" Type="Int32" Nullable="false" />
-          <Property Name="group_title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="tbl_blog" Relationship="lastDbModel.FK_tbl_blog_tbl_group" FromRole="tbl_group" ToRole="tbl_blog" />
-          <NavigationProperty Name="tbl_member" Relationship="lastDbModel.FK_tbl_group_tbl_member" FromRole="tbl_group" ToRole="tbl_member" />
-          <NavigationProperty Name="tbl_groupmem" Relationship="lastDbModel.FK_tbl_groupmem_tbl_group" FromRole="tbl_group" ToRole="tbl_groupmem" />
-        </EntityType>
-        <Association Name="FK_tbl_blog_tbl_group">
-          <End Type="lastDbModel.tbl_group" Role="tbl_group" Multiplicity="1" />
-          <End Type="lastDbModel.tbl_blog" Role="tbl_blog" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbl_group">
-              <PropertyRef Name="group_id" />
-            </Principal>
-            <Dependent Role="tbl_blog">
-              <PropertyRef Name="blog_groupid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_tbl_group_tbl_member">
           <End Type="lastDbModel.tbl_member" Role="tbl_member" Multiplicity="1" />
           <End Type="lastDbModel.tbl_group" Role="tbl_group" Multiplicity="*" />
@@ -1264,29 +1275,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="tbl_groupmem">
-          <Key>
-            <PropertyRef Name="group_mem_id" />
-          </Key>
-          <Property Name="group_mem_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="group_mem_groupid" Type="Int32" Nullable="false" />
-          <Property Name="group_mem_memid" Type="Int32" Nullable="false" />
-          <Property Name="group_mem_joindate" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="tbl_group" Relationship="lastDbModel.FK_tbl_groupmem_tbl_group" FromRole="tbl_groupmem" ToRole="tbl_group" />
-          <NavigationProperty Name="tbl_member" Relationship="lastDbModel.FK_tbl_groupmem_tbl_member" FromRole="tbl_groupmem" ToRole="tbl_member" />
-        </EntityType>
-        <Association Name="FK_tbl_groupmem_tbl_group">
-          <End Type="lastDbModel.tbl_group" Role="tbl_group" Multiplicity="1" />
-          <End Type="lastDbModel.tbl_groupmem" Role="tbl_groupmem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbl_group">
-              <PropertyRef Name="group_id" />
-            </Principal>
-            <Dependent Role="tbl_groupmem">
-              <PropertyRef Name="group_mem_groupid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_tbl_groupmem_tbl_member">
           <End Type="lastDbModel.tbl_member" Role="tbl_member" Multiplicity="1" />
           <End Type="lastDbModel.tbl_groupmem" Role="tbl_groupmem" Multiplicity="*" />
@@ -1296,6 +1284,18 @@
             </Principal>
             <Dependent Role="tbl_groupmem">
               <PropertyRef Name="group_mem_memid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_wishlist_tbl_member">
+          <End Type="lastDbModel.tbl_member" Role="tbl_member" Multiplicity="1" />
+          <End Type="lastDbModel.tbl_wishlist" Role="tbl_wishlist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_member">
+              <PropertyRef Name="mem_id" />
+            </Principal>
+            <Dependent Role="tbl_wishlist">
+              <PropertyRef Name="mem_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1456,32 +1456,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tbl_member">
-            <EntityTypeMapping TypeName="lastDbModel.tbl_member">
-              <MappingFragment StoreEntitySet="tbl_member">
-                <ScalarProperty Name="mem_dob" ColumnName="mem_dob" />
-                <ScalarProperty Name="mem_address" ColumnName="mem_address" />
-                <ScalarProperty Name="mem_password" ColumnName="mem_password" />
-                <ScalarProperty Name="mem_contact" ColumnName="mem_contact" />
-                <ScalarProperty Name="mem_email" ColumnName="mem_email" />
-                <ScalarProperty Name="mem_name" ColumnName="mem_name" />
-                <ScalarProperty Name="mem_id" ColumnName="mem_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tbl_blog">
-            <EntityTypeMapping TypeName="lastDbModel.tbl_blog">
-              <MappingFragment StoreEntitySet="tbl_blog">
-                <ScalarProperty Name="blog_body" ColumnName="blog_body" />
-                <ScalarProperty Name="blog_title" ColumnName="blog_title" />
-                <ScalarProperty Name="blog_img" ColumnName="blog_img" />
-                <ScalarProperty Name="blog_createdby" ColumnName="blog_createdby" />
-                <ScalarProperty Name="blog_groupid" ColumnName="blog_groupid" />
-                <ScalarProperty Name="blog_datetime" ColumnName="blog_datetime" />
-                <ScalarProperty Name="blog_id" ColumnName="blog_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tbl_cmnts">
             <EntityTypeMapping TypeName="lastDbModel.tbl_cmnts">
               <MappingFragment StoreEntitySet="tbl_cmnts">
@@ -1520,6 +1494,32 @@
                 <ScalarProperty Name="group_mem_memid" ColumnName="group_mem_memid" />
                 <ScalarProperty Name="group_mem_groupid" ColumnName="group_mem_groupid" />
                 <ScalarProperty Name="group_mem_id" ColumnName="group_mem_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_blog">
+            <EntityTypeMapping TypeName="lastDbModel.tbl_blog">
+              <MappingFragment StoreEntitySet="tbl_blog">
+                <ScalarProperty Name="blog_body" ColumnName="blog_body" />
+                <ScalarProperty Name="blog_title" ColumnName="blog_title" />
+                <ScalarProperty Name="blog_img" ColumnName="blog_img" />
+                <ScalarProperty Name="blog_createdby" ColumnName="blog_createdby" />
+                <ScalarProperty Name="blog_groupid" ColumnName="blog_groupid" />
+                <ScalarProperty Name="blog_datetime" ColumnName="blog_datetime" />
+                <ScalarProperty Name="blog_id" ColumnName="blog_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_member">
+            <EntityTypeMapping TypeName="lastDbModel.tbl_member">
+              <MappingFragment StoreEntitySet="tbl_member">
+                <ScalarProperty Name="mem_dob" ColumnName="mem_dob" />
+                <ScalarProperty Name="mem_address" ColumnName="mem_address" />
+                <ScalarProperty Name="mem_password" ColumnName="mem_password" />
+                <ScalarProperty Name="mem_contact" ColumnName="mem_contact" />
+                <ScalarProperty Name="mem_email" ColumnName="mem_email" />
+                <ScalarProperty Name="mem_name" ColumnName="mem_name" />
+                <ScalarProperty Name="mem_id" ColumnName="mem_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

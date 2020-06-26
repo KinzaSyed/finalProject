@@ -95,7 +95,7 @@
     <Property Name="blog_createdby" Type="int" Nullable="false" />
     <Property Name="blog_img" Type="varchar(max)" />
     <Property Name="blog_title" Type="varchar" MaxLength="500" />
-    <Property Name="blog_body" Type="varbinary" MaxLength="500" />
+    <Property Name="blog_body" Type="varchar(max)" />
   </EntityType>
   <EntityType Name="Tbl_Books">
     <Key>
@@ -166,8 +166,8 @@
     <Property Name="mem_email" Type="varchar" MaxLength="50" />
     <Property Name="mem_contact" Type="varchar" MaxLength="50" />
     <Property Name="mem_password" Type="varchar" MaxLength="50" />
-    <Property Name="mem_address" Type="varchar" MaxLength="50" />
-    <Property Name="mem_dob" Type="date" />
+    <Property Name="mem_address" Type="varchar(max)" />
+    <Property Name="mem_dob" Type="datetime" />
   </EntityType>
   <EntityType Name="tbl_subscribe">
     <Key>

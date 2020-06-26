@@ -83,21 +83,26 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    @*<td>
-                        @Html.DisplayFor(modelItem => item.group_mem_joindate)
-                    </td>*@
-                    <td>
-                        @Html.DisplayFor(modelItem => item.tbl_group.group_title)
-                    </td>
-                    @*<td>
-                        @Html.DisplayFor(modelItem => item.tbl_member.mem_name)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.group_mem_id }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.group_mem_id }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.group_mem_id })
-                    </td>*@
+                @*<td>
+            @Html.DisplayFor(modelItem => item.group_mem_joindate)
+        </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.tbl_group.group_title)
+                </td>
+                @*<td>
+            @Html.DisplayFor(modelItem => item.tbl_member.mem_name)
+        </td>*@
+                <td>
+                    @*  @Html.ActionLink("Edit", "Edit", new { id = item.group_mem_id }) | *@
+                    @Html.ActionLink("Details", "Details", new { id = item.group_mem_groupid }) |
+                    @Html.ActionLink("Go to Group", "GroupMainPage", new { id = item.group_mem_groupid }) |
+
+                    @*  @Html.ActionLink("Delete", "Delete", new { id = item.group_mem_id })*@
+                </td>
+            
                 </tr>
+
+
             }
 
         </table>

@@ -22,13 +22,13 @@ namespace finalproject.Models
             this.Ebooks_db = new HashSet<Ebooks_db>();
             this.Invoices = new HashSet<Invoice>();
             this.Reading_History = new HashSet<Reading_History>();
-            this.tbl_follow = new HashSet<tbl_follow>();
-            this.tbl_follow1 = new HashSet<tbl_follow>();
-            this.tbl_wishlist = new HashSet<tbl_wishlist>();
             this.tbl_blog = new HashSet<tbl_blog>();
             this.tbl_cmnts = new HashSet<tbl_cmnts>();
+            this.tbl_follow = new HashSet<tbl_follow>();
+            this.tbl_follow1 = new HashSet<tbl_follow>();
             this.tbl_group = new HashSet<tbl_group>();
             this.tbl_groupmem = new HashSet<tbl_groupmem>();
+            this.tbl_wishlist = new HashSet<tbl_wishlist>();
         }
     
         public int mem_id { get; set; }
@@ -50,18 +50,18 @@ namespace finalproject.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reading_History> Reading_History { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbl_follow> tbl_follow { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbl_follow> tbl_follow1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbl_wishlist> tbl_wishlist { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_blog> tbl_blog { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_cmnts> tbl_cmnts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbl_follow> tbl_follow { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbl_follow> tbl_follow1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_group> tbl_group { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_groupmem> tbl_groupmem { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbl_wishlist> tbl_wishlist { get; set; }
     }
 }

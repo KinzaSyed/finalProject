@@ -76,28 +76,14 @@ namespace finalproject.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-
             //List<Book_author> li = db.Book_author.ToList();
             //ViewBag.authlist = new SelectList(li, "auth_id", "auth_name");
-
             //List<Book_publisher> li2 = db.Book_publisher.ToList();
             //ViewBag.publist = new SelectList(li2, "pub_id", "pub_name");
-
-
-
             List<Book_categoryy> li3 = db.Book_categoryy.ToList();
             ViewBag.catlist = new SelectList(li3, "cat_id", "cat_name");
-
-
-
             List<Tbl_Vendorr> li4 = db.Tbl_Vendorr.ToList();
             ViewBag.venlist = new SelectList(li4, "Vendor_id", "Vendor_name");
-
-
-
-
-
-
             return View();
         }
         [HttpPost]
@@ -112,26 +98,15 @@ namespace finalproject.Controllers
 
             else
             {
-
-
-
                 //List<Book_author> li = db.Book_author.ToList();
                 //ViewBag.authlist = new SelectList(li, "auth_id", "auth_name");
 
                 //List<Book_publisher> li2 = db.Book_publisher.ToList();
                 //ViewBag.publist = new SelectList(li2, "pub_id", "pub_name");
-
-
-
                 List<Book_categoryy> li3 = db.Book_categoryy.ToList();
                 ViewBag.catlist = new SelectList(li3, "cat_id", "cat_name");
-
-
-
                 List<Tbl_Vendorr> li4 = db.Tbl_Vendorr.ToList();
                 ViewBag.venlist = new SelectList(li4, "Vendor_id", "Vendor_name");
-
-
                 Tbl_Books bk = new Tbl_Books();
                 bk.Book_name = evm.Book_name;
                 bk.Book_img = path;

@@ -389,6 +389,7 @@
     <Content Include="Views\tbl_groupmem\Details.cshtml" />
     <Content Include="Views\tbl_groupmem\Edit.cshtml" />
     <Content Include="Views\tbl_groupmem\Index.cshtml" />
+    <Content Include="Views\tbl_blog\Allblogsofgroup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

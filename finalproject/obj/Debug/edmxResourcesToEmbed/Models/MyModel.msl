@@ -152,32 +152,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="tbl_member">
-      <EntityTypeMapping TypeName="lastDbModel.tbl_member">
-        <MappingFragment StoreEntitySet="tbl_member">
-          <ScalarProperty Name="mem_dob" ColumnName="mem_dob" />
-          <ScalarProperty Name="mem_address" ColumnName="mem_address" />
-          <ScalarProperty Name="mem_password" ColumnName="mem_password" />
-          <ScalarProperty Name="mem_contact" ColumnName="mem_contact" />
-          <ScalarProperty Name="mem_email" ColumnName="mem_email" />
-          <ScalarProperty Name="mem_name" ColumnName="mem_name" />
-          <ScalarProperty Name="mem_id" ColumnName="mem_id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tbl_blog">
-      <EntityTypeMapping TypeName="lastDbModel.tbl_blog">
-        <MappingFragment StoreEntitySet="tbl_blog">
-          <ScalarProperty Name="blog_body" ColumnName="blog_body" />
-          <ScalarProperty Name="blog_title" ColumnName="blog_title" />
-          <ScalarProperty Name="blog_img" ColumnName="blog_img" />
-          <ScalarProperty Name="blog_createdby" ColumnName="blog_createdby" />
-          <ScalarProperty Name="blog_groupid" ColumnName="blog_groupid" />
-          <ScalarProperty Name="blog_datetime" ColumnName="blog_datetime" />
-          <ScalarProperty Name="blog_id" ColumnName="blog_id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="tbl_cmnts">
       <EntityTypeMapping TypeName="lastDbModel.tbl_cmnts">
         <MappingFragment StoreEntitySet="tbl_cmnts">
@@ -216,6 +190,32 @@
           <ScalarProperty Name="group_mem_memid" ColumnName="group_mem_memid" />
           <ScalarProperty Name="group_mem_groupid" ColumnName="group_mem_groupid" />
           <ScalarProperty Name="group_mem_id" ColumnName="group_mem_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_blog">
+      <EntityTypeMapping TypeName="lastDbModel.tbl_blog">
+        <MappingFragment StoreEntitySet="tbl_blog">
+          <ScalarProperty Name="blog_body" ColumnName="blog_body" />
+          <ScalarProperty Name="blog_title" ColumnName="blog_title" />
+          <ScalarProperty Name="blog_img" ColumnName="blog_img" />
+          <ScalarProperty Name="blog_createdby" ColumnName="blog_createdby" />
+          <ScalarProperty Name="blog_groupid" ColumnName="blog_groupid" />
+          <ScalarProperty Name="blog_datetime" ColumnName="blog_datetime" />
+          <ScalarProperty Name="blog_id" ColumnName="blog_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_member">
+      <EntityTypeMapping TypeName="lastDbModel.tbl_member">
+        <MappingFragment StoreEntitySet="tbl_member">
+          <ScalarProperty Name="mem_dob" ColumnName="mem_dob" />
+          <ScalarProperty Name="mem_address" ColumnName="mem_address" />
+          <ScalarProperty Name="mem_password" ColumnName="mem_password" />
+          <ScalarProperty Name="mem_contact" ColumnName="mem_contact" />
+          <ScalarProperty Name="mem_email" ColumnName="mem_email" />
+          <ScalarProperty Name="mem_name" ColumnName="mem_name" />
+          <ScalarProperty Name="mem_id" ColumnName="mem_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

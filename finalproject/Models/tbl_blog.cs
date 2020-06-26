@@ -26,11 +26,11 @@ namespace finalproject.Models
         public int blog_createdby { get; set; }
         public string blog_img { get; set; }
         public string blog_title { get; set; }
-        public byte[] blog_body { get; set; }
+        public string blog_body { get; set; }
     
-        public virtual tbl_member tbl_member { get; set; }
+        public virtual tbl_group tbl_group { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_cmnts> tbl_cmnts { get; set; }
-        public virtual tbl_group tbl_group { get; set; }
+        public virtual tbl_member tbl_member { get; set; }
     }
 }

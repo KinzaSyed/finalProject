@@ -22,7 +22,7 @@ namespace finalproject.Models
 
             public string mem_contact { get; set; }
             [DisplayName("Password")]
-
+           
             
             public string mem_password { get; set; }
             [DisplayName("Address")]

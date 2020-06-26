@@ -38,11 +38,11 @@ namespace finalproject.Models
         public virtual DbSet<Tbl_Books> Tbl_Books { get; set; }
         public virtual DbSet<tbl_follow> tbl_follow { get; set; }
         public virtual DbSet<tbl_subscribe> tbl_subscribe { get; set; }
-        public virtual DbSet<tbl_member> tbl_member { get; set; }
-        public virtual DbSet<tbl_blog> tbl_blog { get; set; }
         public virtual DbSet<tbl_cmnts> tbl_cmnts { get; set; }
         public virtual DbSet<tbl_contactus> tbl_contactus { get; set; }
         public virtual DbSet<tbl_group> tbl_group { get; set; }
         public virtual DbSet<tbl_groupmem> tbl_groupmem { get; set; }
+        public virtual DbSet<tbl_blog> tbl_blog { get; set; }
+        public virtual DbSet<tbl_member> tbl_member { get; set; }
     }
 }

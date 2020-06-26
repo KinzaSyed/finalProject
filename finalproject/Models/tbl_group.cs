@@ -17,8 +17,8 @@ namespace finalproject.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tbl_group()
         {
-            this.tbl_blog = new HashSet<tbl_blog>();
             this.tbl_groupmem = new HashSet<tbl_groupmem>();
+            this.tbl_blog = new HashSet<tbl_blog>();
         }
     
         public int group_id { get; set; }
@@ -27,9 +27,9 @@ namespace finalproject.Models
         public string group_title { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbl_groupmem> tbl_groupmem { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_blog> tbl_blog { get; set; }
         public virtual tbl_member tbl_member { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbl_groupmem> tbl_groupmem { get; set; }
     }
 }
