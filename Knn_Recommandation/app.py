@@ -1,4 +1,3 @@
-import numpy as np
 from flask import Flask, request, jsonify, render_template
 import pickle
 import json
@@ -7,24 +6,22 @@ from KnnBookSuggestion import recommandationclass
 
 
 app = Flask(__name__)
-
-#model = pickle.load(open('modelmake.pkl', 'rb'))
-
 @app.route('/recommand',methods=['POST'])
-def predict():
+def recommand():
     data = request.get_json(force=True)
+    print(data)
     with open("KnnRecommandModel.pkl","rb") as f:
         obj = pickle.load(f)
     book_name=data['parameter']
     print(book_name)
-    var = obj.recommandBook(book_name)
-    str1 = []
-    for i in var:
-        str1.append(i)
-    st={"book": str1}
-    print(st["book"])
+    recommandbooks = obj.recommandBook(book_name)
+    books = []
+    for i in recommandbooks:
+        books.append(i)
+    bookresponse={"book": books}
+    print(bookresponse["book"])
 
-    return st
+    return bookresponse
 
 
 if __name__ == "__main__":

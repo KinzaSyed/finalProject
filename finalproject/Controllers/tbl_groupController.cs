@@ -14,6 +14,13 @@ namespace finalproject.Controllers
     {
         private lastDbEntities db = new lastDbEntities();
 
+
+        public ActionResult GroupHome()
+        {
+
+            return View();
+        }
+
         public ActionResult JoinGroup(tbl_groupmem groupmem, int id)
         {
             int memid = Convert.ToInt32(Session["mem_id"]);
@@ -29,8 +36,24 @@ namespace finalproject.Controllers
         // GET: tbl_group
         public ActionResult Index()
         {
-            var tbl_group = db.tbl_group.Include(t => t.tbl_member);
+
+
+            int memid = Convert.ToInt32(Session["mem_id"]);
+
+            var tbl_group = db.tbl_group.Include(t => t.tbl_member).Where(x => x.tbl_member.mem_id == memid);
             return View(tbl_group.ToList());
+
+
+
+        }
+        public ActionResult GroupUrIn()
+        {
+            int memid = Convert.ToInt32(Session["mem_id"]);
+
+            var tbl_groupmem = db.tbl_groupmem.Include(t => t.tbl_group).Include(t => t.tbl_member).Where(x => x.tbl_member.mem_id== memid);
+            var a = 12 + 2;
+            var c = a;
+            return View(tbl_groupmem.ToList());
         }
 
         // GET: tbl_group/Details/5

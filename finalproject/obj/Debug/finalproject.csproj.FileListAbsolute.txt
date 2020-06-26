@@ -93,6 +93,8 @@ C:\Users\Kinza Syed\source\repos\finalproject\finalproject\bin\EntityFramework.S
 C:\Users\Kinza Syed\source\repos\finalproject\finalproject\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\Kinza Syed\source\repos\finalproject\finalproject\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\Kinza Syed\source\repos\finalproject\finalproject\bin\Newtonsoft.Json.dll
+C:\Users\Kinza Syed\source\repos\finalproject\finalproject\bin\PagedList.dll
+C:\Users\Kinza Syed\source\repos\finalproject\finalproject\bin\PagedList.Mvc.dll
 C:\Users\Kinza Syed\source\repos\finalproject\finalproject\bin\System.Web.Helpers.dll
 C:\Users\Kinza Syed\source\repos\finalproject\finalproject\bin\System.Web.Mvc.dll
 C:\Users\Kinza Syed\source\repos\finalproject\finalproject\bin\System.Web.Optimization.dll
@@ -103,6 +105,8 @@ C:\Users\Kinza Syed\source\repos\finalproject\finalproject\bin\System.Web.WebPag
 C:\Users\Kinza Syed\source\repos\finalproject\finalproject\bin\WebGrease.dll
 C:\Users\Kinza Syed\source\repos\finalproject\finalproject\bin\EntityFramework.xml
 C:\Users\Kinza Syed\source\repos\finalproject\finalproject\bin\EntityFramework.SqlServer.xml
+C:\Users\Kinza Syed\source\repos\finalproject\finalproject\bin\PagedList.xml
+C:\Users\Kinza Syed\source\repos\finalproject\finalproject\bin\PagedList.Mvc.xml
 C:\Users\Kinza Syed\source\repos\finalproject\finalproject\bin\System.Web.Helpers.xml
 C:\Users\Kinza Syed\source\repos\finalproject\finalproject\bin\System.Web.Mvc.xml
 C:\Users\Kinza Syed\source\repos\finalproject\finalproject\bin\System.Web.Optimization.xml
@@ -113,12 +117,8 @@ C:\Users\Kinza Syed\source\repos\finalproject\finalproject\bin\System.Web.WebPag
 C:\Users\Kinza Syed\source\repos\finalproject\finalproject\bin\Newtonsoft.Json.xml
 C:\Users\Kinza Syed\source\repos\finalproject\finalproject\bin\Antlr3.Runtime.pdb
 C:\Users\Kinza Syed\source\repos\finalproject\finalproject\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Kinza Syed\source\repos\finalproject\finalproject\obj\Debug\finalproject.csprojAssemblyReference.cache
 C:\Users\Kinza Syed\source\repos\finalproject\finalproject\obj\Debug\finalproject.csproj.CoreCompileInputs.cache
 C:\Users\Kinza Syed\source\repos\finalproject\finalproject\obj\Debug\finalproject.csproj.CopyComplete
 C:\Users\Kinza Syed\source\repos\finalproject\finalproject\obj\Debug\finalproject.dll
 C:\Users\Kinza Syed\source\repos\finalproject\finalproject\obj\Debug\finalproject.pdb
-C:\Users\Kinza Syed\source\repos\finalproject\finalproject\obj\Debug\finalproject.csprojAssemblyReference.cache
-C:\Users\Kinza Syed\source\repos\finalproject\finalproject\bin\PagedList.dll
-C:\Users\Kinza Syed\source\repos\finalproject\finalproject\bin\PagedList.Mvc.dll
-C:\Users\Kinza Syed\source\repos\finalproject\finalproject\bin\PagedList.xml
-C:\Users\Kinza Syed\source\repos\finalproject\finalproject\bin\PagedList.Mvc.xml

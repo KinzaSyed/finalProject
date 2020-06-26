@@ -20,8 +20,10 @@ namespace finalproject.Controllers
         private lastDbEntities db = new lastDbEntities();
 
 
+
+
        
-            public ActionResult FollowPeople(tbl_follow follow, int followed_id)
+        public ActionResult FollowPeople(tbl_follow follow, int followed_id)
         {
             string mem_email = Session["mem_email"].ToString();
             follow.follow_time = DateTime.Now;
@@ -33,12 +35,25 @@ namespace finalproject.Controllers
 
         }
        
-        //public ActionResult WhoTheyFollow(int? id)
-        //{
-           
 
-        
-        //}
+
+        public ActionResult PublicRecentReading(int id)
+        {
+            List<Reading_History> m = null;
+            m = db.Reading_History.Where(x => x.memID == id).ToList();
+
+            return PartialView(m);
+
+        }
+        public ActionResult WhoTheyFollow(int? id)
+        {
+
+            List<tbl_follow> m = null;
+            m = db.tbl_follow.Where(x => x.followedby_id == id).ToList();
+
+            return PartialView(m);
+
+        }
 
 
         public ActionResult DetailsPublic(int? id)
@@ -54,31 +69,42 @@ namespace finalproject.Controllers
             }
             return View(tbl_member);
         }
-        //public ActionResult publicprofile()
-        //{
-        //    var members = from a in db.tbl_follow
-        //                  join bi in db.tbl_member
-        //                  on a.followed_id
-        //                  equals bi.mem_id
-                          
-        //                  /*where a.follow_id*/ into fol
-        //                  from tbl_follow in fol.distinct()
-                          
-        //                  select new { memid = tbl_follow.mem_id };
-        //    //ye error ha
-        //    //is null
-        //    //select b.mem_id;
-        //    list<tbl_member> memberlist = new list<tbl_member>();
-        //    foreach (var member in members)
-        //    {
-        //        var mem = db.tbl_member.where(x => x.mem_id == member.memid).first();
-        //        memberlist.add(mem);
-        //    }
-               
+        public ActionResult publicprofile()
+        {
+            //var membersOutterJoin = (from a in db.tbl_follow
+            //              join bi in db.tbl_member
+            //              on a.followed_id
+            //              equals bi.mem_id
+            //              into fol
+            //              from bi in fol.DefaultIfEmpty()
+            //              select new { memid = bi.mem_id }).ToList();
+            //var membersInnerJoin =( from b in db.tbl_member
+            //                        join a in db.tbl_follow
+            //                        on b.mem_id
+            //                        equals a.followed_id
+            //                        into fol
+            //                        from tbl_follow in fol.DefaultIfEmpty()
+            //                        select new { memid = tbl_follow.followed_id}).ToList();
 
-        //    return view(memberlist);
-          
-        //}
+            var rightjoin = (from right in db.tbl_follow
+                             join left in db.tbl_member
+                            on right.followed_id equals left.mem_id into temp
+                            from left in temp.DefaultIfEmpty()
+                            select new { memid = right.followed_id}).ToList();
+
+
+            //var fullOuterJoinmembers = membersOutterJoin.Union(membersInnerJoin);
+            List<tbl_member> memberlist = new List<tbl_member>();
+            foreach (var member in rightjoin)
+            {
+                var mem = db.tbl_member.Where(x => x.mem_id == member.memid).First();
+                memberlist.Add(mem);
+            }
+
+
+            return View(memberlist);
+
+        }
 
 
         public ActionResult Login()
@@ -125,7 +151,7 @@ namespace finalproject.Controllers
             var BestsellingBooks =(from item in db.BTransactions
              group item.Transaction_qty by item.Book_id into g
             orderby g.Sum() descending
-            select g.Key).Take(5);
+            select g.Key).Take(3);
 
            
 
@@ -144,8 +170,8 @@ namespace finalproject.Controllers
             string cs = ConfigurationManager.ConnectionStrings["lastDbEntities"].ConnectionString;
             StringBuilder sb = new StringBuilder();
             StringBuilder sb1 = new StringBuilder();
-            string bookQuery = "select Ebook_id,Ebook_name from db.dbo.Ebooks_db;";
-            string RatingQuery = "select EReview_id,ERating,EbookId,memberId from db.dbo.EBook_Review_db;";
+            string bookQuery = "select Ebook_id,Ebook_name from lastDb.dbo.Ebooks_db;";
+            string RatingQuery = "select EReview_id,ERating,EbookId,memberId from lastDb.dbo.EBook_Review_db;";
             using (var context = new lastDbEntities())
             {
                 var connection = (System.Data.SqlClient.SqlConnection)context.Database.Connection;
@@ -171,7 +197,7 @@ namespace finalproject.Controllers
                     sb.Append("\r\n");
                 }
                 string book = "Ebook.csv";
-                StreamWriter file = new StreamWriter(@"C:\Users\Akshay Kumar\Desktop\New folder (3)\Book\finalProject\Knn_Recommandation\" + book);
+                StreamWriter file = new StreamWriter(@"C:\Users\Kinza Syed\source\repos\finalproject\Knn_Recommandation\" + book);
                 file.WriteLine(sb.ToString());
                 file.Close();
                 //Review save in .csv file 
@@ -201,7 +227,7 @@ namespace finalproject.Controllers
 
                 }
                 string rating = "Rating.csv";
-                StreamWriter file1 = new StreamWriter(@"C:\Users\Akshay Kumar\Desktop\New folder (3)\Book\finalProject\Knn_Recommandation\" + rating);
+                StreamWriter file1 = new StreamWriter(@"C:\Users\Kinza Syed\source\repos\finalproject\Knn_Recommandation\" + rating);
                 file1.WriteLine(sb1.ToString());
                 file1.Close();
 

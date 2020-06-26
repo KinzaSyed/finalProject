@@ -1,0 +1,42 @@
+﻿@model finalproject.Models.tbl_groupmem
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tbl_groupmem</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.group_mem_joindate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.group_mem_joindate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_group.group_title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_group.group_title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_member.mem_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_member.mem_name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.group_mem_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

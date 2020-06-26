@@ -146,6 +146,7 @@
     <Compile Include="Controllers\tbl_blogController.cs" />
     <Compile Include="Controllers\Tbl_BookController.cs" />
     <Compile Include="Controllers\tbl_groupController.cs" />
+    <Compile Include="Controllers\tbl_groupmemController.cs" />
     <Compile Include="Controllers\Tbl_memberController.cs" />
     <Compile Include="Controllers\Tbl_VendorrController.cs" />
     <Compile Include="Controllers\tbl_wishlistController.cs" />
@@ -380,6 +381,14 @@
     <Content Include="Views\tbl_group\Edit.cshtml" />
     <Content Include="Views\tbl_group\Index.cshtml" />
     <Content Include="Views\Tbl_member\RecommandBook.cshtml" />
+    <Content Include="Views\Tbl_member\PublicRecentReading.cshtml" />
+    <Content Include="Views\tbl_group\GroupHome.cshtml" />
+    <Content Include="Views\tbl_group\GroupUrIn.cshtml" />
+    <Content Include="Views\tbl_groupmem\Create.cshtml" />
+    <Content Include="Views\tbl_groupmem\Delete.cshtml" />
+    <Content Include="Views\tbl_groupmem\Details.cshtml" />
+    <Content Include="Views\tbl_groupmem\Edit.cshtml" />
+    <Content Include="Views\tbl_groupmem\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

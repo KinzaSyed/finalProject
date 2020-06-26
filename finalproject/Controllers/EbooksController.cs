@@ -324,8 +324,8 @@ namespace finalproject.Controllers
         public ActionResult addtoReadings(Reading_History RD,int id)
         {
             
-            var kinza = db.Reading_History.Where(b => b.ebook_id == id).Any();
-             if (kinza ==false)
+            var readings = db.Reading_History.Where(b => b.ebook_id == id).Any();
+             if (readings ==false)
             {
                 int memid = Convert.ToInt32(Session["mem_id"]);
 
@@ -336,6 +336,10 @@ namespace finalproject.Controllers
                 
                 db.Reading_History.Add(RD);
                 db.SaveChanges();
+            }
+            else
+            {
+                
             }
 
            
