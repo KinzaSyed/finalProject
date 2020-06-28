@@ -15,6 +15,8 @@ namespace finalproject.Controllers
     {
         private lastDbEntities db = new lastDbEntities();
 
+
+        
         // GET: tbl_blog
         public ActionResult Index()
         {

@@ -15,7 +15,7 @@
             width: 160px;
             position: fixed;
             z-index: 1;
-            top: 60px;
+            top: 30px;
             left: 0;
             background-color: #111;
             overflow-x: hidden;
@@ -94,8 +94,8 @@
         </td>*@
                 <td>
                     @*  @Html.ActionLink("Edit", "Edit", new { id = item.group_mem_id }) | *@
-                    @Html.ActionLink("Details", "Details", new { id = item.group_mem_groupid }) |
-                    @Html.ActionLink("Go to Group", "GroupMainPage", new { id = item.group_mem_groupid }) |
+                    @Html.ActionLink("Go to Group", "Details", new { id = item.group_mem_groupid }) 
+                    @*@Html.ActionLink("Go to Group", "GroupMainPage", new { id = item.group_mem_groupid }) |*@
 
                     @*  @Html.ActionLink("Delete", "Delete", new { id = item.group_mem_id })*@
                 </td>

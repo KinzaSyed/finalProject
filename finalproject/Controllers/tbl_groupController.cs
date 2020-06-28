@@ -14,6 +14,32 @@ namespace finalproject.Controllers
     {
         private lastDbEntities db = new lastDbEntities();
 
+        public ActionResult FindGroups()
+        {
+            int userid = Convert.ToInt32(Session["mem_id"].ToString());
+            var follower = db.tbl_groupmem.Where(x => x.group_mem_memid == userid);
+
+
+            var rightjoin = (from right in db.tbl_group
+                             join left in follower
+                            on right.group_id equals left.group_mem_groupid into temp
+                             from left in temp.DefaultIfEmpty()
+                             where left.group_mem_id == null
+                             select new { memid = right.group_id }).ToList();
+
+
+            List<tbl_group> memberlist = new List<tbl_group>();
+            foreach (var member in rightjoin)
+            {
+                var mem = db.tbl_group.Where(x => x.group_id == member.memid).First();
+                memberlist.Add(mem);
+            }
+
+
+            return View(memberlist);
+
+
+        }
 
         public ActionResult GroupHome()
         {
@@ -30,7 +56,7 @@ namespace finalproject.Controllers
             groupmem.group_mem_joindate = DateTime.Now;
             db.tbl_groupmem.Add(groupmem);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("GroupUrIn", "tbl_group");
         }
 
         // GET: tbl_group
@@ -141,6 +167,8 @@ namespace finalproject.Controllers
         {
             if (ModelState.IsValid)
             {
+                //tbl_group.group_createdby = tbl_group.group_createdby;
+                //tbl_group.group_datetime = tbl_group.group_datetime;
                 db.Entry(tbl_group).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

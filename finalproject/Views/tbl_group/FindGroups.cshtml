@@ -1,0 +1,90 @@
+﻿@model IEnumerable<finalproject.Models.tbl_group>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            /*margin-top:20px;*/
+            font-family: "Lato", sans-serif;
+        }
+
+        .sidenav {
+            height: 100%;
+            width: 160px;
+            position: fixed;
+            z-index: 1;
+            top: 30px;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            padding-top: 20px;
+        }
+
+            .sidenav a {
+                padding: 6px 8px 6px 16px;
+                text-decoration: none;
+                font-size: 15px;
+                color: #818181;
+                display: block;
+            }
+
+                .sidenav a:hover {
+                    color: #f1f1f1;
+                }
+
+        .main {
+            margin-left: 160px; /* Same as the width of the sidenav */
+            font-size: 20px; /* Increased text to enable scrolling */
+            padding: 0px 10px;
+        }
+
+        @@media screen and (max-height: 450px) {
+            .sidenav {
+                padding-top: 15px;
+            }
+
+                .sidenav a {
+                    font-size: 18px;
+                }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidenav">
+        <a href="/tbl_group/Create">Create Group</a>
+        <a href="/tbl_group/Index">Your Groups</a>
+        <a href="/tbl_group/GroupUrIn">Groups You're In</a>
+        <a href="/tbl_group/FindGroups">Explore</a>
+    </div>
+
+    <div class="main">
+        <table class="table">
+
+
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.group_id)
+                        </td>*@
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.group_title)
+                    </td>
+
+                    <td>@Html.ActionLink("Join Group", "JoinGroup", new { id = item.group_id })</td>
+
+                </tr>
+            }
+
+
+
+
+        </table>
+    </div>
+
+</body>
+</html>
