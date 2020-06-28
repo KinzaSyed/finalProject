@@ -42,6 +42,8 @@
                 &nbsp;&nbsp;&nbsp;
                 @Html.DisplayFor(modelItem => item.tbl_member.mem_name).ToString().ToUpper()
             </strong>
+            <div></div>
+            @Html.ActionLink("Read Blog", "Details", new { id = item.blog_id })
 
 
 
@@ -49,14 +51,14 @@
 
             @*@Html.DisplayFor(modelItem => item.tbl_group.group_title)*@
 
-            
+
         </td>
 
-        <td>
-            @*@Html.ActionLink("Edit", "Edit", new { id=item.blog_id }) |*@
+        @*<td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.blog_id }) |
             @Html.ActionLink("Read Blog", "Details", new { id=item.blog_id }) 
-            @*@Html.ActionLink("Delete", "Delete", new { id=item.blog_id })*@
-        </td>
+            @Html.ActionLink("Delete", "Delete", new { id=item.blog_id })
+        </td>*@
     </tr>
 }
 

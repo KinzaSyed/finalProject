@@ -49,7 +49,10 @@ namespace finalproject.Controllers
 
         public ActionResult Index()
         {
-            List<Tbl_Books> Booklist = db.Tbl_Books.ToList();
+            
+            int Vendor_id = Convert.ToInt32(Session["Vendor_id"]);
+            
+            List<Tbl_Books> Booklist = db.Tbl_Books.Where(x => x.Vendor_id == Vendor_id).ToList();
             List<Tbl_for_books> booklistdis = Booklist.Select(x => new Tbl_for_books
             {
                 Book_id = x.Book_id,
@@ -66,6 +69,32 @@ namespace finalproject.Controllers
                 Vendor_id = Convert.ToInt32(x.Vendor_id),
                 Vendor_name = x.Tbl_Vendorr.Vendor_name,
              //   Book_ebook = x.Book_ebook
+
+
+
+            }).ToList();
+
+            return View(booklistdis);
+        }
+        public ActionResult AdminIndex()
+        {
+            List<Tbl_Books> Booklist = db.Tbl_Books.ToList();
+            List<Tbl_for_books> booklistdis = Booklist.Select(x => new Tbl_for_books
+            {
+                Book_id = x.Book_id,
+                Book_name = x.Book_name,
+                Book_Edition = x.Book_Edition,
+                Book_price = x.Book_price,
+                Book_img = x.Book_img,
+                auth_id = x.auth_id,
+
+                pub_id = x.pub_id,
+
+                cat_id = Convert.ToInt32(x.cat_id),
+                cat_name = x.Book_categoryy.cat_name,
+                Vendor_id = Convert.ToInt32(x.Vendor_id),
+                Vendor_name = x.Tbl_Vendorr.Vendor_name,
+                //   Book_ebook = x.Book_ebook
 
 
 
@@ -249,9 +278,6 @@ namespace finalproject.Controllers
 
             //List<Book_publisher> li2 = db.Book_publisher.ToList();
             //ViewBag.publist = new SelectList(li2, "pub_id", "pub_name");
-
-
-
             List<Book_categoryy> li3 = db.Book_categoryy.ToList();
             ViewBag.catlist = new SelectList(li3, "cat_id", "cat_name");
 
@@ -267,13 +293,47 @@ namespace finalproject.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
 
-        public ActionResult Edit([Bind(Include = "Book_id,Book_name,Book_Edition,Book_price,Book_img,auth_id,pub_id,cat_id,Vendor_id")]Tbl_Books Tbl_Books)
+        public ActionResult Edit([Bind(Include = "Book_id,Book_name,Book_Edition,Book_price,Book_img,auth_id,pub_id,cat_id,Vendor_id")]Tbl_Books Tbl_Books, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(Tbl_Books).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string path = uploadingfile(file);
+                if (path.Equals("-1"))
+                {
+                    ViewBag.error = "Image could not be uploaded....";
+                }
+
+                else
+                {
+
+
+                    Tbl_Books tbl_Books = new Tbl_Books();
+                    tbl_Books.Book_name = Tbl_Books.Book_name;
+                    tbl_Books.Book_Edition = Tbl_Books.Book_Edition;
+                    tbl_Books.Book_price = Tbl_Books.Book_price;
+                    tbl_Books.Book_img = path;
+                    tbl_Books.auth_id = Tbl_Books.auth_id;
+                    tbl_Books.pub_id = Tbl_Books.pub_id;
+                    tbl_Books.cat_id = Tbl_Books.cat_id;
+
+
+
+
+                    db.Entry(tbl_Books).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                }
+
+                if (Session["Admin_id"] != null)
+                {
+                    return RedirectToAction("AdminIndex");
+
+                }
+                else
+                {
+
+                    return RedirectToAction("Index");
+                }
             }
             return View(Tbl_Books);
         }

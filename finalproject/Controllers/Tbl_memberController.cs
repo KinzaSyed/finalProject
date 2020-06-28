@@ -111,6 +111,8 @@ namespace finalproject.Controllers
         {
             if (Session["BUser_id"] != null && Session["BUser_email"] != null)
             {
+
+              
                 return RedirectToAction("UserPanel", "Tbl_member");
             }
             else
@@ -298,8 +300,12 @@ namespace finalproject.Controllers
             List<Reading_History> m = null;
             if (Session["mem_id"] != null)
             {
-                int mem_id = Convert.ToInt32(Session["mem_id"].ToString());
-                m = db.Reading_History.Where(x => x.memID == mem_id).ToList();
+                int mem_idd = Convert.ToInt32(Session["mem_id"].ToString());
+                var selectname = (from n in db.tbl_member
+                                 where n.mem_id == mem_idd
+                                 select n).Single().mem_name;
+                ViewBag.membername = selectname;
+                m = db.Reading_History.Where(x => x.memID == mem_idd).ToList();
                 
             }
 
@@ -368,13 +374,31 @@ namespace finalproject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "mem_id,mem_name,mem_email,mem_contact,mem_password,mem_address,mem_dob")] tbl_member tbl_member)
         {
-            if (ModelState.IsValid)
-            {
-                db.tbl_member.Add(tbl_member);
-                db.SaveChanges();
-                return RedirectToAction("Login");
-            }
 
+            //var readings = db.Reading_History.Where(b => b.ebook_id == id).Any();
+            //if (readings == false)
+            //{
+            var email = tbl_member.mem_email;
+            var emailcheck = db.tbl_member.Where(b => b.mem_email == email).Any();
+            var emailcheck1 = db.Tbl_Vendorr.Where(b => b.Vendor_email == email).Any();
+            var emailcheck2 = db.Tbl_admin.Where(b => b.Admin_email == email).Any();
+
+            if (emailcheck == false && emailcheck1 == false && emailcheck2 == false)
+            {
+
+                if (ModelState.IsValid)
+                {
+                    db.tbl_member.Add(tbl_member);
+                    db.SaveChanges();
+                    return RedirectToAction("Login");
+                }
+
+                return View(tbl_member);
+            }
+            else
+            {
+                Response.Write("<script>alert('Email Already registered';</script>");
+            }
             return View(tbl_member);
         }
 
@@ -404,7 +428,7 @@ namespace finalproject.Controllers
             {
                 db.Entry(tbl_member).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("UserPanel", "Tbl_member");
             }
             return View(tbl_member);
         }

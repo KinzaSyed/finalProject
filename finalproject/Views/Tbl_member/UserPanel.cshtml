@@ -10,9 +10,10 @@
 
 @if (Session["mem_id"] != null && Session["mem_email"] != null)
 {
-    <h3> Welcome @Session["mem_email"].ToString() To Member Panel</h3>
+<h3> Welcome @ViewBag.membername To Member Panel</h3>
 
-}
+
+
 
 
 <div id="tableContiner">
@@ -209,4 +210,9 @@
         Html.RenderAction("RecommandBook", "Tbl_member");
     }
 </div>
+        }
+        else
+        {
+        <h3>Please Login</h3>
+        }
 

@@ -339,7 +339,8 @@ namespace finalproject.Controllers
             }
             else
             {
-                
+                Response.Write("<script>alert('Already exisits';</script>");
+
             }
 
            

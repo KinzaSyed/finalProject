@@ -9,9 +9,9 @@
 
 @if (Session["mem_id"] != null && Session["mem_email"] != null)
 {
-    <h3> Welcome @Session["mem_email"].ToString() To Member Panel</h3>
+    @*<h3> Welcome @Session["mem_email"].ToString() To Member Panel</h3>*@
 
-}
+
 <div>
 
 
@@ -65,3 +65,8 @@
     @Html.ActionLink("Update Your Info", "Edit", new { id = Model.mem_id })
 
 </p>
+}
+else
+{
+    <h3>Please Login</h3>
+}

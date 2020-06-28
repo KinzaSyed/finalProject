@@ -14,7 +14,43 @@ namespace finalproject.Controllers
     {
         private lastDbEntities db = new lastDbEntities();
 
-       
+        public ActionResult TotalOfEveryThing()
+        {
+            var totalbooks = (from books in db.Tbl_Books
+                              select books).Count();
+            ViewBag.totalbooks = totalbooks;
+
+            var totalebooks = (from ebooks in db.Ebooks_db
+                              select ebooks).Count();
+            ViewBag.totalebooks = totalebooks;
+            var totalmembers = (from member in db.tbl_member
+                              select member).Count();
+            ViewBag.totalmembers = totalmembers;
+            var totalvendors = (from vendor in db.Tbl_Vendorr
+                              select vendor).Count();
+            ViewBag.totalvendors = totalvendors;
+
+
+
+
+            return View();
+        }
+
+
+
+        public ActionResult PersonalInfoAdmin()
+        {
+            Tbl_admin m = null;
+            if (Session["Admin_id"] != null)
+            {
+                int Admin_id = Convert.ToInt32(Session["Admin_id"].ToString());
+                m = db.Tbl_admin.Where(x => x.Admin_id == Admin_id).SingleOrDefault();
+
+
+            }
+
+            return View(m);
+        }
 
 
         [HttpGet]
@@ -57,7 +93,25 @@ namespace finalproject.Controllers
             {
                 int Admin_id = Convert.ToInt32(Session["Admin_id"].ToString());
                 m = db.Tbl_admin.Where(x => x.Admin_id == Admin_id).SingleOrDefault();
+                var totalbooks = (from books in db.Tbl_Books
+                                  select books).Count();
+                ViewBag.totalbooks = totalbooks;
 
+                var totalebooks = (from ebooks in db.Ebooks_db
+                                   select ebooks).Count();
+                ViewBag.totalebooks = totalebooks;
+                var totalmembers = (from member in db.tbl_member
+                                    select member).Count();
+                ViewBag.totalmembers = totalmembers;
+                var totalvendors = (from vendor in db.Tbl_Vendorr
+                                    select vendor).Count();
+                ViewBag.totalvendors = totalvendors;
+
+
+            }
+            else
+            {
+                return RedirectToAction("Login");
             }
 
             return View(m);
@@ -68,22 +122,7 @@ namespace finalproject.Controllers
             Session.Clear();
             return RedirectToAction("Login", "Tbladmin");
         }
-
-
-
-
-
-
-
-
-
-
-       
-
-
-
-
-
+        
         // GET: Tbladmin
         public ActionResult Index()
         {

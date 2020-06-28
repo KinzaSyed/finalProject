@@ -1,0 +1,87 @@
+﻿@model IEnumerable<finalproject.Models.Tbl_for_books>
+
+@if (Session["Admin_id"] != null && Session["Admin_email"] != null)
+{
+    Layout = "~/Views/Shared/_sidePanelPage.cshtml";
+
+}
+else
+{
+    ViewBag.Title = "Index";
+}
+
+<h2>All Books</h2>
+
+<a class="btn btn-info btn-lg" href="@Url.Action("Create")">Add new Book</a>
+<br />
+<br />
+<table class="table table-striped table-responsive">
+
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Edition</th>
+            <th>Price</th>
+            <th>Author</th>
+            <th>Publisher</th>
+            <th>Category</th>
+            <th>Vendor</th>
+
+        </tr>
+
+
+
+
+
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+
+                    <td><img style="width:50px;height:50px;" src="@Url.Content(item.Book_img)" /></td>
+                    <td>@item.Book_name</td>
+                    <td>@item.Book_Edition</td>
+                    <td>@item.Book_price</td>
+                    <td>@item.auth_id</td>
+                    <td>@item.pub_id</td>
+                    <td>@item.cat_name</td>
+                    <td>@item.Vendor_name</td>
+                    <td>
+
+
+
+
+                        <a class="btn btn-success btn-sm" href="@Url.Action("Edit", new { id = item.Book_id })">Edit</a>
+                        <a class="btn btn-danger btn-sm" href="@Url.Action("Delete", new { id = item.Book_id })">Delete</a>
+
+
+                        <a class="btn btn-info btn-sm" href="@Url.Action("Details", new { id = item.Book_id })">Details</a>
+
+                    </td>
+
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="9">No Result Found...</td>
+            </tr>
+        }
+
+
+
+
+    </tbody>
+
+
+
+
+
+
+
+</table>

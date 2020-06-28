@@ -8,6 +8,7 @@
     @Scripts.Render("~/bundles/modernizr")
     <link href="~/Content/rateyo/jquery.rateyo.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href="~/Content/bootstrap-datetimepicker.min.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">*@
@@ -49,7 +50,7 @@
 
 
                             <li><a href="/Tbladmin/Logout">Logout</a></li>
-                            <li><a href="/Tbl_Book/Create">Create Book</a></li>
+                            <li><a href="/Tbl_Book/Index">Create Book</a></li>
 
                         }
 
@@ -63,18 +64,18 @@
                             <li><a href="/Ebooks/Index">Create E Book</a></li>
                             <li><a href="/Ebooks/ReadABook">Read A Book</a></li>
                             <li><a href="/tbl_member/PersonalInfo">Personal Info</a></li>
-                       
-                             <li> <a href = "/tbl_member/PublicProfile" > Find People </a ></li >
 
-                             <li>
-                                 <a href="/tbl_member/PublicProfile"> Comunity </a>
-                                 <ul>
-                                     <li><a href="/tbl_group/GroupHome"> Group</a></li>
-                                   
-                                 </ul>
-                             </li>
+                            <li> <a href="/tbl_member/PublicProfile"> Find People </a></li>
 
-                            <li> <a href = "/tbl_member/Logout" > Logout </a ></li >
+                            <li>
+                                <a href="/tbl_member/PublicProfile"> Comunity </a>
+                                <ul>
+                                    <li><a href="/tbl_group/GroupHome"> Group</a></li>
+
+                                </ul>
+                            </li>
+
+                            <li> <a href="/tbl_member/Logout"> Logout </a></li>
 
 
 
@@ -111,5 +112,10 @@
     @*@Scripts.Render("~/bundles/jquery")*@
     @*@Scripts.Render("~/bundles/bootstrap")*@
     @*@RenderSection("scripts", required: false)*@
+
+
+    <script src="~/Scripts/moment.min.js"></script>
+    <script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
+    <script src="~/Scripts/CustomScript.js"></script>
 </body>
 </html>

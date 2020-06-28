@@ -167,7 +167,7 @@
     <Property Name="mem_contact" Type="varchar" MaxLength="50" />
     <Property Name="mem_password" Type="varchar" MaxLength="50" />
     <Property Name="mem_address" Type="varchar(max)" />
-    <Property Name="mem_dob" Type="datetime" />
+    <Property Name="mem_dob" Type="date" />
   </EntityType>
   <EntityType Name="tbl_subscribe">
     <Key>

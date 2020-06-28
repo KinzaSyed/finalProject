@@ -108,7 +108,13 @@ namespace finalproject.Controllers
         // GET: Tbl_Vendorr/Create
         public ActionResult Create()
         {
+            int admin_id = Convert.ToInt32(Session["Admin_id"].ToString());
             ViewBag.Admin_id = new SelectList(db.Tbl_admin, "Admin_id", "Admin_name");
+            ViewBag.Admin_id = admin_id;
+            var adminname = (from n in db.Tbl_admin
+                             where n.Admin_id == admin_id
+                             select n).Single().Admin_name;
+            ViewBag.adminname = adminname;
             return View();
         }
 
@@ -119,15 +125,38 @@ namespace finalproject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Vendor_id,Vendor_name,Vendor_email,Vendor_password,Vendor_contactno,Vendor_status,Vendor_ShopAdr,Admin_id")] Tbl_Vendorr tbl_Vendorr)
         {
-            if (ModelState.IsValid)
-            {
-                db.Tbl_Vendorr.Add(tbl_Vendorr);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+            var email = tbl_Vendorr.Vendor_email;
+            var emailcheck = db.Tbl_Vendorr.Where(b => b.Vendor_email == email).Any();
+            var emailcheck1 = db.tbl_member.Where(b => b.mem_email == email).Any();
+            var emailcheck2 = db.Tbl_admin.Where(b => b.Admin_email == email).Any();
 
+            if (emailcheck == false && emailcheck1 == false && emailcheck2 == false)
+            {
+
+
+
+                if (ModelState.IsValid)
+                {
+
+                    int admina_id = Convert.ToInt32(Session["Admin_id"].ToString());
+                    tbl_Vendorr.Admin_id = admina_id;
+                    db.Tbl_Vendorr.Add(tbl_Vendorr);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                int admin_id = Convert.ToInt32(Session["Admin_id"].ToString());
+                //ViewBag.Admin_id = new SelectList(db.Tbl_admin, "Admin_id", "Admin_name", tbl_Vendorr.Admin_id);
+                
+
+                return View(tbl_Vendorr);
+            }
+            else
+            {
+                Response.Write("<script>alert('Email Already registered';</script>");
+            }
             ViewBag.Admin_id = new SelectList(db.Tbl_admin, "Admin_id", "Admin_name", tbl_Vendorr.Admin_id);
             return View(tbl_Vendorr);
+
         }
 
         // GET: Tbl_Vendorr/Edit/5

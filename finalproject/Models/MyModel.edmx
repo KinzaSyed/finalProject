@@ -172,7 +172,7 @@
           <Property Name="mem_contact" Type="varchar" MaxLength="50" />
           <Property Name="mem_password" Type="varchar" MaxLength="50" />
           <Property Name="mem_address" Type="varchar(max)" />
-          <Property Name="mem_dob" Type="datetime" />
+          <Property Name="mem_dob" Type="date" />
         </EntityType>
         <EntityType Name="tbl_subscribe">
           <Key>
@@ -1141,7 +1141,7 @@
           <Property Name="mem_contact" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="mem_password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="mem_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="mem_dob" Type="DateTime" Precision="3" />
+          <Property Name="mem_dob" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Book_Review" Relationship="lastDbModel.FK_Book_Review_tbl_member" FromRole="tbl_member" ToRole="Book_Review" />
           <NavigationProperty Name="EBook_Review_db" Relationship="lastDbModel.FK_EBook_Review_db_tbl_member" FromRole="tbl_member" ToRole="EBook_Review_db" />
           <NavigationProperty Name="Ebooks_db" Relationship="lastDbModel.FK_Ebooks_db_tbl_member" FromRole="tbl_member" ToRole="Ebooks_db" />

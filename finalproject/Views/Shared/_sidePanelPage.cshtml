@@ -41,7 +41,7 @@
                 <a href="/tbl_Vendorr/Index" class="list-group-item list-group-item-action bg-light">Vendors</a>
                 <a href="/Bookcategoryy/Index" class="list-group-item list-group-item-action bg-light">Category</a>
 
-                <a href="/Tbl_Book/Index" class="list-group-item list-group-item-action bg-light">Books</a>
+                <a href="/Tbl_Book/AdminIndex" class="list-group-item list-group-item-action bg-light">Books</a>
                 <hr />
 
             </div>
@@ -57,30 +57,40 @@
                     <span class="navbar-toggler-icon"></span>
 
                 </button>
-                <div>
+                @*<div>
 
-                    <h5 style="padding-top:8px; padding-left:8px">Welcome @Session["name"]</h5>
-                </div>
+                    <h5 style="padding-top:8px; padding-left:8px">
+                        Welcome @Session["name"]
+                    
+                        
+                    
+                    
+                    </h5>
+                </div>*@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                         @*<li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>*@
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+        </li>*@
                         @*<li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Dropdown
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </li>*@
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Dropdown
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+        </li>*@
+
+
+                        <a href="/Tbladmin/PersonalInfoAdmin" style="padding-top: 8px" @*class="list-group-item list-group-item-action bg-light"*@>Profile</a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
                         <li class="nav-item active" style="padding-top: 8px">
                             @*Welcome @Session["name"]*@
                             @*href="/Tbladmin/Logout"*@
