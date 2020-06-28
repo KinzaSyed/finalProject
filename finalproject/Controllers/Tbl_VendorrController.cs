@@ -184,8 +184,6 @@ namespace finalproject.Controllers
         {
             if (ModelState.IsValid)
             {
-                int admina_id = Convert.ToInt32(Session["Admin_id"].ToString());
-                tbl_Vendorr.Admin_id = admina_id;
                 db.Entry(tbl_Vendorr).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

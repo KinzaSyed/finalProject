@@ -19,11 +19,7 @@ namespace finalproject.Controllers
     {
         private lastDbEntities db = new lastDbEntities();
 
-        public ActionResult ResetPassword(tbl_member member)
-        {
-            
-            return View();
-        }
+
 
 
        
@@ -89,18 +85,15 @@ namespace finalproject.Controllers
             //                        into fol
             //                        from tbl_follow in fol.DefaultIfEmpty()
             //                        select new { memid = tbl_follow.followed_id}).ToList();
-            int userid = Convert.ToInt32(Session["mem_id"].ToString());
-            var follower = db.tbl_follow.Where(x => x.followedby_id==userid);
 
-
-            var rightjoin = (from right in db.tbl_member
-                             join left in follower
-                            on right.mem_id equals left.followed_id into temp
+            var rightjoin = (from right in db.tbl_follow
+                             join left in db.tbl_member
+                            on right.followed_id equals left.mem_id into temp
                             from left in temp.DefaultIfEmpty()
-                            where left.follow_id== null
-                             select new { memid = right.mem_id}).ToList();
+                            select new { memid = right.followed_id}).ToList();
 
 
+            //var fullOuterJoinmembers = membersOutterJoin.Union(membersInnerJoin);
             List<tbl_member> memberlist = new List<tbl_member>();
             foreach (var member in rightjoin)
             {

@@ -51,12 +51,12 @@
 
                 <div  class="col-lg-4 col-md-4" style="height:200px;margin-bottom:100px ;padding-left:30px">
 
-                    @*<div class="col-lg-4 col-md-4" style="height:200px;margin-bottom:100px ">*@
+                    <div class="col-lg-4 col-md-4" style="height:200px;margin-bottom:100px ">
 
 
-                        @*<img class="img-rounded img-responsive cimg" style="height:100%; width:100%; " src="@Url.Content(item.Ebooks_db.Ebook_img)" />*@
+                        <img class="img-rounded img-responsive cimg" style="height:100%; width:100%; " src="@Url.Content(item.Ebooks_db.Ebook_img)" />
 
-                        <img class="img-rounded img-responsive cimg" style="height:200px;display: block;margin-left: auto;margin-right: auto ;width:250px;align-self:center" src="@Url.Content(item.Ebooks_db.Ebook_img)" />
+
 
                         @*<label>Name </label>*@
 
@@ -67,51 +67,56 @@
 
 
                         @*<label>Publisher</label>
-                    @item.Ebooks_db.Ebook_publisher
-                    <br />
-        =======
-                        <label>Name </label>
+                                        @item.Ebooks_db.Ebook_publisher
+                                        <br />
+                            =======
+                                            <label>Name </label>
 
-                        @item.Ebooks_db.Ebook_name
+                                            @item.Ebooks_db.Ebook_name
 
+                                            <br />
+
+
+                                            <label>Publisher</label>
+                                            @item.Ebooks_db.Ebook_publisher
+                                            <br />
+                            >>>>>>> Stashed changes
+
+
+                                            <label>Author</label>
+
+                                            @item.Ebooks_db.Ebook_author
+
+                                            <br />
+                                            <label>
+                                                Category
+                                            </label>
+                                            @item.Ebooks_db.Book_categoryy.cat_name
+
+                                            <br />
+
+
+                                            <label>Edition</label>
+                                            @item.Ebooks_db.Ebook_edition
+                                            <br />
+
+
+                            <<<<<<< Updated upstream
+                                        <label>Date Time&nbsp;</label>
+                                        @item.Read_Date
+                                        <br />*@
+
+                        <label>Date Time&nbsp;</label>
+                        @item.Read_Date
                         <br />
-                        <label>Publisher</label>
-                        @item.Ebooks_db.Ebook_publisher
-                        <br />
-                        <label>Author</label>
-
-                        @item.Ebooks_db.Ebook_author
-
-                        <br />
-                        <label>
-                            Category
-                        </label>
-                        @item.Ebooks_db.Book_categoryy.cat_name
-
-                        <br />
 
 
-                        <label>Edition</label>
-                        @item.Ebooks_db.Ebook_edition
-                        <br />
-
-
-        <<<<<<< Updated upstream
-                    <label>Date Time&nbsp;</label>
-                    @item.Read_Date
-                    <br />*@
-
-                        
-                        <p style="text-align: center;">Date Time&nbsp;  @item.Read_Date</p>
-                        <br />
-
-
-                        <p style="text-align: center;margin-bottom: 100px "><a class="btn btn-success btn-lg" href="@Url.Content(item.Ebooks_db.Ebook_pdffile)" target="_blank"> <span class="glyphicon glyphicon-book" />Continue Reading</a></p>
+                        <p style="text-align: center; margin-bottom: 100px "><a class="btn btn-success btn-lg" href="@Url.Content(item.Ebooks_db.Ebook_pdffile)" target="_blank"> <span class="glyphicon glyphicon-book" /> Continue Reading</a></p>
 
                     </div>
 
 
-                @*</div>*@
+                </div>
 
             }
 
@@ -199,7 +204,7 @@
 
 
 
-<h1>Recommended Books Readings</h1>
+<h1 style="font-family: ">Recommended Books Readings</h1>
 <div id="tableContiner">
     @{
         Html.RenderAction("RecommandBook", "Tbl_member");

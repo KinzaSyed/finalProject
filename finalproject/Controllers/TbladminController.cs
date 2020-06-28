@@ -78,7 +78,7 @@ namespace finalproject.Controllers
             {
                 Session["Admin_email"] = model.Admin_email;
                 Session["Admin_id"] = model.Admin_id;
-                return RedirectToAction("PersonalInfoAdmin", "Tbladmin");
+                return RedirectToAction("AdminPanel", "Tbladmin");
 
             }
            
@@ -193,14 +193,7 @@ namespace finalproject.Controllers
             {
                 db.Entry(tbl_admin).State = EntityState.Modified;
                 db.SaveChanges();
-                if (Session["Admin_id"] != null && Session["Admin_email"] != null)
-                {
-                    return RedirectToAction("AdminPanel", "Tbladmin");
-                }
-                else
-                {
-                    return RedirectToAction("Index");
-                }
+                return RedirectToAction("Index");
             }
             return View(tbl_admin);
         }

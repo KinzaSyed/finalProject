@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BookSelf</title>
     @Styles.Render("~/Content/css")
-
     @Scripts.Render("~/bundles/modernizr")
     <link href="~/Content/rateyo/jquery.rateyo.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -15,17 +14,8 @@
     @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">*@
     @*<script src="~/Content/rateyo/jquery.min.js"></script>*@
     <script src="~/Content/rateyo/jquery.rateyo.min.js"></script>
-    <style>
-        .dropdown-menu{
-            padding:1em;
-            color:black !important;
-            font-size:15px;
-            
-        }
-    </style>
 </head>
 <body>
-    
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -39,8 +29,6 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-
-
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     @if (Session["Admin_id"] != null || Session["Vendor_id"] != null || Session["mem_id"] != null)
@@ -62,7 +50,7 @@
 
 
                             <li><a href="/Tbladmin/Logout">Logout</a></li>
-                            <li><a href="/Tbl_Book/Index">Books</a></li>
+                            <li><a href="/Tbl_Book/Index">Create Book</a></li>
 
                         }
 
@@ -79,23 +67,12 @@
 
                             <li> <a href="/tbl_member/PublicProfile"> Find People </a></li>
 
-                            @*<li>
+                            <li>
                                 <a href="/tbl_member/PublicProfile"> Comunity </a>
                                 <ul>
                                     <li><a href="/tbl_group/GroupHome"> Group</a></li>
 
                                 </ul>
-                            </li>*@
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Comunity <i class="fa fa-caret-down"></i>
-</a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" style="color:black !important;" href="/tbl_group/GroupHome">Group</a>
-                                    @*<a class="dropdown-item" href="#">Another action</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Something else here</a>*@
-                                </div>
                             </li>
 
                             <li> <a href="/tbl_member/Logout"> Logout </a></li>
@@ -124,8 +101,6 @@
             </div>
         </div>
     </div>
-
-
     <div class="container body-content">
         @RenderBody()
         <hr />
