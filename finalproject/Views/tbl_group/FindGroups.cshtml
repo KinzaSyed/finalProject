@@ -1,0 +1,29 @@
+﻿@model IEnumerable<finalproject.Models.tbl_group>
+
+@{
+    ViewBag.Title = "FindGroups";
+}
+
+<h2>FindGroups</h2>
+
+<table class="table">
+   
+
+@foreach (var item in Model) {
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.group_id)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.group_title)
+        </td>
+
+    </tr>
+}
+
+
+   
+
+</table>

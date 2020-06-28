@@ -38,6 +38,13 @@ namespace finalproject.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             tbl_blog tbl_blog = db.tbl_blog.Find(id);
+            var a = tbl_blog.blog_datetime;
+            TimeSpan elasped = DateTime.Now - tbl_blog.blog_datetime;
+            double hours = elasped.TotalHours;
+            double hour = Math.Round(hours, 0);
+            ViewBag.totalhours = hour;
+
+
             if (tbl_blog == null)
             {
                 return HttpNotFound();
