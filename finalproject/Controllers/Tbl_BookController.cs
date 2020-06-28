@@ -105,7 +105,10 @@ namespace finalproject.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-          
+            //List<Book_author> li = db.Book_author.ToList();
+            //ViewBag.authlist = new SelectList(li, "auth_id", "auth_name");
+            //List<Book_publisher> li2 = db.Book_publisher.ToList();
+            //ViewBag.publist = new SelectList(li2, "pub_id", "pub_name");
             List<Book_categoryy> li3 = db.Book_categoryy.ToList();
             ViewBag.catlist = new SelectList(li3, "cat_id", "cat_name");
             List<Tbl_Vendorr> li4 = db.Tbl_Vendorr.ToList();
@@ -290,29 +293,25 @@ namespace finalproject.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
 
-        public ActionResult Edit(Tbl_Books Tbl_Books, HttpPostedFileBase imagefile)
+        public ActionResult Edit([Bind(Include = "Book_id,Book_name,Book_Edition,Book_price,Book_img,auth_id,pub_id,cat_id,Vendor_id")]Tbl_Books Tbl_Books, HttpPostedFileBase file)
         {
-            var tbl_Books = db.Tbl_Books.Find(Tbl_Books.Book_id);
-
             if (ModelState.IsValid)
             {
-                if (!string.IsNullOrEmpty(imagefile!=null?imagefile.FileName:""))
+                string path = uploadingfile(file);
+                if (path.Equals("-1"))
                 {
-                    string path = uploadingfile(imagefile);
-                    if (path.Equals("-1"))
-                    {
-                        ViewBag.error = "Image could not be uploaded....";
-                    }
-                    else
-                    {
-                        tbl_Books.Book_img = path;
-
-                    }
+                    ViewBag.error = "Image could not be uploaded....";
                 }
 
-                tbl_Books.Book_name = Tbl_Books.Book_name;
+                else
+                {
+
+
+                    Tbl_Books tbl_Books = new Tbl_Books();
+                    tbl_Books.Book_name = Tbl_Books.Book_name;
                     tbl_Books.Book_Edition = Tbl_Books.Book_Edition;
                     tbl_Books.Book_price = Tbl_Books.Book_price;
+                    tbl_Books.Book_img = path;
                     tbl_Books.auth_id = Tbl_Books.auth_id;
                     tbl_Books.pub_id = Tbl_Books.pub_id;
                     tbl_Books.cat_id = Tbl_Books.cat_id;
@@ -323,6 +322,7 @@ namespace finalproject.Controllers
                     db.Entry(tbl_Books).State = EntityState.Modified;
                     db.SaveChanges();
 
+                }
 
                 if (Session["Admin_id"] != null)
                 {
