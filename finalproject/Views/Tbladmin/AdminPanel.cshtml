@@ -4,6 +4,7 @@
     ViewBag.Title = "AdminPanel";
     Layout = "~/Views/Shared/_sidePanelPage.cshtml";
 }
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
 
@@ -12,77 +13,52 @@
     <h3> Welcome  @Html.DisplayFor(model => model.Admin_name)</h3>
 
 }
-
+<br />
+<div style="width:400px;display:inline-block;text-align:center">
 
     <h5>Total Books are:</h5>
-    <strong>
-        @ViewBag.totalbooks
-    </strong>
-<br />
-<h5>Total EBooks are:</h5>
+    <div>
+        <i class="fa fa-desktop" aria-hidden="true" style="font-size:70px"></i>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <strong style="font-size:70px">
+            @ViewBag.totalbooks
+        </strong>
 
-<strong>@ViewBag.totalebooks</strong> 
+    </div>
+    <br />
 
 
-<br />
-<h5>Total Members are:</h5>
-<strong>
-    @ViewBag.totalmembers
-</strong>
-<br />
+    <h5>Total EBooks are:</h5>
+    <div>
+        <i class="fa fa-book" aria-hidden="true" style="font-size:70px"></i>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <strong style="font-size:70px">@ViewBag.totalebooks</strong>
 
-<h5>Total Vendors are:</h5>
-<strong>
-    @ViewBag.totalvendors
-</strong>
 
-@*<div>
+    </div>
 
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            Admin Name
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Admin_name)
-        </dd>
-
-        <dt>
-            Admin email
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Admin_email)
-        </dd>
-
-        @*<dt>
-                @Html.DisplayNameFor(model => model.Admin_password)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Admin_password)
-            </dd>*@
-
-@*<dt>
-    Admin contact
-</dt>
-
-<dd>
-    @Html.DisplayFor(model => model.Admin_contact)
-</dd>*@
-
-@*<dt>
-        @Html.DisplayNameFor(model => model.Admin_status)
-    </dt>
-
-    <dd>
-        @Html.DisplayFor(model => model.Admin_status)
-    </dd>*@
-
-    @*</dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Admin_id })
-    @Html.ActionLink("Back to List", "Index")
-</p>*@
+<div style="display:inline-block;width:400px;text-align:center">
+
+
+    <h5>Total Members are:</h5>
+    <div style="display:inline">
+        <i class="fa fa-users" aria-hidden="true" style="font-size:70px"></i>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <strong style="font-size:70px">
+            @ViewBag.totalmembers
+        </strong>
+    </div>
+    <br />
+
+    <br />
+
+    <h5>Total Vendors are:</h5>
+    <div style="display:inline">
+        <i class="fa fa-id-badge" aria-hidden="true" style="font-size:70px"></i>   &nbsp;&nbsp;&nbsp;&nbsp;
+        <strong style="font-size:70px">
+            @ViewBag.totalvendors
+        </strong>
+    </div>
+
+</div>

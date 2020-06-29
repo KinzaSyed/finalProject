@@ -66,7 +66,7 @@ namespace finalproject.Controllers
         public ActionResult Logout()
         {
             Session.Clear();
-            return RedirectToAction("Login", "Tbl_Vendorr");
+            return RedirectToAction("vendorreaderLogin", "Home");
         }
 
 

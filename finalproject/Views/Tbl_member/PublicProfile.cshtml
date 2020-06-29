@@ -34,23 +34,18 @@
             <td>
                 @Html.DisplayFor(modelItem => item.mem_name)
             </td>
-            @*<td>
-                    @Html.DisplayFor(modelItem => item.mem_email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.mem_contact)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.mem_password)
-                </td>*@
+           
             <td>
-                @*@Html.ActionLink("Edit", "Edit", new { id=item.mem_id }) |*@
 
-                @Html.ActionLink("Follow", "FollowPeople", new { id = item.mem_id }) |
-                <a class="btn btn-danger btn-sm" href="@Url.Action("FollowPeople", new { followed_id = item.mem_id }) ">Follow</a>
+
+
+                <a class="btn btn-success btn-sm" href="@Url.Action("FollowPeople", new { followed_id = item.mem_id }) ">Follow</a>
                 |
-                @Html.ActionLink("Details", "DetailsPublic", new { id = item.mem_id })
-                @*@Html.ActionLink("Delete", "Delete", new { id = item.mem_id })*@
+                <a class="btn btn-success btn-sm" href="@Url.Action("DetailsPublic", new { id = item.mem_id }) ">View Profile</a>
+
+
+
+                
             </td>
         </tr>
     }

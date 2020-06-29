@@ -263,17 +263,32 @@ namespace finalproject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Ebook_id,Ebook_name,Ebook_publisher,Ebook_author,cat_id,Ebook_img,Ebook_pdffile,Ebook_edition")]Ebooks_db ebooks)
+        public ActionResult Edit(Ebooks_db ebooks,HttpPostedFileBase imagefile)
         {
             var book = db.Ebooks_db.Where(x => x.Ebook_id == ebooks.Ebook_id).FirstOrDefault();
 
             if (ModelState.IsValid)
             {
+                if (!string.IsNullOrEmpty(imagefile != null ? imagefile.FileName : ""))
+                {
+                    string path = uploadingfile(imagefile);
+                    if (path.Equals("-1"))
+                    {
+                        ViewBag.error = "Image could not be uploaded....";
+                    }
+                    else
+                    {
+                        book.Ebook_img= path;
+
+                    }
+                }
+
+
+
                 book.Ebook_name = ebooks.Ebook_name;
                 book.Ebook_publisher = ebooks.Ebook_publisher;
                 book.Ebook_author = ebooks.Ebook_author;
                 book.cat_id = ebooks.cat_id;
-                book.Ebook_img = ebooks.Ebook_img;
                 book.Ebook_pdffile = ebooks.Ebook_pdffile;
                 book.Ebook_edition = ebooks.Ebook_edition;
 

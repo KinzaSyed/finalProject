@@ -11,6 +11,7 @@
     <link href="~/Content/bootstrap-datetimepicker.min.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
     @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">*@
     @*<script src="~/Content/rateyo/jquery.min.js"></script>*@
     <script src="~/Content/rateyo/jquery.rateyo.min.js"></script>
@@ -38,9 +39,9 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    @*<li>@Html.ActionLink("Home", "Index", "Home")</li>
+        <li>@Html.ActionLink("About", "About", "Home")</li>
+        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
                     @if (Session["Admin_id"] != null || Session["Vendor_id"] != null || Session["mem_id"] != null)
                     {
                         if (Session["Admin_id"] != null && Session["Admin_email"] != null)
@@ -59,8 +60,10 @@
                         {
 
 
-                            <li><a href="/Tbladmin/Logout">Logout</a></li>
-                            <li><a href="/Tbl_Book/Index">Create Book</a></li>
+
+                            <li><a href="/Tbl_Book/Index">Books</a></li>
+                            <li><a href="/Tbl_Vendorr/Logout">Logout</a></li>
+
 
                         }
 
@@ -77,14 +80,14 @@
 
                             <li> <a href="/tbl_member/PublicProfile"> Find People </a></li>
 
-                           
+
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Comunity <i class="fa fa-caret-down"></i>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" style="color:black !important;" href="/tbl_group/GroupHome">Group</a>
-                                    
+
                                 </div>
                             </li>
 
@@ -101,9 +104,10 @@
                     else
                     {
                         <li><a href="/Tbladmin/Login">Admin Login</a></li>
-                        <li><a href="/tbl_member/Login">Member Login</a></li>
-                        <li><a href="/tbl_member/Create">Member Sign up</a></li>
-                        <li><a href="/tbl_Vendorr/Login">Vendor Login</a></li>
+
+                        <li><a href="/tbl_member/Create">Sign up</a></li>
+                        <li><a href="/Home/vendorreaderLogin">Login</a></li>
+
                     }
 
 

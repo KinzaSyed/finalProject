@@ -11,7 +11,7 @@ else
 
 <h2>Update Book</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Tbl_Book", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -45,17 +45,26 @@ else
             </div>
         </div>
 
-        <div class="form-group">
+        @*<div class="form-group">
             <label class="control-label col-md-2">Book Image</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Book_img, new { htmlAttributes = new { @class = "form-control" } })
-                @*<img src="@Url.Content(Session["imgPath"].ToString())" height="100" width="100" />*@
+                <img src="@Url.Content(Session["imgPath"].ToString())" height="100" width="100" />
                 <input type="file" id="file" name="file" />
 
 
                 @Html.ValidationMessageFor(model => model.Book_img, "", new { @class = "text-danger" })
+            </div>*@
+        <div class="form-group">
+            <label class="control-label col-md-2" for="email">Upload Image</label>
+            <div class="col-md-10">
+                <input type="file" name="imagefile" id="imagefile" class="form-control" />
+
             </div>
+
+
         </div>
+
 
         <div class="form-group">
             <label class="control-label col-md-2">Book Author</label>
@@ -92,6 +101,11 @@ else
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-success" />
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="thumb">
+                <img class="img-thumbnail img-fluid" id="productImage" src="@Url.Content(Model.Book_img)" />
             </div>
         </div>
     </div>

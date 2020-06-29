@@ -1,14 +1,23 @@
 ﻿@model finalproject.Models.tbl_group
 
 @{
+    /**/
+
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>@Html.DisplayFor(model => model.group_title) Home</h2>
 
-@Html.ActionLink("Create a post", "Create","tbl_blog", new { id = Model.group_id },null)
 
 <br />
+@*<button>Write Blog</button>
+    @Html.ActionLink("Create a post", "Create", "tbl_blog", new { id = Model.group_id }, null)*@
+<a class="btn btn-success btn-md" href="@Url.Action("Create", "tbl_blog",new { id = Model.group_id }) ">Create a post</a>
+
+<br />
+
+<br />
+
 
 <div id="tableContiner">
 
@@ -17,39 +26,3 @@
 
 </div>
 
-
-
-@*<div>
-   
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.group_datetime)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.group_datetime)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.group_title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.group_title)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.tbl_member.mem_name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tbl_member.mem_name)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.group_id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>*@

@@ -121,3 +121,4 @@ C:\Users\Kinza Syed\source\repos\finalproject\finalproject\obj\Debug\finalprojec
 C:\Users\Kinza Syed\source\repos\finalproject\finalproject\obj\Debug\finalproject.csproj.CopyComplete
 C:\Users\Kinza Syed\source\repos\finalproject\finalproject\obj\Debug\finalproject.dll
 C:\Users\Kinza Syed\source\repos\finalproject\finalproject\obj\Debug\finalproject.pdb
+C:\Users\Kinza Syed\source\repos\finalproject\finalproject\obj\Debug\finalproject.csprojAssemblyReference.cache

@@ -11,10 +11,14 @@ else
     ViewBag.Title = "Details";
 }
 
+
 <style>
     tr {
         padding: 200px;
         font-size: 15px;
+    }
+    label,.hi{
+        font-size: 20px;
     }
 </style>
 
@@ -33,7 +37,7 @@ else
     });
 </script>
 
-<h2>Details</h2>
+<h2>Book Detail</h2>
 
 <div>
 
@@ -42,30 +46,39 @@ else
 
             @if (ViewBag.book.Book_img != null)
             {
-                <div class="col-lg-4 col-md-4 col-sm-4">
+                <div class="col-lg-4 col-md-4 col-sm-4" style="display:inline-block">
                     <img style="width:250px ; height:350px ;" src="@Url.Content(ViewBag.book.Book_img)" />
 
                 </div>
             }
+            <label>Name</label>
+            <p id="hi">@ViewBag.book.Book_name</p>
+            <br />
+            <label>Author</label>
+            <p id="hi">@ViewBag.book.auth_id</p>
+            <br />
+
+            <label>Edition</label>
+            <p id="hi">@ViewBag.book.Book_Edition</p>
+            <br />
+
+            <label>Price</label>
+            <p id="hi">@ViewBag.book.Book_price</p>
+            <br />
+            
 
 
-
-
-            <div class="col-lg-12 ">
-                <table class="table-bordered">
+            @*<div class="col-lg-12 " style="display:inline-block;float:right">
+                <table style="border-bottom:1px solid black">
 
                     <tr>
 
                         <td>Name</td>
                         <td>@ViewBag.book.Book_name</td>
-
-
                     </tr>
                     <tr>
                         <td>Author</td>
                         <td>@ViewBag.book.auth_id</td>
-
-
 
                     </tr>
                     <tr>
@@ -90,21 +103,26 @@ else
 
 
 
-            </div>
+            </div>*@
 
 
 
         </div>
         <h3>Rating and Comments</h3>
-        <table border="1" cellpadding="2" cellspacing="2">
+        <table style="border-bottom: 1px solid black" cellpadding="2" cellspacing="2">
             @{ int i = 1;}
             @foreach (var review in ViewBag.book.Book_Review)
             {
                 <tr>
                     <td style="padding-left: 20px;">
+                        <br />
                         <b>Name:</b>
                         <br />
-                        @review.tbl_member.mem_email
+
+                        @review.tbl_member.mem_name (
+
+                        @review.tbl_member.mem_email) &nbsp;&nbsp;&nbsp;&nbsp;
+                        <br />
                         <br />
                         <b>Rated:</b>
                         <script>
@@ -119,6 +137,7 @@ else
                         </script>
 
                         <div id="@("rating" + i)"></div>
+                        <br />
                         <b>Comments:</b>
                         <br /> @review.ContentC
                     </td>
@@ -140,13 +159,14 @@ else
         }
         else
         {
-
+            <br />
 
             using (Html.BeginForm("SendReview", "Tbl_Book", FormMethod.Post))
             {
                 <table cellpadding="2" cellspacing="2">
 
                     <tr>
+
                         <td valign="top">Rating</td>
                         <td>
                             <div id="rateYo"></div>

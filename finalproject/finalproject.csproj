@@ -241,6 +241,8 @@
     <Content Include="Content\img\3.jpg" />
     <Content Include="Content\img\4.jpg" />
     <Content Include="Content\img\5.jpg" />
+    <Content Include="Content\img\photo-1507842217343-583bb7270b66.jpg" />
+    <Content Include="Content\img\User-icon.png" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\rateyo\jquery.min.js" />
     <Content Include="Content\rateyo\jquery.rateyo.css" />
@@ -496,6 +498,7 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Tbl_Book\AdminIndex.cshtml" />
     <Content Include="Views\tbl_group\FindGroups.cshtml" />
+    <Content Include="Views\Home\vendorreaderLogin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

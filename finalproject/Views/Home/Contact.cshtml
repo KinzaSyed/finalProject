@@ -1,30 +1,491 @@
 ﻿@{
     ViewBag.Title = "Contact";
+    Layout = null;
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
-<address>
-    BookSelf<br />
-    Pakistan<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 
 
 
 
-<div class="container">
 
-    @using (Html.BeginForm("ContactUs", "Home", FormMethod.Post))
-    {
-        <div class="form-group">
-            <label>Enter Email</label><input type="text" name="email" class="form-control" placeholder="abcd@gmail.com" />
-            <br />
-            <label>Message</label><textarea name="content" class="form-control" placeholder="Your Message" rows="4" cols="50"></textarea>
-            <br />
-            <input type="submit" value="Send" class="btn btn-primary" />
+
+
+<style>
+
+
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .wrapper {
+        width: 1170px;
+        margin: auto;
+    }
+
+    header {
+        background: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url("../../Content/img/photo-1507842217343-583bb7270b66.jpg");
+        height: 100vh;
+        -webkit-background-size: cover;
+        background-size: cover;
+        background-position: center center;
+        position: relative;
+    }
+
+    .nav-area {
+        float: right;
+        list-style: none;
+        margin-top: 30px;
+    }
+
+        .nav-area li {
+            display: inline-block;
+        }
+
+            .nav-area li a {
+                color: #fff;
+                text-decoration: none;
+                padding: 5px 20px;
+                font-family: poppins;
+                font-size: 20px;
+            }
+
+                .nav-area li a:hover {
+                    background: #fff;
+                    color: #333;
+                }
+
+    .logo {
+        width: 100px;
+        float: left;
+        height: auto;
+        color: #fff;
+        padding-top: 25px;
+        font-size: 30px;
+    }
+
+    .welcome-text {
+        position: absolute;
+        width: 600px;
+        height: 300px;
+        margin: 20% 30%;
+        text-align: center;
+    }
+
+        .welcome-text h1 {
+            text-align: center;
+            color: #fff;
+            text-transform: uppercase;
+            font-size: 60px;
+        }
+
+        .welcome-text a {
+            border: 1px solid #fff;
+            padding: 10px 25px;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 14px;
+            margin-top: 20px;
+            display: inline-block;
+            color: #fff;
+        }
+
+            .welcome-text a:hover {
+                background: #fff;
+                color: #333;
+            }
+
+
+    .contact {
+        margin: 0px 16px;
+        padding-top: 100px;
+        padding-left: 100px;
+    }
+
+    .contact-title {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+        .contact-title h1 {
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+    .form-container {
+        background: transparent;
+        max-width: 550px;
+        margin: auto;
+    }
+
+    form {
+        padding-bottom: 16px;
+        display: block;
+        width: 100px;
+    }
+
+    .form-email, .form-message {
+        position: relative;
+    }
+
+        /*.form-email::before {
+            content: "\f1d8";
+            color: #ddd;
+            font-family: 'fontAwesome';
+            position: absolute;
+            font-size: 20px;
+            top: 10px;
+            left: 0;
+        }*/
+
+        /*.form-message::before {
+            content: "\f0e0";
+            color: #ddd;
+            font-size:20px;
+            font-family: 'fontAwesome';
+            position: absolute;
+            top: 10px;
+            left: 0;
+        }*/
+
+
+    form input:focus, form textarea:focus,
+    form input:hover, form textarea:hover {
+        border-color: #666;
+    }
+
+    form textarea {
+        display: block;
+        width: 300px;
+        border: none;
+        border-bottom: 1px solid #444;
+        transition: 0.2s;
+        margin-top: 16px;
+        
+        background-color: transparent;
+        padding: 10px 16px 10px 30px;
+        color: #fff;
+    }
+
+    form input {
+        display: block;
+        width: 300px;
+        border: none;
+        border-bottom: 1px solid #444;
+        transition: 0.2s;
+        outline: none;
+        margin-top: 16px;
+        position: relative;
+        background-color: transparent;
+        padding: 10px 16px 10px 30px;
+        color: #fff;
+    }
+
+    form button {
+        border: 1px solid #444;
+        transition: 0.2s;
+        padding: 10px 30px;
+        outline: none;
+        margin-top: 30px;
+        cursor: pointer;
+        background-color: tomato;
+        text-transform: uppercase;
+        font-size: 16px;
+        color: #fff;
+    }
+
+    .center-align {
+        text-align: center;
+    }
+
+
+
+
+
+    .main {
+        max-height: 550px;
+        ;
+        background-color: #292c2f;
+        color: white;
+        font-size: 38pt;
+        text-align: center;
+        line-height: 550px;
+    }
+
+    footer {
+        bottom: 0;
+    }
+
+    .footer-distributed {
+        background-color: #292c2f;
+        box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+        box-sizing: border-box;
+        width: 100%;
+        text-align: left;
+        font: bold 16px sans-serif;
+        padding: 55px 50px;
+    }
+
+        .footer-distributed .footer-left,
+        .footer-distributed .footer-center,
+        .footer-distributed .footer-right {
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .footer-distributed .footer-left {
+            width: 40%;
+        }
+
+        .footer-distributed h3 {
+            color: #ffffff;
+            font: normal 36px 'Cookie', cursive;
+            margin: 0;
+        }
+
+            .footer-distributed h3 span {
+                color: #5383d3;
+            }
+
+
+        .footer-distributed .footer-links {
+            color: #ffffff;
+            margin: 20px 0 12px;
+            padding: 0;
+        }
+
+            .footer-distributed .footer-links a {
+                display: inline-block;
+                line-height: 1.8;
+                text-decoration: none;
+                color: inherit;
+            }
+
+        .footer-distributed .footer-company-name {
+            color: #8f9296;
+            font-size: 14px;
+            font-weight: normal;
+            margin: 0;
+        }
+
+
+        .footer-distributed .footer-center {
+            width: 35%;
+        }
+
+            .footer-distributed .footer-center i {
+                background-color: #33383b;
+                color: #ffffff;
+                font-size: 25px;
+                width: 38px;
+                height: 38px;
+                border-radius: 50%;
+                text-align: center;
+                line-height: 42px;
+                margin: 10px 15px;
+                vertical-align: middle;
+            }
+
+                .footer-distributed .footer-center i.fa-envelope {
+                    font-size: 17px;
+                    line-height: 38px;
+                }
+
+            .footer-distributed .footer-center p {
+                display: inline-block;
+                color: #ffffff;
+                vertical-align: middle;
+                margin: 0;
+            }
+
+                .footer-distributed .footer-center p span {
+                    display: block;
+                    font-weight: normal;
+                    font-size: 14px;
+                    line-height: 2;
+                }
+
+                .footer-distributed .footer-center p a {
+                    color: #5383d3;
+                    text-decoration: none;
+                    ;
+                }
+
+        .footer-distributed .footer-right {
+            width: 20%;
+        }
+
+        .footer-distributed .footer-company-about {
+            line-height: 20px;
+            color: #92999f;
+            font-size: 13px;
+            font-weight: normal;
+            margin: 0;
+        }
+
+            .footer-distributed .footer-company-about span {
+                display: block;
+                color: #ffffff;
+                font-size: 14px;
+                font-weight: bold;
+                margin-bottom: 20px;
+            }
+
+        .footer-distributed .footer-icons {
+            margin-top: 25px;
+        }
+
+            .footer-distributed .footer-icons a {
+                display: inline-block;
+                width: 35px;
+                height: 35px;
+                cursor: pointer;
+                background-color: #33383b;
+                border-radius: 2px;
+                font-size: 20px;
+                color: #ffffff;
+                text-align: center;
+                line-height: 35px;
+                margin-right: 3px;
+                margin-bottom: 5px;
+            }
+
+
+    @@media (max-width: 880px) {
+
+        .footer-distributed {
+            font: bold 14px sans-serif;
+        }
+
+            .footer-distributed .footer-left,
+            .footer-distributed .footer-center,
+            .footer-distributed .footer-right {
+                display: block;
+                width: 100%;
+                margin-bottom: 40px;
+                text-align: center;
+            }
+
+                .footer-distributed .footer-center i {
+                    margin-left: 0;
+                }
+
+        .main {
+            line-height: normal;
+            font-size: auto;
+        }
+    }
+</style>
+
+
+
+<header>
+    <div class="wrapper">
+        <div class="logo">
+            <label for="logo">BookSelf</label>
+        </div>
+        <ul class="nav-area">
+            <li><a href="/Home/Index">Home</a></li>
+            <li> <a href="/Home/About">About us</a></li>
+            <li> <a href="/Home/Contact">Contact us</a></li>
+            <li> <a href="/Home/vendorreaderLogin">Login</a></li>
+        </ul>
+    </div>
+
+    
+    <div class="contact">
+        <div class="contact-title">
+            @*<h1>Contact Form</h1>*@
+        </div>
+        <div class="form-container">
+            @using (Html.BeginForm("ContactUs", "Home", FormMethod.Post))
+            {
+           
+            <form>
+                <h1 style="color:#fff;width: 200px;">Contact Form</h1>
+                <div class="form-email">
+                    <label><i class="fa fa-envelope-o" aria-hidden="true" style="font-family: 'fontAwesome';
+            position: absolute;
+            font-size: 20px;
+            top: 10px;
+            left: 0; color:#fff"></i></label><input type="text" id="email" name="email" placeholder="abc@abc.com" required>
+
+                </div>
+                <div class="form-message">
+                    <label><i class="fa fa-paper-plane-o" aria-hidden="true"
+                       style="font-family: 'fontAwesome';
+            position: absolute;
+            font-size: 20px;
+            top: 10px;
+            left: 0; color:#fff"></i>
+                    </label>
+                    <textarea id="message" name="content" placeholder="Type your message here" rows="7" required>
+            </textarea>
+                </div>
+                <div class="center-align">
+                    <button type="submit">Send</button>
+                </div>
+            </form>
+            }
+        </div>
+    </div>
+
+
+
+
+</header>
+
+<footer class="footer-distributed">
+
+    <div class="footer-left">
+
+        <h3>Book<span>Self</span></h3>
+
+        <p class="footer-links">
+            <a href="index.html">Home</a>
+            ·
+            <a href="#">About</a>
+            · <a href="#">Contact</a>
+        </p>
+        <p class="footer-company-name">BookSelf &copy; 2020</p>
+    </div>
+
+    <div class="footer-center">
+
+        <div>
+            <i class="fa fa-map-marker"></i>
+            <p><span>Karachi</span> Sindh, Pakistan</p>
+        </div>
+
+        <div>
+            <i class="fa fa-phone"></i>
+            <p>+92 90078601</p>
+        </div>
+
+        <div>
+            <i class="fa fa-envelope"></i>
+            <p><a href="mailto:support@bookself.com">contact@bookself.com</a></p>
+        </div>
+
+    </div>
+
+    <div class="footer-right">
+
+        <p class="footer-company-about">
+            <span>About the company</span>
+            BookSelf is a smart online library for readers.
+        </p>
+
+        <div class="footer-icons">
+
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
 
         </div>
 
-    }
-</div>
+    </div>
+
+</footer>
+

@@ -1,38 +1,18 @@
 ﻿@model IEnumerable<finalproject.Models.tbl_blog>
 
-@*<p>
-    @Html.ActionLink("Create New", "Create")
-</p>*@
+
 <table class="table">
-    @*<tr>
-        <th>
-            @Html.DisplayNameFor(model => model.blog_datetime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.blog_img)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.blog_title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.blog_body)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tbl_group.group_title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tbl_member.mem_name)
-        </th>
-        <th></th>
-    </tr>*@
+    
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            Blog Title:
-            <strong>
-                @Html.DisplayFor(modelItem => item.blog_title)
-            </strong>
+            <div style="font-size:24px">
+                Title:
+                <strong>
+                    @Html.DisplayFor(modelItem => item.blog_title)
+                </strong>
+            </div>
             <img style="width:1150px;height:300px;" src="@Url.Content(item.blog_img)" />
 
             @*@Html.DisplayFor(modelItem => item.blog_img)*@
@@ -42,23 +22,18 @@
                 &nbsp;&nbsp;&nbsp;
                 @Html.DisplayFor(modelItem => item.tbl_member.mem_name).ToString().ToUpper()
             </strong>
-            <div></div>
-            @Html.ActionLink("Read Blog", "Details", new { id = item.blog_id })
+            @*@Html.ActionLink("Read Blog", "Details", new { id = item.blog_id })*@
+
+            <a class="btn btn-success btn-md" style="float:right" href="@Url.Action("Details", new { id = item.blog_id }) ">Read Blog</a>
 
 
 
-            @*@Html.DisplayFor(modelItem => item.blog_body)*@
 
-            @*@Html.DisplayFor(modelItem => item.tbl_group.group_title)*@
 
 
         </td>
 
-        @*<td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.blog_id }) |
-            @Html.ActionLink("Read Blog", "Details", new { id=item.blog_id }) 
-            @Html.ActionLink("Delete", "Delete", new { id=item.blog_id })
-        </td>*@
+        
     </tr>
 }
 

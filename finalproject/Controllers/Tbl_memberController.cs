@@ -283,7 +283,7 @@ namespace finalproject.Controllers
             }
             foreach (var bookname in Recommand)
             {
-                int id = db.Ebooks_db.Where(x => x.Ebook_name == bookname).SingleOrDefault().Ebook_id;
+                int id = db.Ebooks_db.Where(x => x.Ebook_name == bookname).FirstOrDefault().Ebook_id;
                 var book = db.Ebooks_db.Single(x => x.Ebook_id == id);
                 Recommandbooks.Add(book);
             }
@@ -329,7 +329,7 @@ namespace finalproject.Controllers
         public ActionResult Logout()
         {
             Session.Clear();
-            return RedirectToAction("Login", "Tbl_member");
+            return RedirectToAction("vendorreaderLogin", "Home");
         }
 
 

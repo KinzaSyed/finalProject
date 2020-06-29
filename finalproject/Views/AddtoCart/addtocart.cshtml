@@ -3,7 +3,7 @@
     ViewBag.Title = "addtocart";
 }
 
-<h2>addtocart</h2>
+<h2>Add to Cart</h2>
 @using (@Html.BeginForm())
 {
     <div class="container">
@@ -11,15 +11,19 @@
             <div class="col-lg-4 col-md-4 col-sm-4">
 
 
-                <img style="min-height:200px;width:200px;" src="@Url.Content(Model.Book_img)" />
+                <img style="min-height:400px;width:300px;" src="@Url.Content(Model.Book_img)" />
 
             </div>
             <div class="col-lg-8 col-md-8 col-sm-8">
-                <h1>Book Name: @Model.Book_name</h1>
+                <h1>Title: @Model.Book_name</h1>
                 <h2>Price: @Model.Book_price</h2>
                 <h3>Author: @Model.auth_id</h3>
-                <input type="number" name="qty" value="1" id="qty" min="1" max="10" />
-                <input type="submit" value="Submit" class="btn btn-default" />
+                <br />
+                <input type="number" name="qty" value="1" id="qty" min="1" max="10"
+                       style="border:none; border-bottom: 2px solid black" />
+
+                &nbsp;&nbsp;&nbsp;
+                <input type="submit" value="Add to Cart " class="btn btn-primary" />
 
 
 

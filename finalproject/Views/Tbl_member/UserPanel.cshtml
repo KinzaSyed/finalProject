@@ -49,74 +49,31 @@
             @foreach (var item in Model)
             {
 
-                <div  class="col-lg-4 col-md-4" style="height:200px;margin-bottom:100px ;padding-left:30px">
+                <div  class="col-lg-4 col-md-4" style="height:200px;margin-bottom:200px ;padding-left:30px">
 
-                    <div class="col-lg-4 col-md-4" style="height:200px;margin-bottom:100px ">
+                  
 
 
                         <img class="img-rounded img-responsive cimg" style="height:100%; width:100%; " src="@Url.Content(item.Ebooks_db.Ebook_img)" />
 
-
-
-                        @*<label>Name </label>*@
 
                         <p style="text-align:center;font-size:20px">
                             <strong>@item.Ebooks_db.Ebook_name</strong>
                         </p>
                         <br />
 
-
-                        @*<label>Publisher</label>
-                                        @item.Ebooks_db.Ebook_publisher
-                                        <br />
-                            =======
-                                            <label>Name </label>
-
-                                            @item.Ebooks_db.Ebook_name
-
-                                            <br />
-
-
-                                            <label>Publisher</label>
-                                            @item.Ebooks_db.Ebook_publisher
-                                            <br />
-                            >>>>>>> Stashed changes
-
-
-                                            <label>Author</label>
-
-                                            @item.Ebooks_db.Ebook_author
-
-                                            <br />
-                                            <label>
-                                                Category
-                                            </label>
-                                            @item.Ebooks_db.Book_categoryy.cat_name
-
-                                            <br />
-
-
-                                            <label>Edition</label>
-                                            @item.Ebooks_db.Ebook_edition
-                                            <br />
-
-
-                            <<<<<<< Updated upstream
-                                        <label>Date Time&nbsp;</label>
-                                        @item.Read_Date
-                                        <br />*@
-
-                        <label>Date Time&nbsp;</label>
-                        @item.Read_Date
-                        <br />
-
+                        <div  style="text-align:center">
+                            <label>Date Time&nbsp;</label>
+                            @item.Read_Date
+                            <br />
+                        </div>
 
                         <p style="text-align: center; margin-bottom: 100px "><a class="btn btn-success btn-lg" href="@Url.Content(item.Ebooks_db.Ebook_pdffile)" target="_blank"> <span class="glyphicon glyphicon-book" /> Continue Reading</a></p>
 
                     </div>
 
 
-                </div>
+             
 
             }
 
