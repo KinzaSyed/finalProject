@@ -1,9 +1,9 @@
 import numpy as np
 import pandas as pd
-from scipy.sparse import csr_matrix
+from scipy.sparse import csr_matrix ##nd rating 
 from sklearn.neighbors import NearestNeighbors
 from fuzzywuzzy import process
-import pickle
+import pickle ##will save dump and load class will acess
 
 
 

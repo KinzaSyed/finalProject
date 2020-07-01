@@ -35,6 +35,13 @@
                 <td><b>Edition:</b></td>
                 <td>&nbsp;@item.Ebook_edition</td>
             </tr>
+            
+            <tr >
+                <td >
+                    
+                    <a class="btn btn-success btn-sm" style="text-align:center;margin-top:5px; border-radius:15px" href="@Url.Action("addtoReadings","Ebooks", new { id = item.Ebook_id })">Add to readings</a>
+                </td>
+            </tr>
 
 
         </table>

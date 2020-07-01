@@ -1,7 +1,12 @@
 ﻿@using PagedList;
 @using PagedList.Mvc;
 
+@{ 
+    Layout = null;
+}
+
 @model IPagedList<finalproject.Models.Tbl_Books>
+
 @if (Session["Admin_id"] != null && Session["Admin_email"] != null)
 {
     Layout = "~/Views/Shared/_sidePanelPage.cshtml";

@@ -29,8 +29,14 @@ namespace finalproject.Controllers
             follow.follow_time = DateTime.Now;
             follow.followedby_id = db.tbl_member.Single(a => a.mem_email.Equals(mem_email)).mem_id;
             follow.followed_id = followed_id;
-            db.tbl_follow.Add(follow);
-            db.SaveChanges();
+            var record = db.tbl_follow.Where(x => x.followed_id == followed_id && x.followedby_id == follow.followedby_id).FirstOrDefault();
+            if (record == null)
+            {
+                db.tbl_follow.Add(follow);
+                db.SaveChanges();
+
+            }
+           
             return RedirectToAction("PublicProfile", "Tbl_member");
 
         }
@@ -71,29 +77,18 @@ namespace finalproject.Controllers
         }
         public ActionResult publicprofile()
         {
-            //var membersOutterJoin = (from a in db.tbl_follow
-            //              join bi in db.tbl_member
-            //              on a.followed_id
-            //              equals bi.mem_id
-            //              into fol
-            //              from bi in fol.DefaultIfEmpty()
-            //              select new { memid = bi.mem_id }).ToList();
-            //var membersInnerJoin =( from b in db.tbl_member
-            //                        join a in db.tbl_follow
-            //                        on b.mem_id
-            //                        equals a.followed_id
-            //                        into fol
-            //                        from tbl_follow in fol.DefaultIfEmpty()
-            //                        select new { memid = tbl_follow.followed_id}).ToList();
-
-            var rightjoin = (from right in db.tbl_follow
-                             join left in db.tbl_member
-                            on right.followed_id equals left.mem_id into temp
-                            from left in temp.DefaultIfEmpty()
-                            select new { memid = right.followed_id}).ToList();
+            int userid = Convert.ToInt32(Session["mem_id"].ToString());
+            var follower = db.tbl_follow.Where(x => x.followedby_id == userid);
 
 
-            //var fullOuterJoinmembers = membersOutterJoin.Union(membersInnerJoin);
+            var rightjoin = (from right in db.tbl_member
+                             join left in follower
+                            on right.mem_id equals left.followed_id into temp
+                             from left in temp.DefaultIfEmpty()
+                             where left.follow_id == null
+                             select new { memid = right.mem_id }).ToList();
+
+           
             List<tbl_member> memberlist = new List<tbl_member>();
             foreach (var member in rightjoin)
             {

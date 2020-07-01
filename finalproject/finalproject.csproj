@@ -185,7 +185,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MyModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Orders.cs" />
     <Compile Include="Models\Publisher_Validation.cs" />
     <Compile Include="Models\Reading_History.cs">
       <DependentUpon>MyModel.tt</DependentUpon>
