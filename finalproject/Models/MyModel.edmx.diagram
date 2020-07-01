@@ -9,9 +9,7 @@
         <EntityTypeShape EntityType="lastDbModel.Tbl_admin" Width="1.5" PointX="5.375" PointY="1.125" />
         <EntityTypeShape EntityType="lastDbModel.Tbl_Vendorr" Width="1.5" PointX="7.625" PointY="1" />
         <AssociationConnector Association="lastDbModel.FK__Tbl_Vendo__Admin__1ED998B2" />
-        <EntityTypeShape EntityType="lastDbModel.BTransaction" Width="1.5" PointX="12.5" PointY="4" />
         <EntityTypeShape EntityType="lastDbModel.Invoice" Width="1.5" PointX="5.625" PointY="5" />
-        <AssociationConnector Association="lastDbModel.FK__BTransact__in_id__4D94879B" />
         <EntityTypeShape EntityType="lastDbModel.Book_Review" Width="1.5" PointX="12.125" PointY="0.75" />
         <EntityTypeShape EntityType="lastDbModel.Ebooks_db" Width="1.5" PointX="8.625" PointY="5.625" />
         <AssociationConnector Association="lastDbModel.FK_Ebooks_db_Book_categoryy" />
@@ -23,7 +21,6 @@
         <EntityTypeShape EntityType="lastDbModel.Tbl_Books" Width="1.5" PointX="9.875" PointY="0.875" />
         <AssociationConnector Association="lastDbModel.FK__Tbl_Books__cat_i__286302EC" />
         <AssociationConnector Association="lastDbModel.FK_Book_Review_Tbl_Books" />
-        <AssociationConnector Association="lastDbModel.FK__BTransact__Book___4CA06362" />
         <AssociationConnector Association="lastDbModel.FK__Tbl_Books__Vendo__29572725" />
         <AssociationConnector Association="lastDbModel.FK_tbl_wishlist_Tbl_Books" />
         <EntityTypeShape EntityType="lastDbModel.tbl_follow" Width="1.5" PointX="6.375" PointY="9.25" />
@@ -49,6 +46,10 @@
         <AssociationConnector Association="lastDbModel.FK_tbl_group_tbl_member" />
         <AssociationConnector Association="lastDbModel.FK_tbl_groupmem_tbl_member" />
         <AssociationConnector Association="lastDbModel.FK_tbl_wishlist_tbl_member" />
+        <EntityTypeShape EntityType="lastDbModel.BTransaction" Width="1.5" PointX="13.125" PointY="7.25" />
+        <AssociationConnector Association="lastDbModel.FK__BTransact__Book___4CA06362" />
+        <AssociationConnector Association="lastDbModel.FK__BTransact__in_id__4D94879B" />
+        <AssociationConnector Association="lastDbModel.FK_BTransaction_tbl_member" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -122,6 +122,7 @@ namespace finalproject.Controllers
                 od.in_id = iv.in_id;
                 od.Transaction_date = System.DateTime.Now;
                 od.Transaction_qty = item.qty;
+                od.mem_id = Convert.ToInt32(Session["mem_id"].ToString());
                 od.Transaction_price = (int)item.Book_price;
                 od.Transaction_bill = (int)item.bill;
                 db.BTransactions.Add(od);

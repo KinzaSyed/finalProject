@@ -29,6 +29,7 @@ namespace finalproject.Models
             this.tbl_group = new HashSet<tbl_group>();
             this.tbl_groupmem = new HashSet<tbl_groupmem>();
             this.tbl_wishlist = new HashSet<tbl_wishlist>();
+            this.BTransactions = new HashSet<BTransaction>();
         }
     
         public int mem_id { get; set; }
@@ -63,5 +64,7 @@ namespace finalproject.Models
         public virtual ICollection<tbl_groupmem> tbl_groupmem { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_wishlist> tbl_wishlist { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BTransaction> BTransactions { get; set; }
     }
 }

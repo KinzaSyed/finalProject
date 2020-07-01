@@ -79,7 +79,7 @@ namespace finalproject.Controllers
                 blog.blog_body = tbl_Blog.blog_body;
                 db.tbl_blog.Add(blog);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Home", new { id = id });
 
             }
             return View();

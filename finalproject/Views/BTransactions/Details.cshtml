@@ -1,0 +1,74 @@
+﻿@model finalproject.Models.BTransaction
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BTransaction</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Transaction_bill)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Transaction_bill)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Transaction_qty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Transaction_qty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Transaction_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Transaction_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Transaction_price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Transaction_price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tbl_Books.Book_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tbl_Books.Book_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Invoice.in_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Invoice.in_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_member.mem_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_member.mem_name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Transaction_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

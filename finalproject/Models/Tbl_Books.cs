@@ -18,8 +18,8 @@ namespace finalproject.Models
         public Tbl_Books()
         {
             this.Book_Review = new HashSet<Book_Review>();
-            this.BTransactions = new HashSet<BTransaction>();
             this.tbl_wishlist = new HashSet<tbl_wishlist>();
+            this.BTransactions = new HashSet<BTransaction>();
         }
     
         public int Book_id { get; set; }
@@ -35,10 +35,10 @@ namespace finalproject.Models
         public virtual Book_categoryy Book_categoryy { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Book_Review> Book_Review { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BTransaction> BTransactions { get; set; }
         public virtual Tbl_Vendorr Tbl_Vendorr { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_wishlist> tbl_wishlist { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BTransaction> BTransactions { get; set; }
     }
 }

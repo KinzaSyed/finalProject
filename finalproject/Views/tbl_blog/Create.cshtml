@@ -4,39 +4,66 @@
     ViewBag.Title = "Create";
 }
 
+
+@*<script>
+    function readURL(input) {
+        if (input.files &&) input.files[0]{
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $()
+            }
+        }
+    }
+
+
+</script>*@
+
+
+
+
+
+
+
+
 <h2>Write A Blog</h2>
 
-@using (Html.BeginForm("Create", "tbl_blog", FormMethod.Post, new { enctype = "multipart/form-data" })) 
+
+
+
+
+
+
+@using (Html.BeginForm("Create", "tbl_blog", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-      
+
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @*<div class="form-group">
-            @Html.LabelFor(model => model.blog_datetime, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.blog_datetime, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.blog_datetime, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.blog_datetime, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.blog_datetime, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.blog_datetime, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.blog_groupid, "blog_groupid", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("blog_groupid", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.blog_groupid, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.blog_groupid, "blog_groupid", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("blog_groupid", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.blog_groupid, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.blog_createdby, "blog_createdby", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("blog_createdby", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.blog_createdby, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
+            <div class="form-group">
+                @Html.LabelFor(model => model.blog_createdby, "blog_createdby", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("blog_createdby", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.blog_createdby, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
 
         <div class="form-group">
             &nbsp;&nbsp;&nbsp;  <label>Blog Image:</label>
@@ -63,8 +90,14 @@
             @*@Html.LabelFor(model => model.blog_body, htmlAttributes: new { @class = "control-label col-md-2" })*@
             <div class="col-md-10">
 
-                @Html.TextAreaFor(model => model.blog_body, 10,70,new { htmlAttributes = new { @class = "form-control ,@cols = 80, @rows = 10" } })
+                @Html.TextAreaFor(model => model.blog_body, 10, 70, new { htmlAttributes = new { @class = "form-control ,@cols = 80, @rows = 10" } })
                 @Html.ValidationMessageFor(model => model.blog_body, "", new { @class = "text-danger" })
+
+                @*<textarea id="exportContent" name="Post_Text"></textarea>*@
+
+
+
+
             </div>
         </div>
 
@@ -79,3 +112,4 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+

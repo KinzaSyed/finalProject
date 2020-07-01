@@ -25,8 +25,8 @@ namespace finalproject.Models
         public Nullable<double> in_totalbill { get; set; }
         public Nullable<int> mem_id { get; set; }
     
+        public virtual tbl_member tbl_member { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BTransaction> BTransactions { get; set; }
-        public virtual tbl_member tbl_member { get; set; }
     }
 }

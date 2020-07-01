@@ -61,6 +61,8 @@
 
                             <li><a href="/tbl_Vendorr/Index">Vendor</a></li>
                             <li><a href="/Bookcategoryy/Index">Category</a></li>
+                            <li><a href="/Bookcategoryy/Index">View Order</a></li>
+
                             <li><a href="/Tbl_Book/Index">Book</a></li>
                         }
                         else
@@ -73,10 +75,15 @@
 
 
                             <li><a href="/Tbl_Book/Index">Books</a></li>
+
+                            <li><a href="/BTransactions/Order">Your Orders</a></li>
                             <li><a href="/Tbl_Vendorr/Logout">Logout</a></li>
 
 
-                        }
+                            
+
+
+                                }
 
 
                         if (Session["mem_id"] != null && Session["mem_email"] != null)
@@ -146,5 +153,8 @@
     <script src="~/Scripts/moment.min.js"></script>
     <script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
     <script src="~/Scripts/CustomScript.js"></script>
+
+    <script src="~/Scripts/tinymce/tinymce.js"></script>
+    <script src="~/Scripts/mainu.js"></script>
 </body>
 </html>

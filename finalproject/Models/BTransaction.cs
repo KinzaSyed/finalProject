@@ -21,8 +21,10 @@ namespace finalproject.Models
         public Nullable<int> Transaction_price { get; set; }
         public Nullable<int> Book_id { get; set; }
         public Nullable<int> in_id { get; set; }
+        public Nullable<int> mem_id { get; set; }
     
-        public virtual Invoice Invoice { get; set; }
         public virtual Tbl_Books Tbl_Books { get; set; }
+        public virtual Invoice Invoice { get; set; }
+        public virtual tbl_member tbl_member { get; set; }
     }
 }

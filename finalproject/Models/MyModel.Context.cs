@@ -28,7 +28,6 @@ namespace finalproject.Models
         public virtual DbSet<Book_categoryy> Book_categoryy { get; set; }
         public virtual DbSet<Tbl_admin> Tbl_admin { get; set; }
         public virtual DbSet<Tbl_Vendorr> Tbl_Vendorr { get; set; }
-        public virtual DbSet<BTransaction> BTransactions { get; set; }
         public virtual DbSet<Invoice> Invoices { get; set; }
         public virtual DbSet<Book_Review> Book_Review { get; set; }
         public virtual DbSet<Ebooks_db> Ebooks_db { get; set; }
@@ -44,5 +43,6 @@ namespace finalproject.Models
         public virtual DbSet<tbl_groupmem> tbl_groupmem { get; set; }
         public virtual DbSet<tbl_blog> tbl_blog { get; set; }
         public virtual DbSet<tbl_member> tbl_member { get; set; }
+        public virtual DbSet<BTransaction> BTransactions { get; set; }
     }
 }

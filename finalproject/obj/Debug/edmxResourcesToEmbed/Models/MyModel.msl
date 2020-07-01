@@ -36,19 +36,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="BTransactions">
-      <EntityTypeMapping TypeName="lastDbModel.BTransaction">
-        <MappingFragment StoreEntitySet="BTransaction">
-          <ScalarProperty Name="in_id" ColumnName="in_id" />
-          <ScalarProperty Name="Book_id" ColumnName="Book_id" />
-          <ScalarProperty Name="Transaction_price" ColumnName="Transaction_price" />
-          <ScalarProperty Name="Transaction_date" ColumnName="Transaction_date" />
-          <ScalarProperty Name="Transaction_qty" ColumnName="Transaction_qty" />
-          <ScalarProperty Name="Transaction_bill" ColumnName="Transaction_bill" />
-          <ScalarProperty Name="Transaction_id" ColumnName="Transaction_id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Invoices">
       <EntityTypeMapping TypeName="lastDbModel.Invoice">
         <MappingFragment StoreEntitySet="Invoice">
@@ -216,6 +203,20 @@
           <ScalarProperty Name="mem_email" ColumnName="mem_email" />
           <ScalarProperty Name="mem_name" ColumnName="mem_name" />
           <ScalarProperty Name="mem_id" ColumnName="mem_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BTransactions">
+      <EntityTypeMapping TypeName="lastDbModel.BTransaction">
+        <MappingFragment StoreEntitySet="BTransaction">
+          <ScalarProperty Name="mem_id" ColumnName="mem_id" />
+          <ScalarProperty Name="in_id" ColumnName="in_id" />
+          <ScalarProperty Name="Book_id" ColumnName="Book_id" />
+          <ScalarProperty Name="Transaction_price" ColumnName="Transaction_price" />
+          <ScalarProperty Name="Transaction_date" ColumnName="Transaction_date" />
+          <ScalarProperty Name="Transaction_qty" ColumnName="Transaction_qty" />
+          <ScalarProperty Name="Transaction_bill" ColumnName="Transaction_bill" />
+          <ScalarProperty Name="Transaction_id" ColumnName="Transaction_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -14,6 +14,10 @@ namespace finalproject.Controllers
     {
         private lastDbEntities db = new lastDbEntities();
 
+
+
+
+
         [HttpGet]
         public ActionResult Login()
         {
@@ -69,8 +73,7 @@ namespace finalproject.Controllers
             return RedirectToAction("vendorreaderLogin", "Home");
         }
 
-
-
+      
 
 
 

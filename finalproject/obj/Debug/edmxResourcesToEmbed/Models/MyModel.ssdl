@@ -30,6 +30,7 @@
     <Property Name="Transaction_price" Type="int" />
     <Property Name="Book_id" Type="int" />
     <Property Name="in_id" Type="int" />
+    <Property Name="mem_id" Type="int" />
   </EntityType>
   <EntityType Name="EBook_Review_db">
     <Key>
@@ -295,6 +296,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_BTransaction_tbl_member">
+    <End Role="tbl_member" Type="Self.tbl_member" Multiplicity="0..1" />
+    <End Role="BTransaction" Type="Self.BTransaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_member">
+        <PropertyRef Name="mem_id" />
+      </Principal>
+      <Dependent Role="BTransaction">
+        <PropertyRef Name="mem_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_EBook_Review_db_Ebooks_db">
     <End Role="Ebooks_db" Type="Self.Ebooks_db" Multiplicity="1" />
     <End Role="EBook_Review_db" Type="Self.EBook_Review_db" Multiplicity="*" />
@@ -550,6 +563,10 @@
     <AssociationSet Name="FK_Book_Review_tbl_member" Association="Self.FK_Book_Review_tbl_member">
       <End Role="tbl_member" EntitySet="tbl_member" />
       <End Role="Book_Review" EntitySet="Book_Review" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BTransaction_tbl_member" Association="Self.FK_BTransaction_tbl_member">
+      <End Role="tbl_member" EntitySet="tbl_member" />
+      <End Role="BTransaction" EntitySet="BTransaction" />
     </AssociationSet>
     <AssociationSet Name="FK_EBook_Review_db_Ebooks_db" Association="Self.FK_EBook_Review_db_Ebooks_db">
       <End Role="Ebooks_db" EntitySet="Ebooks_db" />
