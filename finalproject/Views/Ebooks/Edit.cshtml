@@ -56,8 +56,12 @@
     <div class="form-group">
         <label class="control-label col-md-2">EBook PDF</label>
         <div class="col-md-10">
-            @Html.EditorFor(model => model.Ebook_pdffile, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Ebook_pdffile, "", new { @class = "text-danger" })
+            @*@Html.EditorFor(model => model.Ebook_pdffile, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Ebook_pdffile, "", new { @class = "text-danger" })*@
+
+            <input type="file" name="pdffile" id="pdffile" class="form-control" />
+
+
         </div>
     </div>
 

@@ -1,18 +1,38 @@
 ﻿@model finalproject.Models.tbl_subscribe
 @{
-                /**/
+    /**/
 
-                Layout = null;
+    Layout = null;
 
 }
+<style>
+    .in {
+        background-color: transparent;
+        border: none;
+        border-bottom: 2px solid black;
+        color:#fff;
+        height: 25px;
+    }
+     .but{
+         background-color: #279a1e;
+         height:30px;
+         width:100px;
+         border:none;
+         border-radius:15px;
+         font-weight:bold;
 
+     }
+       
+
+</style>
 
 @using (Html.BeginForm("subscribe", "Home",
     FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-<input  type="text" placeholder="baabaa@gmail.com" name="subscriber_email" />
+    <i class="fa fa-envelope" aria-hidden="true"></i>
+    <input type="text" placeholder="baabaa@gmail.com"  class="in"name="subscriber_email" />
     @Html.ValidationMessageFor(x => x.sub_email)
 
-    <input type="submit" value="Subscribe" class="btn btn-block btn-success" />
+    <input type="submit" value="Subscribe" class="but" />
 
 }

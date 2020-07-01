@@ -331,8 +331,9 @@
             </div>
             <ul class="nav-area">
                 <li><a href="/Home/Index">Home</a></li>
-                <li> <a href="">About us</a></li>
+                <li> <a href="/Home/About">About us</a></li>
                 <li> <a href="/Home/Contact">Contact us</a></li>
+                <li> <a href="/Tbl_member/Create">Sing up</a></li>
                 <li> <a href="">Login</a></li>
             </ul>
         </div>
@@ -357,7 +358,7 @@
 
                     <input type="submit" value="Login" name="" id="">
                     <a href=""> Forget Password?</a>
-                    <a href=""> Don't have an account?</a>
+                    <a href="/Tbl_member/Create"> Don't have an account?</a>
 
 
 
@@ -412,6 +413,14 @@
             <div>
                 <i class="fa fa-envelope"></i>
                 <p><a href="mailto:support@bookself.com">contact@bookself.com</a></p>
+            </div>
+            <div>
+
+                @{
+                    
+                    Html.RenderAction("subscribe", "Home");
+                }
+
             </div>
 
         </div>

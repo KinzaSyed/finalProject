@@ -106,6 +106,12 @@ namespace finalproject.Controllers
                 var totalvendors = (from vendor in db.Tbl_Vendorr
                                     select vendor).Count();
                 ViewBag.totalvendors = totalvendors;
+                var totalsubscriber = (from subscriber in db.tbl_subscribe
+                                    select subscriber).Count();
+                ViewBag.totalsubscriber = totalsubscriber;
+                var totalorders = (from order in db.BTransactions
+                                       select order).Count();
+                ViewBag.totalorders = totalorders;
 
 
             }

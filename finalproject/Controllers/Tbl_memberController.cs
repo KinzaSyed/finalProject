@@ -390,7 +390,7 @@ namespace finalproject.Controllers
                 {
                     db.tbl_member.Add(tbl_member);
                     db.SaveChanges();
-                    return RedirectToAction("Login");
+                    return RedirectToAction("vendorreaderLogin","Home");
                 }
 
                 return View(tbl_member);

@@ -389,6 +389,7 @@
             <li><a href="/Home/Index">Home</a></li>
             <li> <a href="/Home/About">About us</a></li>
             <li> <a href="/Home/Contact">Contact us</a></li>
+            <li> <a href="/Tbl_member/Create">Sing up</a></li>
             <li> <a href="/Home/vendorreaderLogin">Login</a></li>
         </ul>
     </div>
@@ -466,6 +467,14 @@
         <div>
             <i class="fa fa-envelope"></i>
             <p><a href="mailto:support@bookself.com">contact@bookself.com</a></p>
+        </div>
+        <div>
+
+            @{
+
+                Html.RenderAction("subscribe", "Home");
+            }
+
         </div>
 
     </div>

@@ -263,7 +263,7 @@ namespace finalproject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Ebooks_db ebooks,HttpPostedFileBase imagefile)
+        public ActionResult Edit(Ebooks_db ebooks,HttpPostedFileBase imagefile, HttpPostedFileBase pdffile)
         {
             var book = db.Ebooks_db.Where(x => x.Ebook_id == ebooks.Ebook_id).FirstOrDefault();
 
@@ -282,6 +282,19 @@ namespace finalproject.Controllers
 
                     }
                 }
+                if (!string.IsNullOrEmpty(pdffile != null ? pdffile.FileName : ""))
+                {
+                    string path1 = uploadingpdffile(pdffile);
+                    if (path1.Equals("-1"))
+                    {
+                        ViewBag.error = "pdf could not be uploaded....";
+                    }
+                    else
+                    {
+                        book.Ebook_pdffile = path1;
+
+                    }
+                }
 
 
 
@@ -289,7 +302,7 @@ namespace finalproject.Controllers
                 book.Ebook_publisher = ebooks.Ebook_publisher;
                 book.Ebook_author = ebooks.Ebook_author;
                 book.cat_id = ebooks.cat_id;
-                book.Ebook_pdffile = ebooks.Ebook_pdffile;
+               
                 book.Ebook_edition = ebooks.Ebook_edition;
 
                 db.Entry(book).State = EntityState.Modified;
