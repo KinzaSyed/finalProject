@@ -11,10 +11,12 @@ namespace finalproject.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Web.Mvc;
+
     public partial class EBook_Review_db
     {
         public int EReview_id { get; set; }
+        [AllowHtml]
         public string ContentC { get; set; }
         public double ERating { get; set; }
         public System.DateTime DatePost { get; set; }

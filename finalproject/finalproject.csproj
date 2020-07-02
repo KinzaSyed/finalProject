@@ -638,6 +638,7 @@
     <Content Include="Views\BTransactions\Edit.cshtml" />
     <Content Include="Views\BTransactions\Index.cshtml" />
     <Content Include="Views\BTransactions\Order.cshtml" />
+    <Content Include="Views\BTransactions\showstatus.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -11,10 +11,12 @@ namespace finalproject.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Web.Mvc;
+
     public partial class Book_Review
     {
         public int Review_id { get; set; }
+        [AllowHtml]
         public string ContentC { get; set; }
         public double Rating { get; set; }
         public System.DateTime DatePost { get; set; }

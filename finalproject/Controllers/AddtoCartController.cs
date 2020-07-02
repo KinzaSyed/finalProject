@@ -125,12 +125,13 @@ namespace finalproject.Controllers
                 od.mem_id = Convert.ToInt32(Session["mem_id"].ToString());
                 od.Transaction_price = (int)item.Book_price;
                 od.Transaction_bill = (int)item.bill;
+                od.transaction_status = "Not Delivered";
                 db.BTransactions.Add(od);
                 db.SaveChanges();
             }
             TempData.Remove("totalPrice");
             TempData.Remove("cart");
-            TempData["msg"] = "Transaction Completed";
+            TempData["msg"] = " Order Completed, The Book will be delievered to yoou in 3 to 4 working days";
             TempData.Keep();
             return RedirectToAction("Index");
         }

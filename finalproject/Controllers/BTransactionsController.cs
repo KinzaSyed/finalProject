@@ -25,6 +25,19 @@ namespace finalproject.Controllers
             return View(bTransactions.ToList());
         }
 
+        public ActionResult showstatus()
+        {
+            int mem_id = Convert.ToInt32(Session["mem_id"]);
+            var bTransactions = db.BTransactions
+                                .Include(b => b.Tbl_Books)
+                                .Include(b => b.Invoice)
+                                .Include(b => b.tbl_member)
+                                .Where(x => x.mem_id == mem_id).ToList();
+            return View(bTransactions.ToList());
+
+        }
+
+
         public ActionResult Order()
         {
             int Vendor_id = Convert.ToInt32(Session["Vendor_id"]);
@@ -105,19 +118,37 @@ namespace finalproject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Transaction_id,Transaction_bill,Transaction_qty,Transaction_date,Transaction_price,Book_id,in_id,mem_id")] BTransaction bTransaction)
+        public ActionResult Edit(BTransaction bTransaction)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(bTransaction).State = EntityState.Modified;
+               var trans =  db.BTransactions.Find(bTransaction.Transaction_id);
+                trans.transaction_status = bTransaction.transaction_status;
+                db.Entry(trans).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Order");
             }
             ViewBag.Book_id = new SelectList(db.Tbl_Books, "Book_id", "Book_name", bTransaction.Book_id);
             ViewBag.in_id = new SelectList(db.Invoices, "in_id", "in_id", bTransaction.in_id);
             ViewBag.mem_id = new SelectList(db.tbl_member, "mem_id", "mem_name", bTransaction.mem_id);
             return View(bTransaction);
         }
+
+        //public ActionResult Edit([Bind(Include = "Transaction_id,Transaction_bill,Transaction_qty,Transaction_date,Transaction_price,Book_id,in_id,mem_id")] BTransaction bTransaction)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Entry(bTransaction).State = EntityState.Modified;
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    ViewBag.Book_id = new SelectList(db.Tbl_Books, "Book_id", "Book_name", bTransaction.Book_id);
+        //    ViewBag.in_id = new SelectList(db.Invoices, "in_id", "in_id", bTransaction.in_id);
+        //    ViewBag.mem_id = new SelectList(db.tbl_member, "mem_id", "mem_name", bTransaction.mem_id);
+        //    return View(bTransaction);
+        //}
+
+
 
         // GET: BTransactions/Delete/5
         public ActionResult Delete(int? id)

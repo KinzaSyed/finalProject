@@ -649,6 +649,7 @@
     <Property Name="Book_id" Type="Int32" />
     <Property Name="in_id" Type="Int32" />
     <Property Name="mem_id" Type="Int32" />
+    <Property Name="transaction_status" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Tbl_Books" Relationship="lastDbModel.FK__BTransact__Book___4CA06362" FromRole="BTransaction" ToRole="Tbl_Books" />
     <NavigationProperty Name="Invoice" Relationship="lastDbModel.FK__BTransact__in_id__4D94879B" FromRole="BTransaction" ToRole="Invoice" />
     <NavigationProperty Name="tbl_member" Relationship="lastDbModel.FK_BTransaction_tbl_member" FromRole="BTransaction" ToRole="tbl_member" />

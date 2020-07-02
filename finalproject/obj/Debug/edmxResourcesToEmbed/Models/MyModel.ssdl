@@ -31,6 +31,7 @@
     <Property Name="Book_id" Type="int" />
     <Property Name="in_id" Type="int" />
     <Property Name="mem_id" Type="int" />
+    <Property Name="transaction_status" Type="varchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="EBook_Review_db">
     <Key>

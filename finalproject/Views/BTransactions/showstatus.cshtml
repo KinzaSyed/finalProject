@@ -1,43 +1,53 @@
 ﻿@model IEnumerable<finalproject.Models.BTransaction>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "showstatus";
 }
 
-<h2>Index</h2>
+<h2>showstatus</h2>
 
 @*<p>
     @Html.ActionLink("Create New", "Create")
 </p>*@
 <table class="table">
     <tr>
-        <th>
-           Total bill
+        @*<th>
+            @Html.DisplayNameFor(model => model.Transaction_bill)
         </th>
         <th>
-           Quantity
+            @Html.DisplayNameFor(model => model.Transaction_qty)
         </th>
         <th>
-          order date
+            @Html.DisplayNameFor(model => model.Transaction_date)
         </th>
         <th>
-          price per book
+            @Html.DisplayNameFor(model => model.Transaction_price)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.transaction_status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tbl_Books.Book_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Invoice.in_id)
+        </th>*@
         <th>
            Book Name
         </th>
         <th>
-           Status
+           Member
         </th>
+
         <th>
-          Deliver to
+           Status
         </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.Transaction_bill)
         </td>
         <td>
@@ -50,18 +60,32 @@
             @Html.DisplayFor(modelItem => item.Transaction_price)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.transaction_status)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Tbl_Books.Book_name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.transaction_status)
+            @Html.DisplayFor(modelItem => item.Invoice.in_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbl_member.mem_name)
+        </td>
+
+        <td>
+
+            @Html.ActionLink("Edit", "Edit", new { id=item.Transaction_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Transaction_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Transaction_id })
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Tbl_Books.Book_name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.tbl_member.mem_name)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Transaction_id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Transaction_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Transaction_id })
+            @Html.DisplayFor(modelItem => item.transaction_status)
         </td>
     </tr>
 }

@@ -24,6 +24,7 @@ namespace finalproject.Controllers
             if (Session["Vendor_id"] != null && Session["Vendor_email"] != null)
             {
                 return RedirectToAction("VendorPanel", "Tbl_Vendorr");
+                
             }
             else
             {

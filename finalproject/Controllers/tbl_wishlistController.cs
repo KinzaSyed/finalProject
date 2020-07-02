@@ -94,7 +94,10 @@ namespace finalproject.Controllers
         public ActionResult Create(tbl_wishlist wish, int id)
         {
 
-            var book_chk = db.tbl_wishlist.Where(b => b.Book_ID == id).Any();
+            int memidd = Convert.ToInt32(Session["mem_id"]);
+
+
+            var book_chk = db.tbl_wishlist.Where(b => b.Book_ID == id && b.mem_Id == memidd).Any();
             if (book_chk == false)
             {
                 int memid = Convert.ToInt32(Session["mem_id"]);

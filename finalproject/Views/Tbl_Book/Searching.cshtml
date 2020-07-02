@@ -1,126 +1,501 @@
 ﻿@using PagedList;
 @using PagedList.Mvc;
 
-@{ 
+@{
     Layout = null;
 }
 
-@model IPagedList<finalproject.Models.Tbl_Books>
 
-@if (Session["Admin_id"] != null && Session["Admin_email"] != null)
-{
-    Layout = "~/Views/Shared/_sidePanelPage.cshtml";
+<!DOCTYPE html>
+<html lang="en">
 
-}
-else
-{
-    ViewBag.Title = "Searching";
-}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookSelf</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
 
-<h2>Book Library</h2>
+        .wrapper {
+            width: 1170px;
+            margin: auto;
+        }
 
-<nav class="navbar navbar-light bg-light">
-    @using (Html.BeginForm("Searching", "Tbl_Book", FormMethod.Get))
-    {@Html.TextBox("search") <input class="btn-primary" type="submit" value="Search" />
-    <br /> <br />
-    <b>Search By</b>
-    @Html.RadioButton("searchBy", "Book_name") <text>Name</text>
-    @Html.RadioButton("searchBy", "cat_name") <text>Category</text>
-    @Html.RadioButton("searchBy", "pub_name") <text>Publisher</text>
+        header {
+            background: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url("../../Content/img/photo-1507842217343-583bb7270b66.jpg");
+            height: 100vh;
+            -webkit-background-size: cover;
+            background-size: cover;
+            background-position: center center;
+            position: relative;
+        }
 
+        .nav-area {
+            float: right;
+            list-style: none;
+            margin-top: 30px;
+        }
 
-}
+            .nav-area li {
+                display: inline-block;
+            }
 
-
-</nav>
-
-
-<table class="table table-striped table-responsive">
-
-    <thead>
-        <tr>
-            <th>Image</th>
-            <th>Name</th>
-            <th>Edition</th>
-            <th>Price</th>
-            <th>Author</th>
-            <th>Publisher</th>
-            <th>Category</th>
-            <th>Vendor</th>
-
-        </tr>
-
-
-
-
-
-    </thead>
-    @if (Model.Count() == 0)
-    {
-        <tr>
-            <td colspan="8">No Book Found</td>
-        </tr>
-    }
-    else
-    {
-
-        <tbody>
-            @if (Model != null)
-            {
-
-                foreach (var item in Model)
-
-                {
-                    <tr>
-
-                        <td><img style="width:50px;height:50px;" src="@Url.Content(item.Book_img)" /></td>
-                        <td>@item.Book_name</td>
-                        <td>@item.Book_Edition</td>
-                        <td>@item.Book_price</td>
-                        <td>@item.auth_id</td>
-                        <td>@item.pub_id</td>
-                        <td>@item.Book_categoryy.cat_name</td>
-                        <td>@item.Tbl_Vendorr.Vendor_name</td>
-                        <td>
-
-
-
-
-
-
-                            <a class="btn btn-info btn-sm" href="@Url.Action("Details", new { id = item.Book_id })">Details</a>
-
-                        </td>
-
-                    </tr>
+                .nav-area li a {
+                    color: #fff;
+                    text-decoration: none;
+                    padding: 5px 20px;
+                    font-family: poppins;
+                    font-size: 20px;
                 }
+
+                    .nav-area li a:hover {
+                        background: #fff;
+                        color: #333;
+                    }
+
+        .logo {
+            width: 100px;
+            float: left;
+            height: auto;
+            color: #fff;
+            padding-top: 25px;
+            font-size: 30px;
+        }
+
+        .welcome-text {
+            position: absolute;
+            width: 1000px;
+            height: 500px;
+            margin-left: 10%;
+            /*padding-top:10%;*/
+            margin-top:10%;
+
+            /*text-align: center;*/
+            background-color: wheat;
+            
+             
+
+        }
+
+            .welcome-text h1 {
+                text-align: center;
+                color: #000;
+                text-transform: uppercase;
+                font-size: 60px;
+            }
+
+            .welcome-text a {
+                border: 1px solid #000;
+                padding: 10px 25px;
+                text-decoration: none;
+                text-transform: uppercase;
+                font-size: 14px;
+                margin-top: 20px;
+                display: inline-block;
+                color: #000;
+            }
+
+                .welcome-text a:hover {
+                    background: #fff;
+                    color: #333;
+                }
+
+
+
+        .main {
+            max-height: 550px;
+            ;
+            background-color: #292c2f;
+            color: white;
+            font-size: 38pt;
+            text-align: center;
+            line-height: 550px;
+        }
+
+        footer {
+            bottom: 0;
+        }
+
+        .footer-distributed {
+            background-color: #292c2f;
+            box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+            box-sizing: border-box;
+            width: 100%;
+            text-align: left;
+            font: bold 16px sans-serif;
+            padding: 55px 50px;
+        }
+
+            .footer-distributed .footer-left,
+            .footer-distributed .footer-center,
+            .footer-distributed .footer-right {
+                display: inline-block;
+                vertical-align: top;
+            }
+
+            .footer-distributed .footer-left {
+                width: 40%;
+            }
+
+            .footer-distributed h3 {
+                color: #ffffff;
+                font: normal 36px 'Cookie', cursive;
+                margin: 0;
+            }
+
+                .footer-distributed h3 span {
+                    color: #5383d3;
+                }
+
+
+            .footer-distributed .footer-links {
+                color: #ffffff;
+                margin: 20px 0 12px;
+                padding: 0;
+            }
+
+                .footer-distributed .footer-links a {
+                    display: inline-block;
+                    line-height: 1.8;
+                    text-decoration: none;
+                    color: inherit;
+                }
+
+            .footer-distributed .footer-company-name {
+                color: #8f9296;
+                font-size: 14px;
+                font-weight: normal;
+                margin: 0;
+            }
+
+
+            .footer-distributed .footer-center {
+                width: 35%;
+            }
+
+                .footer-distributed .footer-center i {
+                    background-color: #33383b;
+                    color: #ffffff;
+                    font-size: 25px;
+                    width: 38px;
+                    height: 38px;
+                    border-radius: 50%;
+                    text-align: center;
+                    line-height: 42px;
+                    margin: 10px 15px;
+                    vertical-align: middle;
+                }
+
+                    .footer-distributed .footer-center i.fa-envelope {
+                        font-size: 17px;
+                        line-height: 38px;
+                    }
+
+                .footer-distributed .footer-center p {
+                    display: inline-block;
+                    color: #ffffff;
+                    vertical-align: middle;
+                    margin: 0;
+                }
+
+                    .footer-distributed .footer-center p span {
+                        display: block;
+                        font-weight: normal;
+                        font-size: 14px;
+                        line-height: 2;
+                    }
+
+                    .footer-distributed .footer-center p a {
+                        color: #5383d3;
+                        text-decoration: none;
+                        ;
+                    }
+
+            .footer-distributed .footer-right {
+                width: 20%;
+            }
+
+            .footer-distributed .footer-company-about {
+                line-height: 20px;
+                color: #92999f;
+                font-size: 13px;
+                font-weight: normal;
+                margin: 0;
+            }
+
+                .footer-distributed .footer-company-about span {
+                    display: block;
+                    color: #ffffff;
+                    font-size: 14px;
+                    font-weight: bold;
+                    margin-bottom: 20px;
+                }
+
+            .footer-distributed .footer-icons {
+                margin-top: 25px;
+            }
+
+                .footer-distributed .footer-icons a {
+                    display: inline-block;
+                    width: 35px;
+                    height: 35px;
+                    cursor: pointer;
+                    background-color: #33383b;
+                    border-radius: 2px;
+                    font-size: 20px;
+                    color: #ffffff;
+                    text-align: center;
+                    line-height: 35px;
+                    margin-right: 3px;
+                    margin-bottom: 5px;
+                }
+
+
+
+        @@media (max-width: 880px) {
+
+            .footer-distributed {
+                font: bold 14px sans-serif;
+            }
+
+                .footer-distributed .footer-left,
+                .footer-distributed .footer-center,
+                .footer-distributed .footer-right {
+                    display: block;
+                    width: 100%;
+                    margin-bottom: 40px;
+                    text-align: center;
+                }
+
+                    .footer-distributed .footer-center i {
+                        margin-left: 0;
+                    }
+
+            .main {
+                line-height: normal;
+                font-size: auto;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <div class="wrapper">
+            <div class="logo">
+                <label for="logo">BookSelf</label>
+            </div>
+            <ul class="nav-area">
+                <li><a href="/Home/Index">Home</a></li>
+                <li> <a href="/Home/About">About us</a></li>
+                <li> <a href="/Home/Contact">Contact us</a></li>
+                <li> <a href="/Tbl_member/Create">Sing up</a></li>
+                <li> <a href="/Home/vendorreaderLogin">Login</a></li>
+            </ul>
+        </div>
+
+
+        <div class="welcome-text">
+            @model IPagedList<finalproject.Models.Tbl_Books>
+
+            @if (Session["Admin_id"] != null && Session["Admin_email"] != null)
+            {
+                Layout = "~/Views/Shared/_sidePanelPage.cshtml";
+
             }
             else
             {
-                <tr>
-                    <td colspan="9">No Result Found...</td>
-                </tr>
+                ViewBag.Title = "Searching";
             }
 
 
+            @*<h2>Book Library</h2>*@
+
+            <nav class="navbar navbar-light bg-light">
+                @using (Html.BeginForm("Searching", "Tbl_Book", FormMethod.Get))
+                {@Html.TextBox("search") <input class="btn-primary" type="submit" value="Search" />
+                <br /> <br />
+                <b>Search By</b>
+                @Html.RadioButton("searchBy", "Book_name") <text>Name</text>
+                @Html.RadioButton("searchBy", "cat_name") <text>Category</text>
+                @Html.RadioButton("searchBy", "pub_name") <text>Publisher</text>
 
 
-        </tbody>
-
-    }
+            }
 
 
+            </nav>
+
+
+            <table class="table table-striped table-responsive">
+
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Edition</th>
+                        <th>Price</th>
+                        <th>Author</th>
+                        <th>Publisher</th>
+                        <th>Category</th>
+                        <th>Vendor</th>
+
+                    </tr>
 
 
 
-</table>
 
-@Html.PagedListPager( Model, page => Url.Action("Searching",
-    new {page, search = Request.QueryString["search"],
-        searchBy = Request.QueryString["searchBy"] }),
-    new PagedListRenderOptions() {Display = PagedListDisplayMode.IfNeeded
-    , DisplayPageCountAndCurrentLocation = true
-    ,DisplayItemSliceAndTotal = true
-    }
-    )
+
+                </thead>
+                @if (Model.Count() == 0)
+                {
+                    <tr>
+                        <td colspan="8">No Book Found</td>
+                    </tr>
+                }
+                else
+                {
+
+                    <tbody>
+                        @if (Model != null)
+                        {
+
+                            foreach (var item in Model)
+
+                            {
+                                <tr>
+
+                                    <td><img style="width:50px;height:50px;" src="@Url.Content(item.Book_img)" /></td>
+                                    <td>@item.Book_name</td>
+                                    <td>@item.Book_Edition</td>
+                                    <td>@item.Book_price</td>
+                                    <td>@item.auth_id</td>
+                                    <td>@item.pub_id</td>
+                                    <td>@item.Book_categoryy.cat_name</td>
+                                    <td>@item.Tbl_Vendorr.Vendor_name</td>
+                                    <td>
+
+
+
+
+
+
+                                        <a class="btn btn-info btn-sm" href="@Url.Action("Details", new { id = item.Book_id })">Details</a>
+
+                                    </td>
+
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="9">No Result Found...</td>
+                            </tr>
+                        }
+
+
+
+
+                    </tbody>
+
+                }
+
+
+
+
+
+            </table>
+
+            @Html.PagedListPager( Model, page => Url.Action("Searching",
+                new {page, search = Request.QueryString["search"],
+                    searchBy = Request.QueryString["searchBy"] }),
+                new PagedListRenderOptions() {Display = PagedListDisplayMode.IfNeeded
+                , DisplayPageCountAndCurrentLocation = true
+                ,DisplayItemSliceAndTotal = true
+                }
+                )
+
+        </div>
+
+    </header>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+    <footer class="footer-distributed">
+
+        <div class="footer-left">
+
+            <h3>Book<span>Self</span></h3>
+
+            <p class="footer-links">
+                <a href="Contact">Home</a>
+                ·
+                <a href="/Home/About">About</a>
+                · <a href="/Home/Contact">Contact</a>
+                · <a href="/Tbladmin/Login">Administration</a>
+
+            </p>
+            <p class="footer-company-name">BookSelf &copy; 2020</p>
+        </div>
+
+        <div class="footer-center">
+
+            <div>
+                <i class="fa fa-map-marker"></i>
+                <p><span>Karachi</span> Sindh, Pakistan</p>
+            </div>
+
+            <div>
+                <i class="fa fa-phone"></i>
+                <p>+92 90078601</p>
+            </div>
+
+            <div>
+                <i class="fa fa-envelope"></i>
+                <p><a href="mailto:support@bookself.com">contact@bookself.com</a></p>
+            </div>
+
+            <div>
+
+                @{
+
+                    Html.RenderAction("subscribe", "Home");
+                }
+
+            </div>
+
+        </div>
+
+        <div class="footer-right">
+
+            <p class="footer-company-about">
+                <span>About the company</span>
+                BookSelf is a smart online library for readers.
+            </p>
+
+            <div class="footer-icons">
+
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-linkedin"></i></a>
+
+            </div>
+
+        </div>
+
+    </footer>
+</body>
+
+</html>

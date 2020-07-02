@@ -139,7 +139,9 @@ else
                         <div id="@("rating" + i)"></div>
                         <br />
                         <b>Comments:</b>
-                        <br /> @review.ContentC
+
+
+                        <br />@Html.Raw(@review.ContentC)
                     </td>
                 </tr>
                 i++;

@@ -8,25 +8,31 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Transaction_bill)
+            Total Bill
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Transaction_qty)
+            Book Quantity
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Transaction_date)
+            Order Date
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Transaction_price)
+            Price
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Tbl_Books.Book_name)
+            Book Name
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.Invoice.in_id)
+        </th>*@
+        <th>
+            Delivery to
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.tbl_member.mem_name)
+            Address
+        </th>
+        <th>
+            Status
         </th>
         <th></th>
     </tr>
@@ -48,16 +54,22 @@
         <td>
             @Html.DisplayFor(modelItem => item.Tbl_Books.Book_name)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.Invoice.in_id)
-        </td>
+        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.tbl_member.mem_name)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Transaction_id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Transaction_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Transaction_id })
+            @Html.DisplayFor(modelItem => item.tbl_member.mem_address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.transaction_status)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Transaction_id }) @*|
+            @Html.ActionLink("Details", "Details", new { id = item.Transaction_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Transaction_id })*@
         </td>
     </tr>
 }
